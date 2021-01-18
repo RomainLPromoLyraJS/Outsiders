@@ -1,4 +1,5 @@
+@use 'src/styles/vars';
 .footer {
-    background-color: #2f3140;
+    background-color: vars.$color-secondary;
     color: #f1FAEE;
 }
