@@ -1,3 +1,4 @@
 %syntax-version=1.0.0
 %project=outsiders
 
+10-init 2021-01-18T13:44:36Z "Etudiant O'clock",,, <etudiant@teleporteur> # structure initiale de la BDD
