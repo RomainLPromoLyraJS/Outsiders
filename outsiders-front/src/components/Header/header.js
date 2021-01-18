@@ -1,14 +1,16 @@
 import React from 'react';
 
+//Import styles
+
+import './header.scss';
+
 
 const Header = () => {
     return (
-        <div> 
-            <img src="logo-du-site" alt="Outsiders" />
-            
-            <button type="submit">Connexion</button>
-            <button type="submit">Inscription</button>
-            <button>Menu</button>
+        <div className='header'> 
+            <img src="header_logo" alt="Outsiders" />
+            <button className='header_login' type="submit">Connexion</button>
+            <nav className='header_menu'>menu</nav>
         </div>
     )
 };

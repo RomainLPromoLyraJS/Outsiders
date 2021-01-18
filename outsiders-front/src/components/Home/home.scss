@@ -1,0 +1,26 @@
+// Import / Use vars stylesSheet
+@use 'src/styles/vars';
+// FONT
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+
+.homepage_container {
+    background-color: #873a4f;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.searchbar {
+    text-align: center;
+}
+
+.homepage_title {
+    color: #3b7160;
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 40px;
+    
+}
+
+.homepage_news {
+    background-color: white;
+}
