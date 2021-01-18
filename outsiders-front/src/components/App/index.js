@@ -1,18 +1,17 @@
 // Import React app package
-import React, { Components } from 'react';
+import React from 'react';
 
 // Import Styles
 import './App.css';
 
 // Import Components
-import './src/components/Header';
-import './src/components/Main';
-import './src/components/Footer';
+import Header from '../Header/header';
+import Main from '../Main/main';
+import Footer from '../Footer/footer';
 
 function App() {
   return (
     <div className="App">
-      <p>Je suis dans App</p>
       <Header />
       <Main />
       <Footer />
