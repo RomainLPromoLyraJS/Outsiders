@@ -1,10 +1,10 @@
 const express = require('express');
 
 
-const adminController = require('../controllers/admin');
-const loginController = require('../controllers/login');
-const userController = require('../controllers/user');
-const errorController = require('../controllers/error');
+const adminController = require('../controllers/adminController');
+const loginController = require('../controllers/loginController');
+const userController = require('../controllers/userController');
+const errorController = require('../controllers/errorController');
 
 const router = express.Router();
 
