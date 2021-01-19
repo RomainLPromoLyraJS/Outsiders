@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import './trips.scss';
+// import './trips.scss';
 
 
 

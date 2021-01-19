@@ -1,45 +1,34 @@
-// Import React app package
+// == Package imports
 import React from 'react';
-
-// Import route from react-router-dom pckging // 
 import { Route } from 'react-router-dom';
 
-
-
-
-// Import Styles
-import './app.scss';
-
-
-
-// Import Components
-import Header from '../Header/header';
-import Home from '../Home/home';
-import Footer from '../Footer/footer';
-import Sports from '../Sports/sports';
-import Trips from '../Trips/trips';
-import Nav from '../Nav/nav';
+// == Local imports
+// Components
+import Header from '../Header';
+import Home from '../Home';
+import Footer from '../Footer';
+import Sports from '../Sports';
+import Trips from '../Trips';
+import Nav from '../Nav';
 
 
 
 function App() {
   return (
-    
     <div className="App">
       <Nav />
       <Header />
       <Route exact path='/' >
-      <Home />
+        <Home />
       </Route>
       <Route exact path='/sports' >
-      <Sports />
+        <Sports />
       </Route>
       <Route exact path='/trips' >
-      <Trips />
+        <Trips />
       </Route>
       <Footer />
     </div>
-    
   );
 }
 

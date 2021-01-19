@@ -3,7 +3,7 @@ import React from 'react';
 
 // import styles
 
-import './sport.scss';
+// import './sport.scss';
 
 
 

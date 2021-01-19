@@ -1,6 +1,5 @@
-@use 'src/styles/vars';
 .header {
-    background-color: vars.$color-secondary;
+    background-color: $color-secondary;
     height: 50px;
     display:flex;
     justify-content: space-around;

@@ -1,10 +1,5 @@
-// Import / Use vars stylesSheet
-@use 'src/styles/vars';
-// FONT
-@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
-
 .homepage_container {
-    background-color: vars.$color-primary;
+    background-color: $color;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -16,14 +11,14 @@
 }
 
 .homepage_title {
-    color: vars.$color-primary;
+    color: $color;
     font-family: 'Bowlby One SC', cursive;
     font-size: 30px;
     
 }
 
 .homepage_form {
-    background-color: vars.$color-secondary;
+    background-color: $color-secondary;
     border-radius: 25%;
     height: 250px;
     width: 250px;
@@ -31,5 +26,5 @@
 }
 
 .homepage_news {
-    background-color: vars.$color-primary;
+    background-color: $color;
 }

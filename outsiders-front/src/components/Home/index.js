@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Import stylesheet
-import './home.scss';
+// import './home.scss';
 
 // import wip from './wip.jpg';
 
