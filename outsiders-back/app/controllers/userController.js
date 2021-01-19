@@ -13,9 +13,10 @@ module.exports = {
     async createNewUser(req, res, next) {
         try {
             const newUser = req.body;
-            await userDataMapper.createNewUser(newUser);
+            const createdUser = await userDataMapper.createNewUser(newUser);
             res.json({
-                status: 'new user created'
+                message: 'new user created',
+                data: createdUser
             });
         } catch(error) {
             next(error);
@@ -24,7 +25,8 @@ module.exports = {
     
     async oneUser(req, res, next) {
         try {
-            const oneUser = await userDataMapper.oneUser();
+            const userId = req.params;
+            const oneUser = await userDataMapper.oneUser(userId);
             res.json(oneUser);
         } catch(error) {
             next(error);
@@ -46,10 +48,28 @@ module.exports = {
     async deleteUser(req, res, next) {
         try {
             const deleteUser = req.params.id
-            await userDataMapper.deleteUser();
+            await userDataMapper.deleteUser(deleteUser);
             res.json({
-                status: 'user deleted'
+                message: 'user deleted'
             });
+        } catch(error) {
+            next(error);
+        }
+    },
+
+    async allReviews(req, res, next) {
+        try {
+            const allReviews = await userDataMapper.allReviews();
+            res.json(allReviews);
+        } catch(error) {
+            next(error);
+        }
+    },
+
+    async createReview(req, res, next) {
+        try {
+            const newReview = await userDataMapper.createReview();
+            res.json(newReview);
         } catch(error) {
             next(error);
         }

@@ -16,6 +16,9 @@ router.get('/user', userController.allUsers);
 router.post('/user', userController.createNewUser);
 router.get('/user/:id(\\d+)', userController.oneUser);
 router.patch('/user/:id(\\d+)', userController.updateUser);
+router.delete('/user/:id(\\d+)', userController.deleteUser);
+router.get('/user/:id(\\d+)/reviews', userController.allReviews);
+router.post('/user/:id(\\d+)/reviews', userController.createReview);
 
 router.use(errorController.error404);
 router.use(errorController.error500);
