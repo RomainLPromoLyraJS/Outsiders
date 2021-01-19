@@ -10,6 +10,8 @@ import Footer from '../Footer';
 import Sports from '../Sports';
 import Trips from '../Trips';
 import Nav from '../Nav';
+import Login from '../Login';
+import About from '../About';
 
 
 
@@ -26,6 +28,12 @@ function App() {
       </Route>
       <Route exact path='/trips' >
         <Trips />
+      </Route>
+      <Route exact path='/login' >
+        <Login />
+      </Route>
+      <Route exact path='/about' >
+        <About />
       </Route>
       <Footer />
     </div>

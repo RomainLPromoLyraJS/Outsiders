@@ -1,5 +1,15 @@
-@use 'src/styles/vars';
+
 .footer {
     background-color: $color-secondary;
-    color: #f1FAEE;
+    display:flex;
+    justify-content: center;
+    padding: 15px;
+    // margin: 15px auto;
+}
+
+.footer p {
+    padding: 0 20px;
+    color: $color;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
