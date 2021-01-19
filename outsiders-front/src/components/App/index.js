@@ -9,7 +9,7 @@ import Home from '../Home';
 import Footer from '../Footer';
 import Sports from '../Sports';
 import Trips from '../Trips';
-import Nav from '../Nav';
+// import Nav from '../Nav';
 import Signup from '../Signup';
 
 
@@ -17,7 +17,7 @@ import Signup from '../Signup';
 function App() {
   return (
     <div className="App">
-      <Nav />
+      {/* <Nav /> */}
       <Header />
       <Route exact path='/' >
         <Home />
