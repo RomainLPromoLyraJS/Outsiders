@@ -1,0 +1,15 @@
+@use 'src/styles/vars';
+
+.trips_container {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 200px;
+}
+
+.trips_card {
+    
+    border: solid 1px black;
+   
+    
+}
