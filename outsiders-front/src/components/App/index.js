@@ -1,9 +1,11 @@
 // Import React app package
 import React from 'react';
 
-// Import router from react-router-dom pckging // Rename BrowserRouter as Router easiest to understand
+// Import route from react-router-dom pckging // 
+import { Route } from 'react-router-dom';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+
+
 
 // Import Styles
 import './app.scss';
@@ -16,21 +18,28 @@ import Home from '../Home/home';
 import Footer from '../Footer/footer';
 import Sports from '../Sports/sports';
 import Trips from '../Trips/trips';
+import Nav from '../Nav/nav';
+
+
 
 function App() {
   return (
-    <Router>
+    
     <div className="App">
+      <Nav />
       <Header />
-      <Route path='/' />
+      <Route exact path='/' >
       <Home />
-      <Route path='/sports' component={Sports}/>
+      </Route>
+      <Route exact path='/sports' >
       <Sports />
-      <Route path='/sorties' component={Trips}/>
+      </Route>
+      <Route exact path='/trips' >
       <Trips />
+      </Route>
       <Footer />
     </div>
-    </Router>
+    
   );
 }
 

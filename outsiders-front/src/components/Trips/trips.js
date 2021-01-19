@@ -6,7 +6,7 @@ const Trips = () => {
     
     return (
         <div> TRIPS DETAILS </div>
-    )
+    );
 }
 
 
