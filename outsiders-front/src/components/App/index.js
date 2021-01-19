@@ -10,6 +10,7 @@ import Footer from '../Footer';
 import Sports from '../Sports';
 import Trips from '../Trips';
 import Nav from '../Nav';
+import Signup from '../Signup';
 
 
 
@@ -26,6 +27,9 @@ function App() {
       </Route>
       <Route exact path='/trips' >
         <Trips />
+      </Route>
+      <Route exact path='/signup' >
+        <Signup />
       </Route>
       <Footer />
     </div>
