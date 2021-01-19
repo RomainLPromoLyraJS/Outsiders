@@ -1,27 +1,27 @@
+// == Package imports
 import React from 'react';
 
-// Import stylesheet
-// import './home.scss';
+// == Local imports
+import groupImg from '../../assets/images/home2.jpg';
 
-// import wip from './wip.jpg';
-
-const Home = () => {
-    return (
-        <div className='homepage'>
-            <div className='homepage_container'>
-                <form className='homepage_form'>
-                    <div className='homepage_title'> HOMEPAGE</div>
-                    <input className='searchbar' placeholder='date'></input>
-                    <input className='searchbar' placeholder='sport'></input>
-                    <button className='homepage_submit'>Let's Go !</button>
-                </form>
-                <div className='homepage_news'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </div>
-            </div>
-        </div>
-    )
-};
-
+const Home = () => (
+  <div className="home">
+    <section className="home__top">
+      <div className="home__top__search"></div>
+      <div className="home__top__baseline">
+        <h2>Feugiat in ante metus dictum at tempor</h2>
+      </div>
+    </section>
+    <section className="home__bottom">
+      <div className="home__bottom__img">
+        <img src={groupImg} alt="Groupe hiking" />
+      </div>
+      <div className="home__bottom__text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit. Curabitur gravida arcu ac tortor dignissim convallis aenean. Nisi porta lorem mollis aliquam ut porttitor leo. Molestie nunc non blandit massa. Tortor pretium viverra suspendisse potenti nullam ac. Sem nulla pharetra diam sit amet. Varius vel pharetra vel turpis nunc. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Bibendum enim facilisis gravida neque convallis a.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit.</p>
+      </div>
+    </section>
+  </div>
+);
 
 export default Home;

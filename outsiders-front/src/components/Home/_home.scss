@@ -1,30 +1,65 @@
-.homepage_container {
-    background-color: $color;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem;
-}
-.searchbar {
-    text-align: center;
-}
+.home {
 
-.homepage_title {
-    color: $color;
-    font-family: 'Bowlby One SC', cursive;
-    font-size: 30px;
-    
-}
+  &__top {
+    height: calc(100vh - 60px);
 
-.homepage_form {
-    background-color: $color-secondary;
-    border-radius: 25%;
-    height: 250px;
-    width: 250px;
-    
-}
+    &__search {
+      height: calc(100vh - 160px);
+      background-image: url('../../assets/images/home1.jpg');
+      background-position: center;
+      background-size: cover;
+    }
 
-.homepage_news {
-    background-color: $color;
+    &__baseline {
+      height: 100px;
+      padding: 0 5%;
+      background-color: $color-secondary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        color: $color;
+        font-size: 1.5rem;
+        @include media('>=tablet') {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    width: 90%;
+    margin: 2rem auto;
+    @include media('>=tablet') {
+      max-width: 1400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__img {
+      width: 100%;
+      height: fit-content;
+      margin-bottom: 2rem;
+      @include media('>=tablet') {
+        width: 46%;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    &__text {
+      @include media('>=tablet') {
+        width: 46%;
+      }
+
+      p:last-child {
+        margin-top: 1rem;
+      }
+    }
+  }
 }
