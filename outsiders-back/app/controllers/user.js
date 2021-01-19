@@ -33,8 +33,23 @@ module.exports = {
 
     async updateUser(req, res, next) {
         try {
-            const updateUser = await userDataMapper.updateUser();
-            res.json(updateUser);
+            const updateUser = req.params;
+            await userDataMapper.updateUser(updateUser);
+            res.json({
+                status: 'user updated'
+            });
+        } catch(error) {
+            next(error);
+        }
+    },
+
+    async deleteUser(req, res, next) {
+        try {
+            const deleteUser = req.params.id
+            await userDataMapper.deleteUser();
+            res.json({
+                status: 'user deleted'
+            });
         } catch(error) {
             next(error);
         }
