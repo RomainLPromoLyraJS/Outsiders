@@ -39,5 +39,6 @@ INSERT INTO sport(title, "description") VALUES
 ("Ski de fond", ),
 ("Snowboard", );
 
-INSERT 
+INSERT INTO "message"("title", "content", "date") VALUES 
+(""),
 
