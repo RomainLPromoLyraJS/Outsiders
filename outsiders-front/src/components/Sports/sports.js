@@ -8,3 +8,5 @@ const Sports = () => {
         <div> SPORT PAGE</div>
     )
 }
+
+export default Sports;
