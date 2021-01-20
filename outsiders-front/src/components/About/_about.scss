@@ -1,0 +1,70 @@
+.about {
+padding: 20px;
+    &__presentation {
+        padding: 20px;
+
+    &__title {
+        font-size: 2.2em;
+        padding-bottom: 10px;
+        text-align: center;
+        color: $color-quaternary;
+       
+        
+    }
+    
+    &__text {
+        line-height: 1.2em;
+        font-size: 1.2em;
+    }
+    }
+
+    &__website {
+        padding: 30px;
+        text-align: center;
+        &__title {
+            color: $color-quaternary;
+            font-size: 2em;
+            text-transform: capitalize;
+            font-weight: bold;
+        }
+        
+        &__article {
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        
+    }
+        &__team {
+
+            &__title {
+                color: $color-quaternary;
+                font-size: 2em;
+                text-transform: capitalize;
+                font-weight: bold;
+                text-align: center;
+            }
+
+
+            &__text {
+                padding: 20px;
+                font-size: 1.2em;
+                text-align: center;
+            }
+    
+            &__article {
+                padding: 20px;
+                font-size: 1.2em;
+            }
+    
+            &__subtitle {
+                color: $color-quaternary;
+                font-size: 1.4em;
+                font-weight: bold;
+                padding: 0.5em;
+            }
+
+        }
+        
+    }
+
+    

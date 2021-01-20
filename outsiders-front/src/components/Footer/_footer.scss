@@ -1,0 +1,15 @@
+
+.footer {
+    background-color: $color-secondary;
+    display:flex;
+    justify-content: center;
+    padding: 15px;
+    // margin: 15px auto;
+}
+
+.footer p {
+    padding: 0 20px;
+    color: $color;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
