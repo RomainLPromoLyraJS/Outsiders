@@ -13,9 +13,14 @@
 @import '../components/Home/home';
 @import '../components/Sports/sports';
 @import '../components/Trips/trips';
+<<<<<<< HEAD
 @import '../components/Footer/footer';
 @import '../components/Login/login';
 @import '../components/About/about';
+=======
+@import '../components/Signup/signup';
+@import '../components/Nav/navbar.scss';
+>>>>>>> Front/SideBar
 
 body {
   font-family: 'Lato', sans-serif;
