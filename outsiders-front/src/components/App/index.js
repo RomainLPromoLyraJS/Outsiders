@@ -9,10 +9,10 @@ import Home from '../Home';
 import Footer from '../Footer';
 import Sports from '../Sports';
 import Trips from '../Trips';
-import Login from '../Login';
+import Login from '../../containers/Login';
 import About from '../About';
 // import Nav from '../Nav';
-import Signup from '../Signup';
+import Signup from '../../containers/Signup';
 
 
 
