@@ -18,11 +18,19 @@ const Signup = () => {
                 />
                 <input
                 className='signup_form_input'
+                placeholder='UserName'
+                />
+                <input
+                className='signup_form_input'
                 placeholder='Email'
                 />
                 <input
                 className='signup_form_input'
                 placeholder='Password'
+                />
+                <input
+                className='signup_form_input'
+                placeholder='ShortDescription'
                 />
                 <button
                 type='submit'
