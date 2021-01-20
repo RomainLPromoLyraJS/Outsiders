@@ -13,6 +13,7 @@ import Login from '../../containers/Login';
 import About from '../About';
 // import Nav from '../Nav';
 import Signup from '../../containers/Signup';
+import Admin from '../../containers/Admin';
 
 
 
@@ -37,6 +38,9 @@ function App() {
       </Route>
       <Route exact path='/about' >
         <About />
+      </Route>
+      <Route exact path='/admin' >
+        <Admin />
       </Route>
       <Footer />
     </div>
