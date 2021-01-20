@@ -2,6 +2,9 @@
 
   &__top {
     height: calc(100vh - 60px);
+    @include media('>=tablet') {
+      height: calc(100vh - 72px);
+    }
 
     &__search {
       height: calc(100vh - 160px);
