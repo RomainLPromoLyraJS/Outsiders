@@ -9,6 +9,8 @@ import Home from '../Home';
 import Footer from '../Footer';
 import Sports from '../Sports';
 import Trips from '../Trips';
+import Login from '../Login';
+import About from '../About';
 // import Nav from '../Nav';
 import Signup from '../Signup';
 
@@ -30,6 +32,12 @@ function App() {
       </Route>
       <Route exact path='/signup' >
         <Signup />
+      </Route>
+      <Route exact path='/login' >
+        <Login />
+      </Route>
+      <Route exact path='/about' >
+        <About />
       </Route>
       <Footer />
     </div>
