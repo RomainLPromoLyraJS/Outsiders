@@ -1,32 +1,33 @@
 .login-page {
     // flex-wrap: wrap;
-    border: 1px solid black;
+    
 
     &__description {
         color: $color_quaternary;
         font-size: 1.1em;
         font-weight: 700;
         line-height: 1.2em;
-        border: 1px solid black;
         padding: 20px;
     }
 
     &__form {
-        // display: flex;
+        display: flex;
+        flex-direction: column;
         color: $color_quaternary;
         font-weight: bold;
         padding: 2em;
-        border: 1px solid black;
+        
        
 
         &__label {
-            border: 1px solid black;
+            margin-top: 1rem;
+            
         }
 
         &__input {
          padding: 10px;
          border-radius: 5px;
-         border: 1px solid black;
+         
         }
 
         &__button {
