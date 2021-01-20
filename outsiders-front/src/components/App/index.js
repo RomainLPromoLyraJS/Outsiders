@@ -28,16 +28,8 @@ function App() {
       <Route exact path='/trips' >
         <Trips />
       </Route>
-<<<<<<< HEAD
-      <Route exact path='/login' >
-        <Login />
-      </Route>
-      <Route exact path='/about' >
-        <About />
-=======
       <Route exact path='/signup' >
         <Signup />
->>>>>>> Front/SideBar
       </Route>
       <Footer />
     </div>
