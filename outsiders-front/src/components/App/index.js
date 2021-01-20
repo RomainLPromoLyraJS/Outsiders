@@ -19,7 +19,6 @@ import Signup from '../Signup';
 function App() {
   return (
     <div className="App">
-      {/* <Nav /> */}
       <Header />
       <Route exact path='/' >
         <Home />

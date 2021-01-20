@@ -1,17 +1,11 @@
+// == Package imports
 import React from 'react';
 
-// import './footer.scss';
-
-
-const Footer = () => {
-    return (
-        <div className='footer'> 
-            <p>A propos</p>
-            <p>Nous contacter</p>
-            <p>Copyright © 2021 - Outsiders</p>
-        </div>
-    )
-};
+const Footer = () => (
+  <footer className="footer">
+    <p>©Outsiders - 2021</p>
+  </footer>
+);
 
 
 export default Footer;
