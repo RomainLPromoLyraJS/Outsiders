@@ -1,6 +1,6 @@
 // == Package imports
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider as StoreProvider } from 'react-redux';
 
@@ -13,14 +13,14 @@ import App from './components/App';
 // store
 import store from './store';
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <StoreProvider store={store}>
-        <App />
-      </StoreProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+const rootReactElement = (
+  <BrowserRouter>
+    <StoreProvider store={store}>
+      <App />
+    </StoreProvider>
+  </BrowserRouter>
 );
+
+const target = document.getElementById('root');
+
+render(rootReactElement, target);

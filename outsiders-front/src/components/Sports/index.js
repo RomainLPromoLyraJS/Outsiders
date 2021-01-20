@@ -1,51 +1,19 @@
+// == Package imports
 import React from 'react';
 
+// == Local imports
+// data
+import catData from '../../data/categories';
+// components
+import SportsCat from './SportsCat';
 
-// import styles
-
-// import './sport.scss';
-
-
-
-const Sports = () => {
-
-    return (
-        <div className='sport_container'> 
-        
-        <div className='sport_card'>
-            <h1>CATEGORIES</h1>
-            <ul>
-                <li>Sport</li>
-                <li>Sport</li>
-                <li>Sport</li>
-            </ul>
-        </div>
-        <div className='sport_card'>
-            <h1>CATEGORIES</h1>
-            <ul>
-                <li>Sport</li>
-                <li>Sport</li>
-                <li>Sport</li>
-            </ul>
-        </div>
-        <div className='sport_card'>
-            <h1>CATEGORIES</h1>
-            <ul>
-                <li>Sport</li>
-                <li>Sport</li>
-                <li>Sport</li>
-            </ul>
-        </div>
-        <div className='sport_card'>
-            <h1>CATEGORIES</h1>
-            <ul>
-                <li>Sport</li>
-                <li>Sport</li>
-                <li>Sport</li>
-            </ul>
-        </div>
-        </div>
-    )
-}
+const Sports = ({ categories = catData }) => (
+  <div className="sports">
+    <h1 className="sports__title">Sports</h1>
+    {categories.map((c) => {
+      return <SportsCat key={c.id} category={c} />
+    })}
+  </div>
+);
 
 export default Sports;

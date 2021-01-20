@@ -1,12 +1,74 @@
-.sport_container {
-    display:flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    height: 200px;
-}
+.sports {
+  min-height: calc(100vh - 120px);
+  
+  &__title {
+    padding: 2rem 0 1rem;
+    margin-left: 5vw;
+    font-size: 3rem;
+    color: $color-tertiary;
+  }
 
-.sport_card {
-    
-    border: solid 1px black;
-    
+  .category {
+    width: 100%;
+    color: $color;
+
+    &--air {
+      background-color: $color-senary;
+    }
+
+    &--eau {
+      background-color: $color-quinary;
+    }
+
+    &--neige {
+      background-color: $color-septenary;
+      color: $color-tertiary;
+    }
+
+    &--terre {
+      background-color: $color-quaternary;
+    }
+
+    &__header {
+      height: 100px;
+      padding: 0 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &--air {
+        background-image: url('../../assets/images/air.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &--eau {
+        background-image: url('../../assets/images/eau.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &--neige {
+        background-image: url('../../assets/images/neige.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &--terre {
+        background-image: url('../../assets/images/terre.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &__title {
+        color: $color;
+        font-size: 3rem;
+      }
+    }
+
+    &__content {
+      height: fit-content;
+      overflow: hidden;
+    }
+  }
 }
