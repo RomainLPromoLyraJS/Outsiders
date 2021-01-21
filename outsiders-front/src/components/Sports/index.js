@@ -2,12 +2,10 @@
 import React, { useState } from 'react';
 
 // == Local imports
-// data
-import catData from '../../data/categories';
 // components
 import SportsCat from './SportsCat';
 
-const Sports = ({ categories = catData }) => {
+const Sports = ({ categories }) => {
   const [ isOpen, setIsOpen ] = useState('');
 
   return (
