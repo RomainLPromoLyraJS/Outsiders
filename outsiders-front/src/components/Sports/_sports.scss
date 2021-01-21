@@ -1,11 +1,19 @@
 .sports {
   min-height: calc(100vh - 120px);
+  @include media('>=tablet') {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
   
   &__title {
     padding: 2rem 0 1rem;
     margin-left: 5vw;
     font-size: 3rem;
     color: $color-tertiary;
+    @include media('>=tablet') {
+      margin: 0;
+      font-size: 6rem;
+    }
   }
 
   .category {
@@ -35,6 +43,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
 
       &--air {
         background-image: url('../../assets/images/air.jpg');
@@ -69,6 +78,9 @@
         color: $color;
         font-size: 4rem;
         transition: all .7s ease-in-out;
+        @include media('>=tablet') {
+          font-size: 5rem;
+        }
         
         &--active {
           transform: rotate(180deg);
@@ -85,10 +97,17 @@
       &--active {
         height: 335px;
         padding: 5vw;
+        @include media('>=tablet') {
+          height: 440px;
+          padding: 1.5rem 5vw;
+        }
       }
 
       p {
         margin: .5rem 0;
+        @include media('>=tablet') {
+          font-size: 1.5rem;
+        }
       }
     }
   }
