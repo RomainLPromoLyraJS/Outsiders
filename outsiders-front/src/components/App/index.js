@@ -8,10 +8,11 @@ import Header from '../Header';
 import Home from '../Home';
 import Footer from '../Footer';
 import Sports from '../Sports';
-import Trips from '../Trips';
+import Trips from '../../containers/Trip';
 import Login from '../../containers/Login';
 import About from '../About';
 import Signup from '../../containers/Signup';
+import Tripdetails from '../Tripdetails';
 
 
 
@@ -37,6 +38,10 @@ function App() {
       <Route exact path='/about' >
         <About />
       </Route>
+      <Route exact path='/sortie' >
+        <Tripdetails />
+      </Route>
+        
       <Footer />
     </div>
   );

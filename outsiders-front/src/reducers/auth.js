@@ -4,7 +4,7 @@ import { CHANGE_AUTH_FIELD } from '../store/action';
 const initialState = {
   firstname: '',
   lastname: '',
-  username: null,
+  username: '',
   email: '',
   password: '',
   description: '',
@@ -21,7 +21,7 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'LOGIN_SUCCESS':
       return {
         ...oldState,
-        logged: action.logged,
+        logged: true,
         username: action.username,
       };
     case 'LOGOUT':

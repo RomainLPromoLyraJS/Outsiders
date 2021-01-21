@@ -9,7 +9,7 @@ import { changeAuthField } from '../store/action';
 const mapStateToProps = (state) => ({
   emailValue: state.auth.email,
   passwordValue: state.auth.password,
-  isLogged: state.auth.logged
+  // isLogged: state.auth.logged
 });
 
 
