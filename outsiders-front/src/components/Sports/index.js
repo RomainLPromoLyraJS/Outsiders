@@ -1,5 +1,5 @@
 // == Package imports
-import React from 'react';
+import React, { useState } from 'react';
 
 // == Local imports
 // data
@@ -7,13 +7,17 @@ import catData from '../../data/categories';
 // components
 import SportsCat from './SportsCat';
 
-const Sports = ({ categories = catData }) => (
-  <div className="sports">
-    <h1 className="sports__title">Sports</h1>
-    {categories.map((c) => {
-      return <SportsCat key={c.id} category={c} />
-    })}
-  </div>
-);
+const Sports = ({ categories = catData }) => {
+  const [ isOpen, setIsOpen ] = useState('');
+
+  return (
+    <div className="sports">
+      <h1 onClick={() => setIsOpen('')} className="sports__title">Sports</h1>
+      {categories.map((c) => {
+        return <SportsCat isOpen={isOpen} setIsOpen={setIsOpen} key={c.id} category={c} />
+      })}
+    </div>
+  );
+};
 
 export default Sports;

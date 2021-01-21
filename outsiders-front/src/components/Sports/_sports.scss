@@ -64,11 +64,32 @@
         color: $color;
         font-size: 3rem;
       }
+
+      &__arrow {
+        color: $color;
+        font-size: 4rem;
+        transition: all .7s ease-in-out;
+        
+        &--active {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     &__content {
-      height: fit-content;
+      height: 0;
       overflow: hidden;
+      padding: 0 5vw;
+      transition: all .7s ease-in-out;
+
+      &--active {
+        height: 335px;
+        padding: 5vw;
+      }
+
+      p {
+        margin: .5rem 0;
+      }
     }
   }
 }
