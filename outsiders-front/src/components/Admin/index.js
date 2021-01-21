@@ -1,6 +1,6 @@
 // IMPORTS
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 // My Component
 const Admin = ({ emailValue, passwordValue, handleChange }) => {
@@ -49,8 +49,10 @@ const Admin = ({ emailValue, passwordValue, handleChange }) => {
 };
 
 // Default value for Admin (propTypes)
-// Admin.propTypes = { 
- 
-// };
+Admin.propTypes = { 
+  emailValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default Admin;

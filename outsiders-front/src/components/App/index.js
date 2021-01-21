@@ -14,6 +14,7 @@ import About from '../About';
 // import Nav from '../Nav';
 import Signup from '../../containers/Signup';
 import Admin from '../../containers/Admin';
+import Profile from '../../components/Profile';
 
 
 
@@ -41,6 +42,9 @@ function App() {
       </Route>
       <Route exact path='/admin' >
         <Admin />
+      </Route>
+      <Route exact path='/mon-compte' >
+        <Profile />
       </Route>
       <Footer />
     </div>
