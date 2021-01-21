@@ -1,5 +1,6 @@
 const tripData = [
     { 
+      id: 1,
       title:'Moutain Trail',
       description:'BestTrailEver',
       date:'20/01/21',
@@ -9,12 +10,13 @@ const tripData = [
       places:'2',
       minimum: null,
       price: 100,
-      duration: "1/2 DAY",
+      duration: 0.5,
       user : { 
         username: 'TrailMania',
       },
     },
     { 
+      id: 2,
       title:'Paddle sur le lac',
       description:'BestPaddleEver',
       date:'22/01/21',
@@ -24,12 +26,13 @@ const tripData = [
       places:'4',
       minimum: null,
       price: 100,
-      duration: "1 DAY",
+      duration: 1,
       user : { 
         username: 'TrailMania',
       },
     },
     { 
+      id: 3,
       title:'Moutain VTT',
       description:'BestRoadEver',
       date:'20/01/21',
@@ -39,12 +42,13 @@ const tripData = [
       places:'3',
       minimum: null,
       price: 100,
-      duration: "1/2 DAY",
+      duration: 0.5,
       user : { 
         username: 'TrailMania',
       },
     },
     { 
+      id: 4,
       title:'Moutain Trail',
       description:'BestTrailEver',
       date:'20/01/21',
@@ -54,7 +58,7 @@ const tripData = [
       places:'2',
       minimum: null,
       price: 100,
-      duration: "1/2 DAY",
+      duration: 0.5,
       user : { 
         username: 'TrailMania',
       },

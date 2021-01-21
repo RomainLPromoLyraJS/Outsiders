@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import Profile from '../components/Profile';
 
 const mapStateToProps = (state) => ({
-    usernameValue: state.auth.username,
-    descriptionValue: state.auth.description,
+    username: state.auth.username,
+    description: state.auth.description,
     isConnected: state.auth.isLogged,
-
+    trips: state.trip.list,
 
   
 });
