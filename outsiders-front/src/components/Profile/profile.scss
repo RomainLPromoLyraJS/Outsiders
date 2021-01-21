@@ -1,14 +1,23 @@
 .profil-page {
+  
   &__header {
     display: flex;
     justify-content: center;
     padding: 20px;
   }
 
+  &__image { 
+    width: 10px;
+      height: 10px;
+      @include media('>=tablet') {
+        width: 5%;
+      }
+
   &__picture {
-    width: 50px;
-    height: 50px;
-    padding: 0 50px;
+    height: auto;
+    max-width: 100%;
+  }
+
   }
 
   &__name {
@@ -16,6 +25,10 @@
     align-self: center;
     font-size: 1.5em;
     color: $color-quaternary;
+  }
+
+  &__modification {
+    padding: 20px;
   }
 
   &__description {
@@ -31,6 +44,28 @@
      
     }
 
+    &__last-trips {
+      margin: 40px 0;
+    }
+
+    &__article {
+      background-color: white;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 12px 12px 2px 1px rgba(22, 5, 4, 0.4);
+
+      &__title {
+        text-align: center;
+        padding: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      &__trip {
+        font-size: 1.1em;
+        line-height: 1.2em;
+      }
+    }
     
 
 

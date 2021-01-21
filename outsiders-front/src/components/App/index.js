@@ -14,7 +14,7 @@ import About from '../About';
 // import Nav from '../Nav';
 import Signup from '../../containers/Signup';
 import Admin from '../../containers/Admin';
-import Profile from '../../components/Profile';
+import Profile from '../../containers/Profile';
 
 
 
