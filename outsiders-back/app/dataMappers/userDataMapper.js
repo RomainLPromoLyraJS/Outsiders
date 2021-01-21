@@ -3,7 +3,7 @@ const client = require('./client');
 
 module.exports = {
     async allUsers() {
-        const result = await client.query('select * from "user" JOIN trip ON "user".id = trip.user_id JOIN message ON "user".id = message.user_id JOIN "role" ON "user".role_id = "role".id');
+        const result = await client.query('SELECT * FROM "user" JOIN "role" ON "user".role_id = "role".id');
         return result.rows;
     },
 
@@ -17,17 +17,20 @@ module.exports = {
     },
 
     async oneUser(userId) {
-        const result = await client.query('select * from "user" JOIN trip ON "user".id = trip.user_id JOIN message ON "user".id = message.user_id JOIN "role" ON "user".role_id = "role".id WHERE "user".id = $1', [userId]);
+        const result = await client.query('SELECT * FROM "user" JOIN "role" ON "user".role_id = "role".id WHERE "user".id = $1', [userId]);
         if (result.rowCount == 0) {
             return null;
         }
         return result.rows[0];
     },
 
-    async updateUser(userToUpdate) {
+    async updateUser(userId, userToUpdate) {
 
-        const result = await client.query('');
-        return result;
+        const result = await client.query('UPDATE "user" SET lastname=$1, firstname=$2, email=$3, password=$4, username=$5, description=$6 WHERE id=$7 RETURNING *', [userToUpdate.lastname, userToUpdate.firstname, userToUpdate.email, userToUpdate.password, userToUpdate.username, userToUpdate.description, userId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
     },
 
     async deleteUser(deleteUserId) {
@@ -36,12 +39,12 @@ module.exports = {
     },
 
     async allReviews(userId) {
-        const result = await client.query('SELECT * FROM "message" JOIN "trip" ON "message"."trip_id"="trip"."id" JOIN "user" ON "trip"."user_id"="user"."id" JOIN "sport" ON "sport"."id"="trip"."sport_id" JOIN "category" ON "sport"."category_id"="category"."id" WHERE "trip"."user_id"=$1', [userId]);
+        const result = await client.query('SELECT * FROM "reviews" JOIN "user" ON "reviews"."evaluated_id"="user"."id" JOIN "role" ON "user"."role_id"="role"."id" WHERE "reviews"."evaluated_id"=$1', [userId]);
         return result.rows;
     },
 
-    async createReview(userId) {
-        const result = await client.query('');
-        return result;
+    async createReview(reviewToPublish) {
+        const result = await client.query('INSERT INTO "reviews"(score, title, content, publisher_id, evaluated_id) VALUES ($1, $2, $3, $4, $5) RETURNING *', [reviewToPublish.score, reviewToPublish.title, reviewToPublish.content, reviewToPublish.publisher_id, reviewToPublish.evaluated_id]);
+        return result.rows[0];
     },
 };

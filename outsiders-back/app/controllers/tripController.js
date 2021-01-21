@@ -39,9 +39,10 @@ module.exports = {
 
     async updateOneTrip(req, res, next) {
         try {
-            const tripToUpdate = req.params;
+            const tripId = req.params.id;
+            const tripToUpdate = req.body;
 
-            const tripUpdated = await tripDataMapper.updateOneTrip(tripToUpdate);
+            const tripUpdated = await tripDataMapper.updateOneTrip(tripId, tripToUpdate);
             res.json({
                 message: 'trip updated',
                 data: tripUpdated

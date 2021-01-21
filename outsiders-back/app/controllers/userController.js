@@ -39,9 +39,10 @@ module.exports = {
 
     async updateUser(req, res, next) {
         try {
-            const userToUpdate = req.params;
+            const userId = req.params.id;
+            const userToUpdate = req.body;
 
-            const userUpdated = await userDataMapper.updateUser(userToUpdate);
+            const userUpdated = await userDataMapper.updateUser(userId, userToUpdate);
             res.json({
                 message: 'user updated',
                 data: userUpdated
@@ -77,8 +78,8 @@ module.exports = {
 
     async createReview(req, res, next) {
         try {
-            const userId = req.body.id;
-            const newReview = await userDataMapper.createReview(userId);
+            const reviewToPublish = req.body;
+            const newReview = await userDataMapper.createReview(reviewToPublish);
             res.json({
                 message: 'nouvel avis posté',
                 data: newReview

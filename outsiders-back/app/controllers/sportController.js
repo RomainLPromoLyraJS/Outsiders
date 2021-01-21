@@ -39,9 +39,10 @@ module.exports = {
 
     async updateOneSport(req, res, next) {
         try {
-            const sportToUpdate = req.params;
+            const sportId = req.params.id;
+            const sportToUpdate = req.body;
 
-            const sportUpdated = await sportDataMapper.updateOneSport(sportToUpdate);
+            const sportUpdated = await sportDataMapper.updateOneSport(sportId, sportToUpdate);
             res.json({
                 message: 'sport updated',
                 data: sportUpdated

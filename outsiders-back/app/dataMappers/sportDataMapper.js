@@ -24,10 +24,13 @@ module.exports = {
         return result.rows[0];
     },
 
-    async updateOneSport(sportToUpdate) {
+    async updateOneSport(sportId, sportToUpdate) {
 
-        const result = await client.query('');
-        return result;
+        const result = await client.query('UPDATE "sport" SET "title"=$1, "description"=$2, "category_id"=$3 WHERE id=$4 RETURNING *', [sportToUpdate.title, sportToUpdate.description, sportToUpdate.category_id, sportId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
     },
 
     async deleteOneSport(idSportToDelete) {

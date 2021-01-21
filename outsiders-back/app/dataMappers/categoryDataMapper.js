@@ -3,7 +3,7 @@ const client = require('./client');
 
 module.exports = {
     async getAllCategories() {
-        const result = await client.query('SELECT * FROM "category"');
+        const result = await client.query('select category.title AS category, category.description, sport.title from category join sport on sport.category_id=category.id');
         return result.rows;
     },
 
@@ -17,17 +17,20 @@ module.exports = {
     },
 
     async getOneCategory(categoryId) {
-        const result = await client.query('SELECT * FROM "category" WHERE "category".id = $1', [categoryId]);
+        const result = await client.query('select category.title AS category, category.description, sport.title from sport join category on sport.category_id=category.id where category.id= $1', [categoryId]);
         if (result.rowCount == 0) {
             return null;
         }
-        return result.rows[0];
+        return result.rows;
     },
 
-    async updateOneCategory(categoryToUpdate) {
+    async updateOneCategory(categoryId, categoryToUpdate) {
 
-        const result = await client.query('');
-        return result;
+        const result = await client.query('UPDATE "category" SET "title"=$1, "description"=$2 WHERE id=$3 RETURNING *', [categoryToUpdate.title, categoryToUpdate.description, categoryId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
     },
 
     async deleteOneCategory(idCategoryToDelete) {

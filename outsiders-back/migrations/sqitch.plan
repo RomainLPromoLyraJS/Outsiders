@@ -3,3 +3,4 @@
 
 10-init 2021-01-18T13:44:36Z "Etudiant O'clock",,, <etudiant@teleporteur> # structure initiale de la BDD
 
+20-addReviews 2021-01-21T09:30:36Z "Etudiant O'clock",,, <etudiant@teleporteur> # ajout de la table reviews

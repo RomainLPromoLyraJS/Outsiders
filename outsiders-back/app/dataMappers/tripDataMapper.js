@@ -23,10 +23,13 @@ module.exports = {
         return result.rows[0];
     },
 
-    async updateOneTrip(tripToUpdate) {
+    async updateOneTrip(tripId, tripToUpdate) {
 
-        const result = await client.query('');
-        return result;
+        const result = await client.query('UPDATE "trip" SET "title"=$1, "description"=$2, "date"=$3, "time"=$4, "from"=$5, "to"=$6, "places"=$7, "minimum"=$8, "price"=$9, "duration"=$10, "sport_id"=$11 WHERE "id"=$12 RETURNING *', [tripToUpdate.title, tripToUpdate.description, tripToUpdate.date, tripToUpdate.time, tripToUpdate.from, tripToUpdate.to, tripToUpdate.places, tripToUpdate.minimum, tripToUpdate.price, tripToUpdate.duration, tripToUpdate.sport_id, tripId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
     },
 
     async deleteOneTrip(idTripToDelete) {

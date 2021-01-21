@@ -39,9 +39,10 @@ module.exports = {
 
     async updateOneCategory(req, res, next) {
         try {
-            const categoryToUpdate = req.params;
+            const categoryId = req.params.id;
+            const categoryToUpdate = req.body;
 
-            const categoryUpdated = await categoryDataMapper.updateOneCategory(categoryToUpdate);
+            const categoryUpdated = await categoryDataMapper.updateOneCategory(categoryId, categoryToUpdate);
             res.json({
                 message: 'category updated',
                 data: categoryUpdated
