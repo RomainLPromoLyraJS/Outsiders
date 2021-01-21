@@ -11,6 +11,24 @@
       background-image: url('../../assets/images/home1.jpg');
       background-position: center;
       background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__bg {
+        width: 80%;
+        height: 195px;
+        background-color: rgba(59, 113, 96, .4);
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include media('>=tablet') {
+          width: fit-content;
+          height: fit-content;
+          padding: 20px;
+        }
+      }
     }
 
     &__baseline {

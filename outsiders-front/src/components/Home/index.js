@@ -2,12 +2,19 @@
 import React from 'react';
 
 // == Local imports
+//images
 import groupImg from '../../assets/images/home2.jpg';
+// components
+import SearchBar from '../SearchBar';
 
 const Home = () => (
   <div className="home">
     <section className="home__top">
-      <div className="home__top__search"></div>
+      <div className="home__top__search">
+        <div className="home__top__search__bg">
+          <SearchBar />
+        </div>
+      </div>
       <div className="home__top__baseline">
         <h2>Feugiat in ante metus dictum at tempor</h2>
       </div>
