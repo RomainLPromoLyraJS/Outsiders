@@ -5,7 +5,7 @@ import React from 'react';
 //images
 import groupImg from '../../assets/images/home2.jpg';
 // components
-import SearchBar from '../SearchBar';
+import SearchBar from '../../containers/SearchBar';
 
 const Home = () => (
   <div className="home">
