@@ -3,15 +3,15 @@ const adminDataMapper = require('../dataMappers/adminDataMapper');
 module.exports = {
     async connect(req, res, next) {
         try {
-            const mail = req.body.mail;
+            const email = req.body.email;
             const password = req.body.password;
-            const admin = await adminDataMapper.connect(mail, password);
+            const admin = await adminDataMapper.connect(email, password);
             if (!admin) {
                 res.locals.notFound = "identification invalide";
                 next();
                 return;
             }
-            req.session.adminID = admin.id;
+            
             res.json({
                 message: 'administrateur connecté',
                 data: admin });

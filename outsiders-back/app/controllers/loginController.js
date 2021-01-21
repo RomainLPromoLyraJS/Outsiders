@@ -3,15 +3,15 @@ const loginDataMapper = require('../dataMappers/loginDataMapper');
 module.exports = {
     async login(req, res, next) {
         try {
-            const mail = req.body.mail;
+            const email = req.body.email;
             const password = req.body.password;
-            const login = await loginDataMapper.login(mail, password);
+            const login = await loginDataMapper.login(email, password);
             if (!login) {
                 res.locals.notFound = "identification invalide";
                 next();
                 return;
             }
-            req.session.loginID = login.id;
+            
             res.json({
                 message: 'utilisateur connecté',
                 data: login });

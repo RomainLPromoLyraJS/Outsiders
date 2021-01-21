@@ -4,7 +4,9 @@ module.exports = {
     async allUsers(req, res, next) {
         try {
             const allUsers = await userDataMapper.allUsers();
-            res.json(allUsers);
+            res.json({
+                data: allUsers
+            });
         } catch(error) {
             next(error);
         }
@@ -25,9 +27,11 @@ module.exports = {
     
     async oneUser(req, res, next) {
         try {
-            const userId = req.params;
+            const userId = req.params.id;
             const oneUser = await userDataMapper.oneUser(userId);
-            res.json(oneUser);
+            res.json({
+                data: oneUser
+            });
         } catch(error) {
             next(error);
         }
@@ -35,10 +39,12 @@ module.exports = {
 
     async updateUser(req, res, next) {
         try {
-            const updateUser = req.params;
-            await userDataMapper.updateUser(updateUser);
+            const userToUpdate = req.params;
+
+            const userUpdated = await userDataMapper.updateUser(userToUpdate);
             res.json({
-                status: 'user updated'
+                message: 'user updated',
+                data: userUpdated
             });
         } catch(error) {
             next(error);
@@ -47,8 +53,8 @@ module.exports = {
 
     async deleteUser(req, res, next) {
         try {
-            const deleteUser = req.params.id
-            await userDataMapper.deleteUser(deleteUser);
+            const deleteUserId = req.params.id;
+            await userDataMapper.deleteUser(deleteUserId);
             res.json({
                 message: 'user deleted'
             });
@@ -59,8 +65,11 @@ module.exports = {
 
     async allReviews(req, res, next) {
         try {
-            const allReviews = await userDataMapper.allReviews();
-            res.json(allReviews);
+            const userId = req.params.id;
+            const allReviews = await userDataMapper.allReviews(userId);
+            res.json({
+                data: allReviews
+            });
         } catch(error) {
             next(error);
         }
@@ -68,8 +77,12 @@ module.exports = {
 
     async createReview(req, res, next) {
         try {
-            const newReview = await userDataMapper.createReview();
-            res.json(newReview);
+            const userId = req.body.id;
+            const newReview = await userDataMapper.createReview(userId);
+            res.json({
+                message: 'nouvel avis posté',
+                data: newReview
+            });
         } catch(error) {
             next(error);
         }
