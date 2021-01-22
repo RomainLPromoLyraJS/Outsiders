@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom';
 // images
 import outsidersLogo from '../../assets/logos/Outsiders_LOGOS-line_COLOR.svg'
 //components
-import Nav from '../Nav';
+import Nav from '../../containers/Nav';
+
 
 const Header = () => {
 	return (
