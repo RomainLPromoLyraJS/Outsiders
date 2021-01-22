@@ -3,7 +3,7 @@ const client = require('./client');
 
 module.exports = {
     async getAllCategories() {
-        const result = await client.query('select category.title AS category, category.description, sport.title from category join sport on sport.category_id=category.id');
+        const result = await client.query('SELECT c.title, ARRAY_AGG(s.title) FROM category AS c, sport AS s WHERE s.category_id=c.id GROUP BY c.title');
         return result.rows;
     },
 
