@@ -57,7 +57,8 @@ module.exports = {
             const idSportToDelete = req.params.id;
             const sportDeleted = await sportDataMapper.deleteOneSport(idSportToDelete);
             res.json({
-                message: 'sport deleted'
+                message: 'sport deleted',
+                data: sportDeleted
             });
         } catch(error) {
             next(error);

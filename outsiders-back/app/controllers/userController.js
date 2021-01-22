@@ -55,9 +55,10 @@ module.exports = {
     async deleteUser(req, res, next) {
         try {
             const deleteUserId = req.params.id;
-            await userDataMapper.deleteUser(deleteUserId);
+            const userDeleted = await userDataMapper.deleteUser(deleteUserId);
             res.json({
-                message: 'user deleted'
+                message: 'user deleted',
+                data: userDeleted
             });
         } catch(error) {
             next(error);

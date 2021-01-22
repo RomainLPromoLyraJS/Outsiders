@@ -33,8 +33,11 @@ module.exports = {
     },
 
     async deleteOneTrip(idTripToDelete) {
-        const result = await client.query('');
-        return result;
+        const result = await client.query('DELETE FROM "trip" WHERE id=$1', [idTripToDelete]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
     },
 
     async allComments(tripId) {

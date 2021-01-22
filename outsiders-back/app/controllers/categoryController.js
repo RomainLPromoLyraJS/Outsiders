@@ -57,7 +57,8 @@ module.exports = {
             const idCategoryToDelete = req.params.id;
             const categoryDeleted = await categoryDataMapper.deleteOneCategory(idCategoryToDelete);
             res.json({
-                message: 'category deleted'
+                message: 'category deleted',
+                data: categoryDeleted
             });
         } catch(error) {
             next(error);

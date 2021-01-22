@@ -57,7 +57,8 @@ module.exports = {
             const idTripToDelete = req.params.id;
             const tripDeleted = await tripDataMapper.deleteOneTrip(idTripToDelete);
             res.json({
-                message: 'trip deleted'
+                message: 'trip deleted',
+                data: tripDeleted
             });
         } catch(error) {
             next(error);
