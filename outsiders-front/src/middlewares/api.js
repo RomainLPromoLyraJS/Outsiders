@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local imports
-import { getSportsSuccess } from '../store/action';
+import { getSportsSuccess, getCategoriesSuccess } from '../store/action';
 
 const auth = (store) => (next) => (action) => {
 	switch (action.type) {
@@ -11,6 +11,14 @@ const auth = (store) => (next) => (action) => {
 			axios.get('http://ec2-174-129-120-118.compute-1.amazonaws.com:3000/sport')
 				.then((response) => {
 					store.dispatch(getSportsSuccess(response.data.data));
+				})
+			break;
+		}
+		
+		case 'GET_CATEGORIES': {
+			axios.get('http://ec2-174-129-120-118.compute-1.amazonaws.com:3000/category')
+				.then((response) => {
+					store.dispatch(getCategoriesSuccess(response.data.data));
 				})
 			break;
 		}

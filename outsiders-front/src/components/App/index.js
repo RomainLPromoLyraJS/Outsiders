@@ -19,11 +19,11 @@ import Profile from '../../containers/Profile';
 
 
 
-const App = ({ loadSportsData }) => {
+const App = ({ loadSportsData, loadCategoriesData }) => {
   // loading sports and categories data from api
   useEffect(() => {
     loadSportsData();
-    // loadCategoriesData();
+    loadCategoriesData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

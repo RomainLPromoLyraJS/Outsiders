@@ -8,6 +8,9 @@ const mapDispatchToProps = (dispatch) => ({
   loadSportsData: () => {
     dispatch({type: 'GET_SPORTS'});
   },
+  loadCategoriesData: () => {
+    dispatch({type: 'GET_CATEGORIES'})
+  },
 });
 
 export default connect(null, mapDispatchToProps)(App);

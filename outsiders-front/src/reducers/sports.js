@@ -1,5 +1,8 @@
 // Action imports
-import { GET_SPORTS_SUCCESS } from '../store/action';
+import {
+  GET_SPORTS_SUCCESS,
+  GET_CATEGORIES_SUCCESS,
+} from '../store/action';
 
 const initialState = {
   categories: [],
@@ -12,6 +15,11 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         list: action.list,
+      };
+      case GET_CATEGORIES_SUCCESS:
+      return {
+        ...oldState,
+        categories: action.categories,
       };
     default:
       return {
