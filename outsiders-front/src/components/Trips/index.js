@@ -13,8 +13,8 @@ const Trips = ({ trips }) => {
 	return (
 		<div className='trips_container'>
 			{trips.map((trip) => {
-				return <NavLink to='/sortie'>
-					<Trip key={trip.id} trip={trip} />
+				return <NavLink key={trip.id} to='/sortie'>
+					<Trip trip={trip} />
 				</NavLink>
 			})}
 		</div>

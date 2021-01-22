@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
     username: state.auth.username,
     description: state.auth.description,
     isConnected: state.auth.isLogged,
-    trips: state.trip.list,
+    trips: state.trips.list,
 
   
 });

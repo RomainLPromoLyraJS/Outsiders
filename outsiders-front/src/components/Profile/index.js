@@ -3,10 +3,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 // == Local imports
-import ImgWip from '../../components/Home/wip.jpg';
+import ImgWip from '../../assets/logos/Outsiders_LOGOS-line_COLOR.svg';
 // import tripData from "../../data/data-trips";
 
-const Profile = ({ description, username, trips, isConnected }) => ( 
+const Profile = ({ description, username, trips }) => ( 
   
     <div className="profile-page">
       <div className="profil-page__header">
@@ -42,8 +42,7 @@ const Profile = ({ description, username, trips, isConnected }) => (
 Profile.propTypes = {
   description: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
-  lastTrips: PropTypes.object.isRequired,
-  isConnected: PropTypes.bool.isRequired
+  trips: PropTypes.array.isRequired,
 };
 
 export default Profile;

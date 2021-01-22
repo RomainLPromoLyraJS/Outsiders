@@ -4,7 +4,7 @@ import Trips from '../components/Trips';
 
 
 const mapStateToProps = (state) => ({
-  trips: state.trip.trips,
+  trips: state.trips.list,
 });
 
 export default connect(mapStateToProps)(Trips);
