@@ -66,6 +66,21 @@ module.exports = {
         }
     },
 
+    async associateUserParticipateTrip(req, res, next) {
+        try {
+            const userId = req.params.userId;
+            const tripId = req.params.tripId;
+
+            const associated = tripDataMapper.associateUserParticipateTrip(userId, tripId);
+            res.json({
+                message: 'user and trip associated in participate',
+                data: associated
+            })
+        } catch(error) {
+            next(error);
+        }
+    },
+
     async deleteOneTrip(req, res, next) {
         try {
             const idTripToDelete = req.params.id;
@@ -73,6 +88,20 @@ module.exports = {
             res.json({
                 message: 'trip deleted',
                 data: tripDeleted
+            });
+        } catch(error) {
+            next(error);
+        }
+    },
+
+    async dissociateUserParticipateTrip(req, res, next) {
+        try {
+            const userId = req.params.id;
+            const tripId = req.params.id;
+            const dissociate = await tripDataMapper.dissociateUserParticipateTrip(userId, tripId); 
+            res.json({
+                message: "trip and user dissociated from participate",
+                data: dissociate
             });
         } catch(error) {
             next(error);

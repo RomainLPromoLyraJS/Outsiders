@@ -44,10 +44,11 @@ router.post('/searchTrips', tripController.searchTrips);
 router.get('/trip/:id(\\d+)/comment', tripController.getAllCommentsOnThisTrip);
 router.post('/trip/:id(\\d+)/comment', tripController.postNewCommentOnThisTrip);
 
-//router.patch('/trip/:tripId(\\d+)/user/:userId(\\d+)', tripController.associateUserParticipateTrip);
-//router.delete('/trip/:tripId(\\d+)/user/:userId(\\d+)', tripController.dissociateUserParticipateTrip);
+router.patch('/trip/:tripId(\\d+)/user/:userId(\\d+)', tripController.associateUserParticipateTrip);
+router.delete('/trip/:tripId(\\d+)/user/:userId(\\d+)', tripController.dissociateUserParticipateTrip);
 
 router.use(errorController.error404);
 router.use(errorController.error500);
 
 module.exports = router;
+

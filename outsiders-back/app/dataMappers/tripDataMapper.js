@@ -40,8 +40,24 @@ module.exports = {
         return result.rows;
     },
 
+    async associateUserParticipateTrip(userId, tripId) {
+        const result = await client.query('INSERT INTO "m2m_user_particpate_trip"("user_id", "trip_id") VALUES($1, $2) RETURNING *', [userId, tripId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
+    },
+
     async deleteOneTrip(idTripToDelete) {
         const result = await client.query('DELETE FROM "trip" WHERE id=$1', [idTripToDelete]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
+    },
+
+    async dissociateUserParticipateTrip(userId, tripId) {
+        const result = await client.query('DELETE FROM "m2m_user_participate_trip" WHERE "user_id"=$1 AND "trip_id"=$2', [userId, tripId]);
         if (result.rowCount == 0) {
             return null;
         }
