@@ -1,3 +1,4 @@
+const { searchTrips } = require('../dataMappers/tripDataMapper');
 const tripDataMapper = require('../dataMappers/tripDataMapper');
 
 module.exports = {
@@ -19,6 +20,19 @@ module.exports = {
             res.json({
                 message: 'new trip created',
                 data: tripCreated
+            });
+        } catch(error) {
+            next(error);
+        }
+    },
+
+    async searchTrips(req, res, next) {
+        try {
+            const trips = req.body;
+            const searchTrips = await tripDataMapper.searchTrips(trips);
+            res.json({
+                message: 'list of trips',
+                data: searchTrips
             });
         } catch(error) {
             next(error);

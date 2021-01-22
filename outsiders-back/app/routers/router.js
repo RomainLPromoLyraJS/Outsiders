@@ -39,6 +39,7 @@ router.post('/trip', tripController.postNewTrip);
 router.get('/trip/:id(\\d+)', tripController.getOneTrip);
 router.patch('/trip/:id(\\d+)', tripController.updateOneTrip);
 router.delete('/trip/:id(\\d+)', tripController.deleteOneTrip);
+router.post('/searchTrips', tripController.searchTrips);
 
 router.get('/trip/:id(\\d+)/comment', tripController.getAllCommentsOnThisTrip);
 router.post('/trip/:id(\\d+)/comment', tripController.postNewCommentOnThisTrip);

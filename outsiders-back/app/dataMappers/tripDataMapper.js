@@ -15,6 +15,14 @@ module.exports = {
 
     },
 
+    async searchTrips(trips) {
+        const result = await client.query('SELECT * FROM "trip" JOIN "sport" ON "trip"."sport_id"="sport"."id"  WHERE "trip"."date"=$1 AND "trip"."from"=$2 AND "sport"."title"=$3', [trips.date, trips.from, trips.sport]);
+        if (result.rowCount == 0) {
+            return null
+        }
+        return result.rows;
+    },
+
     async getOneTrip(tripId) {
         const result = await client.query('SELECT * FROM "trip" WHERE "trip".id = $1', [tripId]);
         if (result.rowCount == 0) {
