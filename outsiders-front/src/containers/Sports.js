@@ -9,4 +9,4 @@ const mapStateToProps = (state) => ({
   categories: state.sports.categories,
 });
 
-export default connect(mapStateToProps)(Sports);
+export default connect(mapStateToProps, null)(Sports);

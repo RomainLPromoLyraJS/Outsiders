@@ -1,15 +1,16 @@
 // actions
 import { CHANGE_AUTH_FIELD } from '../store/action';
 
+
 //InitialState basic guest informations
 const initialState = {
-  firstname: 'Alexandre',
-  lastname: 'Astier',
-  username: 'King Arthur',
+  firstname: '',
+  lastname: '',
+  username: '',
   email: '',
   password: '',
   description: '',
-  isLogged: true,
+  isLogged: false,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -24,8 +25,13 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'LOGIN_SUCCESS':
       return {
         ...oldState,
-        isLogged: true,
+        firstname: action.firstname,
+        lastname: action.lastname,
         username: action.username,
+        email: action.email,
+        password: action.password,
+        description: action.description,
+        isLogged: true,
       };
       // Changing states when we call 'LOGOUT' \\
     case 'LOGOUT':
