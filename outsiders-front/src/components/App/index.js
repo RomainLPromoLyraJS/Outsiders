@@ -13,6 +13,8 @@ import Login from '../../containers/Login';
 import About from '../About';
 import Signup from '../../containers/Signup';
 import Tripdetails from '../Tripdetails';
+import Admin from '../../containers/Admin';
+import Profile from '../../containers/Profile';
 
 
 
@@ -42,6 +44,12 @@ function App() {
         <Tripdetails />
       </Route>
         
+      <Route exact path='/admin' >
+        <Admin />
+      </Route>
+      <Route exact path='/mon-compte' >
+        <Profile />
+      </Route>
       <Footer />
     </div>
   );

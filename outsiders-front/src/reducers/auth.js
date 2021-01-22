@@ -2,9 +2,9 @@
 import { CHANGE_AUTH_FIELD } from '../store/action';
 
 const initialState = {
-  firstname: '',
-  lastname: '',
-  username: '',
+  firstname: 'Alexandre',
+  lastname: 'Astier',
+  username: 'le Roi Arthur',
   email: '',
   password: '',
   description: '',
