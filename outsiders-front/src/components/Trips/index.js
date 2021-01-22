@@ -3,63 +3,22 @@ import React from 'react';
 
 // import './trips.scss';
 
+import { NavLink } from 'react-router-dom';
+
+import Trip from './Trip.js';
 
 
-const Trips = () => {
-    
-    return (
-        <div className='trips_container'>
-            <div className='trips_card'>
 
-                <div className='sport'>SPORT</div>
-                <div className='date'>DATE</div>
-                <div className='durantion'>1/2DAY</div>
-                <div className='peoples'>PPL</div>
-                <div className='destination'>SPORT</div>
-                <div className='departure'>DATE</div>
-                <div className='price'>€</div>
-                <div className='profil'>profil</div>
-
-            </div>
-            <div className='trips_card'>
-
-                <div className='sport'>SPORT</div>
-                <div className='date'>DATE</div>
-                <div className='durantion'>1/2DAY</div>
-                <div className='peoples'>PPL</div>
-                <div className='destination'>SPORT</div>
-                <div className='departure'>DATE</div>
-                <div className='price'>€</div>
-                <div className='profil'>profil</div>
-
-            </div>
-            <div className='trips_card'>
-
-                <div className='sport'>SPORT</div>
-                <div className='date'>DATE</div>
-                <div className='durantion'>1/2DAY</div>
-                <div className='peoples'>PPL</div>
-                <div className='destination'>SPORT</div>
-                <div className='departure'>DATE</div>
-                <div className='price'>€</div>
-                <div className='profil'>profil</div>
-
-            </div>
-            <div className='trips_card'>
-
-                <div className='sport'>SPORT</div>
-                <div className='date'>DATE</div>
-                <div className='durantion'>1/2DAY</div>
-                <div className='peoples'>PPL</div>
-                <div className='destination'>SPORT</div>
-                <div className='departure'>DATE</div>
-                <div className='price'>€</div>
-                <div className='profil'>profil</div>
-
-            </div>
-        
-        </div>
-    );
+const Trips = ({ trips }) => {
+	return (
+		<div className='trips_container'>
+			{trips.map((trip) => {
+				return <NavLink to='/sortie'>
+					<Trip key={trip.id} trip={trip} />
+				</NavLink>
+			})}
+		</div>
+	);
 }
 
 

@@ -3,16 +3,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // My Component
-const Login = ({ emailValue, passwordValue, handleChange }) => {
+const Login = ({ emailValue, passwordValue, handleChange, handleLogin }) => {
 
     const onChange = (event) => {
       handleChange(event.target.value, event.target.name);
     }
 
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      handleLogin();
+    }
+
   return (
     <div className='login-page'>
         <p className='login-page__description'>Si vous êtes membre du site, veuillez vous connecter :</p>
-        <form className='login-page__form'>
+        <form
+          className='login-page__form'
+          onSubmit={handleSubmit}
+          >
           <label className='login-page__form__label' htmlFor='email'>Email</label>
           <input
             className='login-page__form__input'
@@ -51,6 +59,7 @@ Login.propTypes = {
   emailValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired
 };
 
 export default Login;

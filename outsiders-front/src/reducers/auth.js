@@ -8,6 +8,7 @@ const initialState = {
   email: '',
   password: '',
   description: '',
+  logged: false,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -16,7 +17,21 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         [action.name]: action.value,
-      }
+      };
+    case 'LOGIN_SUCCESS':
+      return {
+        ...oldState,
+        logged: true,
+        username: action.username,
+      };
+    case 'LOGOUT':
+      return {
+        ...oldState,
+        email: '',
+        password: '',
+        logged: false,
+        username: null,
+      };
 
     default:
       return {...oldState}
