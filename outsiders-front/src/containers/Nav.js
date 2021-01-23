@@ -8,7 +8,8 @@ import Nav from '../components/Nav';
 const mapStateToProps = (state) => ({
   emailValue: state.auth.email,
   passwordValue: state.auth.password,
-  isLogged: state.auth.isLogged
+  isLogged: state.auth.isLogged,
+  username: state.auth.username
 });
 // ACTIONS/FUNCTIONS that we give to Props (Nav)
 const mapDispatchToProps = (dispatch) => ({

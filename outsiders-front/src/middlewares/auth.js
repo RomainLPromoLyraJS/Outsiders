@@ -26,7 +26,7 @@ const api = (store) => (next) => (action) => {
           store.dispatch({
             type: 'LOGIN_SUCCESS',
             ...response.data.data,
-
+            
           });
           console.log(response.data);
           

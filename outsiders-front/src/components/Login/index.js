@@ -19,6 +19,10 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged 
     
 
   return (
+    <>
+    {isLogged && (
+      <Redirect to='/' />
+      )}
     
     <div className='login-page'>
         <p className='login-page__description'>Si vous êtes membre du site, veuillez vous connecter :</p>
@@ -58,6 +62,7 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged 
           
         </form>
     </div>
+  </>
   )
 };
 
