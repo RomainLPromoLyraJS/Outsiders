@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom';
 // images
 import outsidersLogo from '../../assets/logos/Outsiders_LOGOS-line_COLOR.svg'
 //components
-import Nav from '../Nav';
+import Hamburger from './Hamburger';
+
 
 const Header = () => {
 	return (
@@ -17,8 +18,13 @@ const Header = () => {
 						<img src={outsidersLogo} alt="Ousiders logo" />
 					</NavLink>
 				</div>
-				<Nav />
+				<div className="header__container__burger">
+					<span />
+					<span />
+					<span />
+				</div>
 			</div>
+			<Hamburger />
 		</header>
 	)
 };
