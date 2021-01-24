@@ -1,5 +1,5 @@
 // == Package imports
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoSearch, IoAddCircleOutline } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
@@ -9,9 +9,23 @@ import { IoIosCloseCircle } from "react-icons/io";
 import outsidersLogo from '../../../assets/logos/Outsiders_LOGOS-line_WHITE.svg'
 //components
 
-const Hamburger = () => {
+const Hamburger = ({ burgerState, toggleMenu, disabledState }) => {
+  let menu = useRef(null);
+
+  useEffect(() => {
+    if (burgerState.clicked === false) {
+      // close the menu
+      menu.style.display = "none";
+
+    } else if (burgerState.clicked === true || (burgerState.clicked === true && burgerState.init === null)) {
+      // open the menu
+      menu.style.display = "block";
+
+    }
+  }, [burgerState]);
+
   return (
-    <div className="hamburger">
+    <div ref={el => (menu = el)} className="hamburger">
       <div className="hamburger__bg" />
       <div className="menu">
         <div className="menu__category__BG"></div>
@@ -22,7 +36,7 @@ const Hamburger = () => {
                 <img src={outsidersLogo} alt="Ousiders logo" />
               </NavLink>
             </div>
-            <div className="menu__container__header__close">
+            <div onClick={toggleMenu} disabled={disabledState} className="menu__container__header__close">
               <IoIosCloseCircle />
             </div>
           </div>
@@ -30,7 +44,7 @@ const Hamburger = () => {
             <div className="menu__container__nav__main">
               <ul className="menu__container__nav__main__user">
                 <li>
-                  <NavLink to="/">Mon compte</NavLink>
+                  <NavLink to="/mon-compte">Mon compte</NavLink>
                 </li>
                 <li>
                   <NavLink to="/"><IoSearch /> Rechercher</NavLink>
@@ -47,13 +61,13 @@ const Hamburger = () => {
                   <NavLink to="/">Accueil</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Sports</NavLink>
+                  <NavLink to="/sports">Sports</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Sorties</NavLink>
+                  <NavLink to="/sorties">Sorties</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">À propos</NavLink>
+                  <NavLink to="/about">À propos</NavLink>
                 </li>
               </ul>
             </div>

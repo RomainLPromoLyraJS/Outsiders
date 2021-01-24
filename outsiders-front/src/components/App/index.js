@@ -28,7 +28,7 @@ function App() {
       <Route exact path='/sports' >
         <Sports />
       </Route>
-      <Route exact path='/trips' >
+      <Route exact path='/sorties' >
         <Trips />
       </Route>
       <Route exact path='/signup' >
