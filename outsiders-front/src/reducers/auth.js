@@ -8,7 +8,7 @@ const initialState = {
   email: '',
   password: '',
   description: '',
-  isLogged: false,
+  isLogged: true,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -27,10 +27,13 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'LOGOUT':
       return {
         ...oldState,
+        firstname: '',
+        lastname: '',
+        username: '',
         email: '',
         password: '',
-        logged: false,
-        username: null,
+        description: '',
+        isLogged: false,
       };
 
     default:

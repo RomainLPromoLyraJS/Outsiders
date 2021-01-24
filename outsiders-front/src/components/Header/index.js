@@ -1,5 +1,6 @@
 // == Package imports
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
 
 // == Local imports
@@ -9,7 +10,7 @@ import outsidersLogo from '../../assets/logos/Outsiders_LOGOS-line_COLOR.svg'
 import Hamburger from './Hamburger';
 
 
-const Header = ({ history }) => {
+const Header = ({ isLogged, handleLogout, history }) => {
 	// Hamburger state
 	const [ burgerState, setBurgerState ] = useState({
 		init: false,
@@ -70,10 +71,21 @@ const Header = ({ history }) => {
 					<span />
 				</div>
 			</div>
-			<Hamburger burgerState={burgerState} toggleMenu={toggleMenu} disabledState={disabled} />
+			<Hamburger
+				burgerState={burgerState}
+				toggleMenu={toggleMenu}
+				disabledState={disabled}
+				isLogged={isLogged}
+				handleLogout={handleLogout}
+			/>
 		</header>
 	)
 };
 
+Header.propTypes = {
+	isLogged: PropTypes.bool.isRequired,
+	handleLogout: PropTypes.func.isRequired,
+	history: PropTypes.object.isRequired,
+}
 
 export default withRouter(Header);

@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 // == Local imports
 // Components
-import Header from '../Header';
+import Header from '../../containers/Header';
 import Home from '../Home';
 import Footer from '../Footer';
 import Sports from '../../containers/Sports';

@@ -1,5 +1,6 @@
 // == Package imports
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { IoSearch, IoAddCircleOutline } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
@@ -10,7 +11,7 @@ import outsidersLogo from '../../../assets/logos/Outsiders_LOGOS-line_WHITE.svg'
 // animation
 import { openingMenu, closingMenu } from './burgerAnimations';
 
-const Hamburger = ({ burgerState, toggleMenu, disabledState }) => {
+const Hamburger = ({ burgerState, toggleMenu, disabledState, isLogged, handleLogout }) => {
   // animated dom nodes
   let menu = useRef(null);
   let revealMenu = useRef(null);
@@ -27,6 +28,11 @@ const Hamburger = ({ burgerState, toggleMenu, disabledState }) => {
       openingMenu(revealMenuBG, revealMenu, menu);
     }
   }, [burgerState]);
+
+  // when logout btn is clicked
+  const logOutOnClick = () => {
+    handleLogout();
+  }
 
   return (
     <div ref={el => (menu = el)} className="hamburger">
@@ -46,7 +52,9 @@ const Hamburger = ({ burgerState, toggleMenu, disabledState }) => {
           </div>
           <nav className="menu__container__nav">
             <div className="menu__container__nav__main">
-              <ul className="menu__container__nav__main__user">
+
+              {/* Case : user logged */}
+              {isLogged && <ul className="menu__container__nav__main__user">
                 <li>
                   <NavLink to="/mon-compte">Mon compte</NavLink>
                 </li>
@@ -57,9 +65,22 @@ const Hamburger = ({ burgerState, toggleMenu, disabledState }) => {
                   <NavLink to="/"><IoAddCircleOutline /> Créer une sortie</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Déconnexion</NavLink>
+                  <NavLink onClick={logOutOnClick} to="/">Déconnexion</NavLink>
                 </li>
-              </ul>
+              </ul>}
+
+              {/* Case : user not logged */}
+              {!isLogged && <ul className="menu__container__nav__main__user">
+                <li>
+                  <NavLink to="/login">Connexion</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/signup">Inscription</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/"><IoSearch /> Rechercher</NavLink>
+                </li>
+              </ul>}
               <ul className="menu__container__nav__main__routes">
                 <li>
                   <NavLink to="/">Accueil</NavLink>
@@ -95,5 +116,13 @@ const Hamburger = ({ burgerState, toggleMenu, disabledState }) => {
     </div>
   );
 };
+
+Hamburger.propTypes = {
+  burgerState: PropTypes.object.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+  disabledState: PropTypes.bool.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+}
 
 export default Hamburger;
