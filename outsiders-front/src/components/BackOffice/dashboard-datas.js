@@ -1,4 +1,6 @@
 
+// Think if the file can be useful with modifications
+
 const dashboardData = [
     {
         title: 'Profils',
