@@ -18,6 +18,7 @@ import Profile from '../../containers/Profile';
 
 
 
+
 function App() {
   return (
     <div className="App">
@@ -40,7 +41,7 @@ function App() {
       <Route exact path='/about' >
         <About />
       </Route>
-      <Route exact path='/sortie' >
+      <Route exact path='/sortie/:slug' >
         <Tripdetails />
       </Route>
         
