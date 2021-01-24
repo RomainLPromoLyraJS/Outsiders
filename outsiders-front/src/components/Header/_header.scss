@@ -17,7 +17,8 @@
     justify-content: space-between;
     align-items: center;
     @include media('>=tablet') {
-      max-width: 1400px;
+      width: 90%;
+      max-width: 1280px;
     }
 
     &__image {
