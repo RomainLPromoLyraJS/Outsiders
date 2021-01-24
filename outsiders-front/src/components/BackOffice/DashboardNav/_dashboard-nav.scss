@@ -1,9 +1,9 @@
-.back-office {
-    padding: 20px;
-    
-    color: $color;
+.dashboard-nav {
     background-color: $color-secondary;
-    margin: 20px;
+    height: 500px;
+    max-width: 180px;
+    color: $color;
+
 
     &__title {
     text-align: center;
@@ -11,8 +11,9 @@
     padding: 20px;
     }
     &__link {
-        padding: 5px;
+        padding: 20px;
         font-weight: bold;
         font-size: 1.5em;
+        text-align: center;
     }
 }

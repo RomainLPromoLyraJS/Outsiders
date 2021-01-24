@@ -2,13 +2,13 @@
 import React from 'react';
 
 // == Local imports
-import BackOffice from '../../BackOffice';
+import DashboardNav from '../DashboardNav';
 
 
 const DashboardProfiles = () => (
   <>
   <div>
-    <BackOffice />
+    <DashboardNav />
     </div>
   <div className="dashboard-profiles">
       <h3>Créer un profil</h3>
