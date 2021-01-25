@@ -34,7 +34,7 @@ module.exports = {
     },
 
     async deleteOneCategory(idCategoryToDelete) {
-        const result = await client.query('DELETE FROM "category" WHERE id=$1', [idCategoryToDelete]);
+        const result = await client.query('DELETE FROM "category" WHERE id=$1 RETURNING *', [idCategoryToDelete]);
         if (result.rowCount == 0) {
             return null;
         }

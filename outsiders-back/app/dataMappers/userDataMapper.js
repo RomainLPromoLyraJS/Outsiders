@@ -34,7 +34,7 @@ module.exports = {
     },
 
     async deleteUser(deleteUserId) {
-        const result = await client.query('DELETE FROM "user" WHERE id=$1', [deleteUserId]);
+        const result = await client.query('DELETE FROM "user" WHERE id=$1 RETURNING *', [deleteUserId]);
         if (result.rowCount == 0) {
             return null;
         }

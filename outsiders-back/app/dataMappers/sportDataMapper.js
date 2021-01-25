@@ -34,7 +34,7 @@ module.exports = {
     },
 
     async deleteOneSport(idSportToDelete) {
-        const result = await client.query('DELETE FROM "sport" WHERE id=$1', [idSportToDelete]);
+        const result = await client.query('DELETE FROM "sport" WHERE id=$1 RETURNING *', [idSportToDelete]);
         if (result.rowCount == 0) {
             return null;
         }
