@@ -17,9 +17,7 @@ import Tripdetails from '../../containers/Tripdetails';
 import Admin from '../../containers/Admin';
 import Profile from '../../containers/Profile';
 import BackOffice from '../../components/BackOffice';
-import DashBoardProfiles from '../BackOffice/DashboardProfiles';
-import DashBoardSports from '../BackOffice/DashboardSports';
-import DashboardTrips from '../BackOffice/DashboardTrips';
+
 
 
 
@@ -61,19 +59,10 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/mon-compte' >
         <Profile />
       </Route>
-      <Route exact path='/dashboard' >
+      <Route path='/dashboard' >
         <BackOffice />
       </Route>
-      <Route exact path='/dashboard/profiles' >
-        <DashBoardProfiles />
-      </Route>
-      <Route exact path='/dashboard/sports' >
-        <DashBoardSports />
-      </Route>
-      <Route exact path='/dashboard/trips' >
-        <DashboardTrips />
-      </Route>
-      <Footer />
+    <Footer />
     </div>
   );
 }

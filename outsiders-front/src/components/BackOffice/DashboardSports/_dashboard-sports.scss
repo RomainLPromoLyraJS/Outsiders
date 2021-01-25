@@ -8,19 +8,44 @@
     background-color: white;
     padding: 20px;
     font-size: 1.5em;
-    width: 76.5%;
+    width: 92%;
     
     &__form {
-    padding: 20px;
+    padding: 100px;
+    
+    &__title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
 
+    &__input {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+        border-radius: 30px;
+        margin-top: 20px;
+    }
+
+    &__select {
+        padding: 5px 30px;
+        margin: 20px 0;
+    }
 
     &__button {
-        padding: 10px;
+        padding: 10px 30px;
         margin: 10px;
         background-color: black;
         color: white;
         border-radius: 30px;
+        font-size: 1rem;
+        font-weight: bold;
 
+    }
+
+    &__button:hover {
+        color: black;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
     }
 
     }
