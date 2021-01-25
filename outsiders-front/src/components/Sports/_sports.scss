@@ -1,7 +1,8 @@
 .sports {
   min-height: calc(100vh - 120px);
   @include media('>=tablet') {
-    max-width: 1400px;
+    width: 90%;
+    max-width: 1280px;
     margin: 0 auto;
   }
   

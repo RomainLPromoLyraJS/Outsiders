@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 // == Local imports
 // Components
-import Header from '../Header';
+import Header from '../../containers/Header';
 import Home from '../Home';
 import Footer from '../Footer';
 import Sports from '../../containers/Sports';
@@ -37,7 +37,7 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/sports' >
         <Sports />
       </Route>
-      <Route exact path='/trips' >
+      <Route exact path='/sorties' >
         <Trips />
       </Route>
       <Route exact path='/signup' >
