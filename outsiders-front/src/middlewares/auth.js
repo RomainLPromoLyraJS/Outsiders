@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+
+
+
 const api = (store) => (next) => (action) => {
   switch (action.type) {
     case 'LOGIN': {
@@ -8,7 +11,7 @@ const api = (store) => (next) => (action) => {
 
       const config = {
         method: 'post',
-        url: 'http://localhost:3001/login',
+        url: 'http://ec2-174-129-120-118.compute-1.amazonaws.com:3000/login',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -22,8 +25,11 @@ const api = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch({
             type: 'LOGIN_SUCCESS',
-            ...response.data,
+            ...response.data.data,
+            
           });
+          console.log(response.data);
+          
         })
         .catch((error) => {
           console.log(error);

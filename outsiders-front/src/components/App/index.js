@@ -12,9 +12,10 @@ import Trips from '../../containers/Trip';
 import Login from '../../containers/Login';
 import About from '../About';
 import Signup from '../../containers/Signup';
-import Tripdetails from '../Tripdetails';
+import Tripdetails from '../../containers/Tripdetails';
 import Admin from '../../containers/Admin';
 import Profile from '../../containers/Profile';
+
 
 
 
@@ -40,7 +41,7 @@ function App() {
       <Route exact path='/about' >
         <About />
       </Route>
-      <Route exact path='/sortie' >
+      <Route exact path='/sortie/:slug' >
         <Tripdetails />
       </Route>
         
