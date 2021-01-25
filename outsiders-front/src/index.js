@@ -9,7 +9,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import './styles/reset.scss';
 import './styles/index.scss';
 // components
-import App from './components/App';
+import App from './containers/App';
 // store
 import store from './store';
 

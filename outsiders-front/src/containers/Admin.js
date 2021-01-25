@@ -5,13 +5,12 @@ import { connect } from 'react-redux';
 import Admin from '../components/Admin';
 import { changeAuthField } from '../store/action';
 
-// StateToProps
+// STATES that we give to Props (Admin)
 const mapStateToProps = (state) => ({
   emailValue: state.auth.email,
   passwordValue: state.auth.password,
 });
-
-
+// ACTIONS/FUNCTIONS that we give to Props (Admin)
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (value, name) => {
     dispatch(changeAuthField(value, name));

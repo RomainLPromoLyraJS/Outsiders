@@ -1,38 +1,76 @@
+// Package imports
 import axios from 'axios';
 
-const api = (store) => (next) => (action) => {
-    switch (action.type) {
-        case 'LOGIN': {
+// Local imports
+import apiUrl from './url';
+import { getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
 
-            const { auth: { email, password } } = store.getState();
+// request cat/etc
+const auth = (store) => (next) => (action) => {
+	// const state
 
-            const config = {
-                method: 'post',
-                url: 'http://localhost:3001/login',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                data: {
-                    email,
-                    password,
-                },
-            };
+	switch (action.type) {
 
-            axios(config)
-							.then((response) => {
-								store.dispatch({
-									type: 'LOGIN_SUCCESS',
-									...response.data,
-								});
-							})
-							.catch((error) => {
-								console.log(error);
-							});
-							break;
-				}
-				default:
-					next(action);
-    }
+		case 'GET_SPORTS': {
+			axios.get(`${apiUrl}/sport`)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getSportsSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
+		
+		case 'GET_CATEGORIES': {
+			axios.get(`${apiUrl}/category`)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getCategoriesSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
+
+		case 'HANDLE_SEARCH': {
+			const { search: { sport, from, date }} = store.getState();
+			
+			const config = {
+				method: 'post',
+				url: `${apiUrl}/searchTrips`,
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				data: {
+					sport,
+					from,
+					date,
+				},
+			};
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(searchSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
+
+		default:
+			next(action);
+	}
 };
 
-export default api;
+export default auth;
