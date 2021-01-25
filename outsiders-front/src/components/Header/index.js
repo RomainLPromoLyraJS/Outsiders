@@ -57,6 +57,7 @@ const Header = ({ isLogged, handleLogout, history }) => {
 		}, 1200);
 	};
 
+
 	return (
 		<header className="header">
 			<div className="header__container">

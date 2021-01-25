@@ -22,4 +22,16 @@ export const SidebarData = [
         icon : <AiIcons.AiFillHome />,
         className: 'nav-text'
     },
+    {
+        title: 'Login',
+        path: '/login',
+        icon : <AiIcons.AiFillHome />,
+        className: 'nav-text'
+    },
+    {
+        title: 'Signup',
+        path: '/signup',
+        icon : <AiIcons.AiFillHome />,
+        className: 'nav-text'
+    },
 ]

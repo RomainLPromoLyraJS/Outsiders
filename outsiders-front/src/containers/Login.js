@@ -1,18 +1,19 @@
 // == Package Imports
 import { connect } from 'react-redux';
 
+
+
 // == Local imports
 import Login from '../components/Login';
 import { changeAuthField } from '../store/action';
 
-// StateToProps
+// STATES that we give to Props (Login)
 const mapStateToProps = (state) => ({
   emailValue: state.auth.email,
   passwordValue: state.auth.password,
-  // isLogged: state.auth.logged
+  isLogged: state.auth.isLogged
 });
-
-
+// ACTIONS/FUNCTIONS that we give to Props (Login)
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (value, name) => {
     dispatch(changeAuthField(value, name));
@@ -28,3 +29,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+

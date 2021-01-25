@@ -13,7 +13,7 @@ const reducer = (oldState = initialState, action = {}) => {
         ...oldState,
         [action.name]: action.value,
       };
-
+      
     default:
       return {
         ...oldState,

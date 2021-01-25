@@ -1,5 +1,6 @@
 // == Package imports
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 // == Local imports
@@ -12,13 +13,21 @@ import Trips from '../../containers/Trip';
 import Login from '../../containers/Login';
 import About from '../About';
 import Signup from '../../containers/Signup';
-import Tripdetails from '../Tripdetails';
+import Tripdetails from '../../containers/Tripdetails';
 import Admin from '../../containers/Admin';
 import Profile from '../../containers/Profile';
 
 
 
-function App() {
+
+const App = ({ loadSportsData, loadCategoriesData }) => {
+  // loading sports and categories data from api
+  useEffect(() => {
+    loadSportsData();
+    loadCategoriesData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -40,7 +49,7 @@ function App() {
       <Route exact path='/about' >
         <About />
       </Route>
-      <Route exact path='/sortie' >
+      <Route exact path='/sortie/:slug' >
         <Tripdetails />
       </Route>
         
@@ -54,5 +63,9 @@ function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  loadSportsData: PropTypes.func.isRequired,
+};
 
 export default App;
