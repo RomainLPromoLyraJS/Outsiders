@@ -1,5 +1,6 @@
 // == Package imports
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 // == Local imports
@@ -19,7 +20,14 @@ import Profile from '../../containers/Profile';
 
 
 
-function App() {
+const App = ({ loadSportsData, loadCategoriesData }) => {
+  // loading sports and categories data from api
+  useEffect(() => {
+    loadSportsData();
+    loadCategoriesData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -55,5 +63,9 @@ function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  loadSportsData: PropTypes.func.isRequired,
+};
 
 export default App;

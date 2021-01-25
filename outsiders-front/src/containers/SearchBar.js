@@ -15,7 +15,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (value, name) => {
     dispatch(changeSearchField(value, name));
-  }  
+  },
+
+  handleSearch: () => {
+    dispatch({ type: 'HANDLE_SEARCH' });
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
