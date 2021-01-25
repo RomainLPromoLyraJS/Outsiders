@@ -16,7 +16,7 @@ import Signup from '../../containers/Signup';
 import Tripdetails from '../../containers/Tripdetails';
 import Admin from '../../containers/Admin';
 import Profile from '../../containers/Profile';
-import BackOffice from '../../components/BackOffice';
+import BackOffice from '../BackOffice';
 
 
 
@@ -59,7 +59,7 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/mon-compte' >
         <Profile />
       </Route>
-      <Route path='/dashboard' >
+      <Route exact path='/dashboard' >
         <BackOffice />
       </Route>
     <Footer />
