@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
+import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
@@ -39,6 +39,20 @@ const auth = (store) => (next) => (action) => {
 			break;
 		}
 
+		case 'GET_TRIPS': {
+			axios.get(`${apiUrl}/trip`)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getTripsSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
+		}
+
 		case 'HANDLE_SEARCH': {
 			const { search: { sport, from, date }} = store.getState();
 			
@@ -66,7 +80,7 @@ const auth = (store) => (next) => (action) => {
 					console.log('Oups ! ', error);
 				});
 			break;
-		}
+		};
 
 		default:
 			next(action);

@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   sports: state.sports.list,
   fromValue: state.search.from,
   dateValue: state.search.date,
+  list: state.trips.list,
 });
 // ACTIONS/FUNCTIONS that we give to Props (SearchBar)
 const mapDispatchToProps = (dispatch) => ({
@@ -19,6 +20,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleSearch: () => {
     dispatch({ type: 'HANDLE_SEARCH' });
+    dispatch({type: 'CHANGE_LOADING'});
+  },
+  loadTripsData: () => {
+    dispatch({ type: 'GET_TRIPS'});
   }
 });
 
