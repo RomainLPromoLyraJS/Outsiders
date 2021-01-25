@@ -1,11 +1,12 @@
 // actions
-import { CHANGE_AUTH_FIELD } from "../store/action";
+import { CHANGE_AUTH_FIELD, CHANGE_ADMIN_FIELD } from "../store/action";
 
 //InitialState basic guest informations
 const initialState = {
   email: "",
   password: "",
   isLogged: true,
+  sportName: "",
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -32,6 +33,12 @@ const reducer = (oldState = initialState, action = {}) => {
         password: "",
         isLogged: false,
       };
+
+    case CHANGE_ADMIN_FIELD:
+      return {
+        ...oldState,
+        [action.name]: action.value,
+      }
 
     default:
       return { ...oldState };
