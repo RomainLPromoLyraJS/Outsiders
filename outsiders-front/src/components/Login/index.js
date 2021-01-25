@@ -1,9 +1,12 @@
 // IMPORTS
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+
+
 
 // My Component
-const Login = ({ emailValue, passwordValue, handleChange, handleLogin }) => {
+const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged }) => {
 
     const onChange = (event) => {
       handleChange(event.target.value, event.target.name);
@@ -13,8 +16,14 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin }) => {
       event.preventDefault();
       handleLogin();
     }
+    
 
   return (
+    <>
+    {isLogged && (
+      <Redirect to='/' />
+      )}
+    
     <div className='login-page'>
         <p className='login-page__description'>Si vous êtes membre du site, veuillez vous connecter :</p>
         <form
@@ -41,6 +50,7 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin }) => {
             value={passwordValue}
             onChange={onChange}
           />
+          
           <button
             className='login-page__form__button'
             type='submit'
@@ -49,8 +59,10 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin }) => {
           >
             Valider
           </button>
+          
         </form>
     </div>
+  </>
   )
 };
 

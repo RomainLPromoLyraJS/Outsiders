@@ -5,6 +5,7 @@ import axios from 'axios';
 import apiUrl from './url';
 import { getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
 
+// request cat/etc
 const auth = (store) => (next) => (action) => {
 	// const state
 
