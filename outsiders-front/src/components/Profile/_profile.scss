@@ -1,0 +1,125 @@
+.profil {
+  min-height: calc(100vh - 120px);
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: $color-tertiary;
+  @include media('>=tablet') {
+    max-width: 1280px;
+    min-height: calc(100vh - 132px);
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &__user {
+    width: 100%;
+    margin: 2rem 0;
+    padding-bottom: 2rem;
+    border-bottom: solid 2px $color-secondary;
+    @include media('>=tablet') {
+      width: 20%;
+      margin: 2rem 2rem 2rem 0;
+      padding-bottom: 0;
+      padding-right: 2rem;
+      border-bottom: none;
+      border-right: solid 2px $color-secondary;
+    }
+
+    &__main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include media('>=tablet') {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      &__img {
+        width: 40%;
+        margin-right: 1rem;
+        border-radius: 50%;
+        @include media('>=tablet') {
+          width: 100%;
+          margin-bottom: 2rem;
+        }
+  
+        img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 50%;
+        }
+      }
+  
+      &__name {
+  
+        h2 {
+          font-size: 3rem;
+          color: $color-secondary;
+        }
+  
+        p {
+          font-size: 1.3rem;
+          font-weight: 700;
+        }
+
+        button {
+          padding: .4rem;
+          margin-top: .5rem;
+          background-color: $color-secondary;
+          border: none;
+          border-radius: 10px;
+          color: $color;
+        }
+      }
+    }
+
+    &__description {
+      margin: 1rem 0;
+
+      p {
+        text-align: center;
+        @include media('>=tablet') {
+          text-align: left;
+        }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include media('>=tablet') {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      &__btn {
+        font-size: .8rem;
+        padding: .5rem;
+        margin-right: .6rem;
+        background-color: $color-tertiary;
+        border: none;
+        border-radius: 10px;
+        color: $color;
+        @include media('>=tablet') {
+          margin-right: 0;
+          margin-bottom: .5rem;
+        }
+      }
+
+      .delete {
+        background-color: $color-quaternary;
+      }
+    }
+  }
+
+  &__trips {
+
+    &__item {}
+  }
+}

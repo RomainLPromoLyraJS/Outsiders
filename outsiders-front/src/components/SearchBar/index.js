@@ -2,8 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SearchBar = ({ sports, sportValue, fromValue, dateValue, handleChange, handleSearch }) => {
-
+const SearchBar = ({ sports, fromValue, dateValue, handleChange, handleSearch }) => {
   // sending the request to API
   const onSubmit = (event) => {
     event.preventDefault();
@@ -21,7 +20,7 @@ const SearchBar = ({ sports, sportValue, fromValue, dateValue, handleChange, han
         <select name="sport" className="form__sport" onChange={onChange}>
           <option value="">Sport</option>
           {sports.map(s => {
-            return <option key={s.id} value={sportValue}>{s.title}</option>
+            return <option key={s.id} value={s.title}>{s.title}</option>
           })}
         </select>
         <input name="from" className="form__from" type="text" placeholder="Départ" value={fromValue} onChange={onChange} />
@@ -37,7 +36,6 @@ SearchBar.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
-  sportValue: PropTypes.string,
   fromValue: PropTypes.string.isRequired,
   dateValue: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
