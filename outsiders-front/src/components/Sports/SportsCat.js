@@ -36,7 +36,7 @@ const SportsCat = ({ category, isOpen, setIsOpen }) => {
         </div>
       </div>
       <div className={contentCSS}>
-        {category.sports.map((s) => {
+        {category.sport.map((s) => {
           return <p key={s.id}>{s.title}</p>
         })}
       </div>
