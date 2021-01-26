@@ -31,7 +31,8 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						store.dispatch(getCategoriesSuccess(response.data.data));
+						// console.log (response.data.data[0].jsonb_build_object.category);
+						store.dispatch(getCategoriesSuccess(response.data.data[0].jsonb_build_object.category));
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
