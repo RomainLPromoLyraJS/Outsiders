@@ -10,7 +10,7 @@ import outsidersLogo from '../../assets/logos/Outsiders_LOGOS-line_COLOR.svg'
 import Hamburger from './Hamburger';
 
 
-const Header = ({ isLogged, handleLogout, history, loadTripsData }) => {
+const Header = ({ categories, isLogged, handleLogout, history, loadTripsData }) => {
 	// Hamburger state
 	const [ burgerState, setBurgerState ] = useState({
 		init: false,
@@ -79,6 +79,7 @@ const Header = ({ isLogged, handleLogout, history, loadTripsData }) => {
 				isLogged={isLogged}
 				handleLogout={handleLogout}
 				loadTripsData={loadTripsData}
+				categories={categories}
 			/>
 		</header>
 	)

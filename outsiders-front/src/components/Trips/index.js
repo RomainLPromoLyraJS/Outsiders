@@ -9,28 +9,16 @@ import { buildTripURL } from '../../utils';
 
 
 
-const Trips = ({ trips, loadTripsData, loadTrips, isLoaded}) => {
-	// if (loadTrips) {
-	// 	loadTripsData();
-	// }
-	// useEffect(() => {
-  //   loadTripsData();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
-	
-	// if (trips.length === 0) {
-	// 	loadTripsData();
-	// 	return (
-	// 		trips
-	// 	);
-	// }
-	
+const Trips = ({ trips, isLoaded}) => {
 
-
+	 
 	return (
 		<>
 		{!isLoaded && (
 			<div>CHARGEMENT</div>
+		)}
+		{trips.length === 0 && (
+			<div>Aucune sortie disponible</div>
 		)}
 		{isLoaded && (
 			<div className='trips_container'>
@@ -41,9 +29,6 @@ const Trips = ({ trips, loadTripsData, loadTrips, isLoaded}) => {
 			})}
 		</div>
 		)}
-		
-		{/* <div>test</div> */}
-		
 		</>
 	);
 }

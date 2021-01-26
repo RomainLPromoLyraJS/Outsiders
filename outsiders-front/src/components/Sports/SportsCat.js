@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IoIosArrowDown } from "react-icons/io";
+import { NavLink } from 'react-router-dom';
 
-const SportsCat = ({ category, isOpen, setIsOpen }) => {
+const SportsCat = ({ category, isOpen, setIsOpen, sportTitle, handleSearch }) => {
   // defines arrow style
   const arrowCSS = isOpen === category.title
     ? 'category__header__arrow category__header__arrow--active'
@@ -37,7 +38,9 @@ const SportsCat = ({ category, isOpen, setIsOpen }) => {
       </div>
       <div className={contentCSS}>
         {category.sport.map((s) => {
-          return <p key={s.id}>{s.title}</p>
+          return <NavLink key={s.id} to='/sorties' onClick={handleSearch}>
+            <p onClick={() => {sportTitle(s.title)}} key={s.id}>{s.title}</p>
+            </NavLink>
         })}
       </div>
     </section>
