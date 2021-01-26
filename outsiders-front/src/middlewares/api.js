@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
+import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
@@ -31,12 +31,27 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						store.dispatch(getCategoriesSuccess(response.data.data));
+						// console.log (response.data.data[0].jsonb_build_object.category);
+						store.dispatch(getCategoriesSuccess(response.data.data[0].jsonb_build_object.category));
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
 				});
 			break;
+		}
+
+		case 'GET_TRIPS': {
+			axios.get(`${apiUrl}/trip`)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getTripsSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
 		}
 
 		case 'HANDLE_SEARCH': {
@@ -66,7 +81,7 @@ const auth = (store) => (next) => (action) => {
 					console.log('Oups ! ', error);
 				});
 			break;
-		}
+		};
 
 		default:
 			next(action);

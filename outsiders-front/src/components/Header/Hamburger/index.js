@@ -11,7 +11,7 @@ import outsidersLogo from '../../../assets/logos/Outsiders_LOGOS-line_WHITE.svg'
 // animation
 import { openingMenu, closingMenu } from './burgerAnimations';
 
-const Hamburger = ({ burgerState, toggleMenu, disabledState, isLogged, handleLogout }) => {
+const Hamburger = ({ loadTripsData, burgerState, toggleMenu, disabledState, isLogged, handleLogout }) => {
   // animated dom nodes
   let menu = useRef(null);
   let revealMenu = useRef(null);
@@ -89,7 +89,7 @@ const Hamburger = ({ burgerState, toggleMenu, disabledState, isLogged, handleLog
                   <NavLink to="/sports">Sports</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/sorties">Sorties</NavLink>
+                  <NavLink to="/sorties" onClick={loadTripsData}>Sorties</NavLink>
                 </li>
                 <li>
                   <NavLink to="/about">À propos</NavLink>
