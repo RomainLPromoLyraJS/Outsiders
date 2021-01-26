@@ -1,5 +1,5 @@
 // actions
-import { CHANGE_AUTH_FIELD } from '../store/action';
+import { CHANGE_AUTH_FIELD, SIGNUP_SUCCESS } from '../store/action';
 
 
 //InitialState basic guest informations
@@ -29,7 +29,7 @@ const reducer = (oldState = initialState, action = {}) => {
         lastname: action.lastname,
         username: action.username,
         email: action.email,
-        password: action.password,
+        password: '',
         description: action.description,
         isLogged: true,
       };
@@ -44,6 +44,19 @@ const reducer = (oldState = initialState, action = {}) => {
         password: '',
         description: '',
         isLogged: false,
+      };
+    
+    case SIGNUP_SUCCESS:
+      return {
+        ...oldState,
+        id: action.id,
+        firstname: action.firstname,
+        lastname: action.lastname,
+        username: action.username,
+        email: action.email,
+        password: '',
+        description: action.description,
+        isLogged: true,
       };
 
     default:

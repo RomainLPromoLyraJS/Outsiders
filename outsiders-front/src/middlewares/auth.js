@@ -1,7 +1,9 @@
+// Package imports
 import axios from 'axios';
 
-
-
+// Local imports
+import apiUrl from './url';
+import { signupSuccess } from '../store/action';
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -11,7 +13,7 @@ const api = (store) => (next) => (action) => {
 
       const config = {
         method: 'post',
-        url: 'http://ec2-174-129-120-118.compute-1.amazonaws.com:3000/login',
+        url: `${apiUrl}/login`,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -25,17 +27,46 @@ const api = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch({
             type: 'LOGIN_SUCCESS',
-            ...response.data.data,
-            
+            ...response.data.data
           });
           console.log(response.data);
           
-        })
-        .catch((error) => {
+        }).catch((error) => {
           console.log(error);
         });
       break;
-    }
+    };
+
+    case 'USER_SIGNUP': {
+
+      const { auth: { firstname, lastname, username, email, password, description } } = store.getState();
+
+      const config = {
+        method: 'post',
+        url: `${apiUrl}/user`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          firstname,
+          lastname,
+          username,
+          email,
+          password,
+          description
+        },
+      };
+
+      axios(config)
+        .then((response) => {
+          store.dispatch(signupSuccess(response.data.data));
+          
+        }).catch((error) => {
+          console.log(error);
+        });
+      break;
+    };
+
     default:
       next(action);
   }
