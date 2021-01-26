@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { signupSuccess } from '../store/action';
+import { signupSuccess, editUserSuccess } from '../store/action';
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -28,9 +28,7 @@ const api = (store) => (next) => (action) => {
           store.dispatch({
             type: 'LOGIN_SUCCESS',
             ...response.data.data
-          });
-          console.log(response.data);
-          
+          });          
         }).catch((error) => {
           console.log(error);
         });
@@ -59,11 +57,48 @@ const api = (store) => (next) => (action) => {
 
       axios(config)
         .then((response) => {
-          store.dispatch(signupSuccess(response.data.data));
-          
-        }).catch((error) => {
-          console.log(error);
-        });
+          if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(signupSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+      break;
+    };
+
+    case 'EDIT_USER': {
+
+      const { auth: { firstname, lastname, username, email, password, description, id } } = store.getState();
+
+      const config = {
+        method: 'patch',
+        url: `${apiUrl}/user/${id}`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          firstname,
+          lastname,
+          username,
+          email,
+          password,
+          description,
+          id,
+        },
+      };
+
+      axios(config)
+        .then((response) => {
+          if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(editUserSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
       break;
     };
 

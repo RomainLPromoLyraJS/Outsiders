@@ -1,5 +1,5 @@
 // actions
-import { CHANGE_AUTH_FIELD, SIGNUP_SUCCESS } from '../store/action';
+import { CHANGE_AUTH_FIELD, SIGNUP_SUCCESS, EDIT_USER_SUCCES } from '../store/action';
 
 
 //InitialState basic guest informations
@@ -25,6 +25,7 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'LOGIN_SUCCESS':
       return {
         ...oldState,
+        id: action.id,
         firstname: action.firstname,
         lastname: action.lastname,
         username: action.username,
@@ -46,7 +47,7 @@ const reducer = (oldState = initialState, action = {}) => {
         isLogged: false,
       };
     
-    case SIGNUP_SUCCESS:
+    case SIGNUP_SUCCESS || EDIT_USER_SUCCES:
       return {
         ...oldState,
         id: action.id,

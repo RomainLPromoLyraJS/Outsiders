@@ -1,5 +1,6 @@
 export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const EDIT_USER_SUCCES = 'EDIT_USER_SUCCES';
 export const CHANGE_SEARCH_FIELD = 'CHANGE_SEARCH_FIELD';
 export const GET_SPORTS_SUCCESS = 'GET_SPORTS_SUCCESS';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
@@ -15,7 +16,12 @@ export const changeAuthField = (value, name) => ({
 export const signupSuccess = (user) => ({
   type: SIGNUP_SUCCESS,
   ...user,
-})
+});
+
+export const editUserSuccess = (user) => ({
+  type: EDIT_USER_SUCCES,
+  ...user,
+});
 
 export const changeSearchField = (value, name) => ({
   type: CHANGE_SEARCH_FIELD,

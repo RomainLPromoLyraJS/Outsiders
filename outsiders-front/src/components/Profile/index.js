@@ -30,7 +30,7 @@ const Profile = ({ user }) => {
           <p>{user.description}</p>
         </div>
         <div className="profil__user__buttons">
-          <NavLink to="/" className="profil__user__buttons__btn">Modifier mon profil</NavLink>
+          <NavLink to="/mon-compte/modifer" className="profil__user__buttons__btn">Modifier mon profil</NavLink>
           <button className="profil__user__buttons__btn delete">Supprimer mon profil</button>
         </div>
       </section>
