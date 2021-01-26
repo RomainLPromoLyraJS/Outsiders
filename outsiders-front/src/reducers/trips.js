@@ -1,9 +1,11 @@
 import {
   SEARCH_SUCCESS,
+  GET_TRIPS_SUCCESS,
 } from '../store/action';
 
 const initialState = {
   list: [],
+  isLoaded: false,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -12,8 +14,21 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         list: action.tripList,
+        isLoaded: true,
       };
 
+    case GET_TRIPS_SUCCESS:
+      return {
+        ...oldState,
+        list: action.tripList,
+        isLoaded: true,
+      };
+
+      case 'CHANGE_LOADING':
+			  return {
+				  ...oldState,
+          isLoaded: false,
+			}
     default:
       return {
       ...oldState,

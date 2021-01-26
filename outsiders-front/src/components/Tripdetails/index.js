@@ -27,7 +27,7 @@ const Tripdetails = ({ trip }) => {
         <div className='trip_price_person'>50</div>
       </section>
       <section className='trip_section_creator'>
-        <div className='trip_profil'>{trip.user.username}</div>
+        <div className='trip_profil'>trip.user.username</div>
         <div className='trip_description'>{trip.description}</div> 
       </section>
       <section className='trip_section_participants'>

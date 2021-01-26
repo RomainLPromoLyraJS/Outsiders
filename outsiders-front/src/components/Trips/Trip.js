@@ -12,7 +12,7 @@ const Trip = ({ trip }) => {
       <div className='destination'>{trip.to}</div>
       <div className='departure'>{trip.from}</div>
       <div className='price'>{trip.price}</div>
-      <div className='profil'>{trip.user.username}</div>
+      <div className='profil'>trip.user.username</div>
     </div>
   )
 }
