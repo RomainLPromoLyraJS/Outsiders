@@ -6,10 +6,7 @@ import Profile from '../components/Profile';
 
 // STATES that we give to Props (Profile)
 const mapStateToProps = (state) => ({
-    username: state.auth.username,
-    description: state.auth.description,
-    isConnected: state.auth.isLogged,
-    trips: state.trips.list,
+    user: state.auth,
 });
 
 export default connect(mapStateToProps)(Profile);
