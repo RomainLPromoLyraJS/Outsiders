@@ -4,13 +4,13 @@ import { CHANGE_AUTH_FIELD } from '../store/action';
 
 //InitialState basic guest informations
 const initialState = {
-  firstname: 'Kelly',
-  lastname: 'Slater',
-  username: 'SurfMachine',
-  email: 'kelly@slater.com',
+  firstname: '',
+  lastname: '',
+  username: '',
+  email: '',
   password: '',
-  description: '12000 fois champion du monde, je suis clairement une machine. Personne ne peut venir surfer avec moi finalement.',
-  isLogged: true,
+  description: '',
+  isLogged: false,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
