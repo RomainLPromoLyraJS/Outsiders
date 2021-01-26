@@ -231,3 +231,12 @@ SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.m
 
   SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, JSON_AGG(JSON_build_object(\'id\', m.id, \'title\', m.title, \'content\', m.content, \'date\', m.date, \'user_id\', m.user_id, \'write_by\', "user".username)) AS "message" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user"."id" ON t.id=p.trip_id WHERE t.id=2 GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description
   
+  --requete pour obtenir les participants à un trip/:id
+  SELECT "user".username FROM "user" JOIN m2m_user_participate_trip AS p ON "user".id=p.user_id JOIN trip ON trip.id=p.trip_id WHERE trip.id=2;
+  --requete pour obtenir le trip, les messages liés et le créateur
+  SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, JSON_AGG(JSON_build_object('id', m.id, 'title', m.title, 'content', m.content, 'date', m.date, 'user_id', m.user_id, 'username', "user".username) ORDER BY m.id) AS "message" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user"."id" WHERE t.id=2 GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description
+
+--test trip/:id
+SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, JSON_AGG(SELECT "user".username FROM "user" JOIN m2m_user_participate_trip AS p ON "user".id=p.user_id JOIN trip ON trip.id=p.trip_id WHERE trip.id='2'), JSON_AGG(JSON_build_object('id', m.id, 'title', m.title, 'content', m.content, 'date', m.date, 'user_id', m.user_id, 'username', "user".username) ORDER BY m.id) AS "message" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user"."id" WHERE t.id='2' GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description
+
+
