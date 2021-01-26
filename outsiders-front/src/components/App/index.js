@@ -16,6 +16,7 @@ import Signup from '../../containers/Signup';
 import Tripdetails from '../../containers/Tripdetails';
 import Admin from '../../containers/Admin';
 import Profile from '../../containers/Profile';
+import Newtrip from '../../containers/Newtrip';
 
 
 
@@ -58,6 +59,9 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       </Route>
       <Route exact path='/mon-compte' >
         <Profile />
+      </Route>
+      <Route exact path='/nouvelle-sortie' >
+        <Newtrip />
       </Route>
       <Footer />
     </div>
