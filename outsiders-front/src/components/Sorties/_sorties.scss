@@ -1,0 +1,46 @@
+.sorties {
+  min-height: calc(100vh - 120px);
+  width: 90%;
+  margin: 0 auto;
+  @include media('>=tablet') {
+    min-height: calc(100vh - 132px);;
+    max-width: 1280px;
+  }
+
+  &__title {
+    padding: 2rem 0 1rem;
+    font-size: 3rem;
+    color: $color-tertiary;
+    @include media('>=tablet') {
+      font-size: 6rem;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+
+    &__search {
+      width: 100%;
+      padding: 1rem;
+      background-color: $color-tertiary;
+      border-radius: 20px;
+
+      button {
+        margin: 0 auto .5rem;
+        padding: .3rem;
+        background-color: $color-secondary;
+        color: $color;
+        font-size: .9rem;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .search-pop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
