@@ -9,6 +9,9 @@ import { changeAdminField } from '../store/action';
 const mapStateToProps = (state) => ({
   sports: state.sports.list,
   sportNameValue: state.admin.sportName,
+  sportDescriptionValue: state.admin.sportDescription,
+  categories: state.sports.categories,
+  categoryIdValue: state.admin.category_id,
 });
 // ACTIONS/FUNCTIONS that we give to Props (DashboardSports)
 const mapDispatchToProps = (dispatch) => ({
@@ -16,9 +19,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeAdminField(value, name));
   },
 
-//   handleSearch: () => {
-//     dispatch({ type: 'HANDLE_SEARCH' });
-//   }
+  handleCreate: () => {
+    dispatch({ type: 'CREATE_SPORT' });
+    },
+  handleModify: () => {
+    dispatch({ type: 'MODIFY_SPORT' });
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardSports);

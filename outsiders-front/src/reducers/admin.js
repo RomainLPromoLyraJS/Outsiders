@@ -1,12 +1,15 @@
 // actions
-import { CHANGE_AUTH_FIELD, CHANGE_ADMIN_FIELD } from "../store/action";
+import { CHANGE_AUTH_FIELD, CHANGE_ADMIN_FIELD, CREATE_SPORT_SUCCESS } from "../store/action";
 
 //InitialState basic guest informations
 const initialState = {
+  id: "",
   email: "",
   password: "",
   isLogged: true,
   sportName: "",
+  sportDescription: "",
+  category_id: "",
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -38,6 +41,14 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         [action.name]: action.value,
+      };
+      
+    case CREATE_SPORT_SUCCESS:
+      return {
+        ...oldState,
+        sportName: "",
+        sportDescription: "",
+        category_id: null,
       }
 
     default:
