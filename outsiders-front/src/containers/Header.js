@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   handleLogout: () => {
     dispatch({ type: 'LOGOUT' });
   },
+  loadTripsData: () => {
+    dispatch({ type: 'GET_TRIPS'});
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

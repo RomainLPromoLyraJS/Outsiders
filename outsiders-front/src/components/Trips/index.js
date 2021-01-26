@@ -1,9 +1,6 @@
 import React from 'react';
-
-
-// import './trips.scss';
-
 import { NavLink } from 'react-router-dom';
+
 
 import Trip from './Trip.js';
 
@@ -12,15 +9,42 @@ import { buildTripURL } from '../../utils';
 
 
 
-const Trips = ({ trips }) => {
+const Trips = ({ trips, loadTripsData, loadTrips, isLoaded}) => {
+	// if (loadTrips) {
+	// 	loadTripsData();
+	// }
+	// useEffect(() => {
+  //   loadTripsData();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
+	
+	// if (trips.length === 0) {
+	// 	loadTripsData();
+	// 	return (
+	// 		trips
+	// 	);
+	// }
+	
+
+
 	return (
-		<div className='trips_container'>
+		<>
+		{!isLoaded && (
+			<div>CHARGEMENT</div>
+		)}
+		{isLoaded && (
+			<div className='trips_container'>
 			{trips.map((trip) => {
 				return <NavLink key={trip.id} to={buildTripURL(trip.title)}>
 					<Trip trip={trip} />
 				</NavLink>
 			})}
 		</div>
+		)}
+		
+		{/* <div>test</div> */}
+		
+		</>
 	);
 }
 

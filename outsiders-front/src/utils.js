@@ -13,10 +13,20 @@ export const buildTripURL = (title) => `/sortie/${slugifyTitle(title)}`;
  * 
  * trip.title === (SLUG)trip-title
  */
+export const getTripBySlug = (trips, slug) => (
+  trips.find((trip) => slugifyTitle(trip.title) === slug)
+);
 
- export const getTripBySlug = (trips, slug) => (
-   trips.find((trip) => slugifyTitle(trip.title) === slug)
- );
+/**
+ * MAKE FULL NAME
+ * simply make a full name when you a firstname and a lastname
+ * 
+ * @param {string} firstname 
+ * @param {string} lastname 
+ */
+export const makeFullName = (firstname, lastname) => {
+  return `${firstname} ${lastname}`;
+};
 
 
 

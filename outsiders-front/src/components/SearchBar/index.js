@@ -1,34 +1,38 @@
 // == Package imports
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
-const SearchBar = ({ sports, sportValue, fromValue, dateValue, handleChange, handleSearch }) => {
-
+const SearchBar = ({ sports, fromValue, dateValue, handleChange, handleSearch }) => {
   // sending the request to API
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onClick = () => {
     handleSearch();
   };
 
   // tracking field changes
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
+    
   };
 
   return (
+    <> 
     <div className="searchBar">
-      <form className="form" onSubmit={onSubmit}>
+      <form className="form" >
         <select name="sport" className="form__sport" onChange={onChange}>
           <option value="">Sport</option>
           {sports.map(s => {
-            return <option key={s.id} value={sportValue}>{s.title}</option>
+            return <option key={s.id} value={s.title}>{s.title}</option>
           })}
         </select>
         <input name="from" className="form__from" type="text" placeholder="Départ" value={fromValue} onChange={onChange} />
         <input name="date" className="form__date" type="date" value={dateValue} onChange={onChange} />
-        <button className="form__button" type="submit">Rechercher</button>
+          <NavLink className="form__button" onClick={onClick} to='/sorties'>
+            <button className="form__button">Rechercher</button>
+          </NavLink>
       </form>
     </div>
+    </>
   );
 };
 
@@ -37,7 +41,6 @@ SearchBar.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
-  sportValue: PropTypes.string,
   fromValue: PropTypes.string.isRequired,
   dateValue: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
