@@ -3,11 +3,11 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
+import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess, createSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
-	// const state
+
 
 	switch (action.type) {
 
@@ -81,7 +81,63 @@ const auth = (store) => (next) => (action) => {
 					console.log('Oups ! ', error);
 				});
 			break;
-		};
+		}
+
+		case 'HANDLE_CREATE': {
+			const {
+				trips: { 
+					title,
+					description,
+					date,
+					time,
+					from,
+					to,
+					places,
+					duration,
+					minimum,
+					price,
+					sport_id,
+				},
+			 } = store.getState();
+
+			 const { auth: { id }} = store.getState();
+
+			const config = {
+				method: 'post',
+				url: `${apiUrl}/trip`,
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				data: {
+					user_id : id,
+					title,
+					description,
+					date,
+					time,
+					from,
+					to,
+					places,
+					duration,
+					minimum,
+					price,
+					sport_id,
+				},
+			};
+			console.log(config);
+			axios(config)
+				.then((response) => {
+					console.log(response);
+					if (response.status !==200) {
+						throw response.error;
+					} else {
+						store.dispatch(createSuccess(response.data.data));
+						// console.log('NewTrip has been created successfully');
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
 
 		default:
 			next(action);

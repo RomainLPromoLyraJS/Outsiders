@@ -1,11 +1,25 @@
 import {
   SEARCH_SUCCESS,
   GET_TRIPS_SUCCESS,
+  CHANGE_CREATE_FIELD,
+  CREATE_SUCCESS,
+  
 } from '../store/action';
 
 const initialState = {
   list: [],
   isLoaded: false,
+  title: '',
+  description:'',
+  date: '',
+  time:'',
+  from: '',
+  to: '',
+  places: '',
+  duration:'',
+  minimum:'',
+  price: '',
+  sport_id: '',
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -16,7 +30,11 @@ const reducer = (oldState = initialState, action = {}) => {
         list: action.tripList,
         isLoaded: true,
       };
-
+    case CHANGE_CREATE_FIELD:
+      return {
+        ...oldState,
+        [action.name]: action.value,
+      };
     case GET_TRIPS_SUCCESS:
       return {
         ...oldState,
@@ -24,11 +42,18 @@ const reducer = (oldState = initialState, action = {}) => {
         isLoaded: true,
       };
 
-      case 'CHANGE_LOADING':
-			  return {
-				  ...oldState,
-          isLoaded: false,
-			}
+    case 'CHANGE_LOADING':
+			return {
+        ...oldState,
+        isLoaded: false,
+      };
+      
+    case CREATE_SUCCESS:
+      return {
+        ...oldState,
+        isloaded: true,
+      }
+
     default:
       return {
       ...oldState,

@@ -5,6 +5,7 @@ export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
 export const CHANGE_CREATE_FIELD = 'CHANGE_CREATE_FIELD';
+export const CREATE_SUCCESS = 'CREATE_SUCCESS';
 
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
@@ -42,4 +43,9 @@ export const changeCreateField = (value, name) => ({
   type: CHANGE_CREATE_FIELD,
   value,
   name,
+});
+
+export const createSuccess = (trips) => ({
+  type: CREATE_SUCCESS,
+  trips,
 });
