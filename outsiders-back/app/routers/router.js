@@ -1,4 +1,6 @@
 const express = require('express');
+const jwt = require('express-jwt');
+const jsonwebtoken = require('jsonwebtoken');
 
 const adminController = require('../controllers/adminController');
 const loginController = require('../controllers/loginController');
@@ -8,11 +10,15 @@ const categoryController = require('../controllers/categoryController');
 const sportController = require('../controllers/sportController');
 const tripController =require('../controllers/tripController');
 
+const authorizationMiddleware = jwt({ secret: process.env.JWTSECRET, algorithms: ['HS256'] });
+
 const router = express.Router();
 
 router.post('/admin', adminController.connect);
 
 router.post('/login', loginController.login);
+
+
 
 router.get('/user', userController.allUsers);
 router.post('/user', userController.createNewUser);

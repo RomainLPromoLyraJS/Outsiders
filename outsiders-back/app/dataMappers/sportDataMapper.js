@@ -8,12 +8,11 @@ module.exports = {
     },
 
     async postNewSport(sportToCreate) {
-        const result = await client.query('INSERT INTO "sport"(title, description) VALUES ($1, $2) RETURNING *', [sportToCreate.title, sportToCreate.description]);
+        const result = await client.query('INSERT INTO "sport"(title, description, category_id)  VALUES ($1, $2, $3) RETURNING *', [sportToCreate.title, sportToCreate.description, sportToCreate.category_id]);
         if (result.rowCount == 0) {
             return null
         }
         return result.rows[0];
-
     },
 
     async getOneSport(sportId) {

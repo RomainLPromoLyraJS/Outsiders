@@ -1,4 +1,7 @@
 const userDataMapper = require('../dataMappers/userDataMapper');
+const jsonwebtoken = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 
 module.exports = {
     async allUsers(req, res, next) {
@@ -15,11 +18,33 @@ module.exports = {
     async createNewUser(req, res, next) {
         try {
             const newUser = req.body;
-            const createdUser = await userDataMapper.createNewUser(newUser);
-            res.json({
-                message: 'new user created',
-                data: createdUser
-            });
+            const saltRounds = 10;
+            const regexPassword = /(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}/;
+            const test = regexPassword.test(newUser.password);
+
+            if (test) {
+                const hashedPassword = bcrypt.hashSync(newUser.password, saltRounds);
+                            
+                const createdUser = await userDataMapper.createNewUser({
+                    lastname: newUser.lastname,
+                    firstname: newUser.firstname,
+                    email: newUser.email,
+                    password: hashedPassword,
+                    username: newUser.username,
+                    description: newUser.description});
+                
+                res.json({
+                    message: 'new user created',
+                    data: createdUser
+                });
+
+            } else {
+                res.json({
+                    message: 'le mot de passe doit contenir au moins 8 caractères dont 1 majuscule, 1 minuscule, 1chiffre, 1 caractère spécial',
+                    data: newUser.email
+                });
+            }
+            
         } catch(error) {
             next(error);
         }
@@ -39,14 +64,34 @@ module.exports = {
 
     async updateUser(req, res, next) {
         try {
+            const saltRounds = 10;
             const userId = req.params.id;
             const userToUpdate = req.body;
 
-            const userUpdated = await userDataMapper.updateUser(userId, userToUpdate);
-            res.json({
-                message: 'user updated',
-                data: userUpdated
-            });
+            const regexPassword = /(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}/;
+            const test = regexPassword.test(userToUpdate.password);
+            console.log(test);
+            if (test) {
+                const hashedPassword = bcrypt.hashSync(userToUpdate.password, saltRounds);
+                const userUpdated = await userDataMapper.updateUser(userId, {
+                    lastname: userToUpdate.lastname,
+                    firstname: userToUpdate.firstname,
+                    email: userToUpdate.email,
+                    password: hashedPassword,
+                    username: userToUpdate.username,
+                    description: userToUpdate.description});
+                
+
+                res.json({
+                    message: 'user updated',
+                    data: userUpdated
+                });
+            } else {
+                res.json({
+                    message: 'le mot de passe doit contenir au moins 8 caractères dont 1 majuscule, 1 minuscule, 1chiffre, 1 caractère spécial',
+                    data: newUser.email
+                });
+            }
         } catch(error) {
             next(error);
         }
