@@ -11,7 +11,6 @@ import About from '../About';
 import Sports from '../../containers/Sports';
 import Sorties from '../Sorties';
 import Categories from '../../containers/Categories';
-import Trips from '../../containers/Trip';
 import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
 import Login from '../../containers/Login';

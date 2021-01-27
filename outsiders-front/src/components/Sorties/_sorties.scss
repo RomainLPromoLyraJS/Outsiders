@@ -25,21 +25,46 @@
       padding: 1rem;
       background-color: $color-tertiary;
       border-radius: 20px;
+      @include media('>=tablet') {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-      button {
-        margin: 0 auto .5rem;
+      &__toggle {
+        margin: 0 auto;
         padding: .3rem;
         background-color: $color-secondary;
         color: $color;
         font-size: .9rem;
         border: none;
         border-radius: 10px;
+        @include media('>=tablet') {
+          display: none;
+          margin: 0;
+        }
       }
 
-      .search-pop {
+      .search-pop--open {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: .5rem;
+        @include media('>=tablet') {
+          margin-top: 0;
+        }
+      }
+
+      .search-pop {
+        height: 0;
+        overflow: hidden;
+        @include media('>=tablet') {
+          height: 100%;
+          margin-top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }
