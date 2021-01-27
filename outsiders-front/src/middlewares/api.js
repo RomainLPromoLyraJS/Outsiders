@@ -46,6 +46,7 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
+						console.log(response.data.data);
 						store.dispatch(getTripsSuccess(response.data.data));
 					}
 				}).catch((error) => {
@@ -80,6 +81,7 @@ const auth = (store) => (next) => (action) => {
 							store.dispatch(searchSuccess([]));
 						}
 						else {
+							console.log(response.data.data);
 							store.dispatch(searchSuccess(response.data.data));
 						}
 					}

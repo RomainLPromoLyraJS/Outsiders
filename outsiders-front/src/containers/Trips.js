@@ -5,10 +5,9 @@ import Trips from '../components/Trips';
 const mapStateToProps = (state) => ({
   trips: state.trips.list,
   isLoaded: state.trips.isLoaded,
-  // loadTrips: state.trips.list.length = 0,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   loadTripsData: () => {
     dispatch({ type: 'GET_TRIPS'});
   }

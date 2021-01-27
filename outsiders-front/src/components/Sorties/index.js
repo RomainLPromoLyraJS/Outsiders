@@ -4,6 +4,7 @@ import { HiOutlineAdjustments } from "react-icons/hi";
 
 // == Local Imports
 import SearchBar from '../../containers/SearchBar';
+import Trips from '../../containers/Trips'
 
 const Sorties = () => {
   const [ openSearch, setOpenSearch ] = useState(false);
@@ -25,6 +26,9 @@ const Sorties = () => {
           <div className={searchStyle}>
             <SearchBar />
           </div>
+        </div>
+        <div className="sorties__container__results">
+          <Trips />
         </div>
       </div>
     </div>
