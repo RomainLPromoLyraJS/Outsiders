@@ -6,6 +6,7 @@ import Header from '../components/Header';
 
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
+  categories: state.sports.categories,
 });
 
 const mapDispatchToProps = (dispatch) => ({

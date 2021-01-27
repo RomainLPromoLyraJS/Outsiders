@@ -9,6 +9,7 @@ import Header from '../../containers/Header';
 import Home from '../Home';
 import About from '../About';
 import Sports from '../../containers/Sports';
+import Categories from '../../containers/Categories';
 import Trips from '../../containers/Trip';
 import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
@@ -42,6 +43,9 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/sports' >
         <Sports />
       </Route>
+      <Route exact path='/categories/:slug' >
+        <Categories />
+      </Route>    
 
       {/* Trip routes */}
       <Route exact path='/sorties' >
