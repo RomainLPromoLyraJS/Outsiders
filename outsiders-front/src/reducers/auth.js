@@ -4,6 +4,8 @@ import { CHANGE_AUTH_FIELD, SIGNUP_SUCCESS, EDIT_USER_SUCCES } from '../store/ac
 
 //InitialState basic guest informations
 const initialState = {
+  id: '',
+  token: '',
   firstname: '',
   lastname: '',
   username: '',
@@ -26,6 +28,7 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         id: action.id,
+        token: action.token,
         firstname: action.firstname,
         lastname: action.lastname,
         username: action.username,
@@ -38,6 +41,8 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'LOGOUT':
       return {
         ...oldState,
+        id: '',
+        token: '',
         firstname: '',
         lastname: '',
         username: '',
@@ -50,14 +55,12 @@ const reducer = (oldState = initialState, action = {}) => {
     case SIGNUP_SUCCESS || EDIT_USER_SUCCES:
       return {
         ...oldState,
-        id: action.id,
         firstname: action.firstname,
         lastname: action.lastname,
         username: action.username,
         email: action.email,
         password: '',
         description: action.description,
-        isLogged: true,
       };
 
     default:

@@ -27,6 +27,7 @@ const api = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch({
             type: 'LOGIN_SUCCESS',
+            token: response.data.token,
             ...response.data.data
           });          
         }).catch((error) => {
@@ -85,7 +86,6 @@ const api = (store) => (next) => (action) => {
           email,
           password,
           description,
-          id,
         },
       };
 

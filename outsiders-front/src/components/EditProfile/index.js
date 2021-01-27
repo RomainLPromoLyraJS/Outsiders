@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 const EditProfile = ({ isLogged, firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
+  const [ redirect, setRedirect] = useState(false);
+
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
   }
 
   const onSubmit = (event) => {
+    if (password.length < 8) {
+      return;
+    }
     event.preventDefault();
     handleSubmit();
+    setRedirect(true);
   }
 
   return (
     <div className="editProfile">
+      {/* redirect when signed up */}
+      {redirect && (
+        <Redirect to='/mon-compte' />
+      )}
 
       {/* redirect if user is not logged */}
       {!isLogged && (
@@ -61,6 +71,16 @@ const EditProfile = ({ isLogged, firstname, lastname, username, email, password,
           name="email"
           id="email"
           placeholder="kelly.@slater.surf"
+        />
+        <label className="signup__form__label" htmlFor="password">Mot de passe</label>
+        <input
+          value={password}
+          onChange={onChange}
+          className="signup__form__input"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="min 8 caractères (a, A, 2, *)"
         />
         <label className="editProfile__form__label" htmlFor="description">Description</label>
         <textarea

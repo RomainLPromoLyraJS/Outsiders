@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 const Signup = ({ isLogged, firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
+  const [ redirect, setRedirect] = useState(false);
+
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
   }
@@ -10,10 +12,15 @@ const Signup = ({ isLogged, firstname, lastname, username, email, password, desc
   const onSubmit = (event) => {
     event.preventDefault();
     handleSubmit();
+    setRedirect(true);
   }
 
   return (
     <div className="signup">
+      {/* redirect when signed up */}
+      {redirect && (
+        <Redirect to='/login' />
+      )}
 
       {/* redirect if user is logged */}
       {isLogged && (

@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
   password: state.auth.password,
   description: state.auth.description,
 });
-// ACTIONS/FUNCTIONS that we give to Props (Signup)
+
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (value, name) => {
     dispatch(changeAuthField(value, name));
