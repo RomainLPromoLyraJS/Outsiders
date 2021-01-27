@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // == Local imports
-import Signup from '../components/Signup';
+import EditProfile from '../components/EditProfile';
 import { changeAuthField } from '../store/action';
 
 // STATES that we give to Props (Signup)
@@ -22,8 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handleSubmit: () => {
-    dispatch({type: 'USER_SIGNUP'});
+    dispatch({type: 'EDIT_USER'});
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

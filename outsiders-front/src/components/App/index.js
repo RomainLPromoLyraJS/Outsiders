@@ -10,10 +10,13 @@ import Home from '../Home';
 import About from '../About';
 import Sports from '../../containers/Sports';
 import Sorties from '../Sorties';
+import Categories from '../../containers/Categories';
+import Trips from '../../containers/Trip';
 import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
 import Login from '../../containers/Login';
 import Profile from '../../containers/Profile';
+import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
 
@@ -41,10 +44,16 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/sports' >
         <Sports />
       </Route>
+      <Route exact path='/categories/:slug' >
+        <Categories />
+      </Route>    
 
       {/* Trip routes */}
       <Route exact path='/sorties' >
         <Sorties />
+      </Route>
+      <Route exact path='/sortie/:slug' >
+        <Tripdetails />
       </Route>
       <Route exact path='/sortie/:slug' >
         <Tripdetails />
@@ -59,6 +68,9 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       </Route>
       <Route exact path='/mon-compte' >
         <Profile />
+      </Route>
+      <Route exact path='/mon-compte/modifer' >
+        <EditProfile />
       </Route>
       
       {/* Admin routes */}
