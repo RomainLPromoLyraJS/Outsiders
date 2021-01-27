@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess, createSuccess } from '../store/action';
+import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess, createTripSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
@@ -130,11 +130,16 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !==200) {
 						throw response.error;
 					} else {
-						store.dispatch(createSuccess(response.data.data));
+						store.dispatch(createTripSuccess(response.data.data));
+						// store.dispatch({type: 'GET_TRIPS'});
 						// console.log('NewTrip has been created successfully');
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
+				})
+				.finally(()=> {
+					store.dispatch({type: 'GET_TRIPS'});
+					store.dispatch({type: 'CHANGE_LOADING'});
 				});
 			break;
 		}

@@ -2,7 +2,7 @@ import {
   SEARCH_SUCCESS,
   GET_TRIPS_SUCCESS,
   CHANGE_CREATE_FIELD,
-  CREATE_SUCCESS,
+  CREATE_TRIP_SUCCESS,
   
 } from '../store/action';
 
@@ -48,10 +48,9 @@ const reducer = (oldState = initialState, action = {}) => {
         isLoaded: false,
       };
       
-    case CREATE_SUCCESS:
+    case CREATE_TRIP_SUCCESS:
       return {
         ...oldState,
-        isloaded: true,
       }
 
     default:

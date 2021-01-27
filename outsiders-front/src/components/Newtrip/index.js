@@ -21,11 +21,13 @@ const Newtrip = ({
   minimumValue,
   placesValue,
   isLoaded,
+  // loadTripsData,
 }) => {
   // sending the request to API
   const onSubmit =(event) => {
     event.preventDefault();
     handleCreate();
+    // loadTripsData();
   };
 
   // tracking field changes
@@ -67,6 +69,7 @@ const Newtrip = ({
         </form>
         {isLoaded && (
         <Redirect to={buildTripURL(titleValue)} />
+        // console.log(titleValue)
       )}
     </div>
   );

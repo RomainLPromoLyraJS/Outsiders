@@ -27,8 +27,12 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleCreate: () => {
     dispatch({ type: 'HANDLE_CREATE' });
-    dispatch({ type: 'CHANGE_LOADING'});
-  }
+  },
+
+  // loadTripsData: () => {
+  //   dispatch({ type: 'GET_TRIPS'});
+  //   dispatch({ type: 'CHANGE_LOADING'});
+  // }
 
 });
 
