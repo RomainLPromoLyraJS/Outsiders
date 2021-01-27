@@ -11,10 +11,7 @@ module.exports = {
             const password = req.body.password;
             const authorizationMiddleware = jwt({ secret: process.env.JWTSECRET, algorithms: ['HS256'] });
             const admin = await adminDataMapper.connect(email);
-
-            console.log(admin);
             const isPasswordValid = bcrypt.compareSync(password, admin.password);
-            console.log(isPasswordValid);
             if (!isPasswordValid) {
                 res.locals.notFound = "identification invalide";
                 next();

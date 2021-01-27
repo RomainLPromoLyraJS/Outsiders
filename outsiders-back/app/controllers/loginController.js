@@ -8,12 +8,9 @@ module.exports = {
         try {
             const email = req.body.email;
             const password = req.body.password;
-            
             const authorizationMiddleware = jwt({ secret: process.env.JWTSECRET, algorithms: ['HS256'] });
             const login = await loginDataMapper.login(email);
-            console.log(login);
             const isPasswordValid = bcrypt.compareSync(password, login.password);
-            console.log(isPasswordValid);
             if (!isPasswordValid) {
                 res.locals.notFound = "identification invalide";
                 next();
