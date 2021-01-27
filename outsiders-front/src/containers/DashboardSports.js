@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   categories: state.sports.categories,
   categoryIdValue: state.admin.category_id,
   message: state.admin.message,
+  show: state.show,
 });
 // ACTIONS/FUNCTIONS that we give to Props (DashboardSports)
 const mapDispatchToProps = (dispatch) => ({

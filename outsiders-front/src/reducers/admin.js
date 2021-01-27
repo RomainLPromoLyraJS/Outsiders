@@ -15,6 +15,7 @@ const initialState = {
   sportDescription: "",
   category_id: "",
   message: "",
+  
 };
 
 const reducer = (oldState = initialState, action = {}) => {
