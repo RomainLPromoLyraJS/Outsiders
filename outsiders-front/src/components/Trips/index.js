@@ -8,7 +8,7 @@ import Trip from './Trip.js';
 // utils
 import { buildTripURL } from '../../utils';
 
-const Trips = ({ trips, isLoaded}) => {
+const Trips = ({ trips, isLoaded, getTripDetails }) => {
 
 	return (
 		<div className="trips">
@@ -27,7 +27,9 @@ const Trips = ({ trips, isLoaded}) => {
 			{isLoaded && (
 				<div className='trips_container'>
 				{trips.map((trip) => {
-					return <NavLink key={trip.id_trip} to={buildTripURL(trip.title)}>
+					return <NavLink onClick={() => {
+						getTripDetails(trip.id_trip);
+					}} key={trip.id_trip} to={buildTripURL(trip.title)}>
 						<Trip trip={trip} />
 					</NavLink>
 				})}

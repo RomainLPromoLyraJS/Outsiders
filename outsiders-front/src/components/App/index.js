@@ -54,9 +54,6 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/sortie/:slug' >
         <Tripdetails />
       </Route>
-      <Route exact path='/sortie/:slug' >
-        <Tripdetails />
-      </Route>
 
       {/* User routes */}
       <Route exact path='/signup' >

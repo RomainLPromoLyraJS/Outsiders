@@ -6,6 +6,21 @@ import {
 const initialState = {
   list: [],
   isLoaded: false,
+  currentTrip: {
+    id: '',
+    title: '',
+    description: '',
+    date: '',
+    time: '',
+    from: '',
+    to: '',
+    places: '',
+    minimum: '',
+    price: '',
+    duration: '',
+    message: [],
+    participants: [],
+  },
 };
 
 const reducer = (oldState = initialState, action = {}) => {

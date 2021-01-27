@@ -8,8 +8,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadTripsData: () => {
-    dispatch({ type: 'GET_TRIPS'});
+  getTripDetails: (tripId) => {
+    dispatch({type: 'CHANGE_LOADING'});
+    dispatch({type: 'GET_TRIP_DETAILS', tripId});
   }
 })
 

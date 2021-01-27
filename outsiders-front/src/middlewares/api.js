@@ -46,7 +46,6 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						console.log(response.data.data);
 						store.dispatch(getTripsSuccess(response.data.data));
 					}
 				}).catch((error) => {
@@ -81,7 +80,6 @@ const auth = (store) => (next) => (action) => {
 							store.dispatch(searchSuccess([]));
 						}
 						else {
-							console.log(response.data.data);
 							store.dispatch(searchSuccess(response.data.data));
 						}
 					}
@@ -90,6 +88,20 @@ const auth = (store) => (next) => (action) => {
 				});
 			break;
 		};
+
+		case 'GET_TRIP_DETAILS': {
+			axios.get(`${apiUrl}/trip/${action.tripId}`)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						console.log(response.data.data);
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
 
 		default:
 			next(action);
