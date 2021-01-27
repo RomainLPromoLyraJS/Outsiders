@@ -5,14 +5,21 @@ import React, { useState } from 'react';
 // components
 import SportsCat from './SportsCat';
 
-const Sports = ({ categories }) => {
+const Sports = ({ categories, sportTitle, handleSearch }) => {
   const [ isOpen, setIsOpen ] = useState('');
 
   return (
     <div className="sports">
       <h1 onClick={() => setIsOpen('')} className="sports__title">Sports</h1>
       {categories.map((c) => {
-        return <SportsCat isOpen={isOpen} setIsOpen={setIsOpen} key={c.id} category={c} />
+        return <SportsCat
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          key={c.id}
+          category={c}
+          sportTitle={sportTitle}
+          handleSearch={handleSearch}
+          />
       })}
     </div>
   );
