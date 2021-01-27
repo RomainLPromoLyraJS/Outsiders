@@ -38,36 +38,65 @@ const admin = (store) => (next) => (action) => {
           console.log("Oups ! ", error);
         });
       break;
-    };
+    }
 
     case "MODIFY_SPORT": {
-        const config = {
-          method: "patch",
-          url: `${apiUrl}/sport/${id}`,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            title: sportName,
-            description: sportDescription,
-            category_id,
-            id,
-          },
-        };
-  
-        axios(config)
-          .then((response) => {
-            if (response.status !== 200) {
-              throw response.error;
-            } else {
-              store.dispatch(createSportSuccess(response.data.data));
-            }
-          })
-          .catch((error) => {
-            console.log("Oups ! ", error);
+      const config = {
+        method: "patch",
+        url: `${apiUrl}/sport/${id}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          title: sportName,
+          description: sportDescription,
+          category_id,
+        },
+      };
+
+      axios(config)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw response.error;
+          } else {
+            store.dispatch({
+              type: 'MODIFY_SPORT_SUCCESS',
+              message: `Le nouveau sport ${response.data.data[0].title} a bien été modifié.`
           });
-        break;
-      }
+          }
+        })
+        .catch((error) => {
+          console.log("Oups ! ", error);
+        });
+      break;
+    }
+
+    case "DELETE_SPORT": {
+      console.log(id);
+      const config = {
+        method: "delete",
+        url: `${apiUrl}/sport/${id}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      axios(config)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw response.error;
+          } else {
+            store.dispatch({
+              type: "DELETE_SPORT_SUCCESS",
+              message: `Le sport ${response.data.data[0].title} a bien été supprimé.`,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log("Oups ! ", error);
+        });
+      break;
+    }
 
     default:
       next(action);

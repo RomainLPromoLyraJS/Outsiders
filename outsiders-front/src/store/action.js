@@ -11,6 +11,7 @@ export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
 
 export const CREATE_SPORT_SUCCESS = 'CREATE_SPORT_SUCCESS';
 
+
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
   value,
@@ -52,3 +53,4 @@ export const getTripsSuccess = (tripList) => ({
 export const createSportSuccess = () => ({
   type: CREATE_SPORT_SUCCESS,
 });
+

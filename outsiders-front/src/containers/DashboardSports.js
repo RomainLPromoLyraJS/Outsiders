@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   sportDescriptionValue: state.admin.sportDescription,
   categories: state.sports.categories,
   categoryIdValue: state.admin.category_id,
+  message: state.admin.message,
 });
 // ACTIONS/FUNCTIONS that we give to Props (DashboardSports)
 const mapDispatchToProps = (dispatch) => ({
@@ -24,7 +25,10 @@ const mapDispatchToProps = (dispatch) => ({
     },
   handleModify: () => {
     dispatch({ type: 'MODIFY_SPORT' });
-  }
+  },
+  handleDelete: () => {
+    dispatch({ type: 'DELETE_SPORT' });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardSports);

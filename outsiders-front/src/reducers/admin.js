@@ -1,5 +1,9 @@
 // actions
-import { CHANGE_AUTH_FIELD, CHANGE_ADMIN_FIELD, CREATE_SPORT_SUCCESS } from "../store/action";
+import {
+  CHANGE_AUTH_FIELD,
+  CHANGE_ADMIN_FIELD,
+  CREATE_SPORT_SUCCESS,
+} from "../store/action";
 
 //InitialState basic guest informations
 const initialState = {
@@ -10,6 +14,7 @@ const initialState = {
   sportName: "",
   sportDescription: "",
   category_id: "",
+  message: "",
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -42,14 +47,30 @@ const reducer = (oldState = initialState, action = {}) => {
         ...oldState,
         [action.name]: action.value,
       };
-      
+
     case CREATE_SPORT_SUCCESS:
       return {
         ...oldState,
         sportName: "",
         sportDescription: "",
         category_id: null,
-      }
+        message: "Le nouveau sport a bien été créé."
+      };
+
+    case "MODIFY_SPORT_SUCCESS":
+      return {
+        ...oldState,
+        sportName: "",
+        sportDescription: "",
+        category_id: null,
+        message: action.message,
+      };
+
+    case "DELETE_SPORT_SUCCESS":
+      return {
+        ...oldState,
+        message: action.message,
+      };
 
     default:
       return { ...oldState };

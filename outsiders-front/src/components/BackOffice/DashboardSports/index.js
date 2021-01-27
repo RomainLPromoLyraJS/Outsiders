@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // == Local imports
 import DashboardNav from "../DashboardNav";
 
-const DashboardSports = ({ sports, categories, categoryIdValue, handleCreate, handleModify, handleDelete, handleChange, sportNameValue, sportDescriptionValue  }) => {
+const DashboardSports = ({ sports, categories, message, handleCreate, handleModify, handleDelete, handleChange, sportNameValue, sportDescriptionValue  }) => {
 
   // sending the request to API
   const onSubmitCreate = (event) => {
@@ -18,10 +18,10 @@ const DashboardSports = ({ sports, categories, categoryIdValue, handleCreate, ha
     handleModify();
   }
 
-  // const onSubmitDelete = (event) => {
-  //   event.preventDefault();
-  //   handleDelete();
-  // }
+  const onSubmitDelete = (event) => {
+    event.preventDefault();
+    handleDelete();
+  }
 
   // tracking field changes
   const onChange = (event) => {
@@ -62,6 +62,7 @@ const DashboardSports = ({ sports, categories, categoryIdValue, handleCreate, ha
               <button type="submit" className="dashboard-sports__form__button">
                 Valider
               </button>
+              <p>{message}</p>
           </form>
           <form className="dashboard-sports__form" onSubmit={onSubmitModify}>
               <h3 className="dashboard-sports__form__title">Modifier un sport</h3>
@@ -71,6 +72,15 @@ const DashboardSports = ({ sports, categories, categoryIdValue, handleCreate, ha
                 <option value="">Sport</option>
                 {sports.map(sport => {
                   return <option key={sport.id} value={sport.id}>{sport.title}</option>
+                })}
+              </select>
+              <br/>
+              <label forhtml="category-name">Choisir une catégorie :</label>
+              <br/>
+              <select onChange={onChange} name="category_id" className="dashboard-sports__form__select">
+                <option value="">Categorie</option>
+                {categories.map(category => {
+                  return <option key={category.id} value={category.id}>{category.title}</option>
                 })}
               </select>
               <br/>
@@ -86,21 +96,23 @@ const DashboardSports = ({ sports, categories, categoryIdValue, handleCreate, ha
               <button type="submit" className="dashboard-sports__form__button">
                 Valider
               </button>
+              <p>{message}</p>
           </form>
-          <form className="dashboard-sports__form" /*onSubmit={onSubmitDelete}*/>
+          <form className="dashboard-sports__form" onSubmit={onSubmitDelete}>
               <h3 className="dashboard-sports__form__title">Supprimer un sport</h3>
               <label forhtml="delete-sport">Sélectionner le sport à supprimer dans la liste :</label>
               <br/>
-              <select name="sport" className="dashboard-sports__form__select">
+              <select onChange={onChange} name="id" className="dashboard-sports__form__select">
                 <option value="">Sport</option>
                 {sports.map(sport => {
-                  return <option key={sport.id} value="">{sport.title}</option>
+                  return <option key={sport.id} value={sport.id}>{sport.title}</option>
                 })}
               </select>
               <br/>
               <button type="submit" className="dashboard-sports__form__button">
                 Valider
               </button>
+              <p>{message}</p>
           </form>
         </div>
       </div>
@@ -116,7 +128,7 @@ DashboardSports.propTypes = {
   })).isRequired,
   handleCreate: PropTypes.func.isRequired,
   handleModify: PropTypes.func.isRequired,
-  // handleDelete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   sportNameValue: PropTypes.string.isRequired,
   sportDescriptionValue: PropTypes.string.isRequired,
