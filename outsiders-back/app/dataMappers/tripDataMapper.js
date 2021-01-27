@@ -80,6 +80,24 @@ module.exports = {
         return result.rows;
     },
 
+    async getOneTrip1(tripId) {
+        const result = await client.query('SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, JSON_AGG(JSON_build_object(\'id\', m.id, \'title\', m.title, \'content\', m.content, \'date\', m.date, \'user_id\', m.user_id, \'username\', "user".username) ORDER BY m.id) AS "message" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user"."id" WHERE t.id=$1 GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description', [tripId]);
+        
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
+    },
+
+    async getOneTrip2(tripId) {
+        const result = await client.query('SELECT  json_agg(json_build_object(\'username\', "user".username)) AS particpants FROM "user" JOIN m2m_user_participate_trip AS p ON "user".id=p.user_id JOIN trip ON trip.id=p.trip_id WHERE trip.id=$1', [tripId]);
+        
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows;
+    },
+
     async updateOneTrip(tripId, tripToUpdate) {
 
         const result = await client.query('UPDATE "trip" SET "title"=$1, "description"=$2, "date"=$3, "time"=$4, "from"=$5, "to"=$6, "places"=$7, "minimum"=$8, "price"=$9, "duration"=$10, "sport_id"=$11 WHERE "id"=$12 RETURNING *', [tripToUpdate.title, tripToUpdate.description, tripToUpdate.date, tripToUpdate.time, tripToUpdate.from, tripToUpdate.to, tripToUpdate.places, tripToUpdate.minimum, tripToUpdate.price, tripToUpdate.duration, tripToUpdate.sport_id, tripId]);

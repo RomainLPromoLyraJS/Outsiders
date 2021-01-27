@@ -30,6 +30,7 @@ module.exports = {
         try {
             const trips = req.body;
             const searchTrips = await tripDataMapper.searchTrips(trips);
+            
             res.json({
                 message: 'list of trips',
                 data: searchTrips
@@ -42,7 +43,11 @@ module.exports = {
     async getOneTrip(req, res, next) {
         try {
             const tripId = req.params.id;
-            const oneTrip = await tripDataMapper.getOneTrip(tripId);
+            const oneTrip1 = await tripDataMapper.getOneTrip1(tripId);
+            
+            const oneTrip2 = await tripDataMapper.getOneTrip2(tripId);
+            const oneTrip = oneTrip1.concat(oneTrip2);
+            
             res.json({
                 data: oneTrip
             });
