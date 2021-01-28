@@ -6,7 +6,7 @@ import { buildTripURL } from '../../utils';
 
 const Newtrip = ({
   sports,
-  handleCreate,
+  handleSubmit,
   handleChange,
   titleValue,
   dateValue,
@@ -23,7 +23,7 @@ const Newtrip = ({
   // sending the request to API
   const onSubmit =(event) => {
     event.preventDefault();
-    handleCreate();
+    handleSubmit();
   };
   // tracking field changes
   const onChange = (event) => {
@@ -42,8 +42,8 @@ const Newtrip = ({
             return <option key={s.id} value={s.id}>{s.title}</option>
           })}
         </select>
-        <input name="title" value={titleValue} className="form__title" type="text" placeholder="Titre" onChange={onChange}/>
-        <input name="description" value={descriptionValue} className="form__description" type="text" placeholder="Description" onChange={onChange}/>
+        <input name="trip_title" value={titleValue} className="form__title" type="text" placeholder="Titre" onChange={onChange}/>
+        <input name="trip_description" value={descriptionValue} className="form__description" type="text" placeholder="Description" onChange={onChange}/>
         <input name="date" value={dateValue} className="form__date" type="date" placeholder="Date" onChange={onChange}/>
         <input name="time" value={timeValue} className="form__time" type="time" placeholder="Heure départ" onChange={onChange}/>
         <input name="from" value={fromValue} className="form__from" type="text" placeholder="Départ" onChange={onChange}/>
@@ -60,9 +60,9 @@ const Newtrip = ({
         <button className='form__button' type='submit'> Créer sortie </button>
         </form>
         {/* isLoaded = True redirect to the Trip created */}
-        {isLoaded && (
+        {/* {isLoaded && (
         <Redirect to={buildTripURL(titleValue)} />
-        )}
+        )} */}
     </div>
   );
 }

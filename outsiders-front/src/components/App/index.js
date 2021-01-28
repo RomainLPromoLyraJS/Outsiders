@@ -81,7 +81,7 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
         <EditProfile />
       </Route>
       
-      {/* ADMIN ROUTE */}
+      {/* Admin routes */}
       <Route exact path='/admin' >
         <Admin />
       </Route>
