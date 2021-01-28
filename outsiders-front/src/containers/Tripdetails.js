@@ -14,12 +14,19 @@ const mapStateToProps = (state, ownProps) => ({
    * => ownProps.match = prop create by withRouter
    * in ownProps, we have acces to all props including those of withRouter
    */
-
    trip: getTripBySlug(state.trips.list, ownProps.match.params.slug),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+
+  changeLoading: () => {
+    dispatch({ type: 'CHANGE_LOADING' });
+  },
+
+})
+
 // with connect Tripdetails have acces to props.state (trip title)
-const container = connect(mapStateToProps)(Tripdetails);
+const container = connect(mapStateToProps, mapDispatchToProps)(Tripdetails);
 
 // with withRouter container have acces to props.router (slug url)
 const containerWithRouter = withRouter(container);

@@ -8,11 +8,11 @@ import { FiSettings } from 'react-icons/fi';
 // We need to import {trip:id} 
 
 
-const Tripdetails = ({ trip }) => {
+const Tripdetails = ({ trip, changeLoading }) => {
   
   return (
     <div className='tripdetails'>
-      <NavLink to='/modifier-sortie'><FiSettings /></NavLink>
+      <NavLink onClick={changeLoading} to='/modifier-sortie'><FiSettings /></NavLink>
       <section className='trip_section_place'>
         <h1 className='trip_title'>{trip.title}</h1>
         <div className='trip_date'>{trip.date}</div>

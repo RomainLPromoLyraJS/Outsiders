@@ -136,7 +136,7 @@ const auth = (store) => (next) => (action) => {
 				})
 				.finally(()=> {
 					store.dispatch({type: 'GET_TRIPS'});
-					store.dispatch({type: 'CHANGE_LOADING'});
+					store.dispatch({type: 'CHANGE_LOADING' });
 				});
 			break;
 		}
