@@ -55,8 +55,9 @@ const auth = (store) => (next) => (action) => {
 		}
 
 		case 'HANDLE_SEARCH': {
+
 			const { search: { sport, from, date }} = store.getState();
-			
+
 			const config = {
 				method: 'post',
 				url: `${apiUrl}/searchTrips`,
