@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 
 // == Local imports == \\
-import Newtrip from '../components/Newtrip';
+import Patchtrip from '../components/Patchtrip';
 import { changeTripField } from '../store/action';
 
-// STATES that we give to Props (NewTrip)
+// STATES that we give to Props (Patchtrip)
 const mapStateToProps = (state) => ({
   // == sports reducer == \\
   sports: state.sports.list,
@@ -22,17 +22,16 @@ const mapStateToProps = (state) => ({
   placesValue: state.trips.places,
   isLoaded: state.trips.isLoaded,
 });
-// ACTIONS/FUNCTIONS that we give to Props (NewTrip)
+// ACTIONS/FUNCTIONS that we give to Props (Patchtrip)
 const mapDispatchToProps = (dispatch) => ({
 
   handleChange: (value, name) => {
     dispatch(changeTripField(value, name));
   },
-
-  handleCreate: () => {
-    dispatch({ type: 'HANDLE_CREATE' });
+  handleModify: () => {
+    dispatch({ type: 'HANDLE_MODIFY' });
   },
   
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Newtrip);
+export default connect(mapStateToProps, mapDispatchToProps)(Patchtrip);

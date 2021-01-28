@@ -4,9 +4,9 @@ import { Redirect } from 'react-router-dom';
 // == Import utils == \\
 import { buildTripURL } from '../../utils';
 
-const Newtrip = ({
+const Patchtrip = ({
   sports,
-  handleCreate,
+  handleModify,
   handleChange,
   titleValue,
   dateValue,
@@ -21,9 +21,9 @@ const Newtrip = ({
   isLoaded,
 }) => {
   // sending the request to API
-  const onSubmit =(event) => {
+  const modifySubmit =(event) => {
     event.preventDefault();
-    handleCreate();
+    handleModify();
   };
   // tracking field changes
   const onChange = (event) => {
@@ -33,9 +33,9 @@ const Newtrip = ({
   const numbr10 = ['2','3','4','5','6','7','8','9','10'];
 
   return (
-    <div className='newtrip-page'>
-      <h1> TITLE CREE UNE SORTIE </h1>
-        <form className='form' onSubmit={onSubmit}>
+    <div className='patchtrip-page'>
+      <h1> TITLE MODIFIER UNE SORTIE </h1>
+        <form className='form' onSubmit={modifySubmit}>
         <select name="sport_id" className="form__sport" onChange={onChange}>
           <option value="">Sport</option>
           {sports.map(s => {
@@ -57,17 +57,15 @@ const Newtrip = ({
             return <option key={n} value={n}>{n}</option>
           })}
         </select>
-        <button className='form__button' type='submit'> Créer sortie </button>
+        <button className='form__button' type='submit'> Modifier sortie </button>
         </form>
-        {/* isLoaded = True redirect to the Trip created */}
+        {/* isLoaded = True redirect to the Trip patched */}
         {isLoaded && (
-        <Redirect to={buildTripURL(titleValue)} />
+          <Redirect to={buildTripURL(titleValue)} />
         )}
     </div>
-  );
+  )
 }
 
-export default Newtrip;
 
-
-
+export default Patchtrip;

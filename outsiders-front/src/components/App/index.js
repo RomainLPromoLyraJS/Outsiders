@@ -17,6 +17,7 @@ import Tripdetails from '../../containers/Tripdetails';
 import Admin from '../../containers/Admin';
 import Profile from '../../containers/Profile';
 import Newtrip from '../../containers/Newtrip';
+import Patchtrip from '../../containers/Patchtrip';
 
 
 
@@ -31,6 +32,7 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
 
   return (
     <div className="App">
+    {/* GUEST ROUTE */}
       <Header />
       <Route exact path='/' >
         <Home />
@@ -50,12 +52,10 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/about' >
         <About />
       </Route>
+      <Footer />
+      {/* MEMBER ROUTE */}
       <Route exact path='/sortie/:slug' >
         <Tripdetails />
-      </Route>
-        
-      <Route exact path='/admin' >
-        <Admin />
       </Route>
       <Route exact path='/mon-compte' >
         <Profile />
@@ -63,7 +63,13 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/nouvelle-sortie' >
         <Newtrip />
       </Route>
-      <Footer />
+      <Route exact path='/modifier-sortie' >
+        <Patchtrip />
+      </Route>
+      {/* ADMIN ROUTE */}
+      <Route exact path='/admin' >
+        <Admin />
+      </Route>
     </div>
   );
 }

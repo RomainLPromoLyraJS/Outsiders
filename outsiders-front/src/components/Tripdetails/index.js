@@ -1,5 +1,7 @@
 //Package Import
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
 
 // Local Import
 
@@ -10,6 +12,7 @@ const Tripdetails = ({ trip }) => {
   
   return (
     <div className='tripdetails'>
+      <NavLink to='/modifier-sortie'><FiSettings /></NavLink>
       <section className='trip_section_place'>
         <h1 className='trip_title'>{trip.title}</h1>
         <div className='trip_date'>{trip.date}</div>
