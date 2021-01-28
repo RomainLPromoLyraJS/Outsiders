@@ -75,7 +75,13 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						store.dispatch(searchSuccess(response.data.data));
+
+						if (response.data.data === null) {
+							store.dispatch(searchSuccess([]));
+						}
+						else {
+							store.dispatch(searchSuccess(response.data.data));
+						}
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);

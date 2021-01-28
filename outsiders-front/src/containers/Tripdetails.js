@@ -18,10 +18,10 @@ const mapStateToProps = (state, ownProps) => ({
    trip: getTripBySlug(state.trips.list, ownProps.match.params.slug),
 });
 
-// with connect Tripdetails have acces to props.state (trip title)
+// with connect Tripdetails have access to props.state (trip title)
 const container = connect(mapStateToProps)(Tripdetails);
 
-// with withRouter container have acces to props.router (slug url)
+// with withRouter container have access to props.router (slug url)
 const containerWithRouter = withRouter(container);
 
 export default containerWithRouter;

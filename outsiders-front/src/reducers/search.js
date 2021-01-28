@@ -1,4 +1,4 @@
-import { CHANGE_SEARCH_FIELD } from '../store/action';
+import { CHANGE_SEARCH_FIELD, GET_SPORT_TITLE } from '../store/action';
 
 const initialState = {
   sport: '',
@@ -13,6 +13,11 @@ const reducer = (oldState = initialState, action = {}) => {
         ...oldState,
         [action.name]: action.value,
       };
+    case GET_SPORT_TITLE:
+      return {
+        ...oldState,
+        sport : action.title,
+      }
       
     default:
       return {
