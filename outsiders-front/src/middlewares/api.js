@@ -91,13 +91,22 @@ const auth = (store) => (next) => (action) => {
 		};
 
 		case 'GET_TRIP_DETAILS': {
-			axios.get(`${apiUrl}/trip/${action.tripId}`)
+			const { auth: { token } } = store.getState();
+
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/trip/${action.tripId}`,
+				headers: {
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+
+			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
 						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]))
-						// console.log(response.data.data[0], response.data.data[1], response.data.data[2]);
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
