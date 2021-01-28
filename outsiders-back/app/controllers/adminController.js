@@ -1,8 +1,7 @@
 const adminDataMapper = require('../dataMappers/adminDataMapper');
-const jwt = require('express-jwt');
-const jsonwebtoken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const authorizationMiddleware = require('../middleware/auth');
+
 
 
 module.exports = {
