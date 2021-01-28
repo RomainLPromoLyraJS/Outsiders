@@ -4,6 +4,7 @@ import {
   CHANGE_TRIP_FIELD,
   CREATE_TRIP_SUCCESS,
   PATCH_TRIP_SUCCESS,
+  DELETE_TRIP_SUCCESS,
 } from '../store/action';
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   minimum:'2',
   price: '15',
   sport_id: '19',
+  isDeleted: false,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -57,6 +59,17 @@ const reducer = (oldState = initialState, action = {}) => {
     case PATCH_TRIP_SUCCESS:
       return {
         ...oldState,
+      }
+
+    case DELETE_TRIP_SUCCESS:
+      return {
+        ...oldState,
+        isDeleted: true,
+      }
+    case 'CHANGE_DELETE_STATE':
+      return {
+        ...oldState,
+        isDeleted: false,
       }
 
     default:

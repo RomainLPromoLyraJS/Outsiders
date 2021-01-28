@@ -7,6 +7,7 @@ export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
 export const CHANGE_TRIP_FIELD = 'CHANGE_CREATE_FIELD';
 export const CREATE_TRIP_SUCCESS = 'CREATE_TRIP_SUCCESS';
 export const PATCH_TRIP_SUCCESS = 'PATCH_TRIP_SUCCESS';
+export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS';
 
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
@@ -53,5 +54,10 @@ export const createTripSuccess = (trips) => ({
 
 export const patchTripSuccess = (trips) => ({
   type: PATCH_TRIP_SUCCESS,
+  trips,
+});
+
+export const deleteTripSuccess = (trips) => ({
+  type: DELETE_TRIP_SUCCESS,
   trips,
 });

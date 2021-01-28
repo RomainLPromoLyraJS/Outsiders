@@ -1,18 +1,49 @@
 //Package Import
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 // Local Import
 
 // We need to import {trip:id} 
 
 
-const Tripdetails = ({ trip, changeLoading }) => {
+const Tripdetails = ({ trip, changeLoading, handleDelete, isDeleted, changeDeleteState }) => {
   
+  const [ open, setOpen ] = useState();
+  const opening = () => {
+    setOpen(!open);
+  };
+
+  const delTrip = (event) => {
+    // event.preventDefault();
+    // handleDelete();
+    // opening();
+  }
+
+  const changeDeleteStatus = () => {
+    changeDeleteState();
+  }
+
+
   return (
     <div className='tripdetails'>
       <NavLink onClick={changeLoading} to='/modifier-sortie'><FiSettings /></NavLink>
+      
+        <RiDeleteBin6Line onClick={opening} />
+        {open && (
+          <div> ARE YOU SURE YOU WANT TO DELETE ?
+          <button onClick={delTrip} > yes </button>
+          <button onClick={opening}> no </button>
+          </div>
+        )}
+        {isDeleted && (
+            <div>Le trip à bien été supprimée
+              <NavLink to='/' onClick={changeDeleteStatus}> Accueil </NavLink>
+            </div>
+          )}
+        
       <section className='trip_section_place'>
         <h1 className='trip_title'>{trip.title}</h1>
         <div className='trip_date'>{trip.date}</div>

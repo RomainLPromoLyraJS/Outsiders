@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => ({
    * in ownProps, we have acces to all props including those of withRouter
    */
    trip: getTripBySlug(state.trips.list, ownProps.match.params.slug),
+   isDeleted: state.trips.isDeleted,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,6 +23,13 @@ const mapDispatchToProps = (dispatch) => ({
   changeLoading: () => {
     dispatch({ type: 'CHANGE_LOADING' });
   },
+
+  handleDelete: () => {
+    dispatch({ type: 'DELETE_TRIP' });
+  },
+  changeDeleteState: () => {
+    dispatch({ type: 'CHANGE_DELETE_STATE' });
+  }
 
 })
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // == Local imports == \\
 import apiUrl from './url';
-import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess, createTripSuccess, patchTripSuccess } from '../store/action';
+import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess, createTripSuccess, patchTripSuccess, deleteTripSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
@@ -179,7 +179,6 @@ const auth = (store) => (next) => (action) => {
 					sport_id,
 				},
 			};
-			console.log(config);
 			axios(config)
 				.then((response) => {
 					console.log(response);
@@ -198,6 +197,31 @@ const auth = (store) => (next) => (action) => {
 				;
 				break;
 		}
+
+		case 'DELETE_TRIP': {
+			const { trips: trip_id } = store.getState();
+
+			const config = {
+				method: 'delete',
+				url: `${apiUrl}/trip/${trip_id}`,
+				headers: {	},
+			};
+			axios(config)
+				.then((response) => {
+					if (response.status !==200) {
+						throw response.error;
+					} else {
+						store.dispatch(deleteTripSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				})
+				.finally(() => {
+					store.dispatch({type: 'GET_TRIPS' });
+					store.dispatch({type: 'CHANGE_LOADING' });
+				});
+				break;
+	}
 
 		default:
 			next(action);
