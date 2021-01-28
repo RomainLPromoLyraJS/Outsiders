@@ -12,6 +12,36 @@ const admin = (store) => (next) => (action) => {
   } = store.getState();
 
   switch (action.type) {
+
+    case 'AUTH_ADMIN': {
+
+      const { auth: { email, password } } = store.getState();
+
+      const config = {
+        method: 'post',
+        url: `${apiUrl}/admin`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          email,
+          password,
+        },
+      };
+
+      axios(config)
+        .then((response) => {
+          store.dispatch({
+            type: 'ADMIN_SUCCESS',
+            token: response.data.token,
+            ...response.data.data
+          });          
+        }).catch((error) => {
+          console.log(error);
+        });
+      break;
+    };
+
     case "CREATE_SPORT": {
       const config = {
         method: "post",

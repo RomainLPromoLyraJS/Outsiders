@@ -10,13 +10,14 @@ const initialState = {
   id: "",
   email: "",
   password: "",
-  isLogged: true,
+  isLogged: false,
   sportNameCreate: "",
   sportNameModify:"",
   sportDescriptionCreate:"",
   sportDescriptionModify:"",
   category_id: "",
   message: "",
+  token: '',
   
 };
 
@@ -35,6 +36,7 @@ const reducer = (oldState = initialState, action = {}) => {
         email: action.email,
         password: action.password,
         isLogged: true,
+        token: action.token,
       };
     // Changing states when we call 'ADMIN_FAILURE' \\
     case "ADMIN_FAILURE":
