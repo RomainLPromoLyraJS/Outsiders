@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 // == Local Import
 import ButtonSection from './ButtonSection';
 
-const Tripdetails = ({ handleDelete, isLogged, isLoaded, trip }) => {
+const Tripdetails = ({ handleDelete, handleJoin, isLogged, isLoaded, trip }) => {
   const nullToArray = (tab) => {
     let empti = 0;
 
@@ -68,7 +68,7 @@ const Tripdetails = ({ handleDelete, isLogged, isLoaded, trip }) => {
               </div>
             </div>
           </section>
-          <ButtonSection handleDelete={handleDelete} />
+          <ButtonSection handleDelete={handleDelete} handleJoin={handleJoin} />
         </div>
       )}
     </main>

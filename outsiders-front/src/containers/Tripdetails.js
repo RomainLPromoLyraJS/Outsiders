@@ -14,6 +14,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleDelete: () => {
     dispatch({type: 'DELETE_TRIP'});
+  },
+
+  handleJoin: () => {
+    dispatch({type: 'CHANGE_LOADING'});
+    dispatch({type: 'JOIN_TRIP'});
   }
 });
 
