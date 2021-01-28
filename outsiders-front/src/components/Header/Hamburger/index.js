@@ -10,8 +10,10 @@ import { IoIosCloseCircle } from "react-icons/io";
 import outsidersLogo from '../../../assets/logos/Outsiders_LOGOS-line_WHITE.svg'
 // animation
 import { openingMenu, closingMenu } from './burgerAnimations';
+// utils
+import { buildCatURL } from '../../../utils';
 
-const Hamburger = ({ loadTripsData, burgerState, toggleMenu, disabledState, isLogged, handleLogout }) => {
+const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, disabledState, isLogged, handleLogout }) => {
   // animated dom nodes
   let menu = useRef(null);
   let revealMenu = useRef(null);
@@ -97,18 +99,11 @@ const Hamburger = ({ loadTripsData, burgerState, toggleMenu, disabledState, isLo
               </ul>
             </div>
             <ul className="menu__container__nav__categories">
-              <li>
-                <NavLink to="/">Air</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">Eau</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">Neige</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">Terre</NavLink>
-              </li>
+              {categories.map((category) => {
+                return <li key={category.id}>
+                  <NavLink key={category.id} to={buildCatURL(category.title)}>{category.title}</NavLink>
+                </li>
+              })}
             </ul>
           </nav>
         </div>

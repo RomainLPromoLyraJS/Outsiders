@@ -1,18 +1,28 @@
 export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const EDIT_USER_SUCCES = 'EDIT_USER_SUCCES';
 export const CHANGE_SEARCH_FIELD = 'CHANGE_SEARCH_FIELD';
 export const GET_SPORTS_SUCCESS = 'GET_SPORTS_SUCCESS';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
-export const CHANGE_TRIP_FIELD = 'CHANGE_CREATE_FIELD';
-export const CREATE_TRIP_SUCCESS = 'CREATE_TRIP_SUCCESS';
-export const PATCH_TRIP_SUCCESS = 'PATCH_TRIP_SUCCESS';
-export const DELETE_TRIP_SUCCESS = 'DELETE_TRIP_SUCCESS';
+export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
+export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
 
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
   value,
   name,
+});
+
+export const signupSuccess = (user) => ({
+  type: SIGNUP_SUCCESS,
+  ...user,
+});
+
+export const editUserSuccess = (user) => ({
+  type: EDIT_USER_SUCCES,
+  ...user,
 });
 
 export const changeSearchField = (value, name) => ({
@@ -41,23 +51,16 @@ export const getTripsSuccess = (tripList) => ({
   tripList,
 });
 
-export const changeTripField = (value, name) => ({
-  type: CHANGE_TRIP_FIELD,
-  value,
-  name,
-});
+export const getTripDetailsSuccess = (details, participant, messages) => ({
+  type: GET_TRIP_DETAILS_SUCCESS,
+  trip: {
+    ...details,
+    ...participant,
+    ...messages,
+  }
+})
 
-export const createTripSuccess = (trips) => ({
-  type: CREATE_TRIP_SUCCESS,
-  trips,
-});
-
-export const patchTripSuccess = (trips) => ({
-  type: PATCH_TRIP_SUCCESS,
-  trips,
-});
-
-export const deleteTripSuccess = (trips) => ({
-  type: DELETE_TRIP_SUCCESS,
-  trips,
-});
+export const changeSportField = (title) => ({
+  type: GET_SPORT_TITLE,
+  title,
+})

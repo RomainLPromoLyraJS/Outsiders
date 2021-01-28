@@ -1,80 +1,54 @@
-//Package Import
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FiSettings } from 'react-icons/fi';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+// == Package Import
+import React from 'react';
+import DayJS from 'react-dayjs';
 
-// Local Import
+// == Local Import
 
-// We need to import {trip:id} 
-
-
-const Tripdetails = ({ trip, changeLoading, handleDelete, isDeleted, changeDeleteState }) => {
-  
-  const [ open, setOpen ] = useState();
-  const opening = () => {
-    setOpen(!open);
+const Tripdetails = ({ isLoaded, trip }) => {
+  const spotCalculator = (nbSpot, nbPax) => {
+    return nbSpot - nbPax;
   };
 
-  const delTrip = (event) => {
-    // event.preventDefault();
-    // handleDelete();
-    // opening();
-  }
-
-  const changeDeleteStatus = () => {
-    changeDeleteState();
-  }
-
-
+  const priceCalculator = (nbPax) => {
+    return trip.price / (nbPax + 1);
+  };
+  
   return (
-    <div className='tripdetails'>
-      <NavLink onClick={changeLoading} to='/modifier-sortie'><FiSettings /></NavLink>
-      
-        <RiDeleteBin6Line onClick={opening} />
-        {open && (
-          <div> ARE YOU SURE YOU WANT TO DELETE ?
-          <button onClick={delTrip} > yes </button>
-          <button onClick={opening}> no </button>
-          </div>
-        )}
-        {isDeleted && (
-            <div>Le trip à bien été supprimée
-              <NavLink to='/' onClick={changeDeleteStatus}> Accueil </NavLink>
-            </div>
-          )}
-        
-      <section className='trip_section_place'>
-        <h1 className='trip_title'>{trip.title}</h1>
-        <div className='trip_date'>{trip.date}</div>
-        <div className='trip_departure'>{trip.from}</div>
-        <div className='trip_traveltime'> 03:00</div>
-        <div className='trip_destination'>{trip.to}</div>
-      </section>
-      <section className='trip_section_activity'>
-        <div className='trip_logo_activity'>img</div>
-        <div className='trip_logo_time'>img</div>
-        <div className='trip_duration'>{trip.duration}</div>
-      </section>
-      <section className='trip_section_price'>
-        <div className='trip_total_price'>{trip.price}</div>
-        <div className='trip_price_person'>50</div>
-      </section>
-      <section className='trip_section_creator'>
-        <div className='trip_profil'>trip.user.username</div>
-        <div className='trip_description'>{trip.description}</div> 
-      </section>
-      <section className='trip_section_participants'>
-        <div className='trip_p'>PROFIL</div>
-        <div className='trip_participants_logo'>img</div>
-        <div className='trip_participants_title'>Participants</div>
-        <div className='trip_participants_number'>{trip.places}</div>
-        <div className='trip_participants_profil'>img + name</div>
-        <div className='trip_participants_profil'>img + name</div>
-      </section>
-      
-      <button className='trip_button_inscription'>J'y participe</button>
+    <div className="tripDetails">
 
+      {/* Display loader */}
+			{!isLoaded && (
+				<div className="trips__loader" />
+			)}
+      
+      {isLoaded && (<section className="tripInfo">
+        <header className="tripInfo__header">
+          <div className="tripInfo__header__main">
+            <h2>{trip.sport_title}</h2>
+            <h1>{trip.trip_title}</h1>
+          </div>
+          <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
+        </header>
+        <div className="tripInfo__container">
+          <div className="tripInfo__container__desc">
+            <h2 className="tripInfo__container__desc__title">Description de la sortie</h2>
+            <div className="tripInfo__container__desc__travel">
+              <div className="tripInfo__container__desc__travel__from">{trip.from}</div>
+              <div className="tripInfo__container__desc__travel__separator" />
+              <div className="tripInfo__container__desc__travel__to">{trip.to}</div>
+            </div>
+            <p className="tripInfo__container__desc__text">{trip.trip_description}</p>
+          </div>
+          <div className="tripInfo__container__details">
+            <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
+            <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, trip.participants.length)}</span></div>
+            <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
+            <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
+            <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
+            <div className="tripInfo__container__details__price">Prix actuel par personne : <span>{priceCalculator(trip.participants.length)}€</span></div>
+          </div>
+        </div>
+      </section>)}
     </div>
   )
 };

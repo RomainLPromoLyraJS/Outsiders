@@ -1,52 +1,42 @@
+// == Package imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-
+// == Local imports
+// componennts
 import Trip from './Trip.js';
-
-//Import Utils
+// utils
 import { buildTripURL } from '../../utils';
 
-
-
-const Trips = ({ trips, loadTripsData, loadTrips, isLoaded}) => {
-	// if (loadTrips) {
-	// 	loadTripsData();
-	// }
-	// useEffect(() => {
-  //   loadTripsData();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
-	
-	// if (trips.length === 0) {
-	// 	loadTripsData();
-	// 	return (
-	// 		trips
-	// 	);
-	// }
-	
-
+const Trips = ({ trips, isLoaded, getTripDetails }) => {
 
 	return (
-		<>
-		{!isLoaded && (
-			<div>CHARGEMENT</div>
-		)}
-		{isLoaded && (
-			<div className='trips_container'>
-			{trips.map((trip) => {
-				return <NavLink key={trip.id} to={buildTripURL(trip.title)}>
-					<Trip trip={trip} />
-				</NavLink>
-			})}
+		<div className="trips">
+
+			{/* Display loader */}
+			{!isLoaded && (
+				<div className="trips__loader" />
+			)}
+
+			{/* Display message */}
+			{trips.length === 0 && (
+				<div className="trips__msg">Aucune sortie disponible</div>
+			)}
+
+			{/* Display results */}
+			{isLoaded && (
+				<div className='trips_container'>
+				{trips.map((trip) => {
+					return <NavLink onClick={() => {
+						getTripDetails(trip.id_trip);
+					}} key={trip.id_trip} to={buildTripURL(trip.title)}>
+						<Trip trip={trip} />
+					</NavLink>
+				})}
+			</div>
+			)}
 		</div>
-		)}
-		
-		{/* <div>test</div> */}
-		
-		</>
 	);
 }
-
 
 export default Trips;
