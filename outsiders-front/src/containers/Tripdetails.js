@@ -6,8 +6,15 @@ import Tripdetails from '../components/Tripdetails';
 
 // We need to use ownProps (params) to get utils and withRouter
 const mapStateToProps = (state) => ({
+  isLogged: state.auth.isLogged,
   trip: state.trips.currentTrip,
   isLoaded: state.trips.isLoaded,
 });
 
-export default connect(mapStateToProps)(Tripdetails);
+const mapDispatchToProps = (dispatch) => ({
+  handleDelete: () => {
+    dispatch({type: 'DELETE_TRIP'});
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tripdetails);

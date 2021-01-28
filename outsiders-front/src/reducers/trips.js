@@ -42,18 +42,25 @@ const reducer = (oldState = initialState, action = {}) => {
         isLoaded: true,
       };
 
-      case GET_TRIP_DETAILS_SUCCESS:
-        return {
-          ...oldState,
-          isLoaded: true,
-          currentTrip: action.trip,
-        };
+    case GET_TRIP_DETAILS_SUCCESS:
+      return {
+        ...oldState,
+        isLoaded: true,
+        currentTrip: action.trip,
+      };
 
-      case 'CHANGE_LOADING':
-			  return {
-				  ...oldState,
-          isLoaded: false,
-			};
+    case 'DELETE_TRIP_SUCCESS':
+      return {
+        ...oldState,
+        currentTrip: {},
+      }
+
+    case 'CHANGE_LOADING':
+      return {
+        ...oldState,
+        isLoaded: false,
+      };
+
     default:
       return {
       ...oldState,

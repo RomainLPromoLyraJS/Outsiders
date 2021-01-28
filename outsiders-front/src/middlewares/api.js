@@ -114,6 +114,31 @@ const auth = (store) => (next) => (action) => {
 			break;
 		}
 
+		case 'DELETE_TRIP': {
+			const { auth: { token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+
+			const config = {
+				method: 'delete',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+				headers: {
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch({type: 'DELETE_TRIP_SUCCESS'});
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
+
 		default:
 			next(action);
 	}
