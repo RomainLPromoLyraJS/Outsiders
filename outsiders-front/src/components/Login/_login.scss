@@ -1,0 +1,51 @@
+.login-page {
+  
+    
+
+    &__description {
+        color: $color_quaternary;
+        font-size: 1.1em;
+        font-weight: 700;
+        line-height: 1.2em;
+        padding: 20px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        color: $color_quaternary;
+        font-weight: bold;
+        padding: 2em;
+        
+       
+
+        &__label {
+            margin-top: 1rem;
+            
+        }
+
+        &__input {
+         padding: 10px;
+         border-radius: 5px;
+         
+        }
+
+        &__button {
+            padding: 15px;
+            margin: 20px 0;
+            background-color: $color_quaternary;
+            color: $color;
+            border-radius: 10px 100px / 120px;
+            border: 1px solid $color_secondary;
+            font-weight: bold;
+        }
+
+        &__button:hover {
+            background-color: rgb(167, 61, 61);
+        }
+     }
+
+
+     
+
+}

@@ -1,0 +1,26 @@
+/** Add border solid black for more visibility with flexboxStyle*/
+
+.tripdetails {
+  display:flex;
+  flex-direction:column;
+  padding: 10px;
+  border: 1px solid black;
+  
+  section {
+    border: 1px solid black;
+    margin: 2px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 15vh;
+    align-items:center;
+  }
+  
+  .trip_title {
+    font-size: 2em;
+    align-self: flex-start;
+    align-items: center;
+    
+  }
+}
+

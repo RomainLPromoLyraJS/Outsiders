@@ -1,0 +1,55 @@
+.searchBar {
+  width: 80%;
+  @include media('>=tablet') {
+    width: 100%;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    @include media('>=tablet') {
+      flex-direction: row;
+    }
+
+    select, input, button {
+      height: 30px;
+      font-weight: 700;
+      margin: .1rem 0;
+      padding: 0 10px;
+      border: none;
+      @include media('>=tablet') {
+        max-width: 200px;
+        margin: 0 .1rem;
+      }
+
+      &::placeholder {
+        color: $color-secondary;
+      }
+    }
+
+    select, input {
+      color: $color-secondary;
+    }
+
+    &__sport {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      @include media('>=tablet') {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+      }
+    }
+
+    &__button {
+      color: $color;
+      background-color: $color-secondary;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      @include media('>=tablet') {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+}
