@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require('express-jwt');
+const authorizationMiddleware = require('../middleware/auth');
 const jsonwebtoken = require('jsonwebtoken');
 
 const adminController = require('../controllers/adminController');
@@ -10,37 +11,37 @@ const categoryController = require('../controllers/categoryController');
 const sportController = require('../controllers/sportController');
 const tripController =require('../controllers/tripController');
 
-const authorizationMiddleware = jwt({ secret: process.env.JWTSECRET, algorithms: ['HS256'] });
+
 
 const router = express.Router();
 
 router.post('/admin', adminController.connect);
 
+//routes accessibles sans être connecté
 router.post('/login', loginController.login);
-
-
-
-router.get('/user', userController.allUsers);
 router.post('/user', userController.createNewUser);
+router.get('/category', categoryController.getAllCategories);
+router.get('/sport', sportController.getAllSports);
+router.get('/trip', tripController.getAllTrips);
+
+//routes protégées par authorizationMiddleware
+router.get('/user', userController.allUsers);
 router.get('/user/:id(\\d+)', userController.oneUser);
 router.patch('/user/:id(\\d+)', userController.updateUser);
 router.delete('/user/:id(\\d+)', userController.deleteUser);
 router.get('/user/:id(\\d+)/reviews', userController.allReviews);
 router.post('/user/:id(\\d+)/reviews', userController.createReview);
 
-router.get('/category', categoryController.getAllCategories);
 router.post('/category', categoryController.postNewCategory);
 router.get('/category/:id(\\d+)', categoryController.getOneCategory);
 router.patch('/category/:id(\\d+)', categoryController.updateOneCategory);
 router.delete('/category/:id(\\d+)', categoryController.deleteOneCategory);
 
-router.get('/sport', sportController.getAllSports);
 router.post('/sport', sportController.postNewSport);
 router.get('/sport/:id(\\d+)', sportController.getOneSport);
 router.patch('/sport/:id(\\d+)', sportController.updateOneSport);
 router.delete('/sport/:id(\\d+)', sportController.deleteOneSport);
 
-router.get('/trip', tripController.getAllTrips);
 router.post('/trip', tripController.postNewTrip);
 router.get('/trip/:id(\\d+)', tripController.getOneTrip);
 router.patch('/trip/:id(\\d+)', tripController.updateOneTrip);

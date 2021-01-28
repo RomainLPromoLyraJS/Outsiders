@@ -1,5 +1,5 @@
-const { searchTrips } = require('../dataMappers/tripDataMapper');
 const tripDataMapper = require('../dataMappers/tripDataMapper');
+const authorizationMiddleware = require('../middleware/auth');
 
 module.exports = {
     async getAllTrips(req, res, next) {
@@ -44,10 +44,10 @@ module.exports = {
         try {
             const tripId = req.params.id;
             const oneTrip1 = await tripDataMapper.getOneTrip1(tripId);
-            
             const oneTrip2 = await tripDataMapper.getOneTrip2(tripId);
-            const oneTrip = oneTrip1.concat(oneTrip2);
-            
+            const oneTrip3 = await tripDataMapper.getOneTrip3(tripId);
+            const oneTrip = (oneTrip1.concat(oneTrip2)).concat(oneTrip3);
+
             res.json({
                 data: oneTrip
             });

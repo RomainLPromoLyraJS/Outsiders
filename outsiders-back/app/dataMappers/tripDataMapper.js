@@ -2,11 +2,12 @@ const client = require('./client');
 
 module.exports = {
     async getAllTrips() {
-        const result = await client.query('SELECT * FROM "trip"');
+        const result = await client.query('SELECT  t.id AS id_trip, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, JSON_AGG(JSON_build_object(\'id_sport\', s.id, \'title\', s.title, \'description\', s.description)) AS sport, JSON_AGG(JSON_build_object(\'id_category\', c.id, \'title\', c.title, \'description\', c.description)) AS category, JSON_AGG(JSON_build_object(\'id_creator\', u.id, \'lastname\', u.lastname, \'firstname\', u.firstname, \'username\', u.username, \'email\', u.email, \'description\', u.description)) AS "user" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN category AS c ON c.id=s.category_id JOIN "user" AS u ON u.id=t.user_id GROUP BY t.id, t.title, t.description, t.date, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration');
         return result.rows;
     },
 
     async postNewTrip(tripToCreate) {
+        console.log(tripToCreate);
         const result = await client.query('INSERT INTO "trip"("title", "description", "date", "time", "from", "to", "places", "minimum", "price", "duration", "sport_id", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *', [tripToCreate.title, tripToCreate.description, tripToCreate.date, tripToCreate.time, tripToCreate.from, tripToCreate.to, tripToCreate.places, tripToCreate.minimum, tripToCreate.price, tripToCreate.duration, tripToCreate.sport_id, tripToCreate.user_id]);
         if (result.rowCount == 0) {
             return null
@@ -61,8 +62,8 @@ module.exports = {
         }
     },
 
-    async getOneTrip(tripId) {
-        const result = await client.query('SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, JSON_AGG(JSON_build_object(\'id\', m.id, \'title\', m.title, \'content\', m.content, \'date\', m.date, \'user_id\', m.user_id, \'write_by\', "user".username) ORDER BY m.id) AS "message", p.user_id FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user"."id" JOIN "m2m_user_participate_trip" AS p ON t.id=p.trip_id WHERE t.id=$1 GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, p.user_id', [tripId]);
+    async getOneTrip1(tripId) {
+        const result = await client.query('SELECT t.id as trip_id, t.title as trip_title, t.description as trip_description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id AS sport_id, s.title AS sport_title, s.description AS sport_description, JSON_AGG(JSON_build_object(\'id\', u.id, \'username\', u.username, \'email\', u.email, \'description\', u.description)) AS "creator" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "user" AS u ON t.user_id=u.id WHERE t.id=$1 GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description', [tripId]);
         
         if (result.rowCount == 0) {
             return null;
@@ -70,8 +71,8 @@ module.exports = {
         return result.rows;
     },
 
-    async getOneTrip1(tripId) {
-        const result = await client.query('SELECT t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description, JSON_AGG(JSON_build_object(\'id\', m.id, \'title\', m.title, \'content\', m.content, \'date\', m.date, \'user_id\', m.user_id, \'username\', "user".username) ORDER BY m.id) AS "message" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user"."id" WHERE t.id=$1 GROUP BY t.id, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, s.id, s.title, s.description', [tripId]);
+    async getOneTrip3(tripId) {
+        const result = await client.query('SELECT JSON_AGG(JSON_build_object(\'id\', m.id, \'title\', m.title, \'content\', m.content, \'date\', m.date, \'user_id\', m.user_id, \'username\', "user".username) ORDER BY m.id) AS "message" FROM trip AS t JOIN "message" AS m on t.id=m.trip_id JOIN "user" ON m.user_id="user".id WHERE t.id=$1', [tripId]);
         
         if (result.rowCount == 0) {
             return null;
@@ -80,7 +81,7 @@ module.exports = {
     },
 
     async getOneTrip2(tripId) {
-        const result = await client.query('SELECT  json_agg(json_build_object(\'username\', "user".username)) AS particpants FROM "user" JOIN m2m_user_participate_trip AS p ON "user".id=p.user_id JOIN trip ON trip.id=p.trip_id WHERE trip.id=$1', [tripId]);
+        const result = await client.query('SELECT json_agg(json_build_object(\'username\', "user".username)) AS participants FROM "user" JOIN m2m_user_participate_trip AS p ON "user".id=p.user_id JOIN trip ON trip.id=p.trip_id WHERE trip.id=$1', [tripId]);
         
         if (result.rowCount == 0) {
             return null;

@@ -2,6 +2,7 @@ const adminDataMapper = require('../dataMappers/adminDataMapper');
 const jwt = require('express-jwt');
 const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const authorizationMiddleware = require('../middleware/auth');
 
 
 module.exports = {
@@ -9,7 +10,6 @@ module.exports = {
         try {
             const email = req.body.email;
             const password = req.body.password;
-            const authorizationMiddleware = jwt({ secret: process.env.JWTSECRET, algorithms: ['HS256'] });
             const admin = await adminDataMapper.connect(email);
             const isPasswordValid = bcrypt.compareSync(password, admin.password);
             if (!isPasswordValid) {

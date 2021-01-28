@@ -1,6 +1,7 @@
 const userDataMapper = require('../dataMappers/userDataMapper');
 const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const authorizationMiddleware = require('../middleware/auth');
 
 
 module.exports = {
