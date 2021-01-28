@@ -14,8 +14,7 @@ const Trip = ({ trip }) => {
       </div>
       <div className="trip__travel">
         <div className="trip__travel__from">{trip.from}</div>
-        <div className="trip__travel__separator">
-        </div>
+        <div className="trip__travel__separator" />
         <div className="trip__travel__to">{trip.to}</div>
       </div>
       <div className="trip__details">
