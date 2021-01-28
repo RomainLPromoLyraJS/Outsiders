@@ -34,21 +34,14 @@ router.delete('/user/:id(\\d+)', authMiddleware, userController.deleteUser);
 router.get('/user/:id(\\d+)/reviews', authMiddleware, userController.allReviews);
 router.post('/user/:id(\\d+)/reviews', authMiddleware, userController.createReview);
 
-router.post('/category', authMiddleware, categoryController.postNewCategory);
 router.get('/category/:id(\\d+)', authMiddleware, categoryController.getOneCategory);
-router.patch('/category/:id(\\d+)', authMiddleware, categoryController.updateOneCategory);
-router.delete('/category/:id(\\d+)', authMiddleware, categoryController.deleteOneCategory);
 
-router.post('/sport', authMiddleware, sportController.postNewSport);
 router.get('/sport/:id(\\d+)', authMiddleware, sportController.getOneSport);
-router.patch('/sport/:id(\\d+)', authMiddleware, sportController.updateOneSport);
-router.delete('/sport/:id(\\d+)', authMiddleware, sportController.deleteOneSport);
 
 router.post('/trip', authMiddleware, tripController.postNewTrip);
 router.get('/trip/:id(\\d+)', authMiddleware, tripController.getOneTrip);
 router.patch('/trip/:id(\\d+)', authMiddleware, tripController.updateOneTrip);
 router.delete('/trip/:id(\\d+)', authMiddleware, tripController.deleteOneTrip);
-
 
 router.get('/trip/:id(\\d+)/comment', authMiddleware, tripController.getAllCommentsOnThisTrip);
 router.post('/trip/:id(\\d+)/comment', authMiddleware, tripController.postNewCommentOnThisTrip);
@@ -57,6 +50,12 @@ router.patch('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripContr
 router.delete('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripController.dissociateUserParticipateTrip);
 
 //routes à accès admin
+router.post('/category', authMiddleware, categoryController.postNewCategory);
+router.patch('/category/:id(\\d+)', authMiddleware, categoryController.updateOneCategory);
+router.delete('/category/:id(\\d+)', authMiddleware, categoryController.deleteOneCategory);
+router.post('/sport', authMiddleware, sportController.postNewSport);
+router.patch('/sport/:id(\\d+)', authMiddleware, sportController.updateOneSport);
+router.delete('/sport/:id(\\d+)', authMiddleware, sportController.deleteOneSport);
 
 router.use(errorController.error404);
 router.use(errorController.error500);

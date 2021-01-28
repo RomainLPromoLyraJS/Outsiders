@@ -17,9 +17,13 @@ module.exports = {
         try {
             const tripToCreate = req.body;
             const tripCreated = await tripDataMapper.postNewTrip(tripToCreate);
+            const tripId = tripCreated.id;
+            const userId = tripCreated.user_id;
+            const m2m = await tripDataMapper.postNewTrip2(tripId, userId);
             res.json({
                 message: 'new trip created',
-                data: tripCreated
+                data: tripCreated,
+                association: m2m
             });
         } catch(error) {
             next(error);
