@@ -28,7 +28,7 @@ module.exports = {
                 data: admin,
                 logged: true,
                 username: admin.username,
-                token: jsonwebtoken.sign(jwtContent, process.env.JWTSECRET, jwtOptions)     
+                token: jwt.sign(jwtContent, process.env.JWTSECRET, jwtOptions)     
                 });
             }
             
