@@ -56,6 +56,8 @@ router.post('/trip/:id(\\d+)/comment', authMiddleware, tripController.postNewCom
 router.patch('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripController.associateUserParticipateTrip);
 router.delete('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripController.dissociateUserParticipateTrip);
 
+//routes à accès admin
+
 router.use(errorController.error404);
 router.use(errorController.error500);
 
