@@ -11,8 +11,10 @@ const initialState = {
   email: "",
   password: "",
   isLogged: true,
-  sportName: "",
-  sportDescription: "",
+  sportNameCreate: "",
+  sportNameModify:"",
+  sportDescriptionCreate:"",
+  sportDescriptionModify:"",
   category_id: "",
   message: "",
   
@@ -52,8 +54,8 @@ const reducer = (oldState = initialState, action = {}) => {
     case CREATE_SPORT_SUCCESS:
       return {
         ...oldState,
-        sportName: "",
-        sportDescription: "",
+        sportNameCreate: "",
+        sportDescriptionCreate: "",
         category_id: null,
         message: "Le nouveau sport a bien été créé."
       };
@@ -61,8 +63,8 @@ const reducer = (oldState = initialState, action = {}) => {
     case "MODIFY_SPORT_SUCCESS":
       return {
         ...oldState,
-        sportName: "",
-        sportDescription: "",
+        sportNameModify: "",
+        sportDescriptionModify: "",
         category_id: null,
         message: action.message,
       };
@@ -70,6 +72,7 @@ const reducer = (oldState = initialState, action = {}) => {
     case "DELETE_SPORT_SUCCESS":
       return {
         ...oldState,
+        category_id:"",
         message: action.message,
       };
 

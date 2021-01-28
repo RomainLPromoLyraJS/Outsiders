@@ -8,7 +8,7 @@ import { createSportSuccess } from "../store/action";
 // request cat/etc
 const admin = (store) => (next) => (action) => {
   const {
-    admin: { sportName, sportDescription, category_id, id },
+    admin: { sportNameCreate, sportNameModify, sportDescriptionCreate, sportDescriptionModify, category_id, id },
   } = store.getState();
 
   switch (action.type) {
@@ -20,8 +20,8 @@ const admin = (store) => (next) => (action) => {
           "Content-Type": "application/json",
         },
         data: {
-          title: sportName,
-          description: sportDescription,
+          title: sportNameCreate,
+          description: sportDescriptionCreate,
           category_id,
         },
       };
@@ -48,8 +48,8 @@ const admin = (store) => (next) => (action) => {
           "Content-Type": "application/json",
         },
         data: {
-          title: sportName,
-          description: sportDescription,
+          title: sportNameModify,
+          description: sportDescriptionModify,
           category_id,
         },
       };
@@ -78,6 +78,9 @@ const admin = (store) => (next) => (action) => {
         url: `${apiUrl}/sport/${id}`,
         headers: {
           "Content-Type": "application/json",
+        },
+        data: {
+          category_id,
         },
       };
 

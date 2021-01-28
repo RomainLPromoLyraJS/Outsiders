@@ -8,8 +8,10 @@ import { changeAdminField } from '../store/action';
 // STATES that we give to Props (DashboardSports)
 const mapStateToProps = (state) => ({
   sports: state.sports.list,
-  sportNameValue: state.admin.sportName,
-  sportDescriptionValue: state.admin.sportDescription,
+  sportNameCreateValue: state.admin.sportNameCreate,
+  sportNameModifyValue: state.admin.sportNameModify,
+  sportDescriptionCreateValue: state.admin.sportDescriptionCreate,
+  sportDescriptionModifyValue: state.admin.sportDescriptionModify,
   categories: state.sports.categories,
   categoryIdValue: state.admin.category_id,
   message: state.admin.message,

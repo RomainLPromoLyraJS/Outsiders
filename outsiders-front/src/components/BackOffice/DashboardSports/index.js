@@ -14,10 +14,12 @@ const DashboardSports = ({
   handleModify,
   handleDelete,
   handleChange,
-  sportNameValue,
-  sportDescriptionValue,
+  sportNameModifyValue,
+  sportDescriptionModifyValue,
+  sportNameCreateValue,
+  sportDescriptionCreateValue,
 }) => {
-  // sending the request to API
+ // sending the request to API
   const onSubmitCreate = (event) => {
     event.preventDefault();
     handleCreate();
@@ -38,14 +40,37 @@ const DashboardSports = ({
     handleChange(event.target.value, event.target.name);
   };
 
-  const [ visible, setVisible ] = useState(false);
+//my state for the modal window to create a sport
+  const [ createSportVisible, createSportSetVisible ] = useState(false);
 
-  const show = () => {
-    setVisible(true);
+  const showCreate = () => {
+    createSportSetVisible(true);
   };
 
-  const hidden = () => {
-    setVisible(false);
+  const hiddenCreate = () => {
+    createSportSetVisible(false);
+  };
+
+  //my state for the modal window to modify a sport
+  const [ modifySportVisible, modifySportSetVisible ] = useState(false);
+
+  const showModify = () => {
+    modifySportSetVisible(true);
+  };
+
+  const hiddenModify = () => {
+    modifySportSetVisible(false);
+  };
+
+  //my state for the modal window to delete a sport
+  const [ deleteSportVisible, deleteSportSetVisible ] = useState(false);
+
+  const showDelete = () => {
+    deleteSportSetVisible(true);
+  };
+
+  const hiddenDelete = () => {
+    deleteSportSetVisible(false);
   };
 
   return (
@@ -58,7 +83,7 @@ const DashboardSports = ({
             <label forhtml="category-name">Choisir une catégorie :</label>
             <br />
             <select
-              onChange={onChange}
+              onChange={onChange} //--> each time you type a data in the input, the state changes
               name="category_id"
               className="dashboard-sports__form__select"
             >
@@ -74,26 +99,31 @@ const DashboardSports = ({
             <br />
             <label forhtml="sport-name">Nom du sport :</label>
             <input
-              name="sportName"
+              name="sportNameCreate" //--> must be equal to the key of my state that I want to modify
               type="text"
               className="dashboard-sports__form__input"
               onChange={onChange}
-              value={sportNameValue}
+              value={sportNameCreateValue}
             ></input>
             <br />
             <label forhtml="sport-description">Description du sport :</label>
             <textarea
               className="dashboard-sports__form__textarea"
               onChange={onChange}
-              name="sportDescription"
-              value={sportDescriptionValue}
+              name="sportDescriptionCreate"
+              value={sportDescriptionCreateValue}
             ></textarea>
             <br />
-            <button onClick={show} type="submit" className="dashboard-sports__form__button">
+            <button onClick={showCreate} type="submit" className="dashboard-sports__form__button">
               Valider
             </button>
-            <Modal visible={visible} hidden={hidden}/>
-            <p>{message}</p>
+            {/* SHOWCREATE IF createSportVisible IS TRUE */}
+            {createSportVisible && (
+              <div>
+              <Modal action='créé' visible={createSportVisible} hidden={hiddenCreate}/>
+              </div>
+            )}
+            {/* <p>{message}</p> */}
           </form>
           <form className="dashboard-sports__form" onSubmit={onSubmitModify}>
             <h3 className="dashboard-sports__form__title">Modifier un sport</h3>
@@ -137,9 +167,9 @@ const DashboardSports = ({
             <input
               type="text"
               className="dashboard-sports__form__input"
-              name="sportName"
+              name="sportNameModify"
               onChange={onChange}
-              value={sportNameValue}
+              value={sportNameModifyValue}
             ></input>
             <label forhtml="modify-description">
               Modifier la description :
@@ -147,13 +177,15 @@ const DashboardSports = ({
             <textarea
               className="dashboard-sports__form__textarea"
               onChange={onChange}
-              name="sportDescription"
-              value={sportDescriptionValue}
+              name="sportDescriptionModify"
+              value={sportDescriptionModifyValue}
             ></textarea>
-            <button type="submit" className="dashboard-sports__form__button">
+            <button onClick={showModify} type="submit" className="dashboard-sports__form__button">
               Valider
             </button>
-            <p>{message}</p>
+            {modifySportVisible && (
+              <Modal action='modifié' visible={modifySportVisible} hidden={hiddenModify}/>
+            )}
           </form>
           <form className="dashboard-sports__form" onSubmit={onSubmitDelete}>
             <h3 className="dashboard-sports__form__title">
@@ -178,10 +210,12 @@ const DashboardSports = ({
               })}
             </select>
             <br />
-            <button type="submit" className="dashboard-sports__form__button">
+            <button onClick={showDelete} type="submit" className="dashboard-sports__form__button">
               Valider
             </button>
-            <p>{message}</p>
+            {deleteSportVisible && (
+              <Modal action='supprimé' visible={deleteSportVisible} hidden={hiddenDelete}/>
+            )}
           </form>
         </div>
       </div>
@@ -200,8 +234,10 @@ DashboardSports.propTypes = {
   handleModify: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  sportNameValue: PropTypes.string.isRequired,
-  sportDescriptionValue: PropTypes.string.isRequired,
+  sportNameCreateValue: PropTypes.string.isRequired,
+  sportNameModifyValue: PropTypes.string.isRequired,
+  sportDescriptionCreateValue: PropTypes.string.isRequired,
+  sportDescriptionModifyValue: PropTypes.string.isRequired,
 };
 
 export default DashboardSports;

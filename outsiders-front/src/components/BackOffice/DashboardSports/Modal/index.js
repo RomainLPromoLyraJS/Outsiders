@@ -1,18 +1,23 @@
 //import React
 import React from 'react';
 
-const Modal = ({ visible, hidden }) => {
+const Modal = ({ visible, hidden, action }) => {
 
+ 
+    const toggleModal = () => {
+        hidden(!visible);
+    }
+
+    const modalStyle = visible ? 'modal modal__visible--active' : 'modal modal__visible';
+    
     return (
 
-        <div className='modal' style={{
-            transform: visible ? 'translateY(0vh)' : 'translateY(-100vh)',
-            opacity: visible ? '1' : '0',
-        }}>
-    
-            <button onClick={hidden}>X</button>
-            <p>Le sport a bien été créé.</p>
-            <button onClick={hidden}>OK</button>
+        <div className={modalStyle}>
+            <div className='modal__content'>
+            <button className='modal__button__cross' onClick={toggleModal}>X</button>
+            <p className="modal__sport">Le sport a bien été {action}.</p>
+            <button className='modal__button__ok' onClick={toggleModal}>OK</button>
+            </div>
         </div>
     )
 
