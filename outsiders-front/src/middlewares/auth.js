@@ -71,13 +71,14 @@ const api = (store) => (next) => (action) => {
 
     case 'EDIT_USER': {
 
-      const { auth: { firstname, lastname, username, email, password, description, id } } = store.getState();
+      const { auth: { firstname, lastname, username, email, password, description, id, token } } = store.getState();
 
       const config = {
         method: 'patch',
         url: `${apiUrl}/user/${id}`,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         data: {
           firstname,
