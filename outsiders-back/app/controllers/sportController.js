@@ -1,5 +1,5 @@
 const sportDataMapper = require('../dataMappers/sportDataMapper');
-const authorizationMiddleware = require('../middleware/auth');
+
 
 module.exports = {
     async getAllSports(req, res, next) {

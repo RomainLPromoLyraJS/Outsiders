@@ -1,7 +1,7 @@
 const userDataMapper = require('../dataMappers/userDataMapper');
-const jsonwebtoken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const authorizationMiddleware = require('../middleware/auth');
+
 
 
 module.exports = {
@@ -22,6 +22,14 @@ module.exports = {
             const saltRounds = 10;
             const regexPassword = /(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}/;
             const test = regexPassword.test(newUser.password);
+            console.log(test);
+
+            if (!test) {
+                res.json({
+                    message: 'le mot de passe doit contenir au moins 8 caractères dont 1 majuscule, 1 minuscule, 1chiffre, 1 caractère spécial',
+                    data: newUser
+                });
+            };
 
             if (test) {
                 const hashedPassword = bcrypt.hashSync(newUser.password, saltRounds);
@@ -32,9 +40,26 @@ module.exports = {
                     email: newUser.email,
                     password: hashedPassword,
                     username: newUser.username,
-                    description: newUser.description});
-                
-                res.json({
+                    description: newUser.description
+                });   
+
+                    const jwtContent = {userId: createdUser.id};
+                    console.log(jwtContent);
+                    const jwtOptions = {
+                        algorithm: 'HS256',
+                        expiresIn: '3h'
+                    };
+                    
+                    res.json({
+                        status: 200,
+                        message: 'new user created',
+                        data: createdUser,
+                        logged: true,
+                        username: createdUser.username,
+                        token: jwt.sign(jwtContent, process.env.JWTSECRET, jwtOptions)
+                    });    
+            }    
+            /*     res.json({
                     message: 'new user created',
                     data: createdUser
                 });
@@ -44,7 +69,7 @@ module.exports = {
                     message: 'le mot de passe doit contenir au moins 8 caractères dont 1 majuscule, 1 minuscule, 1chiffre, 1 caractère spécial',
                     data: newUser.email
                 });
-            }
+            } */
             
         } catch(error) {
             next(error);

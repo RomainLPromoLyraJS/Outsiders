@@ -1,8 +1,7 @@
 const adminDataMapper = require('../dataMappers/adminDataMapper');
-const jwt = require('express-jwt');
-const jsonwebtoken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const authorizationMiddleware = require('../middleware/auth');
+
 
 
 module.exports = {
@@ -11,6 +10,7 @@ module.exports = {
             const email = req.body.email;
             const password = req.body.password;
             const admin = await adminDataMapper.connect(email);
+            console.log(admin);
             const isPasswordValid = bcrypt.compareSync(password, admin.password);
             if (!isPasswordValid) {
                 res.locals.notFound = "identification invalide";

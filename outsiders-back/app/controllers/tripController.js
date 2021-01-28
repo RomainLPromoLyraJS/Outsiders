@@ -1,5 +1,5 @@
 const tripDataMapper = require('../dataMappers/tripDataMapper');
-const authorizationMiddleware = require('../middleware/auth');
+
 
 module.exports = {
     async getAllTrips(req, res, next) {

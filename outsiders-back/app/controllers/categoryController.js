@@ -1,5 +1,5 @@
 const categoryDataMapper = require('../dataMappers/categoryDataMapper');
-const authorizationMiddleware = require('../middleware/auth');
+
 
 module.exports = {
     async getAllCategories(req, res, next) {

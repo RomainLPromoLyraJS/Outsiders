@@ -1,5 +1,4 @@
-const jsonwebtoken = require('jsonwebtoken');
-const jwt = require('express-jwt');
+const jwt = require('jsonwebtoken');
 
 /* const password = 'Miamiam1!';
 const regexPassword = /(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}/;
