@@ -7,6 +7,7 @@ import Tripdetails from '../components/Tripdetails';
 // We need to use ownProps (params) to get utils and withRouter
 const mapStateToProps = (state) => ({
   trip: state.trips.currentTrip,
+  isLoaded: state.trips.isLoaded,
 });
 
 export default connect(mapStateToProps)(Tripdetails);

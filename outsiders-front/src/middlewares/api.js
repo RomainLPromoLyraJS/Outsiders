@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
+import { getTripsSuccess, getTripDetailsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
@@ -95,7 +95,8 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						console.log(response.data.data);
+						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]))
+						// console.log(response.data.data[0], response.data.data[1], response.data.data[2]);
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);

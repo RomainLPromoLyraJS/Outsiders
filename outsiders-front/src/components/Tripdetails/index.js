@@ -1,19 +1,33 @@
 // == Package Import
 import React from 'react';
+import DayJS from 'react-dayjs';
 
 // == Local Import
 
-const Tripdetails = ({ trip }) => {
+const Tripdetails = ({ isLoaded, trip }) => {
+  const spotCalculator = (nbSpot, nbPax) => {
+    return nbSpot - nbPax;
+  };
+
+  const priceCalculator = (nbPax) => {
+    return trip.price / (nbPax + 1);
+  };
   
   return (
     <div className="tripDetails">
-      <section className="tripInfo">
+
+      {/* Display loader */}
+			{!isLoaded && (
+				<div className="trips__loader" />
+			)}
+      
+      {isLoaded && (<section className="tripInfo">
         <header className="tripInfo__header">
           <div className="tripInfo__header__main">
-            <h2>{trip.sport.title}</h2>
-            <h1>{trip.title}</h1>
+            <h2>{trip.sport_title}</h2>
+            <h1>{trip.trip_title}</h1>
           </div>
-          <h2 className="tripInfo__header__username">{trip.creator.username}</h2>
+          <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
         </header>
         <div className="tripInfo__container">
           <div className="tripInfo__container__desc">
@@ -23,18 +37,18 @@ const Tripdetails = ({ trip }) => {
               <div className="tripInfo__container__desc__travel__separator" />
               <div className="tripInfo__container__desc__travel__to">{trip.to}</div>
             </div>
-            <p className="tripInfo__container__desc__text">{trip.description}</p>
+            <p className="tripInfo__container__desc__text">{trip.trip_description}</p>
           </div>
           <div className="tripInfo__container__details">
-            <div className="tripInfo__container__details__date">Départ le <span>29/01/2021</span> à <span>09h00</span></div>
-            <div className="tripInfo__container__details__places">Places disponibles : <span>3</span></div>
-            <div className="tripInfo__container__details__min">Munimum de participants : <span>2</span></div>
-            <div className="tripInfo__container__details__duration">Durée : <span>0.5 jours</span></div>
-            <div className="tripInfo__container__details__tot">Prix total : <span>100€</span></div>
-            <div className="tripInfo__container__details__price">Prix par personne : <span>25€</span></div>
+            <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
+            <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, trip.participants.length)}</span></div>
+            <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
+            <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
+            <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
+            <div className="tripInfo__container__details__price">Prix actuel par personne : <span>{priceCalculator(trip.participants.length)}€</span></div>
           </div>
         </div>
-      </section>
+      </section>)}
     </div>
   )
 };
