@@ -1,11 +1,29 @@
 import {
   SEARCH_SUCCESS,
   GET_TRIPS_SUCCESS,
+  GET_TRIP_DETAILS_SUCCESS,
 } from '../store/action';
 
 const initialState = {
   list: [],
   isLoaded: false,
+  currentTrip: {
+    trip_id: '',
+    trip_title: '',
+    trip_description: '',
+    date: '',
+    time: '',
+    from: '',
+    to: '',
+    places: '',
+    minimum: '',
+    price: '',
+    duration: '',
+    sport_title: '',
+    creator: [],
+    message: [],
+    participants: [],
+  },
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -24,11 +42,25 @@ const reducer = (oldState = initialState, action = {}) => {
         isLoaded: true,
       };
 
-      case 'CHANGE_LOADING':
-			  return {
-				  ...oldState,
-          isLoaded: false,
-			}
+    case GET_TRIP_DETAILS_SUCCESS:
+      return {
+        ...oldState,
+        isLoaded: true,
+        currentTrip: action.trip,
+      };
+
+    case 'DELETE_TRIP_SUCCESS':
+      return {
+        ...oldState,
+        currentTrip: {},
+      }
+
+    case 'CHANGE_LOADING':
+      return {
+        ...oldState,
+        isLoaded: false,
+      };
+
     default:
       return {
       ...oldState,
