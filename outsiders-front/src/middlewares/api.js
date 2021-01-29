@@ -180,6 +180,45 @@ const auth = (store) => (next) => (action) => {
 			break;
 		}
 
+		case 'LEAVE_TRIP': {
+			const { auth: { id, token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+
+			const config = {
+				method: 'delete',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}/user/${id}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						console.log(response.data.message);
+						axios({
+							method: 'get',
+							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+							headers: {
+								'Authorization': `Bearer ${token}`,
+							}
+						}).then((res) => {
+							if (res.status !== 200) {
+								throw res.error;
+							} else {
+								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+							}
+						});
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				})
+			break;
+		}
+
 		default:
 			next(action);
 	}

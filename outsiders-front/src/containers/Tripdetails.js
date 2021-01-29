@@ -19,6 +19,11 @@ const mapDispatchToProps = (dispatch) => ({
   handleJoin: () => {
     dispatch({type: 'CHANGE_LOADING'});
     dispatch({type: 'JOIN_TRIP'});
+  },
+
+  handleLeave: () => {
+    dispatch({type: 'CHANGE_LOADING'});
+    dispatch({type: 'LEAVE_TRIP'});
   }
 });
 
