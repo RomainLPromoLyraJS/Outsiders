@@ -106,12 +106,20 @@ module.exports = {
         return result.rows;
     },
 
-    async associateUserParticipateTrip(userId, tripId) {
-        const result = await client.query('INSERT INTO "m2m_user_particpate_trip"("user_id", "trip_id") VALUES($1, $2) RETURNING *', [userId, tripId]);
+    async checkAssociation(userId, tripId) {
+        const result = await client.query('SELECT * FROM "m2m_user_participate_trip" WHERE user_id=$1 AND trip_id=$2', [userId, tripId]);
         if (result.rowCount == 0) {
             return null;
         }
-        return result.rows;
+        return result.rows[0];
+    },
+
+    async associateUserParticipateTrip(userId, tripId) {
+        const result = await client.query('INSERT INTO "m2m_user_participate_trip"("user_id", "trip_id") VALUES($1, $2) RETURNING *', [userId, tripId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows[0];
     },
 
     async deleteOneTrip(idTripToDelete) {
