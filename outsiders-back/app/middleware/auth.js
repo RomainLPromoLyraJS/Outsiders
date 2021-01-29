@@ -1,14 +1,12 @@
 const jwt = require('jsonwebtoken');
 
-//mon petit MW
+//mon petit MW d'authentification
 const auth = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ');
-        console.log(token);
         if (token[0] === 'Bearer' && jwt.verify(token[1], process.env.JWTSECRET)) {
             const verif = jwt.verify(token[1], process.env.JWTSECRET);
-            console.log('verif', verif);
-            console.log(verif.userId);
+            console.log('contenu du token', verif);
             next();
         } else {
             res.sendStatus('403');

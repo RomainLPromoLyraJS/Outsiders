@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     async allUsers(req, res, next) {
         try {
+            console.log('je suis bien dans le controller');
             const allUsers = await userDataMapper.allUsers();
             res.json({
                 data: allUsers
@@ -43,7 +44,7 @@ module.exports = {
                     description: newUser.description
                 });   
 
-                    const jwtContent = {userId: createdUser.id};
+                    const jwtContent = {userId: createdUser.id, roleId: createdUser.role_id};
                     console.log(jwtContent);
                     const jwtOptions = {
                         algorithm: 'HS256',
@@ -90,14 +91,29 @@ module.exports = {
 
     async updateUser(req, res, next) {
         try {
-            const saltRounds = 10;
-            const userId = req.params.id;
-            const userToUpdate = req.body;
+            //avant d'updater un user, vérif du role du user :
+            //si c'est un administrateur, il peut modifier n'importe quel user
+            //si ce n'est pas un administrateur, il ne peut modifier que son profil
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
 
+            let userId = null;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == req.params.id)) {
+                userId = req.params.id;
+            } else {
+                res.status('403').json({message : 'Accès interdit : impossible de modifier un autre membre'});
+                next(error);
+            };
+
+            const userToUpdate = req.body;
             const regexPassword = /(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}/;
             const test = regexPassword.test(userToUpdate.password);
-            console.log(test);
+
             if (test) {
+                const saltRounds = 10;
                 const hashedPassword = bcrypt.hashSync(userToUpdate.password, saltRounds);
                 const userUpdated = await userDataMapper.updateUser(userId, {
                     lastname: userToUpdate.lastname,
@@ -107,7 +123,6 @@ module.exports = {
                     username: userToUpdate.username,
                     description: userToUpdate.description});
                 
-
                 res.json({
                     message: 'user updated',
                     data: userUpdated
@@ -125,10 +140,28 @@ module.exports = {
 
     async deleteUser(req, res, next) {
         try {
-            const deleteUserId = req.params.id;
+
+            //avant de supprimer un user, vérif du role du user :
+            //si c'est un administrateur, il peut supprimer n'importe quel user
+            //si ce n'est pas un administrateur, il ne peut supprimer que son profil
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+
+            let userId = null;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == req.params.id)) {
+                userId = req.params.id;
+            } else {
+                res.status('403').json({message : 'Accès interdit : impossible de supprimer un autre membre'});
+                next(error);
+            };
+
+            const deleteUserId = userId;
             const userDeleted = await userDataMapper.deleteUser(deleteUserId);
             res.json({
-                message: 'user deleted',
+                message: 'membre supprimé',
                 data: userDeleted
             });
         } catch(error) {

@@ -1,6 +1,7 @@
 const loginDataMapper = require('../dataMappers/loginDataMapper');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const tripDataMapper = require('../dataMappers/tripDataMapper');
 
 
 module.exports = {
@@ -16,14 +17,16 @@ module.exports = {
                 return;
             }
             if (isPasswordValid) {
-                const jwtContent = {userId: login.id};
+                const userId = login.id;
+                const tripRegistered = await tripDataMapper.tripRegistered(userId);
+                const jwtContent = {userId: login.id, roleId: login.role_id};
                 const jwtOptions = {
                     algorithm: 'HS256',
                     expiresIn: '3h'
                 };
                 res.json({
                     message: 'utilisateur connecté',
-                    data: login,
+                    data: login, tripRegistered,
                     logged: true,
                     username: login.username,
                     token: jwt.sign(jwtContent, process.env.JWTSECRET, jwtOptions)

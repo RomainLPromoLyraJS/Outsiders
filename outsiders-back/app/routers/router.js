@@ -11,8 +11,7 @@ const errorController = require('../controllers/errorController');
 const categoryController = require('../controllers/categoryController');
 const sportController = require('../controllers/sportController');
 const tripController =require('../controllers/tripController');
-
-
+const adminMW = require('../middleware/admin');
 
 const router = express.Router();
 
@@ -26,29 +25,31 @@ router.get('/sport', sportController.getAllSports);
 router.get('/trip', tripController.getAllTrips);
 router.post('/searchTrips', tripController.searchTrips);
 
-//routes protégées par authorizationMiddleware
+//routes accessibles à tout type d'user connecté
 router.get('/user/:id(\\d+)', authMiddleware, userController.oneUser);
-router.patch('/user/:id(\\d+)', authMiddleware, userController.updateUser);
-router.delete('/user/:id(\\d+)', authMiddleware, userController.deleteUser);
 router.get('/user/:id(\\d+)/reviews', authMiddleware, userController.allReviews);
 router.post('/user/:id(\\d+)/reviews', authMiddleware, userController.createReview);
 router.post('/trip', authMiddleware, tripController.postNewTrip);
 router.get('/trip/:id(\\d+)', authMiddleware, tripController.getOneTrip);
-router.patch('/trip/:id(\\d+)', authMiddleware, tripController.updateOneTrip);
-router.delete('/trip/:id(\\d+)', authMiddleware, tripController.deleteOneTrip);
 router.get('/trip/:id(\\d+)/comment', authMiddleware, tripController.getAllCommentsOnThisTrip);
 router.post('/trip/:id(\\d+)/comment', authMiddleware, tripController.postNewCommentOnThisTrip);
+
+//routes accessibles uniquement en tant que l'id du user connecté
+router.patch('/user/:id(\\d+)', authMiddleware, userController.updateUser);
+router.delete('/user/:id(\\d+)', authMiddleware, userController.deleteUser);
 router.post('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripController.associateUserParticipateTrip);
 router.delete('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripController.dissociateUserParticipateTrip);
+router.patch('/trip/:id(\\d+)', authMiddleware, tripController.updateOneTrip);
+router.delete('/trip/:id(\\d+)', authMiddleware, tripController.deleteOneTrip);
 
 //routes à accès admin
-router.get('/user', authMiddleware, userController.allUsers);
-router.patch('/category/:id(\\d+)', authMiddleware, categoryController.updateOneCategory);
-router.post('/sport', authMiddleware, sportController.postNewSport);
-router.patch('/sport/:id(\\d+)', authMiddleware, sportController.updateOneSport);
-router.delete('/sport/:id(\\d+)', authMiddleware, sportController.deleteOneSport);
+router.get('/user', authMiddleware, adminMW, userController.allUsers);
+router.patch('/category/:id(\\d+)', authMiddleware, adminMW, categoryController.updateOneCategory);
+router.post('/sport', authMiddleware, adminMW, sportController.postNewSport);
+router.patch('/sport/:id(\\d+)', authMiddleware, adminMW, sportController.updateOneSport);
+router.delete('/sport/:id(\\d+)', authMiddleware, adminMW, sportController.deleteOneSport);
 
-//routes non accessibles car nécessite une évolution du front
+//routes non accessibles car nécessiterait une évolution du front
 //router.post('/category', authMiddleware, categoryController.postNewCategory);
 //router.delete('/category/:id(\\d+)', authMiddleware, categoryController.deleteOneCategory);
 
