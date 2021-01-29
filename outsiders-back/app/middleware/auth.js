@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
             next();
         } else {
             res.sendStatus('403');
-            next();
+            next(error);
         }
     } catch (error) {
             next(error);

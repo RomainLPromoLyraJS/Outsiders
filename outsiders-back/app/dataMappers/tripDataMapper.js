@@ -16,6 +16,14 @@ module.exports = {
 
     },
 
+    async postNewTrip2(tripId, userId) {
+        const result = await client.query('INSERT INTO "m2m_user_participate_trip"("trip_id", "user_id") VALUES ($1, $2) RETURNING *', [tripId, userId]);
+        if (result.rowCount == 0) {
+            return null
+        }
+        return result.rows[0];
+    },
+
     async searchTrips(trips) {
         if (! trips.from && ! trips.date) {
             const result = await client.query('SELECT  t.id AS id_trip, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, JSON_AGG(JSON_build_object(\'id_sport\', s.id, \'title\', s.title, \'description\', s.description)) AS sport, JSON_AGG(JSON_build_object(\'id_category\', c.id, \'title\', c.title, \'description\', c.description)) AS category, JSON_AGG(JSON_build_object(\'id_creator\', u.id, \'lastname\', u.lastname, \'firstname\', u.firstname, \'username\', u.username, \'email\', u.email, \'description\', u.description)) AS "user" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN category AS c ON c.id=s.category_id JOIN "user" AS u ON u.id=t.user_id WHERE s.title=$1 GROUP BY t.id, t.title, t.description, t.date, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration', [trips.sport])
@@ -98,12 +106,20 @@ module.exports = {
         return result.rows;
     },
 
-    async associateUserParticipateTrip(userId, tripId) {
-        const result = await client.query('INSERT INTO "m2m_user_particpate_trip"("user_id", "trip_id") VALUES($1, $2) RETURNING *', [userId, tripId]);
+    async checkAssociation(userId, tripId) {
+        const result = await client.query('SELECT * FROM "m2m_user_participate_trip" WHERE user_id=$1 AND trip_id=$2', [userId, tripId]);
         if (result.rowCount == 0) {
             return null;
         }
-        return result.rows;
+        return result.rows[0];
+    },
+
+    async associateUserParticipateTrip(userId, tripId) {
+        const result = await client.query('INSERT INTO "m2m_user_participate_trip"("user_id", "trip_id") VALUES($1, $2) RETURNING *', [userId, tripId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows[0];
     },
 
     async deleteOneTrip(idTripToDelete) {
