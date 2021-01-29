@@ -8,10 +8,8 @@ import ButtonSection from './ButtonSection';
 
 const Tripdetails = ({ handleDelete, handleJoin, isLogged, isLoaded, trip }) => {
   const nullToArray = (tab) => {
-    let empti = 0;
-
     if (tab == null) {
-      return empti;
+      return 0;
     } else {
       return tab.length;
     }

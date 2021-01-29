@@ -97,6 +97,7 @@ const auth = (store) => (next) => (action) => {
 				method: 'get',
 				url: `${apiUrl}/trip/${action.tripId}`,
 				headers: {
+					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`,
 				}
 			}
@@ -122,6 +123,7 @@ const auth = (store) => (next) => (action) => {
 				method: 'delete',
 				url: `${apiUrl}/trip/${currentTrip.trip_id}`,
 				headers: {
+					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`,
 				}
 			}
@@ -147,6 +149,7 @@ const auth = (store) => (next) => (action) => {
 				method: 'patch',
 				url: `${apiUrl}/trip/${currentTrip.trip_id}/user/${id}`,
 				headers: {
+					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`,
 				}
 			}
@@ -156,20 +159,24 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						console.log('User joined !');
-						// axios({
-						// 	method: 'get',
-						// 	url: `${apiUrl}/trip/${currentTrip.trip_id}`,
-						// 	headers: {
-						// 		'Authorization': `Bearer ${token}`,
-						// 	}
-						// }).then(
-						// 	store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]))
-						// )
+						console.log(response.data.message);
+						axios({
+							method: 'get',
+							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+							headers: {
+								'Authorization': `Bearer ${token}`,
+							}
+						}).then((res) => {
+							if (res.status !== 200) {
+								throw res.error;
+							} else {
+								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+							}
+						});
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
-				});
+				})
 			break;
 		}
 
