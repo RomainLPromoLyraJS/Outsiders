@@ -17,9 +17,13 @@ module.exports = {
         try {
             const tripToCreate = req.body;
             const tripCreated = await tripDataMapper.postNewTrip(tripToCreate);
+            const tripId = tripCreated.id;
+            const userId = tripCreated.user_id;
+            const m2m = await tripDataMapper.postNewTrip2(tripId, userId);
             res.json({
                 message: 'new trip created',
-                data: tripCreated
+                data: tripCreated,
+                association: m2m
             });
         } catch(error) {
             next(error);
@@ -75,12 +79,20 @@ module.exports = {
         try {
             const userId = req.params.userId;
             const tripId = req.params.tripId;
-
-            const associated = tripDataMapper.associateUserParticipateTrip(userId, tripId);
+            const check = await tripDataMapper.checkAssociation(userId, tripId);
+            console.log(check);
+            if (check === null) {
+                console.log(check);
+                const associated = await tripDataMapper.associateUserParticipateTrip(userId, tripId);
             res.json({
-                message: 'user and trip associated in participate',
+                message: 'Vous êtes maintenant inscrit à cette sortie',
                 data: associated
             })
+            } else {
+                res.json({
+                    message: 'Vous est déjà inscrit à cette sortie'
+                })
+            }
         } catch(error) {
             next(error);
         }
