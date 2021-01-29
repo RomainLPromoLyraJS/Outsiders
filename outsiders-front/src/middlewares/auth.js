@@ -78,7 +78,7 @@ const api = (store) => (next) => (action) => {
         url: `${apiUrl}/user/${id}`,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Baerer${token}`,
+          'Authorization': `Bearer ${token}`,
         },
         data: {
           firstname,

@@ -43,26 +43,36 @@ const reducer = (oldState = initialState, action = {}) => {
         list: action.tripList,
         isLoaded: true,
       };
-      case GET_TRIP_DETAILS_SUCCESS:
-        return {
-          ...oldState,
-          isLoaded: true,
-          currentTrip: action.trip,
-        };
-      case 'CHANGE_LOADING':
-			  return {
-				  ...oldState,
-          isLoaded: false,
-          isCreated: false,
-        };
-      case CHANGE_TRIP_FIELD:
-        return {
-          ...oldState,
-          currentTrip: 
-          { ...oldState.currentTrip,
-            [action.name]: action.value,
-          }
-        };
+
+     case CHANGE_TRIP_FIELD:
+       return {
+         ...oldState,
+         currentTrip: 
+         { ...oldState.currentTrip,
+           [action.name]: action.value,
+         }
+       };
+
+    case GET_TRIP_DETAILS_SUCCESS:
+      return {
+        ...oldState,
+        isLoaded: true,
+        currentTrip: action.trip,
+      };
+
+    case 'DELETE_TRIP_SUCCESS':
+      return {
+        ...oldState,
+        currentTrip: {},
+      }
+
+    case 'CHANGE_LOADING':
+      return {
+        ...oldState,
+        isLoaded: false,
+        isCreated: false,
+      };
+
     default:
       return {
       ...oldState,

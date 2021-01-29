@@ -60,8 +60,9 @@ const auth = (store) => (next) => (action) => {
 		}
 
 		case 'HANDLE_SEARCH': {
+
 			const { search: { sport, from, date }} = store.getState();
-			
+
 			const config = {
 				method: 'post',
 				url: `${apiUrl}/searchTrips`,
@@ -149,13 +150,13 @@ const auth = (store) => (next) => (action) => {
 		}
 
 		case 'GET_TRIP_DETAILS': {
-			axios.get(`${apiUrl}/trip/${action.tripId}`)
 			const { auth: { token } } = store.getState();
 
 			const config = {
 				method: 'get',
 				url: `${apiUrl}/trip/${action.tripId}`,
 				headers: {
+					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`,
 				}
 			}
@@ -165,7 +166,7 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]))
+						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]));
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
@@ -224,6 +225,110 @@ const auth = (store) => (next) => (action) => {
 					console.log('Oups !', error);
 				});
 				break;
+		}
+
+		case 'DELETE_TRIP': {
+			const { auth: { token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+
+			const config = {
+				method: 'delete',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch({type: 'DELETE_TRIP_SUCCESS'});
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				});
+			break;
+		}
+
+		case 'JOIN_TRIP': {
+			const { auth: { id, token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+
+			const config = {
+				method: 'post',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}/user/${id}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						console.log(response.data.message);
+						axios({
+							method: 'get',
+							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+							headers: {
+								'Authorization': `Bearer ${token}`,
+							}
+						}).then((res) => {
+							if (res.status !== 200) {
+								throw res.error;
+							} else {
+								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+							}
+						});
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				})
+			break;
+		}
+
+		case 'LEAVE_TRIP': {
+			const { auth: { id, token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+
+			const config = {
+				method: 'delete',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}/user/${id}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						console.log(response.data.message);
+						axios({
+							method: 'get',
+							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+							headers: {
+								'Authorization': `Bearer ${token}`,
+							}
+						}).then((res) => {
+							if (res.status !== 200) {
+								throw res.error;
+							} else {
+								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+							}
+						});
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+				})
+			break;
 		}
 
 		default:
