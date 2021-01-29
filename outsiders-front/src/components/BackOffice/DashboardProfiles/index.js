@@ -1,58 +1,38 @@
 // == Package imports
 import React, { useEffect } from "react";
-
+import PropTypes from "prop-types";
 
 // == Local imports
 import DashboardNav from "../DashboardNav";
 
-const DashboardProfiles = ({ loadUsersData }) => { 
+const DashboardProfiles = ({ loadUsersData, userList }) => { 
 
-  // loading sports and categories data from api
+  // loading users data from api
   useEffect(() => {
     loadUsersData();
+  // console.log('je suis dans le useEffect');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return ( 
+   return ( 
 
     <div className="dashboard">
       <DashboardNav />
       <div className="dashboard-profiles">
         <form>
           <div className="dashboard-profiles__form">
-            <h3>Créer un profil</h3>
-            <label htmlFor="create-profile">Nom du profil </label>
-            <input
-              type="text"
-              className="dashboard-profiles__form__input"
-            ></input>
-            <button type="submit" className="dashboard-profiles__form__button">
-              Valider
-            </button>
-          </div>
-          <div className="dashboard-profiles__form">
-            <h3>Modifier un profil</h3>
-            <label htmlFor="modify-profile">
-              Sélectionner le profil à modifier dans la liste :
-            </label>
-            <select name="profile" className="dashboard-profiles__form__select">
-              <option value="">Profils</option>
-              <option value="">Profil 1</option>
-              <option value="">Profil 2</option>
-            </select>
-            <button type="submit" className="dashboard-profiles__form__button">
-              Valider
-            </button>
-          </div>
-          <div className="dashboard-profiles__form">
             <h3>Supprimer un profil</h3>
             <label htmlFor="delete-profile">
               Sélectionner le profil à supprimer dans la liste :
             </label>
-            <select name="profile" className="dashboard-profiles__form__select">
+            <select name="id" className="dashboard-profiles__form__select">
               <option value="">Profils</option>
-              <option value="">Profil 1</option>
-              <option value="">Profil 2</option>
-            </select>
+              {userList.map((user) => {
+                return (
+                   <option key={user.id} value={user.id}>{user.username}</option>
+                 );
+              })}
+               </select>
             <button type="submit" className="dashboard-profiles__form__button">
               Valider
             </button>
@@ -61,7 +41,18 @@ const DashboardProfiles = ({ loadUsersData }) => {
       </div>
     </div>
 
-)
+   )
 };
+
+DashboardProfiles.propTypes = {
+  loadUsersData: PropTypes.func.isRequired,
+  userList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+
+}
 
 export default DashboardProfiles;

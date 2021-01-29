@@ -3,6 +3,7 @@ import {
   CHANGE_AUTH_FIELD,
   CHANGE_ADMIN_FIELD,
   CREATE_SPORT_SUCCESS,
+  GET_USERS_SUCCESS,
 } from "../store/action";
 
 //InitialState basic guest informations
@@ -17,7 +18,7 @@ const initialState = {
   sportDescriptionModify:"",
   category_id: "",
   message: "",
-  token: '',
+  token: "",
   userList: [],
   
 };
@@ -77,6 +78,12 @@ const reducer = (oldState = initialState, action = {}) => {
         ...oldState,
         category_id:"",
         message: action.message,
+      };
+
+      case GET_USERS_SUCCESS:
+      return {
+        ...oldState,
+        userList: action.userList,
       };
 
     default:

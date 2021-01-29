@@ -83,7 +83,7 @@ const DashboardSports = ({
   return (
     <>
       <div className="dashboard">
-        <DashboardNav />
+      {/* <DashboardNav /> */}
         <div className="dashboard-sports">
           <form className="dashboard-sports__form" onSubmit={onSubmitCreate}>
             <h3 className="dashboard-sports__form__title">Créer un sport</h3>
