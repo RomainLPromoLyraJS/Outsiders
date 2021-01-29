@@ -1,6 +1,7 @@
 const adminDataMapper = require('../dataMappers/adminDataMapper');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const tripDataMapper = require('../dataMappers/tripDataMapper');
 
 
 
@@ -18,14 +19,16 @@ module.exports = {
                 return;
             }
             if (isPasswordValid) {
-                const jwtContent = {userId: admin.id};
+                const userId = admin.id;
+                const tripRegistered = await tripDataMapper.tripRegistered(userId);
+                const jwtContent = {userId: admin.id, roleId: admin.role_id};
                 const jwtOptions = {
                     algorithm: 'HS256',
                     expiresIn: '24h'
                 };
                 res.json({
                 message: 'administrateur connecté',
-                data: admin,
+                data: admin, tripRegistered,
                 logged: true,
                 username: admin.username,
                 token: jwt.sign(jwtContent, process.env.JWTSECRET, jwtOptions)     

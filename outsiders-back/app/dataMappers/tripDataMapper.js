@@ -3,6 +3,17 @@ const client = require('./client');
 module.exports = {
     async getAllTrips() {
         const result = await client.query('SELECT  t.id AS id_trip, t.title, t.description, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration, JSON_AGG(JSON_build_object(\'id_sport\', s.id, \'title\', s.title, \'description\', s.description)) AS sport, JSON_AGG(JSON_build_object(\'id_category\', c.id, \'title\', c.title, \'description\', c.description)) AS category, JSON_AGG(JSON_build_object(\'id_creator\', u.id, \'lastname\', u.lastname, \'firstname\', u.firstname, \'username\', u.username, \'email\', u.email, \'description\', u.description)) AS "user" FROM trip AS t JOIN sport AS s ON t.sport_id=s.id JOIN category AS c ON c.id=s.category_id JOIN "user" AS u ON u.id=t.user_id GROUP BY t.id, t.title, t.description, t.date, t.date, t.time, t.from, t.to, t.places, t.minimum, t.price, t.duration');
+        if (result.rowCount == 0) {
+            return null
+        }
+        return result.rows;
+    },
+
+    async tripRegistered(userId) {
+        const result = await client.query('select * from trip Join m2m_user_participate_trip m on m.trip_id=trip.id where m.user_id=$1', [userId]);
+        if (result.rowCount == 0) {
+            return null
+        }
         return result.rows;
     },
 
@@ -97,6 +108,15 @@ module.exports = {
         return result.rows;
     },
 
+    async getCreatorTrip(tripId) {
+
+        const result = await client.query('SELECT user_id FROM trip WHERE id=$1', [tripId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        return result.rows[0];
+    },
+
     async updateOneTrip(tripId, tripToUpdate) {
 
         const result = await client.query('UPDATE "trip" SET "title"=$1, "description"=$2, "date"=$3, "time"=$4, "from"=$5, "to"=$6, "places"=$7, "minimum"=$8, "price"=$9, "duration"=$10, "sport_id"=$11 WHERE "id"=$12 RETURNING *', [tripToUpdate.title, tripToUpdate.description, tripToUpdate.date, tripToUpdate.time, tripToUpdate.from, tripToUpdate.to, tripToUpdate.places, tripToUpdate.minimum, tripToUpdate.price, tripToUpdate.duration, tripToUpdate.sport_id, tripId]);
@@ -122,8 +142,8 @@ module.exports = {
         return result.rows[0];
     },
 
-    async deleteOneTrip(idTripToDelete) {
-        const result = await client.query('DELETE FROM "trip" WHERE id=$1 RETURNING *', [idTripToDelete]);
+    async deleteOneTrip(tripId) {
+        const result = await client.query('DELETE FROM "trip" WHERE id=$1 RETURNING *', [tripId]);
         if (result.rowCount == 0) {
             return null;
         }
