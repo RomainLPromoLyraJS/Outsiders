@@ -9,6 +9,9 @@ import { changeTripField } from '../store/action';
 const mapStateToProps = (state) => ({
   // == sports reducer == \\
   sports: state.sports.list,
+  trip: state.trips.currentTrip,
+  isLoaded: state.trips.isLoaded,
+  isCreated: state.trips.isCreated,
 });
 // ACTIONS/FUNCTIONS that we give to Props (NewTrip)
 const mapDispatchToProps = (dispatch) => ({
@@ -20,6 +23,11 @@ const mapDispatchToProps = (dispatch) => ({
   handleSubmit: () => {
     dispatch({ type: 'CREATE_TRIP' });
   },
+
+  getTripDetails: (tripId) => {
+    dispatch({type: 'CHANGE_LOADING'});
+    dispatch({type: 'GET_TRIP_DETAILS', tripId});
+  }
   
 });
 

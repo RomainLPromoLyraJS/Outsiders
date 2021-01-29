@@ -8,6 +8,7 @@ import Tripdetails from '../components/Tripdetails';
 const mapStateToProps = (state) => ({
   trip: state.trips.currentTrip,
   isLoaded: state.trips.isLoaded,
+  isLogged: state.auth.isLogged,
 });
 
 export default connect(mapStateToProps)(Tripdetails);

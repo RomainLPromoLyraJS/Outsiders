@@ -19,6 +19,9 @@ const Newtrip = ({
   minimumValue,
   placesValue,
   isLoaded,
+  getTripDetails,
+  trip,
+  isCreated,
 }) => {
   // sending the request to API
   const onSubmit =(event) => {
@@ -59,10 +62,10 @@ const Newtrip = ({
         </select>
         <button className='form__button' type='submit'> Créer sortie </button>
         </form>
-        {/* isLoaded = True redirect to the Trip created */}
-        {/* {isLoaded && (
-        <Redirect to={buildTripURL(titleValue)} />
-        )} */}
+        {/* Redirect if Loaded */}
+        {isLoaded && (
+          <Redirect to={buildTripURL(trip.trip_title)} />
+        )}
     </div>
   );
 }

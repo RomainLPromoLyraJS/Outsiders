@@ -8,6 +8,7 @@ import {
 const initialState = {
   list: [],
   isLoaded: false,
+  isCreated: false,
   currentTrip: {
     trip_id: '',
     trip_title: '',
@@ -52,6 +53,7 @@ const reducer = (oldState = initialState, action = {}) => {
 			  return {
 				  ...oldState,
           isLoaded: false,
+          isCreated: false,
         };
       case CHANGE_TRIP_FIELD:
         return {

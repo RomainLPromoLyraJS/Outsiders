@@ -12,7 +12,7 @@ const initialState = {
   email: '',
   password: '',
   description: '',
-  isLogged: true,
+  isLogged: false,
 };
 
 const reducer = (oldState = initialState, action = {}) => {
