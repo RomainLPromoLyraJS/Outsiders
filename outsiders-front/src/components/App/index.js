@@ -18,6 +18,7 @@ import Profile from '../../containers/Profile';
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
+import Weather from '../../containers/Weather';
 
 const App = ({ loadSportsData, loadCategoriesData }) => {
   // loading sports and categories data from api
@@ -37,6 +38,9 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       </Route>
       <Route exact path='/about' >
         <About />
+      </Route>
+      <Route exact path='/test' >
+        <Weather />
       </Route>
 
       {/* Sport routes */}
