@@ -96,9 +96,9 @@ const auth = (store) => (next) => (action) => {
 		}
 
 		case 'CREATE_TRIP': {
-			const {
-				trips: { currentTrip } } = store.getState();
-				const { auth: { id, token }} = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+			const { auth: { id, token }} = store.getState();
+
 			const config = {
 				method: 'post',
 				url: `${apiUrl}/trip`,
@@ -175,9 +175,9 @@ const auth = (store) => (next) => (action) => {
 	 }
 
 		case 'HANDLE_MODIFY': {
-			const {
-				trips: { currentTrip } } = store.getState();
-				const { auth: { id, token }} = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+			const { auth: { id, token }} = store.getState();
+			
 			const config = { 
 				method: 'patch',
 				url: `${apiUrl}/trip/${currentTrip.trip_id}`,
@@ -202,7 +202,6 @@ const auth = (store) => (next) => (action) => {
 			};
 			axios(config)
 				.then((response) => {
-					console.log(response);
 					if (response.status !==200) {
 						throw response.error;
 					} else {

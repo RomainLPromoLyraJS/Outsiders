@@ -1,6 +1,6 @@
 // == Package imports == \\
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // == Import utils == \\
 import { buildTripURL } from '../../utils';
 
@@ -18,12 +18,10 @@ const Patchtrip = ({
   durationValue,
   minimumValue,
   placesValue,
-  isLoaded,
   trip,
 }) => {
   // sending the request to API
-  const modifySubmit =(event) => {
-    event.preventDefault();
+  const modifySubmit = () => {
     handleModify();
   };
   // tracking field changes
@@ -36,7 +34,7 @@ const Patchtrip = ({
   return (
     <div className='patchtrip-page'>
       <h1> TITLE MODIFIER UNE SORTIE </h1>
-        <form className='form' onSubmit={modifySubmit}>
+      <form className='form'>
         <select name="sport_title" className="form__sport" onChange={onChange}>
           <option value="">Sport</option>
           {sports.map(s => {
@@ -58,12 +56,10 @@ const Patchtrip = ({
             return <option key={n} value={n}>{n}</option>
           })}
         </select>
-        <button className='form__button' type='submit'> Modifier sortie </button>
-        </form>
-        {/* Redirect if Loaded */}
-        {isLoaded && (
-          <Redirect to={buildTripURL(trip.trip_title)} />
-        )}
+        <NavLink onClick={modifySubmit} to={buildTripURL(trip.trip_title)}>
+          <button>Modifier sortie</button>
+        </NavLink>
+      </form>
     </div>
   )
 }

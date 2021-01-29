@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   trip: state.trips.currentTrip,
   isLoaded: state.trips.isLoaded,
-  isLogged: state.auth.isLogged,
   userId: state.auth.id,
   username: state.auth.username,
 });

@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handleSubmit: () => {
+    dispatch({type: 'CHANGE_LOADING'});
     dispatch({ type: 'CREATE_TRIP' });
   },
 

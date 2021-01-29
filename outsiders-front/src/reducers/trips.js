@@ -66,13 +66,6 @@ const reducer = (oldState = initialState, action = {}) => {
         currentTrip: {},
       }
 
-    case 'CHANGE_LOADING':
-      return {
-        ...oldState,
-        isLoaded: false,
-        isCreated: false,
-      };
-
     default:
       return {
       ...oldState,

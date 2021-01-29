@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeTripField(value, name));
   },
   handleModify: () => {
+    dispatch({type: 'CHANGE_LOADING'});
     dispatch({ type: 'HANDLE_MODIFY' });
   },
   
