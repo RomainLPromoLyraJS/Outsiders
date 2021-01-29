@@ -11,4 +11,10 @@ const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
 });
 
-export default connect(mapStateToProps)(Tripdetails);
+const mapDispatchToProps = (dispatch) => ({
+  changeLoader: () => {
+    dispatch({ type: 'CHANGE_LOADING' });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tripdetails);

@@ -1,12 +1,13 @@
 // == Package Import
 import React from 'react';
 import DayJS from 'react-dayjs';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
 
 // == Local Import
 // import ButtonSection from './ButtonSection';
 
-const Tripdetails = ({ handleDelete, handleJoin, isLogged, isLoaded, trip }) => {
+const Tripdetails = ({ handleDelete, handleJoin, isLogged, isLoaded, trip, changeLoader }) => {
   const nullToArray = (tab) => {
     let empti = 0;
 
@@ -67,6 +68,7 @@ const Tripdetails = ({ handleDelete, handleJoin, isLogged, isLoaded, trip }) => 
                 <div className="tripInfo__container__details__price">Prix actuel par personne : <span>{priceCalculator(nullToArray(trip.participants))}€</span></div>
               </div>
             </div>
+            <NavLink onClick={() => {changeLoader();}}to='/modifier-sortie'><FiSettings /></NavLink>
           </section>
           {/* <ButtonSection handleDelete={handleDelete} handleJoin={handleJoin} /> */}
         </div>

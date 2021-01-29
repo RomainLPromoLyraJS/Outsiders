@@ -19,6 +19,7 @@ const Patchtrip = ({
   minimumValue,
   placesValue,
   isLoaded,
+  trip,
 }) => {
   // sending the request to API
   const modifySubmit =(event) => {
@@ -36,14 +37,14 @@ const Patchtrip = ({
     <div className='patchtrip-page'>
       <h1> TITLE MODIFIER UNE SORTIE </h1>
         <form className='form' onSubmit={modifySubmit}>
-        <select name="sport_id" className="form__sport" onChange={onChange}>
+        <select name="sport_title" className="form__sport" onChange={onChange}>
           <option value="">Sport</option>
           {sports.map(s => {
             return <option key={s.id} value={s.id}>{s.title}</option>
           })}
         </select>
-        <input name="title" value={titleValue} className="form__title" type="text" placeholder="Titre" onChange={onChange}/>
-        <input name="description" value={descriptionValue} className="form__description" type="text" placeholder="Description" onChange={onChange}/>
+        <input name="trip_title" value={titleValue} className="form__title" type="text" placeholder="Titre" onChange={onChange}/>
+        <input name="trip_description" value={descriptionValue} className="form__description" type="text" placeholder="Description" onChange={onChange}/>
         <input name="date" value={dateValue} className="form__date" type="date" placeholder="Date" onChange={onChange}/>
         <input name="time" value={timeValue} className="form__time" type="time" placeholder="Heure départ" onChange={onChange}/>
         <input name="from" value={fromValue} className="form__from" type="text" placeholder="Départ" onChange={onChange}/>
@@ -59,9 +60,9 @@ const Patchtrip = ({
         </select>
         <button className='form__button' type='submit'> Modifier sortie </button>
         </form>
-        {/* isLoaded = True redirect to the Trip patched */}
+        {/* Redirect if Loaded */}
         {isLoaded && (
-          <Redirect to={buildTripURL(titleValue)} />
+          <Redirect to={buildTripURL(trip.trip_title)} />
         )}
     </div>
   )

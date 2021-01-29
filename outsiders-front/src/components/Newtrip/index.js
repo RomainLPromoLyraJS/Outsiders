@@ -19,9 +19,7 @@ const Newtrip = ({
   minimumValue,
   placesValue,
   isLoaded,
-  getTripDetails,
   trip,
-  isCreated,
 }) => {
   // sending the request to API
   const onSubmit =(event) => {

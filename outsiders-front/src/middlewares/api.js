@@ -173,88 +173,58 @@ const auth = (store) => (next) => (action) => {
 		 break;
 	 }
 
-		// case 'HANDLE_MODIFY': {
-		// 	const {
-		// 		trips: {
-		// 			title,
-		// 			description,
-		// 			date,
-		// 			time,
-		// 			from,
-		// 			to,
-		// 			places,
-		// 			duration,
-		// 			minimum,
-		// 			price,
-		// 			sport_id,
-		// 			trip_id,
-		// 		}
-		// 	} = store.getState();
-
-		// 	const config = {
-		// 		method: 'patch',
-		// 		url: `${apiUrl}/trip/${trip_id}`,
-		// 		headers: {
-		// 			'Content-type': 'application/json',
-		// 		},
-		// 		data: {
-		// 			title,
-		// 			description,
-		// 			date,
-		// 			time,
-		// 			from,
-		// 			to,
-		// 			places,
-		// 			duration,
-		// 			minimum,
-		// 			price,
-		// 			sport_id,
-		// 		},
-		// 	};
-		// 	axios(config)
-		// 		.then((response) => {
-		// 			console.log(response);
-		// 			if (response.status !==200) {
-		// 				throw response.error;
-		// 			} else {
-		// 				store.dispatch(patchTripSuccess(response.data.data));
-		// 			}
-		// 		}).catch((error) => {
-		// 			console.log('Oups !', error);
-		// 		})
-		// 		.finally(() => {
-		// 			store.dispatch({type: 'GET_TRIPS' });
-		// 			store.dispatch({type: 'CHANGE_LOADING' });
-		// 		})
-		// 		;
-		// 		break;
-		// }
-
-		// case 'DELETE_TRIP': {
-		// 	const { trips: trip_id } = store.getState();
-
-		// 	const config = {
-		// 		method: 'delete',
-		// 		url: `${apiUrl}/trip/${trip_id}`,
-		// 		headers: {	},
-		// 	};
-		// 	axios(config)
-		// 		.then((response) => {
-		// 			if (response.status !==200) {
-		// 				throw response.error;
-		// 			} else {
-		// 				store.dispatch(deleteTripSuccess(response.data.data));
-		// 			}
-		// 		}).catch((error) => {
-		// 			console.log('Oups !', error);
-		// 		})
-		// 		.finally(() => {
-		// 			store.dispatch({type: 'GET_TRIPS' });
-		// 			store.dispatch({type: 'CHANGE_LOADING' });
-		// 		});
-		// 		break;
-	// }
-
+		case 'HANDLE_MODIFY': {
+			const {
+				trips: { currentTrip } } = store.getState();
+				const { auth: { id, token }} = store.getState();
+			const config = { 
+				method: 'patch',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}`,
+				headers: {
+					'Content-type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				},
+				data: {
+					title : currentTrip.trip_title,
+					description: currentTrip.trip_description,
+					date: currentTrip.date,
+					time: currentTrip.time,
+					from: currentTrip.from,
+					to: currentTrip.to,
+					places: currentTrip.places,
+					minimum: currentTrip.minimum,
+					price: currentTrip.price,
+					duration: currentTrip.duration,
+					sport_id: currentTrip.sport_id,
+					user_id: id,
+				},
+			};
+			axios(config)
+				.then((response) => {
+					console.log(response);
+					if (response.status !==200) {
+						throw response.error;
+					} else {
+						axios({
+							method: 'get',
+							url: `${apiUrl}/trip/${response.data.data[0].id}`,
+							headers: {
+								'Authorization': `Bearer ${token}`,
+							}
+						}).then((res) => {
+							if (res.status !== 200) {
+								throw res.error;
+							} else {
+								// Render all details from the new trip
+								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+							}
+						});
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
+		}
 
 		default:
 			next(action);
