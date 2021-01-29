@@ -146,7 +146,7 @@ const auth = (store) => (next) => (action) => {
 			const { trips: { currentTrip } } = store.getState();
 
 			const config = {
-				method: 'patch',
+				method: 'post',
 				url: `${apiUrl}/trip/${currentTrip.trip_id}/user/${id}`,
 				headers: {
 					'Content-Type': 'application/json',

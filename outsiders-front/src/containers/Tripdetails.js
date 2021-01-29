@@ -9,6 +9,8 @@ const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   trip: state.trips.currentTrip,
   isLoaded: state.trips.isLoaded,
+  userId: state.auth.id,
+  username: state.auth.username,
 });
 
 const mapDispatchToProps = (dispatch) => ({

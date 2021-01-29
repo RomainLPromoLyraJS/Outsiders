@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 // == Local Import
 import ButtonSection from './ButtonSection';
 
-const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded, trip }) => {
+const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded, trip, userId, username }) => {
   const nullToArray = (tab) => {
     if (tab == null) {
       return 0;
@@ -17,6 +17,10 @@ const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded
 
   const spotCalculator = (nbSpot, nbPax) => {
     return nbSpot - nbPax;
+  };
+
+  const pricePaxCalculator = (nbPax) => {
+    return trip.price / nbPax;
   };
 
   const priceCalculator = (nbPax) => {
@@ -58,15 +62,25 @@ const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded
               </div>
               <div className="tripInfo__container__details">
                 <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
+                <div className="tripInfo__container__details__places">Nombre de places : <span>{trip.places}</span></div>
                 <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants))}</span></div>
                 <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
                 <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
                 <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
-                <div className="tripInfo__container__details__price">Prix actuel par personne : <span>{priceCalculator(nullToArray(trip.participants))}€</span></div>
+                <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants)).toFixed(2)}€</span></div>
+                <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants)).toFixed(2)}€</span></div>
               </div>
             </div>
           </section>
-          <ButtonSection handleDelete={handleDelete} handleJoin={handleJoin} handleLeave={handleLeave} />
+          <ButtonSection
+            creatorId={trip.creator[0].id}
+            handleDelete={handleDelete}
+            handleJoin={handleJoin}
+            handleLeave={handleLeave}
+            userId={userId}
+            username={username}
+            participants={trip.participants}
+          />
         </div>
       )}
     </main>
