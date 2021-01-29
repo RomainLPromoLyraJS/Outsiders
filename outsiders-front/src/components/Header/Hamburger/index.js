@@ -64,7 +64,7 @@ const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, disable
                   <NavLink to="/"><IoSearch /> Rechercher</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/"><IoAddCircleOutline /> Créer une sortie</NavLink>
+                  <NavLink to="/nouvelle-sortie"><IoAddCircleOutline /> Créer une sortie</NavLink>
                 </li>
                 <li>
                   <NavLink onClick={logOutOnClick} to="/">Déconnexion</NavLink>

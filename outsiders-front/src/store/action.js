@@ -8,6 +8,8 @@ export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
 export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
+export const CHANGE_TRIP_FIELD = 'CHANGE_TRIP_FIELD';
+export const CREATE_TRIP_SUCCESS = 'CREATE_TRIP_SUCCESS';
 
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
@@ -64,3 +66,11 @@ export const changeSportField = (title) => ({
   type: GET_SPORT_TITLE,
   title,
 })
+
+export const changeTripField = (value, name) => ({
+  type: CHANGE_TRIP_FIELD,
+  value,
+  name,
+})
+
+
