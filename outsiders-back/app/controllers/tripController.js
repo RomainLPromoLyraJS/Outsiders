@@ -79,6 +79,9 @@ module.exports = {
         try {
             const userId = req.params.userId;
             const tripId = req.params.tripId;
+
+            //const checkId =
+
             const check = await tripDataMapper.checkAssociation(userId, tripId);
             console.log(check);
             if (check === null) {
@@ -113,11 +116,11 @@ module.exports = {
 
     async dissociateUserParticipateTrip(req, res, next) {
         try {
-            const userId = req.params.id;
-            const tripId = req.params.id;
+            const userId = req.params.userId;
+            const tripId = req.params.tripId;
             const dissociate = await tripDataMapper.dissociateUserParticipateTrip(userId, tripId); 
             res.json({
-                message: "trip and user dissociated from participate",
+                message: "Vous êtes maintenant desinscrits de cette sortie",
                 data: dissociate
             });
         } catch(error) {
