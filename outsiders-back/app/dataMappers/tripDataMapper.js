@@ -131,11 +131,11 @@ module.exports = {
     },
 
     async dissociateUserParticipateTrip(userId, tripId) {
-        const result = await client.query('DELETE FROM "m2m_user_participate_trip" WHERE "user_id"=$1 AND "trip_id"=$2', [userId, tripId]);
+        const result = await client.query('DELETE FROM "m2m_user_participate_trip" WHERE "user_id"=$1 AND "trip_id"=$2 RETURNING *', [userId, tripId]);
         if (result.rowCount == 0) {
             return null;
         }
-        return result.rows;
+        return result.rows[0];
     },
 
     async allComments(tripId) {
