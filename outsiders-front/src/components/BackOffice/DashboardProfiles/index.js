@@ -1,11 +1,19 @@
 // == Package imports
-import React from "react";
+import React, { useEffect } from "react";
+
 
 // == Local imports
 import DashboardNav from "../DashboardNav";
 
-const DashboardProfiles = () => (
-  <>
+const DashboardProfiles = ({ loadUsersData }) => { 
+
+  // loading sports and categories data from api
+  useEffect(() => {
+    loadUsersData();
+  }, []);
+
+  return ( 
+
     <div className="dashboard">
       <DashboardNav />
       <div className="dashboard-profiles">
@@ -52,7 +60,8 @@ const DashboardProfiles = () => (
         </form>
       </div>
     </div>
-  </>
-);
+
+)
+};
 
 export default DashboardProfiles;

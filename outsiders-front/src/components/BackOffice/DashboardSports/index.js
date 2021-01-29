@@ -1,5 +1,5 @@
 // == Package imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 // == Local imports
@@ -14,12 +14,13 @@ const DashboardSports = ({
   handleModify,
   handleDelete,
   handleChange,
+  loadSportsData,
   sportNameModifyValue,
   sportDescriptionModifyValue,
   sportNameCreateValue,
   sportDescriptionCreateValue,
 }) => {
- // sending the request to API
+  // sending the request to API
   const onSubmitCreate = (event) => {
     event.preventDefault();
     handleCreate();
@@ -40,38 +41,44 @@ const DashboardSports = ({
     handleChange(event.target.value, event.target.name);
   };
 
-//my state for the modal window to create a sport
-  const [ createSportVisible, createSportSetVisible ] = useState(false);
+  //my state for the modal window to create a sport
+  const [createSportVisible, setCreateSportVisible] = useState(false);
 
-  const showCreate = () => {
-    createSportSetVisible(true);
+  const toggleCreate = () => {
+    setCreateSportVisible(!createSportVisible);
   };
 
-  const hiddenCreate = () => {
-    createSportSetVisible(false);
-  };
+  /* --> it's the same as these two functions showDelete and hiddenDelete just below.
+      This allows you to factorize and type less code: the toggleCreate function acts 
+      as an on / off button thanks to the "!" which means "passes the state to the reverse of what it is. 
+      If it is true then it becomes false and vice versa. */
+
+  // const showCreate = () => {
+  //   createSportSetVisible(true);
+  // };
+
+  // const hiddenCreate = () => {
+  //   createSportSetVisible(false);
+  // };
 
   //my state for the modal window to modify a sport
-  const [ modifySportVisible, modifySportSetVisible ] = useState(false);
+  const [modifySportVisible, setModifySportVisible] = useState(false);
 
-  const showModify = () => {
-    modifySportSetVisible(true);
-  };
-
-  const hiddenModify = () => {
-    modifySportSetVisible(false);
+  const toggleModify = () => {
+    setModifySportVisible(!modifySportVisible);
   };
 
   //my state for the modal window to delete a sport
-  const [ deleteSportVisible, deleteSportSetVisible ] = useState(false);
+  const [deleteSportVisible, setDeleteSportVisible] = useState(false);
 
-  const showDelete = () => {
-    deleteSportSetVisible(true);
+  const toggleDelete = () => {
+    setDeleteSportVisible(!deleteSportVisible);
   };
 
-  const hiddenDelete = () => {
-    deleteSportSetVisible(false);
-  };
+  useEffect(() => {
+    loadSportsData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [createSportVisible, modifySportVisible, deleteSportVisible]);
 
   return (
     <>
@@ -114,16 +121,23 @@ const DashboardSports = ({
               value={sportDescriptionCreateValue}
             ></textarea>
             <br />
-            <button onClick={showCreate} type="submit" className="dashboard-sports__form__button">
+            <button
+              onClick={toggleCreate}
+              type="submit"
+              className="dashboard-sports__form__button"
+            >
               Valider
             </button>
             {/* SHOWCREATE IF createSportVisible IS TRUE */}
             {createSportVisible && (
               <div>
-              <Modal action='créé' visible={createSportVisible} hidden={hiddenCreate}/>
+                <Modal
+                  action="créé"
+                  visible={createSportVisible}
+                  hidden={toggleCreate}
+                />
               </div>
             )}
-            {/* <p>{message}</p> */}
           </form>
           <form className="dashboard-sports__form" onSubmit={onSubmitModify}>
             <h3 className="dashboard-sports__form__title">Modifier un sport</h3>
@@ -180,11 +194,19 @@ const DashboardSports = ({
               name="sportDescriptionModify"
               value={sportDescriptionModifyValue}
             ></textarea>
-            <button onClick={showModify} type="submit" className="dashboard-sports__form__button">
+            <button
+              onClick={toggleModify}
+              type="submit"
+              className="dashboard-sports__form__button"
+            >
               Valider
             </button>
             {modifySportVisible && (
-              <Modal action='modifié' visible={modifySportVisible} hidden={hiddenModify}/>
+              <Modal
+                action="modifié"
+                visible={modifySportVisible}
+                hidden={toggleModify}
+              />
             )}
           </form>
           <form className="dashboard-sports__form" onSubmit={onSubmitDelete}>
@@ -210,11 +232,19 @@ const DashboardSports = ({
               })}
             </select>
             <br />
-            <button onClick={showDelete} type="submit" className="dashboard-sports__form__button">
+            <button
+              onClick={toggleDelete}
+              type="submit"
+              className="dashboard-sports__form__button"
+            >
               Valider
             </button>
             {deleteSportVisible && (
-              <Modal action='supprimé' visible={deleteSportVisible} hidden={hiddenDelete}/>
+              <Modal
+                action="supprimé"
+                visible={deleteSportVisible}
+                hidden={toggleDelete}
+              />
             )}
           </form>
         </div>

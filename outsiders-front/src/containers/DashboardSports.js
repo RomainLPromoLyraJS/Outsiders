@@ -32,6 +32,10 @@ const mapDispatchToProps = (dispatch) => ({
   handleDelete: () => {
     dispatch({ type: 'DELETE_SPORT' });
   },
+
+  loadSportsData: () => {
+    dispatch({type: 'GET_SPORTS'});
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardSports);

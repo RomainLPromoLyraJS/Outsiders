@@ -8,14 +8,13 @@ import { createSportSuccess } from "../store/action";
 // request cat/etc
 const admin = (store) => (next) => (action) => {
   const {
-    admin: { sportNameCreate, sportNameModify, sportDescriptionCreate, sportDescriptionModify, category_id, id },
+    admin: { sportNameCreate, sportNameModify, sportDescriptionCreate, sportDescriptionModify, category_id, id, email, password, token },
   } = store.getState();
 
   switch (action.type) {
 
     case 'AUTH_ADMIN': {
 
-      const { auth: { email, password } } = store.getState();
 
       const config = {
         method: 'post',
@@ -48,11 +47,13 @@ const admin = (store) => (next) => (action) => {
         url: `${apiUrl}/sport`,
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         data: {
           title: sportNameCreate,
           description: sportDescriptionCreate,
           category_id,
+        
         },
       };
 
@@ -76,6 +77,7 @@ const admin = (store) => (next) => (action) => {
         url: `${apiUrl}/sport/${id}`,
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         data: {
           title: sportNameModify,
@@ -108,6 +110,7 @@ const admin = (store) => (next) => (action) => {
         url: `${apiUrl}/sport/${id}`,
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         data: {
           category_id,

@@ -12,6 +12,7 @@ export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
 export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
 
 export const CREATE_SPORT_SUCCESS = 'CREATE_SPORT_SUCCESS';
+export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 
 
 export const changeAuthField = (value, name) => ({
@@ -71,3 +72,8 @@ export const changeSportField = (title) => ({
   type: GET_SPORT_TITLE,
   title,
 });
+
+export const getUsersSuccess = (userList) => ({
+  type: GET_USERS_SUCCESS,
+  userList,
+})

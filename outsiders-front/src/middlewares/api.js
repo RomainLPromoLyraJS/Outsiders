@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Local imports
 import apiUrl from './url';
-import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, searchSuccess } from '../store/action';
+import { getTripsSuccess, getSportsSuccess, getCategoriesSuccess, getUsersSuccess, searchSuccess } from '../store/action';
 
 // request cat/etc
 const auth = (store) => (next) => (action) => {
@@ -47,6 +47,20 @@ const auth = (store) => (next) => (action) => {
 						throw response.error;
 					} else {
 						store.dispatch(getTripsSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
+		}
+
+		case 'GET_USERS': {
+			axios.get(`${apiUrl}/user`)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getUsersSuccess(response.data.data));
 					}
 				}).catch((error) => {
 					console.log('Oups !', error);

@@ -18,6 +18,7 @@ const initialState = {
   category_id: "",
   message: "",
   token: '',
+  userList: [],
   
 };
 
