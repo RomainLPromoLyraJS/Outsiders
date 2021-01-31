@@ -8,7 +8,6 @@ import {
 const initialState = {
   list: [],
   isLoaded: false,
-  isCreated: false,
   currentTrip: {
     trip_id: '',
     trip_title: '',
@@ -64,6 +63,12 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         currentTrip: {},
+      }
+    
+    case 'CHANGE_LOADING':
+      return {
+        ...oldState,
+        isLoaded: false,
       }
 
     default:

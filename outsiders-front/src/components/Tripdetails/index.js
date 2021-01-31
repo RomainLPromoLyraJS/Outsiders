@@ -5,8 +5,10 @@ import { Redirect } from 'react-router-dom';
 
 // == Local Import
 import ButtonSection from './ButtonSection';
+import MessageSection from './MessageSection';
 
 const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded, trip, userId, username }) => {
+  // prevent null array
   const nullToArray = (tab) => {
     if (tab == null) {
       return 0;
@@ -26,6 +28,8 @@ const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded
   const priceCalculator = (nbPax) => {
     return trip.price / (nbPax + 1);
   };
+
+  console.log(trip);
   
   return (
     <main>
@@ -81,6 +85,7 @@ const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded
             username={username}
             participants={trip.participants}
           />
+          <MessageSection messages={trip.message} username={username} />
         </div>
       )}
     </main>
