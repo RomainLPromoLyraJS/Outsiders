@@ -8,7 +8,8 @@ import { createSportSuccess } from "../store/action";
 // request cat/etc
 const admin = (store) => (next) => (action) => {
   const {
-    admin: { sportNameCreate, sportNameModify, sportDescriptionCreate, sportDescriptionModify, category_id, id, email, password, token },
+    admin: { sportNameCreate, sportNameModify, sportDescriptionCreate, sportDescriptionModify, category_id, id },
+    auth: { token, email, password }
   } = store.getState();
 
   switch (action.type) {
@@ -93,7 +94,7 @@ const admin = (store) => (next) => (action) => {
           } else {
             store.dispatch({
               type: 'MODIFY_SPORT_SUCCESS',
-              message: `Le nouveau sport ${response.data.data[0].title} a bien été modifié.`
+              message: `Le sport ${response.data.data[0].title} a bien été modifié.`
           });
           }
         })
@@ -133,6 +134,39 @@ const admin = (store) => (next) => (action) => {
         });
       break;
     }
+
+    case "DELETE_USER": {
+      console.log(id);
+      const config = {
+        method: "delete",
+        url: `${apiUrl}/user/${id}`,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        data: {
+          category_id,
+        },
+      };
+      
+      axios(config)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw response.error;
+          } else {
+            console.log("je suis dans la response.data.data", response.data.data);
+            store.dispatch({
+              type: "DELETE_USER_SUCCESS",
+              message: `L' utilisateur ${response.data.data[0].username} a bien été supprimé.`,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log("Oups ! ", error);
+        });
+      break;
+    }
+
 
     default:
       next(action);

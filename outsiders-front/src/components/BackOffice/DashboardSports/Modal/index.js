@@ -1,7 +1,7 @@
 //import React
 import React from 'react';
 
-const Modal = ({ visible, hidden, action }) => {
+const Modal = ({ visible, hidden, action, title }) => {
 
  
     const toggleModal = () => {
@@ -15,7 +15,7 @@ const Modal = ({ visible, hidden, action }) => {
         <div className={modalStyle}>
             <div className='modal__content'>
             <button className='modal__button__cross' onClick={toggleModal}>X</button>
-            <p className="modal__sport">Le sport a bien été {action}.</p>
+            <p className="modal__sport">{title} a bien été {action}.</p>
             <button className='modal__button__ok' onClick={toggleModal}>OK</button>
             </div>
         </div>

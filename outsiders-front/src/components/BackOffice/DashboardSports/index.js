@@ -9,7 +9,6 @@ import Modal from "./Modal";
 const DashboardSports = ({
   sports,
   categories,
-  message,
   handleCreate,
   handleModify,
   handleDelete,
@@ -132,6 +131,7 @@ const DashboardSports = ({
             {createSportVisible && (
               <div>
                 <Modal
+                  title="Le sport"
                   action="créé"
                   visible={createSportVisible}
                   hidden={toggleCreate}
@@ -203,6 +203,7 @@ const DashboardSports = ({
             </button>
             {modifySportVisible && (
               <Modal
+                title="Le sport"
                 action="modifié"
                 visible={modifySportVisible}
                 hidden={toggleModify}
@@ -241,6 +242,7 @@ const DashboardSports = ({
             </button>
             {deleteSportVisible && (
               <Modal
+                title="Le sport"
                 action="supprimé"
                 visible={deleteSportVisible}
                 hidden={toggleDelete}

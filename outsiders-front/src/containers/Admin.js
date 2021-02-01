@@ -7,9 +7,9 @@ import { changeAuthField } from '../store/action';
 
 // STATES that we give to Props (Admin)
 const mapStateToProps = (state) => ({
-  emailValue: state.admin.email,
-  passwordValue: state.admin.password,
-  isLogged: state.admin.isLogged,
+  emailValue: state.auth.email,
+  passwordValue: state.auth.password,
+  isLogged: state.auth.isLogged,
 });
 // ACTIONS/FUNCTIONS that we give to Props (Admin)
 const mapDispatchToProps = (dispatch) => ({

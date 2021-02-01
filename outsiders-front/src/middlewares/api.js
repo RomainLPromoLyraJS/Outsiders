@@ -56,7 +56,7 @@ const auth = (store) => (next) => (action) => {
 
 		case 'GET_USERS': {
 
-			const { admin: { token } } = store.getState();
+			const { auth: { token } } = store.getState();
 
 			const config = {
 				method: 'get',

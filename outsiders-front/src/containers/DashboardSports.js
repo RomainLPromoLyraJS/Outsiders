@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
 });
 // ACTIONS/FUNCTIONS that we give to Props (DashboardSports)
 const mapDispatchToProps = (dispatch) => ({
+  
   handleChange: (value, name) => {
     dispatch(changeAdminField(value, name));
   },
@@ -26,13 +27,15 @@ const mapDispatchToProps = (dispatch) => ({
   handleCreate: () => {
     dispatch({ type: 'CREATE_SPORT' });
     },
+  
   handleModify: () => {
     dispatch({ type: 'MODIFY_SPORT' });
   },
+  
   handleDelete: () => {
     dispatch({ type: 'DELETE_SPORT' });
   },
-
+  
   loadSportsData: () => {
     dispatch({type: 'GET_SPORTS'});
   }
