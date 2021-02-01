@@ -3,11 +3,13 @@ import {
   GET_TRIPS_SUCCESS,
   GET_TRIP_DETAILS_SUCCESS,
   CHANGE_TRIP_FIELD,
+  CHANGE_MESSAGE_FIELD,
 } from '../store/action';
 
 const initialState = {
   list: [],
   isLoaded: false,
+  messageValue: '',
   currentTrip: {
     trip_id: '',
     trip_title: '',
@@ -63,13 +65,19 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         currentTrip: {},
-      }
+      };
+
+    case CHANGE_MESSAGE_FIELD:
+      return {
+        ...oldState,
+        messageValue: action.value,
+      };
     
     case 'CHANGE_LOADING':
       return {
         ...oldState,
         isLoaded: false,
-      }
+      };
 
     default:
       return {

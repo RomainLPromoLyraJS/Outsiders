@@ -6,7 +6,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 // == Local Import
 import Message from './Message';
 
-const MessageSection = ({ messages, username }) => {
+const MessageSection = ({ handleChange, messages, messageValue, username }) => {
   // toggle message window
   const [ displayMessages, setDisplayMessages] = useState(false);
   const messengerStyle = displayMessages
@@ -14,6 +14,10 @@ const MessageSection = ({ messages, username }) => {
     : 'messageSection__messenger inactive'
   const toggleMessages = () => {
     setDisplayMessages(!displayMessages);
+  };
+
+  const trackTextArea = (event) => {
+    handleChange(event.target.value);
   };
 
   return (
@@ -27,11 +31,17 @@ const MessageSection = ({ messages, username }) => {
           </div>
           <div className="messageSection__messenger__container__viewer">
             {messages.map((msg) => {
-              return <Message key={msg.id} msg={msg} username='Surf Mania' />
+              return <Message key={msg.id} msg={msg} username={username} />
             })}
           </div>
           <form className="messageSection__messenger__container__form">
-            <textarea className="messageSection__messenger__container__form__input" placeholder="C'est ici que tu peux raconter ta vie..." />
+            <textarea
+              value={messageValue}
+              onChange={trackTextArea}
+              name='messageValue'
+              className="messageSection__messenger__container__form__input"
+              placeholder="C'est ici que tu peux raconter ta vie..."
+            />
             <button className="messageSection__messenger__container__form__btn"><FaPaperPlane /></button>
           </form>
         </div>

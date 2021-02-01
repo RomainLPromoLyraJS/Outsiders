@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 
 // Local import
 import Tripdetails from '../components/Tripdetails';
+import { changeMessageField } from '../store/action';
 
 // We need to use ownProps (params) to get utils and withRouter
 const mapStateToProps = (state) => ({
   isLogged: state.auth.isLogged,
   trip: state.trips.currentTrip,
   isLoaded: state.trips.isLoaded,
+  messageValue: state.trips.messageValue,
   userId: state.auth.id,
   username: state.auth.username,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  handleChange: (value) => {
+    dispatch(changeMessageField(value));
+  },
+
   changeLoader: () => {
     dispatch({ type: 'CHANGE_LOADING' });
   },

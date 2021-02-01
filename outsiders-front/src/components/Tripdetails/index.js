@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 
-const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded, trip, userId, username }) => {
+const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, isLogged, isLoaded, messageValue, trip, userId, username }) => {
   // prevent null array
   const nullToArray = (tab) => {
     if (tab == null) {
@@ -28,8 +28,6 @@ const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded
   const priceCalculator = (nbPax) => {
     return trip.price / (nbPax + 1);
   };
-
-  console.log(trip);
   
   return (
     <main>
@@ -85,7 +83,7 @@ const Tripdetails = ({ handleDelete, handleJoin, handleLeave, isLogged, isLoaded
             username={username}
             participants={trip.participants}
           />
-          <MessageSection messages={trip.message} username={username} />
+          <MessageSection handleChange={handleChange} messageValue={messageValue} messages={trip.message} username={username} />
         </div>
       )}
     </main>
