@@ -11,7 +11,7 @@ import { loadWeatherSuccess } from '../store/action';
  * TODO:
  * 
  * @PARAMS ${weatherKey} => API KEY see doc for more informations
- * @LINK https://openweathermap.org/current
+ * @LINK https://openweathermap.org/forecast5
  * @TODO EXPORT WEATHERKEY
  * 
  * @params ${from} => replace by ${currentTrip.from} when trip is select
@@ -32,7 +32,7 @@ const exapi = (store) => (next) => (action) => {
 
      const config = {
        method: 'get',
-       url: `https://api.openweathermap.org/data/2.5/weather?q=${from}&units=metric&APPID=${weatherKey}`,
+       url: `https://api.openweathermap.org/data/2.5/forecast?q=${from}&units=metric&APPID=${weatherKey}`,
        headers: {
          'Content-Type': 'application/json',
        },
