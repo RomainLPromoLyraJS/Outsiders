@@ -26,10 +26,10 @@ export const getTripBySlug = (trips, slug) => (
 export const getCatBySlug = (categories, slug) => (
   categories.find((category) => slugifyTitle(category.title) === slug)
 );
+
 /**
  * MAKE FULL NAME
  * simply make a full name when you a firstname and a lastname
- * 
  * @param {string} firstname 
  * @param {string} lastname 
  */

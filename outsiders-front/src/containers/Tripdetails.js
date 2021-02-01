@@ -1,27 +1,36 @@
 // Import package
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 // Local import
-import { getTripBySlug } from '../../src/utils';
 import Tripdetails from '../components/Tripdetails';
 
 // We need to use ownProps (params) to get utils and withRouter
-const mapStateToProps = (state, ownProps) => ({
-  /**
-   * Get trip by slug 
-   * state.trips.list = all trips
-   * => ownProps.match = prop create by withRouter
-   * in ownProps, we have acces to all props including those of withRouter
-   */
-
-   trip: getTripBySlug(state.trips.list, ownProps.match.params.slug),
+const mapStateToProps = (state) => ({
+  isLogged: state.auth.isLogged,
+  trip: state.trips.currentTrip,
+  isLoaded: state.trips.isLoaded,
+  userId: state.auth.id,
+  username: state.auth.username,
 });
 
-// with connect Tripdetails have access to props.state (trip title)
-const container = connect(mapStateToProps)(Tripdetails);
+const mapDispatchToProps = (dispatch) => ({
+  changeLoader: () => {
+    dispatch({ type: 'CHANGE_LOADING' });
+  },
+  
+  handleDelete: () => {
+    dispatch({type: 'DELETE_TRIP'});
+  },
 
-// with withRouter container have access to props.router (slug url)
-const containerWithRouter = withRouter(container);
+  handleJoin: () => {
+    dispatch({type: 'CHANGE_LOADING'});
+    dispatch({type: 'JOIN_TRIP'});
+  },
 
-export default containerWithRouter;
+  handleLeave: () => {
+    dispatch({type: 'CHANGE_LOADING'});
+    dispatch({type: 'LEAVE_TRIP'});
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tripdetails);
