@@ -1,5 +1,6 @@
 // == Package Import
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FaPaperPlane } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 
@@ -49,5 +50,16 @@ const MessageSection = ({ handleChange, messages, messageValue, username }) => {
     </section>
   );
 };
+
+MessageSection.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  ),
+  messageValue: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+}
 
 export default MessageSection;

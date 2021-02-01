@@ -1,5 +1,6 @@
 // == Package Import
 import React from 'react';
+import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
 import { Redirect } from 'react-router-dom';
 
@@ -89,5 +90,29 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, isLo
     </main>
   )
 };
+
+Tripdetails.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleJoin: PropTypes.func.isRequired,
+  handleLeave: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  messageValue: PropTypes.string.isRequired,
+  trip: PropTypes.shape({
+    sport_title: PropTypes.string.isRequired,
+    creator: PropTypes.arrayOf(
+      PropTypes.shape({
+        username: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    from: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired,
+    trip_description: PropTypes.string.isRequired,
+    message: PropTypes.array,
+  }),
+  userId: PropTypes.number.isRequired,
+  username: PropTypes.string.isRequired,
+}
 
 export default Tripdetails;

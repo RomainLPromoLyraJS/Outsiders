@@ -1,5 +1,6 @@
 // == Package Import
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Message = ({ msg, username }) => {
   const messageStyle = (username === msg.username)
@@ -18,5 +19,13 @@ const Message = ({ msg, username }) => {
     </div>
   );
 };
+
+Message.propTypes = {
+  msg: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+  }).isRequired,
+  username: PropTypes.string.isRequired,
+}
 
 export default Message;
