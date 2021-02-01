@@ -7,7 +7,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 // == Local Import
 import Message from './Message';
 
-const MessageSection = ({ handleChange, messages, messageValue, username }) => {
+const MessageSection = ({ handleChange, handleNewMessage, messages, messageValue, username }) => {
   // toggle message window
   const [ displayMessages, setDisplayMessages] = useState(false);
   const messengerStyle = displayMessages
@@ -20,6 +20,11 @@ const MessageSection = ({ handleChange, messages, messageValue, username }) => {
   const trackTextArea = (event) => {
     handleChange(event.target.value);
   };
+
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    handleNewMessage();
+  }
 
   return (
     <section className="messageSection">
@@ -35,7 +40,7 @@ const MessageSection = ({ handleChange, messages, messageValue, username }) => {
               return <Message key={msg.id} msg={msg} username={username} />
             })}
           </div>
-          <form className="messageSection__messenger__container__form">
+          <form onSubmit={onSubmitForm} className="messageSection__messenger__container__form">
             <textarea
               value={messageValue}
               onChange={trackTextArea}
@@ -53,6 +58,7 @@ const MessageSection = ({ handleChange, messages, messageValue, username }) => {
 
 MessageSection.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  handleNewMessage: PropTypes.func.isRequired,
   messages: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

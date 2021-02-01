@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 
-const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, isLogged, isLoaded, messageValue, trip, userId, username }) => {
+const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLogged, isLoaded, messageValue, trip, userId, username }) => {
   // prevent null array
   const nullToArray = (tab) => {
     if (tab == null) {
@@ -84,7 +84,7 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, isLo
             username={username}
             participants={trip.participants}
           />
-          <MessageSection handleChange={handleChange} messageValue={messageValue} messages={trip.message} username={username} />
+          <MessageSection handleChange={handleChange} handleNewMessage={handleNewMessage} messageValue={messageValue} messages={trip.message} username={username} />
         </div>
       )}
     </main>
@@ -96,6 +96,7 @@ Tripdetails.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   handleJoin: PropTypes.func.isRequired,
   handleLeave: PropTypes.func.isRequired,
+  handleNewMessage: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   isLoaded: PropTypes.bool.isRequired,
   messageValue: PropTypes.string.isRequired,

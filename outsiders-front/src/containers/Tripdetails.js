@@ -36,7 +36,11 @@ const mapDispatchToProps = (dispatch) => ({
   handleLeave: () => {
     dispatch({type: 'CHANGE_LOADING'});
     dispatch({type: 'LEAVE_TRIP'});
-  }
+  },
+
+  handleNewMessage: () => {
+    dispatch({type: 'NEW_MESSAGE'});
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tripdetails);

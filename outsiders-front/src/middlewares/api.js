@@ -8,6 +8,7 @@ import {
 	getTripDetailsSuccess,
 	getSportsSuccess,
 	getCategoriesSuccess,
+	newMessageSuccess,
 	searchSuccess,
 } from '../store/action';
 
@@ -327,6 +328,39 @@ const auth = (store) => (next) => (action) => {
 				}).catch((error) => {
 					console.log('Oups ! ', error);
 				})
+			break;
+		};
+
+		case 'NEW_MESSAGE': {
+			const { auth: { id, token } } = store.getState();
+			const { trips: { messageValue, currentTrip } } = store.getState();
+
+			const config = {
+				method: 'post',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}/comment`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				},
+				data: {
+					title: 'Nouveau message',
+					content: messageValue,
+					user_id: id,
+					trip_id: currentTrip.trip_id,
+				},
+			};
+
+			axios(config)
+				.then(res => {
+					if (res.status !== 200) {
+						throw res.error;
+					} else {
+						console.log(res.data.message);
+						store.dispatch(newMessageSuccess(res.data.data));
+					}
+				}).catch(error => {
+					console.log('Oups ! ', error);
+				});
 			break;
 		}
 

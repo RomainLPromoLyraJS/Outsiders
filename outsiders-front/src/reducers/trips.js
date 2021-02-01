@@ -4,6 +4,7 @@ import {
   GET_TRIP_DETAILS_SUCCESS,
   CHANGE_TRIP_FIELD,
   CHANGE_MESSAGE_FIELD,
+  NEW_MESSAGE_SUCCESS,
 } from '../store/action';
 
 const initialState = {
@@ -78,7 +79,17 @@ const reducer = (oldState = initialState, action = {}) => {
         ...oldState,
         isLoaded: false,
       };
-
+    
+    case NEW_MESSAGE_SUCCESS:
+      return {
+        ...oldState,
+        messageValue: '',
+        currentTrip: {
+          ...oldState.currentTrip,
+          message: action.messages,
+        }
+      };
+    
     default:
       return {
       ...oldState,
