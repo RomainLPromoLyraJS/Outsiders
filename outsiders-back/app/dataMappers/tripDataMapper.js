@@ -10,7 +10,7 @@ module.exports = {
     },
 
     async tripRegistered(userId) {
-        const result = await client.query('select * from trip Join m2m_user_participate_trip m on m.trip_id=trip.id where m.user_id=$1', [userId]);
+        const result = await client.query('select * from m2m_user_participate_trip m Join trip on m.trip_id=trip.id where m.user_id=$1', [userId]);
         if (result.rowCount == 0) {
             return null
         }
@@ -163,8 +163,8 @@ module.exports = {
         return result.rows;
     },
 
-    async postNewCommentOnThisTrip(commentToCreate) {
-        const result = await client.query('INSERT INTO "message"("title", "content", "user_id", "trip_id") VALUES ($1, $2, $3, $4) RETURNING *', [commentToCreate.title, commentToCreate.content, commentToCreate.user_id, commentToCreate.trip_id]);
+    async postNewCommentOnThisTrip(commentToCreate, userId) {
+        const result = await client.query('INSERT INTO "message"("title", "content", "user_id", "trip_id") VALUES ($1, $2, $3, $4) RETURNING *', [commentToCreate.title, commentToCreate.content, userId, commentToCreate.trip_id]);
         if (result.rowCount == 0) {
             return null
         }
