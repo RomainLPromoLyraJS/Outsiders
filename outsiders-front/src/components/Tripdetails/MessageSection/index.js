@@ -6,8 +6,9 @@ import { IoIosCloseCircle } from "react-icons/io";
 
 // == Local Import
 import Message from './Message';
+import useAutoScroll from '../../../hooks/useAutoScroll';
 
-const MessageSection = ({ handleChange, handleNewMessage, messages, messageValue, username }) => {
+const MessageSection = ({ handleChange, handleNewMessage, isParticipant, messages, messageValue, username }) => {
   // toggle message window
   const [ displayMessages, setDisplayMessages] = useState(false);
   const messengerStyle = displayMessages
@@ -26,9 +27,18 @@ const MessageSection = ({ handleChange, handleNewMessage, messages, messageValue
     handleNewMessage();
   }
 
+  const bottom = useAutoScroll([messages]);
+
   return (
     <section className="messageSection">
-      <button onClick={toggleMessages} className="messageSection__toggle">Messagerie de la sortie</button>
+
+      {/* case user is participant */}
+      {isParticipant && (
+        <>
+          <button onClick={toggleMessages} className="messageSection__toggle">Messagerie de la sortie</button>
+        </>
+      )}
+      
       <div className={messengerStyle}>
         <div className="messageSection__messenger__container">
           <div className="messageSection__messenger__container__header">
@@ -39,6 +49,7 @@ const MessageSection = ({ handleChange, handleNewMessage, messages, messageValue
             {messages.map((msg) => {
               return <Message key={msg.id} msg={msg} username={username} />
             })}
+            <div className="messageSection__messenger__container__viewer__void" ref={bottom} />
           </div>
           <form onSubmit={onSubmitForm} className="messageSection__messenger__container__form">
             <textarea

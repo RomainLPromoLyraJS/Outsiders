@@ -12,9 +12,9 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   // prevent null array
   const nullToArray = (tab) => {
     if (tab == null) {
-      return 0;
+      return [];
     } else {
-      return tab.length;
+      return tab;
     }
   }
 
@@ -28,6 +28,15 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
 
   const priceCalculator = (nbPax) => {
     return trip.price / (nbPax + 1);
+  };
+
+  // compare user with participants
+  const isParticipant = (participants, username) => {
+    const user = participants.find(p => p.username === username);
+    if (!!user) {
+      return true;
+    }
+    return false;
   };
   
   return (
@@ -66,12 +75,12 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
               <div className="tripInfo__container__details">
                 <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
                 <div className="tripInfo__container__details__places">Nombre de places : <span>{trip.places}</span></div>
-                <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants))}</span></div>
+                <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants).length)}</span></div>
                 <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
                 <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
                 <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
-                <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants)).toFixed(2)}€</span></div>
-                <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants)).toFixed(2)}€</span></div>
+                <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
+                <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
               </div>
             </div>
           </section>
@@ -81,10 +90,16 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
             handleJoin={handleJoin}
             handleLeave={handleLeave}
             userId={userId}
-            username={username}
-            participants={trip.participants}
+            isParticipant={isParticipant(trip.participants, username)}
           />
-          <MessageSection handleChange={handleChange} handleNewMessage={handleNewMessage} messageValue={messageValue} messages={trip.message} username={username} />
+          <MessageSection
+            handleChange={handleChange}
+            handleNewMessage={handleNewMessage}
+            messageValue={messageValue}
+            messages={nullToArray(trip.message)}
+            username={username}
+            isParticipant={isParticipant(trip.participants, username)}
+          />
         </div>
       )}
     </main>

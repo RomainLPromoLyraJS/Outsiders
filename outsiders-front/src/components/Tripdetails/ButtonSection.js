@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const ButtonSection = ({ creatorId, handleDelete, handleJoin, handleLeave, participants, userId, username }) => {
+const ButtonSection = ({ creatorId, handleDelete, handleJoin, handleLeave, isParticipant, userId }) => {
   // toggle delete modal
   const [ displayModal, setDisplayModal ] = useState(false);
   const modalCSS = displayModal
@@ -12,15 +12,6 @@ const ButtonSection = ({ creatorId, handleDelete, handleJoin, handleLeave, parti
   // compare user with trip creator
   const isTripCreator = (idA, idB) => {
     if (idA === idB) {
-      return true;
-    }
-    return false;
-  };
-
-  // compoare user with participants
-  const isParticipant = (participants, username) => {
-    const user = participants.find(p => p.username === username);
-    if (!!user) {
       return true;
     }
     return false;
@@ -53,14 +44,14 @@ const ButtonSection = ({ creatorId, handleDelete, handleJoin, handleLeave, parti
       )}
 
       {/* case user is not participant */}
-      {!isParticipant(participants, username) && !isTripCreator(userId, creatorId) && (
+      {!isParticipant && !isTripCreator(userId, creatorId) && (
         <>
         <button onClick={joinTrip} className="buttonSection__btn">Rejoindre la sortie</button>
         </>
       )}
 
       {/* case user is participant */}
-      {isParticipant(participants, username) && !isTripCreator(userId, creatorId) && (
+      {isParticipant && !isTripCreator(userId, creatorId) && (
         <>
         <button onClick={leaveTrip} className="buttonSection__btn">Je ne suis plus disponible</button>
         </>
