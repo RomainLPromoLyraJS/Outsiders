@@ -1,43 +1,52 @@
 // == Package imports
-import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 // == Local imports
-import DashboardNav from './DashboardNav';
-import DashBoardProfiles from './DashboardProfiles';
 import DashBoardSports from '../../containers/DashboardSports';
-import DashboardTrips from '../BackOffice/DashboardTrips';
 import DashboardProfiles from '../../containers/DashboardProfiles';
 
 
-const BackOffice = () => {
+const BackOffice = ({ firstname, lastname, role }) => {
+  // open sport or profile form
+  const [ openForm, setOpenForm ] = useState('profile');
+  
+  const openSport = () => {
+    setOpenForm('sport');
+  };
+
+  const openProfiles = () => {
+    setOpenForm('profile');
+  };
+
+  return (
+    <div className="backOffice">
+
+      {/* case user is not admin */}
+      {role !== 2 && (
+        <Redirect to="/" />
+      )}
+
+      <h1 className="backOffice__title">Tableau de bord</h1>
+      <div className="backOffice__headContainer">
+        <p className="backOffice__headContainer__username">{firstname} {lastname}</p>
+        <nav className="backOffice__headContainer__nav">
+          <button className="backOffice__headContainer__nav__btn" onClick={openSport}>Sport</button>
+          <button className="backOffice__headContainer__nav__btn" onClick={openProfiles}>Profils</button>
+        </nav>
+      </div>
 
 
-return (
-  <>
-  <div className="back-office">
-    <DashboardNav />
-    <DashBoardSports />
-    <DashboardProfiles />
-    <Route exact path='/dashboard/profiles' >
-        <DashBoardProfiles />
-      </Route>
-      <Route exact path='/dashboard/sports' >
+      {openForm === 'sport' && (
         <DashBoardSports />
-      </Route>
-  </div>
-  
-  
+      )}
 
-  </>
-  
-)
+      {openForm === 'profile' && (
+        <DashboardProfiles />
+      )}
+    </div>
+  )
 };
-
-
-      // <Route exact path='/dashboard/trips' >
-      //   <DashboardTrips />
-      // </Route>
 
 export default BackOffice;
 

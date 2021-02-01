@@ -66,15 +66,13 @@ const auth = (store) => (next) => (action) => {
 					'Authorization': `Bearer ${token}`
 			},
 		};
-			console.log('je suis config',config);
+			
 			axios(config)
 				.then((response) => {
-					console.log('first then', response);
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
 						store.dispatch(getUsersSuccess(response.data.data));
-						 console.log('then else', response.data.data);
 					}
 				}).catch((error) => {
 					console.log('Oups !', error);

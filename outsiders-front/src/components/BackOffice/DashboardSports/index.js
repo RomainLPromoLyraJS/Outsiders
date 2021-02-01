@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 // == Local imports
-import DashboardNav from "../DashboardNav";
 import Modal from "./Modal";
 
 const DashboardSports = ({
@@ -86,8 +85,7 @@ const DashboardSports = ({
         <div className="dashboard-sports">
           <form className="dashboard-sports__form" onSubmit={onSubmitCreate}>
             <h3 className="dashboard-sports__form__title">Créer un sport</h3>
-            <label forhtml="category-name">Choisir une catégorie :</label>
-            <br />
+            <label className="dashboard-sports__form__label" forhtml="category-name">Choisir une catégorie :</label>
             <select
               onChange={onChange} //--> each time you type a data in the input, the state changes
               name="category_id"
@@ -102,8 +100,7 @@ const DashboardSports = ({
                 );
               })}
             </select>
-            <br />
-            <label forhtml="sport-name">Nom du sport :</label>
+            <label className="dashboard-sports__form__label" forhtml="sport-name">Nom du sport :</label>
             <input
               name="sportNameCreate" //--> must be equal to the key of my state that I want to modify
               type="text"
@@ -111,15 +108,13 @@ const DashboardSports = ({
               onChange={onChange}
               value={sportNameCreateValue}
             ></input>
-            <br />
-            <label forhtml="sport-description">Description du sport :</label>
+            <label className="dashboard-sports__form__label" forhtml="sport-description">Description du sport :</label>
             <textarea
               className="dashboard-sports__form__textarea"
               onChange={onChange}
               name="sportDescriptionCreate"
               value={sportDescriptionCreateValue}
             ></textarea>
-            <br />
             <button
               onClick={toggleCreate}
               type="submit"
@@ -141,10 +136,9 @@ const DashboardSports = ({
           </form>
           <form className="dashboard-sports__form" onSubmit={onSubmitModify}>
             <h3 className="dashboard-sports__form__title">Modifier un sport</h3>
-            <label forhtml="modify-sport">
+            <label className="dashboard-sports__form__label" forhtml="modify-sport">
               Sélectionner le sport à modifier dans la liste :
             </label>
-            <br />
             <select
               onChange={onChange}
               name="id"
@@ -159,9 +153,7 @@ const DashboardSports = ({
                 );
               })}
             </select>
-            <br />
-            <label forhtml="category-name">Choisir une catégorie :</label>
-            <br />
+            <label className="dashboard-sports__form__label" forhtml="category-name">Choisir une catégorie :</label>
             <select
               onChange={onChange}
               name="category_id"
@@ -176,8 +168,7 @@ const DashboardSports = ({
                 );
               })}
             </select>
-            <br />
-            <label forhtml="modify-sport">Modifier le nom du sport :</label>
+            <label className="dashboard-sports__form__label" forhtml="modify-sport">Modifier le nom du sport :</label>
             <input
               type="text"
               className="dashboard-sports__form__input"
@@ -185,7 +176,7 @@ const DashboardSports = ({
               onChange={onChange}
               value={sportNameModifyValue}
             ></input>
-            <label forhtml="modify-description">
+            <label className="dashboard-sports__form__label" forhtml="modify-description">
               Modifier la description :
             </label>
             <textarea
@@ -214,10 +205,9 @@ const DashboardSports = ({
             <h3 className="dashboard-sports__form__title">
               Supprimer un sport
             </h3>
-            <label forhtml="delete-sport">
+            <label className="dashboard-sports__form__label" forhtml="delete-sport">
               Sélectionner le sport à supprimer dans la liste :
             </label>
-            <br />
             <select
               onChange={onChange}
               name="id"
@@ -232,7 +222,6 @@ const DashboardSports = ({
                 );
               })}
             </select>
-            <br />
             <button
               onClick={toggleDelete}
               type="submit"

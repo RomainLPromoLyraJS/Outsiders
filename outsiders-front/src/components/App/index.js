@@ -15,7 +15,7 @@ import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
 import Login from '../../containers/Login';
 import Profile from '../../containers/Profile';
-import BackOffice from '../BackOffice';
+import BackOffice from '../../containers/BackOffice';
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';

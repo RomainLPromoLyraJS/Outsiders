@@ -1,0 +1,45 @@
+.backOffice {
+	min-height: calc(100vh - 132px); // height of the screen less (header + footer)
+	width: 90%;
+	max-width: 1280px; // max-width generally used for all desktops
+	margin: 0 auto;
+	padding: 2rem 0;
+
+  &__title {
+    font-size: 3rem;
+    color: $color-tertiary;
+	}
+	
+	&__headContainer {
+		background-color: $color-secondary;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem 2rem;
+		border-radius: 30px;
+		
+		&__username {
+			color: $color;
+			font-size: 1.5rem;
+			font-weight: 700;
+		}
+	
+		&__nav {
+			&__btn {
+				background-color: $color;
+				color: $color-secondary;
+				font-weight: 700;
+				border: none;
+				padding: .5rem;
+				border-radius: 10px;
+				margin-left: 1rem;
+				transition: .3s ease-in-out;
+
+				&:hover {
+					background-color: $color-tertiary;
+					color: $color;
+				}
+			}
+		}
+	}
+}

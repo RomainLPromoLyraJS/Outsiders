@@ -14,7 +14,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 
   loadUsersData: () => {
-    console.log('je suis dans le mapDispatchToProps');
     dispatch({ type: "GET_USERS" });
   },
 

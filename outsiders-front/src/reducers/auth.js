@@ -24,7 +24,12 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         email: action.email,
-        password: action.password,
+        id: action.id,
+        firstname: action.firstname,
+        lastname: action.lastname,
+        username: action.username,
+        description: action.description,
+        password: '',
         isLogged: true,
         token: action.token,
         role_id: action.role_id,

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 // == Local imports
-import DashboardNav from "../DashboardNav";
 import Modal from "../DashboardSports/Modal";
 
 const DashboardProfiles = ({ loadUsersData, userList, handleDelete, handleChange }) => { 
@@ -34,40 +33,33 @@ const DashboardProfiles = ({ loadUsersData, userList, handleDelete, handleChange
   }
 
    return ( 
-
-    <div className="dashboard">
-      <DashboardNav />
-      <div className="dashboard-profiles">
-        <form onSubmit={onSubmitDelete}>
-          <div className="dashboard-profiles__form">
-            <h3>Supprimer un profil</h3>
-            <label htmlFor="delete-profile">
-              Sélectionner le profil à supprimer dans la liste :
-            </label>
-            <select onChange={onChange} name="id" className="dashboard-profiles__form__select">
-              <option value="">Profils</option>
-              {userList.map((user) => {
-                return (
-                   <option key={user.id} value={user.id}>{user.username}</option>
-                 );
-              })}
-               </select>
-            <button onClick={toggleDelete} type="submit" className="dashboard-profiles__form__button">
-              Valider
-            </button>
-            {deleteUserVisible && (
-              <Modal
-              title="L'utilisateur"
-                action="supprimé"
-                visible={deleteUserVisible}
-                hidden={toggleDelete}
-              />
-            )}
-          </div>
-        </form>
-      </div>
+    <div className="dashboard-profiles">
+      <form className="dashboard-profiles__form" onSubmit={onSubmitDelete}>
+          <h3 className="dashboard-profiles__form__title">Supprimer un profil</h3>
+          <label className="dashboard-profiles__form__label" htmlFor="delete-profile">
+            Sélectionner le profil à supprimer dans la liste :
+          </label>
+          <select onChange={onChange} name="id" className="dashboard-profiles__form__select">
+            <option value="">Profils</option>
+            {userList.map((user) => {
+              return (
+                  <option key={user.id} value={user.id}>{user.username}</option>
+                );
+            })}
+              </select>
+          <button onClick={toggleDelete} type="submit" className="dashboard-profiles__form__button">
+            Valider
+          </button>
+          {deleteUserVisible && (
+            <Modal
+            title="L'utilisateur"
+              action="supprimé"
+              visible={deleteUserVisible}
+              hidden={toggleDelete}
+            />
+          )}
+      </form>
     </div>
-
    )
 };
 
