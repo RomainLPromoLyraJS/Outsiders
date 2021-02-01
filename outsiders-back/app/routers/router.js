@@ -32,7 +32,6 @@ router.post('/user/:id(\\d+)/reviews', authMiddleware, userController.createRevi
 router.post('/trip', authMiddleware, tripController.postNewTrip);
 router.get('/trip/:id(\\d+)', authMiddleware, tripController.getOneTrip);
 router.get('/trip/:id(\\d+)/comment', authMiddleware, tripController.getAllCommentsOnThisTrip);
-router.post('/trip/:id(\\d+)/comment', authMiddleware, tripController.postNewCommentOnThisTrip);
 
 //routes accessibles uniquement en tant que l'id du user connecté
 router.patch('/user/:id(\\d+)', authMiddleware, userController.updateUser);
@@ -41,6 +40,7 @@ router.post('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripContro
 router.delete('/trip/:tripId(\\d+)/user/:userId(\\d+)', authMiddleware, tripController.dissociateUserParticipateTrip);
 router.patch('/trip/:id(\\d+)', authMiddleware, tripController.updateOneTrip);
 router.delete('/trip/:id(\\d+)', authMiddleware, tripController.deleteOneTrip);
+router.post('/trip/:id(\\d+)/comment', authMiddleware, tripController.postNewCommentOnThisTrip);
 
 //routes à accès admin
 router.get('/user', authMiddleware, adminMW, userController.allUsers);

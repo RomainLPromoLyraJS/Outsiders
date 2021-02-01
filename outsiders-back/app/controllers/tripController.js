@@ -200,11 +200,40 @@ module.exports = {
 
     async postNewCommentOnThisTrip(req, res, next) {
         try {
+            let userId = null;
+            const tripId = req.body.trip_id;
+
+            //avant de supprimer un user d'une sortie, vérif du role du user :
+            //si c'est un administrateur, il peut poster un message sur n'importe quelle sortie
+            //si ce n'est pas un administrateur, il ne peut poster un message que sur une sortie où il est inscrit
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == req.body.user_id)) {
+                userId = req.body.user_id;
+            } else {
+                res.status('403').json({message : 'Accès interdit : il est impossible de poster un message au nom d\'un autre membre'});
+                next(error);
+            };
+
+            const checkParticipate = await tripDataMapper.checkAssociation(userId, tripId);
+            console.log(checkParticipate);
+            if (!checkParticipate) {
+                res.status('403').json({message : 'Accès interdit : il est impossible de poster un message sur une sortie sans y participer'});
+                next(error);
+            };
+
             const commentToCreate = req.body;
-            const commentCreated = await tripDataMapper.postNewCommentOnThisTrip(commentToCreate);
+            const commentCreated = await tripDataMapper.postNewCommentOnThisTrip(commentToCreate, userId);
+          
+     
+            const allComments = await tripDataMapper.allComments(tripId);
+         
             res.json({
                 message: 'new comment on this trip posted',
-                data: commentCreated
+                data: allComments
             });
         } catch(error) {
             next(error);
