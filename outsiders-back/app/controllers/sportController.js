@@ -1,5 +1,6 @@
 const sportDataMapper = require('../dataMappers/sportDataMapper');
 
+
 module.exports = {
     async getAllSports(req, res, next) {
         try {

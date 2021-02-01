@@ -1,5 +1,5 @@
-const { searchTrips } = require('../dataMappers/tripDataMapper');
 const tripDataMapper = require('../dataMappers/tripDataMapper');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     async getAllTrips(req, res, next) {
@@ -17,9 +17,13 @@ module.exports = {
         try {
             const tripToCreate = req.body;
             const tripCreated = await tripDataMapper.postNewTrip(tripToCreate);
+            const tripId = tripCreated.id;
+            const userId = tripCreated.user_id;
+            const m2m = await tripDataMapper.postNewTrip2(tripId, userId);
             res.json({
                 message: 'new trip created',
-                data: tripCreated
+                data: tripCreated,
+                association: m2m
             });
         } catch(error) {
             next(error);
@@ -30,6 +34,7 @@ module.exports = {
         try {
             const trips = req.body;
             const searchTrips = await tripDataMapper.searchTrips(trips);
+            
             res.json({
                 message: 'list of trips',
                 data: searchTrips
@@ -42,7 +47,11 @@ module.exports = {
     async getOneTrip(req, res, next) {
         try {
             const tripId = req.params.id;
-            const oneTrip = await tripDataMapper.getOneTrip(tripId);
+            const oneTrip1 = await tripDataMapper.getOneTrip1(tripId);
+            const oneTrip2 = await tripDataMapper.getOneTrip2(tripId);
+            const oneTrip3 = await tripDataMapper.getOneTrip3(tripId);
+            const oneTrip = (oneTrip1.concat(oneTrip2)).concat(oneTrip3);
+
             res.json({
                 data: oneTrip
             });
@@ -54,13 +63,29 @@ module.exports = {
     async updateOneTrip(req, res, next) {
         try {
             const tripId = req.params.id;
-            const tripToUpdate = req.body;
+            //demander l'id du créateur du trip à modifier 
+            const creator = await tripDataMapper.getCreatorTrip(tripId);
+            const creatorId = creator.user_id;
 
-            const tripUpdated = await tripDataMapper.updateOneTrip(tripId, tripToUpdate);
-            res.json({
-                message: 'trip updated',
-                data: tripUpdated
-            });
+            //avant d'updater un trip, vérif du role du user :
+            //si c'est un administrateur, il peut modifier n'importe quel trip
+            //si ce n'est pas un administrateur, il ne peut modifier qu'un trip qu'il a créé
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == creatorId)) {
+                const tripToUpdate = req.body;
+                const tripUpdated = await tripDataMapper.updateOneTrip(tripId, tripToUpdate);
+                res.json({
+                    message: 'sortie mise à jour',
+                    data: tripUpdated
+                });
+            } else {
+                res.status('403').json({message : 'Accès interdit : tu n\'es pas l\'organisateur de la sortie'});
+                next(error);
+            };
         } catch(error) {
             next(error);
         }
@@ -68,14 +93,36 @@ module.exports = {
 
     async associateUserParticipateTrip(req, res, next) {
         try {
-            const userId = req.params.userId;
+            let userId = null;
             const tripId = req.params.tripId;
 
-            const associated = tripDataMapper.associateUserParticipateTrip(userId, tripId);
+            //avant d'updater un user, vérif du role du user :
+            //si c'est un administrateur, il peut modifier n'importe quel user
+            //si ce n'est pas un administrateur, il ne peut modifier que son profil
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == req.params.userId)) {
+                userId = req.params.userId;
+            } else {
+                res.status('403').json({message : 'Accès interdit : il est impossible d\'inscrire un autre membre'});
+                next(error);
+            };
+
+            const check = await tripDataMapper.checkAssociation(userId, tripId);
+            if (check === null) {
+                const associated = await tripDataMapper.associateUserParticipateTrip(userId, tripId);
             res.json({
-                message: 'user and trip associated in participate',
+                message: `Inscription à la sortie enregistrée`,
                 data: associated
             })
+            } else {
+                res.json({
+                    message: 'Membre déjà inscrit à cette sortie'
+                })
+            }
         } catch(error) {
             next(error);
         }
@@ -83,12 +130,27 @@ module.exports = {
 
     async deleteOneTrip(req, res, next) {
         try {
-            const idTripToDelete = req.params.id;
-            const tripDeleted = await tripDataMapper.deleteOneTrip(idTripToDelete);
-            res.json({
-                message: 'trip deleted',
-                data: tripDeleted
-            });
+            const tripId = req.params.id;
+            //demander l'id du créateur du trip à modifier 
+            const creator = await tripDataMapper.getCreatorTrip(tripId);
+            const creatorId = creator.user_id;
+            //avant d'updater un trip, vérif du role du user :
+            //si c'est un administrateur, il peut modifier n'importe quel trip
+            //si ce n'est pas un administrateur, il ne peut modifier qu'un trip qu'il a créé
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == creatorId)) {
+                const tripDeleted = await tripDataMapper.deleteOneTrip(tripId);
+                res.json({
+                    message: 'sortie supprimée',
+                    data: tripDeleted
+                })
+            } else {
+                res.status('403').json({message : 'Suppression interdite : tu n\'es pas l\'organisateur de la sortie'});
+                next(error);
+            };
         } catch(error) {
             next(error);
         }
@@ -96,11 +158,27 @@ module.exports = {
 
     async dissociateUserParticipateTrip(req, res, next) {
         try {
-            const userId = req.params.id;
-            const tripId = req.params.id;
+            let userId = null;
+            const tripId = req.params.tripId;
+
+            //avant de supprimer un user d'une sortie, vérif du role du user :
+            //si c'est un administrateur, il peut desinscrire n'importe quel user d'une sortie
+            //si ce n'est pas un administrateur, il ne peut desinscrire que lui-même d'une sortie
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == req.params.userId)) {
+                userId = req.params.userId;
+            } else {
+                res.status('403').json({message : 'Accès interdit : il est impossible de desinscrire un autre membre'});
+                next(error);
+            };
+
             const dissociate = await tripDataMapper.dissociateUserParticipateTrip(userId, tripId); 
             res.json({
-                message: "trip and user dissociated from participate",
+                message: "Membre maintenant desinscrits de cette sortie",
                 data: dissociate
             });
         } catch(error) {
@@ -122,16 +200,43 @@ module.exports = {
 
     async postNewCommentOnThisTrip(req, res, next) {
         try {
+            let userId = null;
+            const tripId = req.body.trip_id;
+
+            //avant de supprimer un user d'une sortie, vérif du role du user :
+            //si c'est un administrateur, il peut poster un message sur n'importe quelle sortie
+            //si ce n'est pas un administrateur, il ne peut poster un message que sur une sortie où il est inscrit
+            const token = req.headers.authorization.split(' ');
+            const tokenDecoded = jwt.verify(token[1], process.env.JWTSECRET);
+            const tokenRoleId = tokenDecoded.roleId;
+            const tokenUserId = tokenDecoded.userId;
+
+            if (tokenRoleId === 2 || (tokenRoleId === 1 && tokenUserId == req.body.user_id)) {
+                userId = req.body.user_id;
+            } else {
+                res.status('403').json({message : 'Accès interdit : il est impossible de poster un message au nom d\'un autre membre'});
+                next(error);
+            };
+
+            const checkParticipate = await tripDataMapper.checkAssociation(userId, tripId);
+            console.log(checkParticipate);
+            if (!checkParticipate) {
+                res.status('403').json({message : 'Accès interdit : il est impossible de poster un message sur une sortie sans y participer'});
+                next(error);
+            };
+
             const commentToCreate = req.body;
-            const commentCreated = await tripDataMapper.postNewCommentOnThisTrip(commentToCreate);
+            const commentCreated = await tripDataMapper.postNewCommentOnThisTrip(commentToCreate, userId);
+          
+     
+            const allComments = await tripDataMapper.allComments(tripId);
+         
             res.json({
                 message: 'new comment on this trip posted',
-                data: commentCreated
+                data: allComments
             });
         } catch(error) {
             next(error);
         }
     }
-       
-
 };

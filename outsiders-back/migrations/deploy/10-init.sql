@@ -123,20 +123,20 @@ INSERT INTO "sport"("title", "description", "category_id") VALUES
 ('Snowboard', 'Le snowboard, surf des neiges, planche à neige au Canada ou plus rarement planche de neige, est un sport de glisse sur neige.', '4' );
 
 INSERT INTO "trip"("title", "description", "date", "time", "from", "to", "places", "minimum", "price", "duration", "sport_id", "user_id") VALUES
-('Mountain Trail', 'BestTrailEver', '20/01/21', '09:00', 'Lyon', 'Grenoble', '4', '2', '15','0.5','19', '1'),
-('Surf Lacanau', 'BestSpotEver', '20/01/21', '05:00', 'Lyon', 'Lacanau', '8', '2', '20','1', '9', '2'),
-('Chill With My Paddle', 'Need test my new paddle', '20/01/21', '09:00', 'Lyon', 'Grenoble','4', '2', '15','0.5','5', '3'),
-('Wind + board = fun', 'NiceTitleMyFriend', '20/01/21', '09:00', 'Lyon', 'Grenoble','4', '2', '15','0.5','11', '4'),
-('HydroBoost', 'Be a good Fish', '20/01/21', '09:00', 'Lyon', 'Grenoble','4', '2', '15','0.5','3', '5'),
-('HappySnowing', 'RIDING MY BEST SPOT', '20/01/21', '09:00', 'Lyon', 'Grenoble','6', '2', '15','0.5','23', '6');
+('Mountain Trail', 'BestTrailEver', '2021/01/30', '09:00', 'Lyon', 'Grenoble', '4', '2', '15','0.5','19', '1'),
+('Surf Lacanau', 'BestSpotEver', '2021/01/29', '05:00', 'Lyon', 'Lacanau', '8', '2', '20','1', '9', '2'),
+('Chill With My Paddle', 'Need test my new paddle', '2021/01/31', '09:00', 'Lyon', 'Grenoble','4', '2', '15','0.5','5', '3'),
+('Wind + board = fun', 'NiceTitleMyFriend', '2021/01/28', '09:00', 'Lyon', 'Grenoble','4', '2', '15','0.5','11', '4'),
+('HydroBoost', 'Be a good Fish', '2021/01/27', '09:00', 'Lyon', 'Grenoble','4', '2', '15','0.5','3', '5'),
+('HappySnowing', 'RIDING MY BEST SPOT', '2021/01/25', '09:00', 'Lyon', 'Grenoble','6', '2', '15','0.5','23', '6');
 
 INSERT INTO "message"("title", "date", "content", "user_id", "trip_id") VALUES 
-('Super journée de trail qui s’annonce !', '20/01/21', 'Hello, je participe à la sortie, ca va être cool cette journée de Trail', '2', '1'),
-('Super journée de snow qui s’annonce !', '20/01/21', 'Hello, je participe à la sortie, ca va être cool cette journée de Snow', '2', '6'),
-('Super journée de surf qui s’annonce !', '20/01/21', 'Hello, je participe à la sortie, ca va être cool cette journée de surf ! Sinon...c’est pas un peu cher 15 balles pour s’allonger sur une planche en bois dans une eau à 5 degrés ?', '1', '2'),
-('Re:Super journée surf qui s’annonçait...', '21/01/21', 'Ca sera toujours mieux que de passer la journée dans ton 9m2 sans double vitrage', '2', '2'),
-('Bonne ambiance !', '20/01/21', 'ca fait 30 min que j’attends sur le parking et toujours pas de Jane...', '1', '2'),
-('Super journée de hydro-boost qui s’annonce !', '20/01/21', 'Hello, je participe à la sortie, ca va être cool cette journée de hydro-boost', '3', '5');
+('Super journée de trail qui s’annonce !', '2021/02/01', 'Hello, je participe à la sortie, ca va être cool cette journée de Trail', '2', '1'),
+('Super journée de snow qui s’annonce !', '2021/02/02', 'Hello, je participe à la sortie, ca va être cool cette journée de Snow', '2', '6'),
+('Super journée de surf qui s’annonce !', '2021/02/03', 'Hello, je participe à la sortie, ca va être cool cette journée de surf ! Sinon...c’est pas un peu cher 15 balles pour s’allonger sur une planche en bois dans une eau à 5 degrés ?', '1', '2'),
+('Re:Super journée surf qui s’annonçait...', '2021/02/04', 'Ca sera toujours mieux que de passer la journée dans ton 9m2 sans double vitrage', '2', '2'),
+('Bonne ambiance !', '2021/01/05', 'ca fait 30 min que j’attends sur le parking et toujours pas de Jane...', '1', '2'),
+('Super journée de hydro-boost qui s’annonce !', '2021/02/06', 'Hello, je participe à la sortie, ca va être cool cette journée de hydro-boost', '3', '5');
 
 INSERT INTO "m2m_user_participate_trip"("user_id", "trip_id") VALUES
 ('1', '1'),
