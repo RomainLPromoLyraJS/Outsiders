@@ -16,17 +16,14 @@ export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 // trip types
 export const CHANGE_TRIP_FIELD = 'CHANGE_TRIP_FIELD';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
-<<<<<<< HEAD
 export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
-=======
 export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 
 // message types
 export const CHANGE_MESSAGE_FIELD = 'CHANGE_MESSAGE_FIELD';
 export const NEW_MESSAGE_SUCCESS = 'NEW_MESSAGE_SUCCESS';
 
->>>>>>> 2ac21b56b4996a67254b19881004e47813071d39
 
 // == Actions
 // auth actions
