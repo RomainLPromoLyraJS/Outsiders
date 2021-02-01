@@ -16,7 +16,6 @@ export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 // trip types
 export const CHANGE_TRIP_FIELD = 'CHANGE_TRIP_FIELD';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
-export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
 export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 
@@ -81,11 +80,6 @@ export const changeTripField = (value, name) => ({
 export const getTripsSuccess = (tripList) => ({
   type: GET_TRIPS_SUCCESS,
   tripList,
-});
-
-export const changeSportField = (title) => ({
-  type: GET_SPORT_TITLE,
-  title,
 });
 
 export const loadWeatherSuccess = (weather) => ({
