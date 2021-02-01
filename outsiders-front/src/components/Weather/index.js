@@ -1,26 +1,18 @@
 // == Package imports
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // == Local imports
 
 
 
-const Weather = ({ loadWeather, weather }) => {
-  
-  // call API
-  useEffect(() => {
-    loadWeather();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  
-// Lyon is default city (see exapi reducers)
+const Weather = ({ weather }) => {
   return (
     
     <div className='weather_comp'>
       {/* Weather return data for 5Day/3 hour Forecast */}
       {/* @LINK https://openweathermap.org/forecast5 */}
       {/* With Console log you can see all data from 'weather' */}
-      {console.log(weather)}
+      {/* {console.log(weather)} */}
       {/*  @PARAMS weather.list[@NUMBER] each number is equal to 3 hours.
       [0] is equal to At the moment.
       [8] is equal to + 24hours (3*8 = 24) */}

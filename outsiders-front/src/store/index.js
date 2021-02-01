@@ -8,7 +8,6 @@ import rootReducer from '../reducers';
 // MW
 import authMiddleware from '../middlewares/auth';
 import apiMiddleWare from '../middlewares/api';
-import exapiMiddleWare from '../middlewares/exapi';
 
 // store creation
 const store = createStore(
@@ -16,7 +15,6 @@ const store = createStore(
   composeWithDevTools(
     applyMiddleware(authMiddleware),
     applyMiddleware(apiMiddleWare),
-    applyMiddleware(exapiMiddleWare),
   ),
 );
 

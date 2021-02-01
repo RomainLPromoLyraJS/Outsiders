@@ -4,7 +4,6 @@ import { GET_WEATHER_SUCCESS } from '../store/action';
 
 const initialState = {
 
-  from: 'Lyon',
   weatherData: [],
 
 };

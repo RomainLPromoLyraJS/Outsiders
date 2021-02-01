@@ -5,6 +5,7 @@ import {
   CHANGE_TRIP_FIELD,
   CHANGE_MESSAGE_FIELD,
   NEW_MESSAGE_SUCCESS,
+  GET_WEATHER_SUCCESS,
 } from '../store/action';
 
 const initialState = {
@@ -58,7 +59,6 @@ const reducer = (oldState = initialState, action = {}) => {
     case GET_TRIP_DETAILS_SUCCESS:
       return {
         ...oldState,
-        isLoaded: true,
         currentTrip: action.trip,
       };
 
@@ -89,6 +89,12 @@ const reducer = (oldState = initialState, action = {}) => {
           message: action.messages,
         }
       };
+    
+    case GET_WEATHER_SUCCESS:
+      return {
+        ...oldState,
+        isLoaded:true,
+      }
     
     default:
       return {
