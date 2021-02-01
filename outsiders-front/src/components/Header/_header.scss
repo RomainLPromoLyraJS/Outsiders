@@ -1,0 +1,52 @@
+.header {
+  z-index: 6;
+  width: 100%;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  background-color: $color;
+  @include media('>=tablet') {
+    height: 72px;
+  }
+
+  &__container {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include media('>=tablet') {
+      width: 90%;
+      max-width: 1280px;
+    }
+
+    &__image {
+      width: 170px;
+      @include media('>=tablet') {
+        width: 220px;
+      }
+  
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  
+    &__burger {
+      width: 35px;
+      @include media('>=tablet') {
+        width: 40px;
+      }
+  
+      span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        margin: .3rem 0;
+        background-color: $color-tertiary;
+        border-radius: 30px;
+      }
+    }
+  }
+}

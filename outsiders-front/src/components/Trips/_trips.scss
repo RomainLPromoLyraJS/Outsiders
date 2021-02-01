@@ -1,0 +1,120 @@
+.trips {
+	width: 100%;
+
+	&__container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+}
+
+.trip {
+	color: $color-tertiary;
+	width: 90vw;
+	max-width: 1280px;
+	padding: 1rem;
+	border-bottom: solid 1px $color-tertiary;
+	transition: .3s ease-in-out;
+	@include media('>=tablet') {
+		padding: 2rem;
+	}
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&__main {
+
+			h2 {
+				font-size: 1.3rem;
+				font-family: 'Bowlby One SC', cursive;
+				color: $color-secondary;
+				transition: .3s ease-in-out;
+				@include media('>=tablet') {
+					font-size: 1.5rem;
+				}
+			}
+
+			h3 {
+				font-size: 1.3rem;
+				margin-bottom: .3rem;
+				@include media('>=tablet') {
+					font-size: 1.5rem;
+				}
+			}
+		}
+
+		&__username {
+			text-align: right;
+		}
+	}
+
+	&__travel {
+		width: 90%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 2rem auto;
+		@include media('>=tablet') {
+			width: 60%;
+			margin: 2.5rem auto;
+		}
+
+		&__from {
+			background-color: $color-secondary;
+			color: $color;
+			padding: .4rem;
+			border-radius: 10px;
+			font-weight: 700;
+			font-size: 1.2rem;
+			transition: .3s ease-in-out;
+			@include media('>=tablet') {
+				font-size: 1.5rem;
+			}
+		}
+
+		&__separator {
+			background-color: $color-secondary;
+			width: 100%;
+			height: 3px;
+			transition: .3s ease-in-out;
+		}
+
+		&__to {
+			background-color: $color-secondary;
+			color: $color;
+			padding: .4rem;
+			border-radius: 10px;
+			font-weight: 700;
+			font-size: 1.2rem;
+			transition: .3s ease-in-out;
+			@include media('>=tablet') {
+				font-size: 1.5rem;
+			}
+		}
+	}
+
+	&__details {
+		display: flex;
+		justify-content: space-between;
+		font-weight: 700;
+	}
+
+	&:hover {
+		background-color: $color-secondary;
+		color: $color;
+
+		.trip__header h2 {
+			color: $color;
+		}
+
+		.trip__travel {
+			&__from, &__separator, &__to {
+				background-color: $color-tertiary;
+			}
+		}
+	}
+}

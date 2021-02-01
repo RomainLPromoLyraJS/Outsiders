@@ -1,0 +1,115 @@
+.sports {
+  min-height: calc(100vh - 120px);
+  @include media('>=tablet') {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  
+  &__title {
+    padding: 2rem 0 1rem;
+    margin-left: 5vw;
+    font-size: 3rem;
+    color: $color-tertiary;
+    @include media('>=tablet') {
+      margin: 0;
+      font-size: 6rem;
+    }
+  }
+
+  .category {
+    width: 100%;
+    color: $color;
+
+    &--air {
+      background-color: $color-senary;
+    }
+
+    &--eau {
+      background-color: $color-quinary;
+    }
+
+    &--neige {
+      background-color: $color-septenary;
+      color: $color-tertiary;
+    }
+
+    &--terre {
+      background-color: $color-quaternary;
+    }
+
+    &__header {
+      height: 100px;
+      padding: 0 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      &--air {
+        background-image: url('../../assets/images/air.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &--eau {
+        background-image: url('../../assets/images/eau.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &--neige {
+        background-image: url('../../assets/images/neige.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &--terre {
+        background-image: url('../../assets/images/terre.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      &__title {
+        color: $color;
+        font-size: 3rem;
+      }
+
+      &__arrow {
+        color: $color;
+        font-size: 4rem;
+        transition: all .7s ease-in-out;
+        @include media('>=tablet') {
+          font-size: 5rem;
+        }
+        
+        &--active {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__content {
+      height: 0;
+      overflow: hidden;
+      padding: 0 5vw;
+      transition: all .7s ease-in-out;
+
+      &--active {
+        height: 335px;
+        padding: 5vw;
+        @include media('>=tablet') {
+          height: 440px;
+          padding: 1.5rem 5vw;
+        }
+      }
+
+      p {
+        margin: .5rem 0;
+        @include media('>=tablet') {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

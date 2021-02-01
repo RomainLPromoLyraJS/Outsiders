@@ -1,0 +1,44 @@
+/* --- Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Contrail+One&family=Lato:ital,wght@0,400;0,900;1,400;1,900&display=swap');
+
+/* --- Variables --- */
+@import './vars';
+
+/* -- Breakpoints -- */
+@import './breakpoints';
+
+/* --- components styles --- */
+@import '../components/App/app';
+@import '../components/Header/header';
+@import '../components/Header/Hamburger/hamburger';
+@import '../components/Home/home';
+@import '../components/Sports/sports';
+@import '../components/Sorties/sorties';
+@import '../components/Trips/trips';
+@import '../components/Signup/signup';
+@import '../components/About/about';
+@import '../components/Login/login';
+@import '../components/SearchBar/searchBar';
+@import '../components/Footer/footer';
+@import '../components/Tripdetails/tripdetails';
+@import '../components/Tripdetails/MessageSection/messageSection';
+@import '../components/Admin/admin';
+@import '../components/Profile/profile';
+@import '../components/Newtrip/newtrip';
+@import '../components/Patchtrip/patchtrip';
+@import '../components/EditProfile/editProfile';
+@import '../components/Categories/categories';
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  background-color: $color;
+}
+
+h1 {
+  font-family: 'Bowlby One SC', cursive;
+}
+
+h2, h3, h4, h5 {
+  font-family: 'Contrail One', cursive;
+}
