@@ -1,14 +1,35 @@
+// == Types
+// auth types
 export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const EDIT_USER_SUCCES = 'EDIT_USER_SUCCES';
+
+// search types
 export const CHANGE_SEARCH_FIELD = 'CHANGE_SEARCH_FIELD';
-export const GET_SPORTS_SUCCESS = 'GET_SPORTS_SUCCESS';
-export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+
+// sport and category types
+export const GET_SPORTS_SUCCESS = 'GET_SPORTS_SUCCESS';
+export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
+export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
+
+// trip types
+export const CHANGE_TRIP_FIELD = 'CHANGE_TRIP_FIELD';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
+<<<<<<< HEAD
 export const GET_SPORT_TITLE = 'GET_SPORT_TITLE';
 export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
+=======
+export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 
+// message types
+export const CHANGE_MESSAGE_FIELD = 'CHANGE_MESSAGE_FIELD';
+export const NEW_MESSAGE_SUCCESS = 'NEW_MESSAGE_SUCCESS';
+
+>>>>>>> 2ac21b56b4996a67254b19881004e47813071d39
+
+// == Actions
+// auth actions
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
   value,
@@ -25,15 +46,27 @@ export const editUserSuccess = (user) => ({
   ...user,
 });
 
+// search actions
 export const changeSearchField = (value, name) => ({
   type: CHANGE_SEARCH_FIELD,
   value,
   name,
 });
 
+export const searchSuccess = (tripList) => ({
+  type: SEARCH_SUCCESS,
+  tripList,
+});
+
+// sport and category actions
 export const getSportsSuccess = (list) => ({
   type: GET_SPORTS_SUCCESS,
   list,
+});
+
+export const changeSportField = (title) => ({
+  type: GET_SPORT_TITLE,
+  title,
 });
 
 export const getCategoriesSuccess = (categories) => ({
@@ -41,9 +74,11 @@ export const getCategoriesSuccess = (categories) => ({
   categories,
 });
 
-export const searchSuccess = (tripList) => ({
-  type: SEARCH_SUCCESS,
-  tripList,
+// trip actions
+export const changeTripField = (value, name) => ({
+  type: CHANGE_TRIP_FIELD,
+  value,
+  name,
 });
 
 export const getTripsSuccess = (tripList) => ({
@@ -60,3 +95,25 @@ export const loadWeatherSuccess = (weather) => ({
   type: GET_WEATHER_SUCCESS,
   weather,
 });
+
+export const getTripDetailsSuccess = (details, participant, messages) => ({
+  type: GET_TRIP_DETAILS_SUCCESS,
+  trip: {
+    ...details,
+    ...participant,
+    ...messages,
+  }
+});
+
+// message actions
+export const changeMessageField = (value) => ({
+  type: CHANGE_MESSAGE_FIELD,
+  value,
+});
+
+export const newMessageSuccess = (messages) => ({
+  type: NEW_MESSAGE_SUCCESS,
+  messages,
+});
+
+

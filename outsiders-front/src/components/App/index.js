@@ -9,12 +9,17 @@ import Header from '../../containers/Header';
 import Home from '../Home';
 import About from '../About';
 import Sports from '../../containers/Sports';
+import Sorties from '../Sorties';
 import Categories from '../../containers/Categories';
-import Trips from '../../containers/Trip';
 import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
 import Login from '../../containers/Login';
 import Profile from '../../containers/Profile';
+import Newtrip from '../../containers/Newtrip';
+import Patchtrip from '../../containers/Patchtrip';
+
+
+
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
@@ -30,6 +35,7 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
 
   return (
     <div className="App">
+    {/* GUEST ROUTE */}
       <Header />
 
       {/* General routes */}
@@ -53,10 +59,16 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
 
       {/* Trip routes */}
       <Route exact path='/sorties' >
-        <Trips />
+        <Sorties />
       </Route>
       <Route exact path='/sortie/:slug' >
         <Tripdetails />
+      </Route>
+      <Route exact path='/nouvelle-sortie' >
+        <Newtrip />
+      </Route>
+      <Route exact path='/modifier-sortie' >
+        <Patchtrip />
       </Route>
 
       {/* User routes */}
