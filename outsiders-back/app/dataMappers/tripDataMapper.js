@@ -159,7 +159,7 @@ module.exports = {
     },
 
     async allComments(tripId) {
-        const result = await client.query('SELECT m.id, m.title, m.date, m.content, m.trip_id, u.username FROM "message" m JOIN "user" u ON u.id=m.user_id WHERE "trip_id"=$1', [tripId]);
+        const result = await client.query('SELECT m.id, m.title, m.date, m.content, m.trip_id, u.username FROM "message" m JOIN "user" u ON u.id=m.user_id WHERE "trip_id"=$1 ORDER BY m.id', [tripId]);
         return result.rows;
     },
 
