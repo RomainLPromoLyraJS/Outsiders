@@ -20,6 +20,7 @@ import Patchtrip from '../../containers/Patchtrip';
 
 
 
+import BackOffice from '../../containers/BackOffice';
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
@@ -80,13 +81,18 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/mon-compte/modifer' >
         <EditProfile />
       </Route>
-      
+
       {/* Admin routes */}
-      <Route exact path='/admin' >
+        <Route exact path='/admin' >
         <Admin />
       </Route>
-      
-      <Footer />
+      <Route exact path='/mon-compte' >
+        <Profile />
+      </Route>
+      <Route exact path='/dashboard' >
+        <BackOffice />
+      </Route>
+    <Footer />
     </div>
   );
 }
