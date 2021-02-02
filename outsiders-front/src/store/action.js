@@ -117,8 +117,7 @@ export const createSportSuccess = () => ({
   type: CREATE_SPORT_SUCCESS,
 });
 
-
-export const changeSportField = (title) => ({
+export const trackSport = (title) => ({
   type: GET_SPORT_TITLE,
   title,
 });
