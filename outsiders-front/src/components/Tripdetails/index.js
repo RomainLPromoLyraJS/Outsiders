@@ -2,13 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
-import { Redirect } from 'react-router-dom';
 
 // == Local Import
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
+import Weather from './Weather';
 
-const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLogged, isLoaded, messageValue, trip, userId, username }) => {
+const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLogged, isLoaded, messageValue, trip, userId, username, weather }) => {
+
   // prevent null array
   const nullToArray = (tab) => {
     if (tab == null) {
@@ -42,9 +43,6 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   return (
     <main>
       {/* Redirect if not logged */}
-			{!isLogged && (
-				<Redirect to='/login' />
-			)}
 
       {/* Display loader */}
 			{!isLoaded && (
@@ -100,6 +98,8 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
             username={username}
             isParticipant={isParticipant(trip.participants, username)}
           />
+          {/*  Weather sub components */}
+          <Weather trip={trip} weather={weather}/>
         </div>
       )}
     </main>
