@@ -6,6 +6,7 @@ import authReducer from './auth';
 import categoriesReducer from './sports';
 import searcReducer from './search';
 import tripsReducer from './trips';
+import exapiReducer from './exapi';
 import adminReducer from './admin';
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   sports: categoriesReducer,
   search: searcReducer,
   trips: tripsReducer,
+  exapi: exapiReducer,
   admin: adminReducer,
 });

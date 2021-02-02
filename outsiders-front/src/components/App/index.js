@@ -22,6 +22,7 @@ import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
 
+
 const App = ({ loadSportsData, loadCategoriesData }) => {
   // loading sports and categories data from api
   useEffect(() => {
@@ -80,11 +81,8 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       </Route>
 
       {/* Admin routes */}
-        <Route exact path='/admin' >
+      <Route exact path='/admin' >
         <Admin />
-      </Route>
-      <Route exact path='/mon-compte' >
-        <Profile />
       </Route>
       <Route exact path='/dashboard' >
         <BackOffice />
