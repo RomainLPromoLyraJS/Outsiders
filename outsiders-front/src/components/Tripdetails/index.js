@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
-import { Redirect } from 'react-router-dom';
 
 // == Local Import
 import ButtonSection from './ButtonSection';
@@ -42,9 +41,6 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   return (
     <main>
       {/* Redirect if not logged */}
-			{!isLogged && (
-				<Redirect to='/login' />
-			)}
 
       {/* Display loader */}
 			{!isLoaded && (
