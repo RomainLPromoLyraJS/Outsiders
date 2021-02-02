@@ -22,6 +22,11 @@ export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 export const CHANGE_MESSAGE_FIELD = 'CHANGE_MESSAGE_FIELD';
 export const NEW_MESSAGE_SUCCESS = 'NEW_MESSAGE_SUCCESS';
 
+// backOffice types
+export const CHANGE_ADMIN_FIELD = 'CHANGE_ADMIN_FIELD';
+export const CREATE_SPORT_SUCCESS = 'CREATE_SPORT_SUCCESS';
+export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
+
 
 // == Actions
 // auth actions
@@ -76,6 +81,12 @@ export const changeTripField = (value, name) => ({
   name,
 });
 
+export const changeAdminField = (value, name) => ({
+  type: CHANGE_ADMIN_FIELD,
+  value,
+  name,
+});
+
 export const getTripsSuccess = (tripList) => ({
   type: GET_TRIPS_SUCCESS,
   tripList,
@@ -101,4 +112,18 @@ export const newMessageSuccess = (messages) => ({
   messages,
 });
 
+// backOffice actions
+export const createSportSuccess = () => ({
+  type: CREATE_SPORT_SUCCESS,
+});
 
+
+export const changeSportField = (title) => ({
+  type: GET_SPORT_TITLE,
+  title,
+});
+
+export const getUsersSuccess = (userList) => ({
+  type: GET_USERS_SUCCESS,
+  userList,
+})
