@@ -9,6 +9,7 @@ import {
 	getSportsSuccess,
 	getCategoriesSuccess,
 	newMessageSuccess,
+  getUsersSuccess,
 	searchSuccess,
 } from '../store/action';
 
@@ -60,6 +61,32 @@ const auth = (store) => (next) => (action) => {
 				break;
 		}
 
+		case 'GET_USERS': {
+
+			const { auth: { token } } = store.getState();
+
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/user`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`
+			},
+		};
+			
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getUsersSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
+		}
+
 		case 'HANDLE_SEARCH': {
 
 			const { search: { sport, from, date }} = store.getState();
@@ -76,7 +103,7 @@ const auth = (store) => (next) => (action) => {
 					date,
 				},
 			};
-
+			
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
