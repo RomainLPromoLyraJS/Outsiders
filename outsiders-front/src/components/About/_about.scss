@@ -1,70 +1,142 @@
 .about {
-padding: 20px;
-    &__presentation {
-        padding: 20px;
+  min-height: calc(
+    100vh - 132px
+  ); // height of the screen less (header + footer)
+  width: 90%;
+  max-width: 1280px; // max-width generally used for all desktops
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  &__presentation__title {
+    font-size: 6rem;
+    color: $color-tertiary;
+  }
+
+  &__website {
+    padding: 30px;
+    text-align: center;
+    background-color: $color-secondary;
+    margin: 2rem 0;
+    border-radius: 30px;
 
     &__title {
-        font-size: 2.2em;
-        padding-bottom: 10px;
-        text-align: center;
-        color: $color-quaternary;
-       
-        
+      color: $color;
+      font-size: 2em;
+      text-transform: capitalize;
+      font-weight: bold;
+      background-color: $color-tertiary;
+      padding: 1.2rem;
+      border-radius: 30px;
     }
-    
+
+    &__article {
+      padding: 20px;
+      font-size: 1.2em;
+      line-height: 1.1em;
+      color: $color-secondary;
+      background-color: $color;
+      margin: 2rem 0 1rem 0;
+      border-radius: 30px;
+    }
+  }
+  &__team {
+    &__presentation {
+      padding: 30px;
+      text-align: center;
+      background-color: $color-secondary;
+      margin: 2rem 0;
+      border-radius: 30px;
+    }
+
+    &__title {
+      color: $color;
+      font-size: 2em;
+      text-transform: capitalize;
+      font-weight: bold;
+      background-color: $color-tertiary;
+      padding: 1.2rem;
+      margin: 0 auto;
+      border-radius: 30px;
+    }
+
     &__text {
-        line-height: 1.2em;
-        font-size: 1.2em;
-    }
+      padding: 20px;
+      font-size: 1.2em;
+      line-height: 1.1em;
+      color: $color-secondary;
+      background-color: $color;
+      margin: 2rem 0 1rem 0;
+      border-radius: 30px;
     }
 
-    &__website {
-        padding: 30px;
-        text-align: center;
-        &__title {
-            color: $color-quaternary;
-            font-size: 2em;
-            text-transform: capitalize;
+    &__article {
+      padding: 10px;
+      background-color: $color-secondary;
+      margin: 2rem 0;
+      border-radius: 30px;
+      display: flex;
+
+      &__black {
+        padding: 10px;
+        background-color: $color-tertiary;
+        margin: 2rem 0;
+        border-radius: 30px;
+        display: flex;
+
+        &__content {
+            
+          flex-direction: column;
+
+          &__subtitle {
+            color: $color;
+            font-size: 1.6em;
             font-weight: bold;
-        }
-        
-        &__article {
-            padding: 20px;
+            padding: 0.5em;
+            margin: 20px 20px;
+          }
+
+          &__text {
+            padding: 10px;
             font-size: 1.2em;
+            color: $color;
+            background-color: $color-secondary;
+            margin: 20px 20px;
+            border-radius: 20px;
+            line-height: 1.3rem;
+          }
         }
-        
-    }
-        &__team {
+      }
 
-            &__title {
-                color: $color-quaternary;
-                font-size: 2em;
-                text-transform: capitalize;
-                font-weight: bold;
-                text-align: center;
-            }
+      &__img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0.5rem;
+        border: 2px solid $color;
+      }
 
+      &__content {
+        flex-direction: column;
 
-            &__text {
-                padding: 20px;
-                font-size: 1.2em;
-                text-align: center;
-            }
-    
-            &__article {
-                padding: 20px;
-                font-size: 1.2em;
-            }
-    
-            &__subtitle {
-                color: $color-quaternary;
-                font-size: 1.4em;
-                font-weight: bold;
-                padding: 0.5em;
-            }
-
+        &__subtitle {
+          color: $color;
+          font-size: 1.6em;
+          font-weight: bold;
+          padding: 0.5em;
+          margin: 20px 20px;
         }
-        
-    }
 
-    
+        &__text {
+          padding: 10px;
+          font-size: 1.2em;
+          color: $color;
+          background-color: $color-tertiary;
+          margin: 20px 20px;
+          border-radius: 20px;
+          line-height: 1.3rem;
+        }
+      }
+    }
+  }
+}
