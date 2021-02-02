@@ -19,12 +19,13 @@ import Newtrip from '../../containers/Newtrip';
 import Patchtrip from '../../containers/Patchtrip';
 
 
-
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
+import GuardedRoute from '../GuardedRoute';
 
-const App = ({ loadSportsData, loadCategoriesData }) => {
+
+const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
   // loading sports and categories data from api
   useEffect(() => {
     loadSportsData();
@@ -46,9 +47,10 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       </Route>
 
       {/* Sport routes */}
-      <Route exact path='/sports' >
+      {/* <Route exact path='/sports' >
         <Sports />
-      </Route>
+      </Route> */}
+      <GuardedRoute path='/sports' component={Sports} isLogged={isLogged} />
       <Route exact path='/categories/:slug' >
         <Categories />
       </Route>    
