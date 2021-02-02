@@ -1,0 +1,37 @@
+.dashboard-profiles {
+  padding: 2rem;
+
+  &__form {
+
+    &__title {
+      font-size: 1.5rem;
+      color: $color-secondary;
+      margin-bottom: 1rem;
+    }
+
+    &__label {
+      margin-right: .5rem;
+    }
+
+    &__select {
+      width: 150px;
+      height: 30px;
+      padding: 0 .3rem;
+      color: $color-secondary;
+      border: solid 2px $color-secondary;
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+      margin-right: .3rem;
+    }
+
+    &__button {
+      height: 30px;
+      background-color: $color-secondary;
+      color: $color;
+      padding: .3rem;
+      border: none;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}

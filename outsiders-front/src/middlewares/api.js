@@ -9,11 +9,14 @@ import {
 	getSportsSuccess,
 	getCategoriesSuccess,
 	newMessageSuccess,
+  getUsersSuccess,
 	searchSuccess,
+	loadWeatherSuccess,
 } from '../store/action';
-
+const weatherKey = '5102a539085037168997fc53c5a4d62b';
 // request cat/etc
 const auth = (store) => (next) => (action) => {
+
 
 
 	switch (action.type) {
@@ -60,6 +63,32 @@ const auth = (store) => (next) => (action) => {
 				break;
 		}
 
+		case 'GET_USERS': {
+
+			const { auth: { token } } = store.getState();
+
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/user`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`
+			},
+		};
+			
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getUsersSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
+		}
+
 		case 'HANDLE_SEARCH': {
 
 			const { search: { sport, from, date }} = store.getState();
@@ -76,7 +105,7 @@ const auth = (store) => (next) => (action) => {
 					date,
 				},
 			};
-
+			
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
@@ -168,12 +197,30 @@ const auth = (store) => (next) => (action) => {
 						throw response.error;
 					} else {
 						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]));
+						axios({
+							/**
+							 * @PARAMS ${weatherKey} => API KEY see doc for more informations
+							 * @LINK https://openweathermap.org/forecast5
+							 * @TODO EXPORT WEATHERKEY => see above (line15)
+							 *  */  
+							method: 'get',
+							url: `https://api.openweathermap.org/data/2.5/forecast?q=${response.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+							headers: {
+								'Content-Type': 'application/json',
+							}
+						}).then((res) => {
+							if (res.status !== 200) {
+								throw res.error;
+							} else {
+								store.dispatch(loadWeatherSuccess(res.data));
+							}
+						});
 					}
 				}).catch((error) => {
 					console.log('Oups ! ', error);
 			 });
 		 break;
-	 }
+	 };
 
 		case 'HANDLE_MODIFY': {
 			const { trips: { currentTrip } } = store.getState();
