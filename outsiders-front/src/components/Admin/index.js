@@ -24,9 +24,9 @@ const Admin = ({
     <div className="admin-page">
       
 
-      <p className="admin-page__description">
-        Si vous êtes un administrateur du site, vous pouvez vous connecter :
-      </p>
+      <h1 className="admin-page__title">
+        Connexion administrateur
+      </h1>
       <form className="admin-page__form" onSubmit={onSubmitAdmin}>
         <label className="admin-page__form__label" htmlFor="email">
           Email
