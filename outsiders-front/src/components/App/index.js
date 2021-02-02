@@ -21,9 +21,10 @@ import Patchtrip from '../../containers/Patchtrip';
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
+import GuardedRoute from '../GuardedRoute';
 
 
-const App = ({ loadSportsData, loadCategoriesData }) => {
+const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
   // loading sports and categories data from api
   useEffect(() => {
     loadSportsData();
@@ -56,15 +57,10 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/sorties' >
         <Sorties />
       </Route>
-      <Route exact path='/sortie/:slug' >
-        <Tripdetails />
-      </Route>
-      <Route exact path='/nouvelle-sortie' >
-        <Newtrip />
-      </Route>
-      <Route exact path='/modifier-sortie' >
-        <Patchtrip />
-      </Route>
+      {/* Condition : If user is not logged (isLogged = false) redirect to Login page */}
+      <GuardedRoute exact path='/sortie/:slug' component={Tripdetails} isLogged={isLogged} />
+      <GuardedRoute exact path='/nouvelle-sortie' component={Newtrip} isLogged={isLogged} />
+      <GuardedRoute exact path='/modifier-sortie' component={Patchtrip} isLogged={isLogged} />
 
       {/* User routes */}
       <Route exact path='/signup' >
@@ -73,12 +69,10 @@ const App = ({ loadSportsData, loadCategoriesData }) => {
       <Route exact path='/login' >
         <Login />
       </Route>
-      <Route exact path='/mon-compte' >
-        <Profile />
-      </Route>
-      <Route exact path='/mon-compte/modifer' >
-        <EditProfile />
-      </Route>
+
+      {/* Condition : If user is not logged (isLogged = false) redirect to Login page */}
+      <GuardedRoute exact path='/mon-compte' component={Profile} isLogged={isLogged} />
+      <GuardedRoute exact path='/mon-compte/modifier' component={EditProfile} isLogged={isLogged} />
 
       {/* Admin routes */}
       <Route exact path='/admin' >
