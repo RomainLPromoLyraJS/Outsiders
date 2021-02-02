@@ -1,0 +1,78 @@
+.sorties {
+  min-height: calc(100vh - 120px);
+  width: 90%;
+  margin: 0 auto;
+  @include media('>=tablet') {
+    min-height: calc(100vh - 132px);;
+    max-width: 1280px;
+  }
+
+  &__title {
+    padding: 2rem 0 1rem;
+    font-size: 3rem;
+    color: $color-tertiary;
+    @include media('>=tablet') {
+      font-size: 6rem;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__search {
+      width: 100%;
+      padding: 1rem;
+      background-color: $color-tertiary;
+      border-radius: 20px;
+      @include media('>=tablet') {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &__toggle {
+        margin: 0 auto;
+        padding: .3rem;
+        background-color: $color-secondary;
+        color: $color;
+        font-size: .9rem;
+        border: none;
+        border-radius: 10px;
+        @include media('>=tablet') {
+          display: none;
+          margin: 0;
+        }
+      }
+
+      .search-pop--open {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: .5rem;
+        @include media('>=tablet') {
+          margin-top: 0;
+        }
+      }
+
+      .search-pop {
+        height: 0;
+        overflow: hidden;
+        @include media('>=tablet') {
+          height: 100%;
+          margin-top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    &__results {
+      margin: 2rem 0;
+    }
+  }
+}
