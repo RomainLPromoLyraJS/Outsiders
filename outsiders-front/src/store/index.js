@@ -7,14 +7,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers';
 // MW
 import authMiddleware from '../middlewares/auth';
-import apiMiddleWare from '../middlewares/api';
+import apiMiddleware from '../middlewares/api';
+import adminMiddleware from '../middlewares/admin';
 
 // store creation
 const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(authMiddleware),
-    applyMiddleware(apiMiddleWare),
+    applyMiddleware(apiMiddleware),
+    applyMiddleware(adminMiddleware),
   ),
 );
 

@@ -9,6 +9,7 @@ import {
 	getSportsSuccess,
 	getCategoriesSuccess,
 	newMessageSuccess,
+  getUsersSuccess,
 	searchSuccess,
 	loadWeatherSuccess,
 } from '../store/action';
@@ -62,6 +63,32 @@ const auth = (store) => (next) => (action) => {
 				break;
 		}
 
+		case 'GET_USERS': {
+
+			const { auth: { token } } = store.getState();
+
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/user`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`
+			},
+		};
+			
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						store.dispatch(getUsersSuccess(response.data.data));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+				break;
+		}
+
 		case 'HANDLE_SEARCH': {
 
 			const { search: { sport, from, date }} = store.getState();
@@ -78,7 +105,7 @@ const auth = (store) => (next) => (action) => {
 					date,
 				},
 			};
-
+			
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
@@ -177,7 +204,7 @@ const auth = (store) => (next) => (action) => {
 							 * @TODO EXPORT WEATHERKEY => see above (line15)
 							 *  */  
 							method: 'get',
-							url: `https://api.openweathermap.org/data/2.5/forecast?q=${response.data.data[0].from}&units=metric&APPID=${weatherKey}`,
+							url: `https://api.openweathermap.org/data/2.5/forecast?q=${response.data.data[0].to}&units=metric&APPID=${weatherKey}`,
 							headers: {
 								'Content-Type': 'application/json',
 							}

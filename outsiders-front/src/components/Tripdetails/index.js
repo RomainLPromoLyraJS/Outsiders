@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 // == Local Import
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
-import Weather from '../Weather';
+import Weather from './Weather';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLogged, isLoaded, messageValue, trip, userId, username, weather }) => {
 
@@ -103,7 +103,7 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
             isParticipant={isParticipant(trip.participants, username)}
           />
           {/*  Weather sub components */}
-            <Weather weather={weather}/>
+          <Weather trip={trip} weather={weather}/>
         </div>
       )}
     </main>
