@@ -5,11 +5,33 @@
   margin: 0 auto;
   padding: 2rem 0;
   color: $color-tertiary;
-  @include media('>=tablet') {
+  @include media(">=tablet") {
     min-height: calc(100vh - 132px);
   }
 
   .tripInfo {
+    &__back {
+      width: 100%;
+      margin-bottom: .7rem;
+      display: flex;
+      justify-content: flex-end;
+
+      &__btn {
+        font-size: 1rem;
+        color: $color;
+        background-color: $color-tertiary;
+        border-radius: 10px;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s ease-in-out;
+
+        &:hover {
+          background-color: $color-quaternary;
+        }
+      }
+    }
 
     &__header {
       display: flex;
@@ -17,19 +39,18 @@
       align-items: center;
 
       &__main {
-
         h1 {
           font-size: 3rem;
           color: $color-secondary;
-          @include media('>=tablet') {
+          @include media(">=tablet") {
             font-size: 6rem;
           }
         }
 
         h2 {
           font-size: 1.5rem;
-          margin-bottom: .3rem;
-          @include media('>=tablet') {
+          margin-bottom: 0.3rem;
+          @include media(">=tablet") {
             font-size: 3rem;
           }
         }
@@ -38,6 +59,7 @@
       &__username {
         text-align: right;
       }
+
     }
 
     &__container {
@@ -46,7 +68,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      @include media('>=tablet') {
+      @include media(">=tablet") {
         flex-direction: row;
         justify-content: center;
       }
@@ -58,52 +80,68 @@
         &__title {
           font-size: 1.5rem;
         }
-  
+
         &__travel {
           width: 90%;
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin: 2rem auto;
-          @include media('>=tablet') {
+          @include media(">=tablet") {
             width: 60%;
             margin: 2.5rem auto;
           }
-  
+
           &__from {
             background-color: $color-secondary;
             color: $color;
-            padding: .4rem;
+            padding: 0.4rem;
             border-radius: 10px;
             font-weight: 700;
             font-size: 1.2rem;
-            @include media('>=tablet') {
+            @include media(">=tablet") {
               font-size: 1.5rem;
             }
           }
-  
+
           &__separator {
             background-color: $color-secondary;
             width: 100%;
             height: 3px;
           }
-  
+
           &__to {
             background-color: $color-secondary;
             color: $color;
-            padding: .4rem;
+            padding: 0.4rem;
             border-radius: 10px;
             font-weight: 700;
             font-size: 1.2rem;
-            @include media('>=tablet') {
+            @include media(">=tablet") {
               font-size: 1.5rem;
             }
           }
         }
-  
-        &__text {}
+
+        &__text {
+        }
       }
-  
+
+      &__infos {
+        width: 100%;
+        margin-top: 2rem;
+
+        &__title {
+        color: $color-tertiary;
+        font-size: 1.5rem;
+        }
+
+        &__text {
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+        }
+      }
+
       &__details {
         background-color: $color-secondary;
         padding: 1rem;
@@ -111,7 +149,7 @@
         width: 100%;
         line-height: 1.5rem;
         color: $color;
-        @include media('>=tablet') {
+        @include media(">=tablet") {
           width: 35%;
           margin-left: 1rem;
         }
@@ -131,7 +169,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @include media('>=tablet') {
+  @include media(">=tablet") {
     flex-direction: row;
   }
 
@@ -140,14 +178,14 @@
     background-color: $color-tertiary;
     border: none;
     border-radius: 10px;
-    padding: .5rem 0;
-    margin: .2rem 0;
+    padding: 0.5rem 0;
+    margin: 0.2rem 0;
     color: $color;
     font-size: 1rem;
     cursor: pointer;
-    @include media('>=tablet') {
+    @include media(">=tablet") {
       width: 250px;
-      margin: 0 .2rem;
+      margin: 0 0.2rem;
     }
 
     &--del {
@@ -168,7 +206,7 @@
 
     p {
       z-index: 6;
-      font-family: 'Contrail One', cursive;
+      font-family: "Contrail One", cursive;
       font-size: 2rem;
       color: $color;
       margin-right: 1rem;
@@ -178,13 +216,13 @@
       border: none;
       border-radius: 10px;
       font-size: 1rem;
-      padding: .5rem .8rem;
+      padding: 0.5rem 0.8rem;
     }
 
     .yes {
       background-color: $color-secondary;
       color: $color;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
     }
 
     .no {

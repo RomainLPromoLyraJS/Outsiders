@@ -1,7 +1,10 @@
 // == Package Import
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
+import { BsArrowReturnLeft } from "react-icons/bs";
+import { FaArrowLeft } from "react-icons/fa";
 
 // == Local Import
 import ButtonSection from './ButtonSection';
@@ -53,15 +56,20 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
       {isLoaded && (
         <div className="tripDetails">
           <section className="tripInfo">
+            <div className="tripInfo__back">
+              <NavLink to="/sorties" className="tripInfo__back__btn">
+                <FaArrowLeft />
+                <p> Retour</p>
+              </NavLink>
+            </div>
             <header className="tripInfo__header">
               <div className="tripInfo__header__main">
                 <h2>{trip.sport_title}</h2>
                 <h1>{trip.trip_title}</h1>
               </div>
-              <button>Liste des sorties</button>
-              <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
+               <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
             </header>
-            <div className="tripInfo__container">
+              <div className="tripInfo__container">
               <div className="tripInfo__container__desc">
                 <h2 className="tripInfo__container__desc__title">Description de la sortie</h2>
                 <div className="tripInfo__container__desc__travel">
@@ -101,6 +109,12 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
           />
           {/*  Weather sub components */}
           <Weather trip={trip} weather={weather}/>
+          <div className="tripInfo__container">
+            <div className="tripInfo__container__infos">
+              <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
+              <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
+            </div>
+          </div>
         </div>
       )}
     </main>
