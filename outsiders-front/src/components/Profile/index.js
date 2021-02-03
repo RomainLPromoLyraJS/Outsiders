@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 // == Local imports
 // utils
 import { makeFullName } from '../../utils';
+// components
+import Trips from '../../containers/Trips';
 
 
-const Profile = ({ user, getUserTrips }) => {
+const Profile = ({ user, getUserTrips, isLoaded }) => {
   // download user's trip everytime he comes to his profile page
   useEffect(() => {
     getUserTrips();
@@ -20,8 +22,8 @@ const Profile = ({ user, getUserTrips }) => {
       <section className="profil__user">
         <div className="profil__user__main">
           <div className="profil__user__main__name">
-            <h2>{makeFullName(user.firstname, user.lastname)}</h2>
-            <p>{user.username}</p>
+            <h1>{makeFullName(user.firstname, user.lastname)}</h1>
+            <h2>{user.username}</h2>
           </div>
         </div>
         <div className="profil__user__description">
@@ -33,9 +35,8 @@ const Profile = ({ user, getUserTrips }) => {
         </div>
       </section>
       <section className="profil__trips">
-        <div className="profil__trips__item">Je suis un trip</div>
-        <div className="profil__trips__item">Je suis un trip</div>
-        <div className="profil__trips__item">Je suis un trip</div>
+        <h2 className="profil__trips__title">Mes sorties</h2>
+        <Trips />
       </section>
     </div>
   );

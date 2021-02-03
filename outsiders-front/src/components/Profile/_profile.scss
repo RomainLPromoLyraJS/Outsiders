@@ -1,53 +1,40 @@
 .profil {
   min-height: calc(100vh - 120px);
   width: 90%;
-  margin: 0 auto;
+  max-width: 1280px;
+  margin: 0 auto 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   color: $color-tertiary;
-  @include media('>=tablet') {
-    max-width: 1280px;
-    min-height: calc(100vh - 132px);
-    flex-direction: row;
-    align-items: flex-start;
-  }
 
   &__user {
     width: 100%;
     margin: 2rem 0;
-    padding-bottom: 2rem;
-    border-bottom: solid 2px $color-secondary;
-    @include media('>=tablet') {
-      width: 20%;
-      margin: 2rem 2rem 2rem 0;
-      padding-bottom: 0;
-      padding-right: 2rem;
-      border-bottom: none;
-      border-right: solid 2px $color-secondary;
-    }
 
     &__main {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      @include media('>=tablet') {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-      }
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
   
       &__name {
   
-        h2 {
+        h1 {
           font-size: 3rem;
-          color: $color-secondary;
+          @include media('>=tablet') {
+            font-size: 6rem;
+          }
         }
   
-        p {
-          font-size: 1.3rem;
+        h2 {
+          font-size: 1.5rem;
           font-weight: 700;
+          color: $color-secondary;
+          @include media('>=tablet') {
+            font-size: 3rem;
+          }
         }
       }
     }
@@ -56,10 +43,7 @@
       margin: 1rem 0;
 
       p {
-        text-align: center;
-        @include media('>=tablet') {
-          text-align: left;
-        }
+        text-align: left;
       }
     }
 
@@ -68,9 +52,7 @@
       justify-content: center;
       align-items: center;
       @include media('>=tablet') {
-        flex-direction: column;
         justify-content: flex-start;
-        align-items: flex-start;
       }
 
       &__btn {
@@ -81,10 +63,6 @@
         border: none;
         border-radius: 10px;
         color: $color;
-        @include media('>=tablet') {
-          margin-right: 0;
-          margin-bottom: .5rem;
-        }
       }
 
       .delete {
@@ -95,6 +73,14 @@
 
   &__trips {
 
-    &__item {}
+    &__title {
+      font-size: 1.5rem;
+      padding: .5rem 1rem;
+      color: $color;
+      background-color: $color-secondary;
+      @include media('>=tablet') {
+        font-size: 3rem;
+      }
+    }
   }
 }

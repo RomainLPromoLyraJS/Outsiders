@@ -7,6 +7,7 @@ import Profile from '../components/Profile';
 // STATES that we give to Props (Profile)
 const mapStateToProps = (state) => ({
 	user: state.auth,
+	isLoaded: state.trips.isLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
