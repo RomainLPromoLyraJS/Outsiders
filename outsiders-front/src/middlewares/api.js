@@ -60,8 +60,33 @@ const auth = (store) => (next) => (action) => {
 				}).catch((error) => {
 					console.log('Oups !', error);
 				});
-				break;
+			break;
 		}
+
+		case 'GET_USER_TRIPS': {
+			const { auth: { id, token } } = store.getState();
+
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/user/${id}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`
+				},
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error
+					} else {
+						store.dispatch(getTripsSuccess(response.data.tripRegistered));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+			break;
+		};
 
 		case 'GET_USERS': {
 
@@ -73,8 +98,8 @@ const auth = (store) => (next) => (action) => {
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`
-			},
-		};
+				},
+			};
 			
 			axios(config)
 				.then((response) => {
