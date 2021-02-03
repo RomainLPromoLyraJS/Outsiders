@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
   // == sports reducer == \\
   sports: state.sports.list,
   trip: state.trips.currentTrip,
-  isLoaded: state.trips.isLoaded,
 });
 // ACTIONS/FUNCTIONS that we give to Props (NewTrip)
 const mapDispatchToProps = (dispatch) => ({

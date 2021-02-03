@@ -20,10 +20,10 @@ const initialState = {
     time: '',
     from: '',
     to: '',
-    places: '',
+    places: 4,
     minimum: '',
     price: '',
-    duration: '',
+    duration: 1,
     sport_title: '',
     sport_id:'',
     creator: [],
@@ -65,7 +65,24 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'DELETE_TRIP_SUCCESS':
       return {
         ...oldState,
-        currentTrip: {},
+        currentTrip: {
+          trip_id: '',
+          trip_title: '',
+          trip_description: '',
+          date: '',
+          time: '',
+          from: '',
+          to: '',
+          places: 4,
+          minimum: '',
+          price: '',
+          duration: 1,
+          sport_title: '',
+          sport_id:'',
+          creator: [],
+          message: [],
+          participants: [],
+        },
       };
 
     case CHANGE_MESSAGE_FIELD:
