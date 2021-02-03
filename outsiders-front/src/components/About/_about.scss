@@ -22,6 +22,9 @@
     background-color: $color-secondary;
     margin: 2rem 0;
     border-radius: 30px;
+    @include media('<=tablet') {
+      padding: 10px;
+    }
 
     &__title {
       color: $color;
@@ -41,6 +44,9 @@
       background-color: $color;
       margin: 2rem 0 1rem 0;
       border-radius: 30px;
+      @include media('<=tablet') {
+        margin: 0.8rem 0 0 0;
+      }
     }
   }
 
@@ -51,6 +57,9 @@
       background-color: $color-secondary;
       margin: 2rem 0;
       border-radius: 30px;
+      @include media('<=tablet') {
+        padding: 10px;
+      }
     }
 
     &__title {
@@ -72,6 +81,9 @@
       background-color: $color;
       margin: 2rem 0 1rem 0;
       border-radius: 30px;
+      @include media('<=tablet') {
+        margin: 0.8rem 0 0 0;
+      }
     }
 
     &__article {
@@ -85,14 +97,23 @@
       &__content {
         padding: 0 2rem;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        @include media('<=tablet') {
+          margin: 0.5rem;
+        }
+        @include media('<=phone') {
+          padding: 0 2rem 0 0;
+        }
 
 
         &__img {
           width: 100px;
           height: fit-content;
           margin-right: 1rem;
+          @include media('<=phone') {
+            margin-right: 0;
+          }
   
           img {
             max-width: 100%;
@@ -107,6 +128,39 @@
           font-size: 4rem;
           font-weight: bold;
           padding: 0.5em;
+          @include media('<=tablet') {
+            font-size: 2rem;
+          }
+        }
+
+        &__logos {
+          color: $color;
+          font-size: 4rem;
+          font-weight: bold;
+          padding: 0.5em;
+          display: flex;
+          @include media('<=tablet') {
+            // display: none;
+          }
+          @include media('<=phone') {
+            // display: none;
+            flex-direction: column;
+            padding: 0 20px;
+            align-content: flex-end;
+            font-size: 3rem;
+            width: 20px;
+          }
+
+          &__github {
+            margin-right: 2rem;
+            @include media('<=phone') {
+            
+            } 
+          }
+
+          &__linkedin {
+            // margin-right: 2rem; 
+          }
         }
       }
 
