@@ -12,6 +12,7 @@ import {
   getUsersSuccess,
 	searchSuccess,
 	loadWeatherSuccess,
+	connectWebSocket,
 } from '../store/action';
 const weatherKey = '5102a539085037168997fc53c5a4d62b';
 // request cat/etc
@@ -170,6 +171,7 @@ const auth = (store) => (next) => (action) => {
 							} else {
 								// Render all details from the new trip
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+								store.dispatch(connectWebSocket());
 							}
 						});
 					}
@@ -197,6 +199,7 @@ const auth = (store) => (next) => (action) => {
 						throw response.error;
 					} else {
 						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]));
+						store.dispatch(connectWebSocket());
 						axios({
 							/**
 							 * @PARAMS ${weatherKey} => API KEY see doc for more informations

@@ -28,6 +28,9 @@ export const CHANGE_ADMIN_FIELD = 'CHANGE_ADMIN_FIELD';
 export const CREATE_SPORT_SUCCESS = 'CREATE_SPORT_SUCCESS';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 
+// websocket types
+export const CONNECT_WEBSOCKET = 'CONNECT_WEBSOCKET'
+
 
 // == Actions
 // auth actions
@@ -132,3 +135,8 @@ export const getUsersSuccess = (userList) => ({
   type: GET_USERS_SUCCESS,
   userList,
 })
+
+// websocket actions
+export const connectWebSocket = () => ({
+  type: CONNECT_WEBSOCKET,
+});

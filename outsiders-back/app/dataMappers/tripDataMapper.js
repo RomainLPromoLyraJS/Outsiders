@@ -164,6 +164,7 @@ module.exports = {
     },
 
     async postNewCommentOnThisTrip(commentToCreate, userId) {
+        console.log('je suis dans le tripdatamapper');
         const result = await client.query('INSERT INTO "message"("title", "content", "user_id", "trip_id") VALUES ($1, $2, $3, $4) RETURNING *', [commentToCreate.title, commentToCreate.content, userId, commentToCreate.trip_id]);
         if (result.rowCount == 0) {
             return null
