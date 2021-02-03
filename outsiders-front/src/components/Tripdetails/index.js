@@ -58,6 +58,7 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
                 <h2>{trip.sport_title}</h2>
                 <h1>{trip.trip_title}</h1>
               </div>
+              <button>Liste des sorties</button>
               <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
             </header>
             <div className="tripInfo__container">
