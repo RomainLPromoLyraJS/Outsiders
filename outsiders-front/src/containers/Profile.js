@@ -11,6 +11,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+	handleDeleteUser: () => {
+		dispatch({type: 'DELETE_OWN_PROFIL'});
+	},
+
 	getUserTrips: () => {
 		dispatch({type: 'CHANGE_LOADING'});
 		dispatch({type: 'GET_USER_TRIPS'});

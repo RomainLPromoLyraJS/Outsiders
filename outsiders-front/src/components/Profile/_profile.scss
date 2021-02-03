@@ -63,10 +63,18 @@
         border: none;
         border-radius: 10px;
         color: $color;
+        transition: .3s ease-in-out;
+        &:hover {
+          background-color: $color-secondary;
+        }
       }
 
       .delete {
         background-color: $color-quaternary;
+        transition: .3s ease-in-out;
+        &:hover {
+          background-color: $color-tertiary;
+        }
       }
     }
   }

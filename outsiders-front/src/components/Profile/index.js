@@ -1,5 +1,5 @@
 // == Package Imports
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -8,17 +8,28 @@ import PropTypes from 'prop-types';
 import { makeFullName } from '../../utils';
 // components
 import Trips from '../../containers/Trips';
+import YesNoModal from '../YesNoModal';
 
 
-const Profile = ({ user, getUserTrips, isLoaded }) => {
+const Profile = ({ user, getUserTrips, handleDeleteUser }) => {
+  // toggle delete modal
+  const [ displayModal, setDisplayModal ] = useState(false);
+  const modalCSS = displayModal
+    ? "delete-modal active"
+    : "delete-modal inactive"
+
   // download user's trip everytime he comes to his profile page
   useEffect(() => {
     getUserTrips();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const deleteUser = () => {
+    handleDeleteUser();
+  }
+
   return (
-    <div className="profil">
+    <main className="profil">
       <section className="profil__user">
         <div className="profil__user__main">
           <div className="profil__user__main__name">
@@ -30,15 +41,16 @@ const Profile = ({ user, getUserTrips, isLoaded }) => {
           <p>{user.description}</p>
         </div>
         <div className="profil__user__buttons">
-          <NavLink to="/mon-compte/modifer" className="profil__user__buttons__btn">Modifier mon profil</NavLink>
-          <button className="profil__user__buttons__btn delete">Supprimer mon profil</button>
+          <NavLink to="/mon-compte/modifier" className="profil__user__buttons__btn">Modifier mon profil</NavLink>
+          <button className="profil__user__buttons__btn delete" onClick={() => {setDisplayModal(!displayModal)}}>Supprimer mon profil</button>
         </div>
       </section>
       <section className="profil__trips">
         <h2 className="profil__trips__title">Mes sorties</h2>
         <Trips />
       </section>
-    </div>
+      <YesNoModal onClick={deleteUser} modalCSS={modalCSS} displayModal={displayModal} setDisplayModal={setDisplayModal} />
+    </main>
   );
 };
 
