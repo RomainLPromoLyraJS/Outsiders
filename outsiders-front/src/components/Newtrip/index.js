@@ -1,5 +1,5 @@
 // == Package imports == \\
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 // == Import utils == \\
 import { buildTripURL } from '../../utils';
@@ -8,8 +8,15 @@ const Newtrip = ({
   sports,
   handleSubmit,
   handleChange,
+  resetForm,
   trip,
 }) => {
+  // reset form
+  useEffect(() => {
+    resetForm();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // sending the request to API
   const onClick = () => {
     handleSubmit();
