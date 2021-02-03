@@ -25,7 +25,7 @@ const Admin = ({
       
 
       <h1 className="admin-page__title">
-        Connexion administrateur
+        Connexion Admin
       </h1>
       <form className="admin-page__form" onSubmit={onSubmitAdmin}>
         <label className="admin-page__form__label" htmlFor="email">

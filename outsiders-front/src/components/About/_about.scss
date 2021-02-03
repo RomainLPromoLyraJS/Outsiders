@@ -1,15 +1,19 @@
 .about {
-  min-height: calc(
-    100vh - 132px
-  ); // height of the screen less (header + footer)
+  min-height: calc(100vh - 132px); // height of the screen less (header + footer)
   width: 90%;
   max-width: 1280px; // max-width generally used for all desktops
   margin: 0 auto;
   padding: 2rem 0;
+  @include media('<=tablet') {
+    min-height: calc(100vh - 120px);
+  }
 
   &__presentation__title {
     font-size: 6rem;
     color: $color-tertiary;
+    @include media('<=tablet') {
+      font-size: 3rem;
+    }
   }
 
   &__website {
@@ -39,6 +43,7 @@
       border-radius: 30px;
     }
   }
+
   &__team {
     &__presentation {
       padding: 30px;
@@ -71,72 +76,49 @@
 
     &__article {
       padding: 10px;
-      background-color: $color-secondary;
+      background-color: $color-tertiary;
       margin: 2rem 0;
       border-radius: 30px;
       display: flex;
-
-      &__black {
-        padding: 10px;
-        background-color: $color-tertiary;
-        margin: 2rem 0;
-        border-radius: 30px;
-        display: flex;
-
-        &__content {
-            
-          flex-direction: column;
-
-          &__subtitle {
-            color: $color;
-            font-size: 1.6em;
-            font-weight: bold;
-            padding: 0.5em;
-            margin: 20px 20px;
-          }
-
-          &__text {
-            padding: 10px;
-            font-size: 1.2em;
-            color: $color;
-            background-color: $color-secondary;
-            margin: 20px 20px;
-            border-radius: 20px;
-            line-height: 1.3rem;
-          }
-        }
-      }
-
-      &__img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: 0.5rem;
-        border: 2px solid $color;
-      }
+      flex-direction: column;
 
       &__content {
-        flex-direction: column;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        &__img {
+          width: 100px;
+          height: fit-content;
+          margin-right: 1rem;
+  
+          img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid $color;
+          }
+        }
 
         &__subtitle {
           color: $color;
-          font-size: 1.6em;
+          font-size: 4rem;
           font-weight: bold;
           padding: 0.5em;
-          margin: 20px 20px;
-        }
-
-        &__text {
-          padding: 10px;
-          font-size: 1.2em;
-          color: $color;
-          background-color: $color-tertiary;
-          margin: 20px 20px;
-          border-radius: 20px;
-          line-height: 1.3rem;
         }
       }
+
+      &__text {
+        padding: 2rem;
+        font-size: 1.2em;
+        color: $color;
+        background-color: $color-secondary;
+        border-radius: 20px;
+        line-height: 1.3rem;
+      }  
     }
   }
 }
+

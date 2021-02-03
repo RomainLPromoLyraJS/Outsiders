@@ -1,18 +1,17 @@
 .admin-page {
-    min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
   width: 90%;
   margin: 0 auto;
-  @include media('>=tablet') {
-    min-height: calc(100vh - 132px);;
+  @include media(">=tablet") {
+    min-height: calc(100vh - 132px);
     max-width: 1280px;
   }
-    
 
   &__title {
     padding: 2rem 0 1rem;
-    font-size: 3rem;
+    font-size: 2rem;
     color: $color-tertiary;
-    @include media('>=tablet') {
+    @include media(">=tablet") {
       font-size: 6rem;
     }
   }
@@ -25,14 +24,14 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    @include media('>=tablet') {
+    @include media(">=tablet") {
       padding: 5rem 7rem;
     }
 
     &__label {
-      margin-bottom: .3rem;
+      margin-bottom: 0.3rem;
       font-size: 2rem;
-      font-family: 'Contrail One', cursive;
+      font-family: "Contrail One", cursive;
       color: $color;
     }
 
@@ -60,7 +59,7 @@
       border: none;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
-      transition: .3s ease-in-out;
+      transition: 0.3s ease-in-out;
 
       &:hover {
         background-color: $color;
@@ -68,5 +67,4 @@
       }
     }
   }
-
 }
