@@ -38,9 +38,9 @@ const Newtrip = ({
             })}
         </select>
         <label className='newTrip__form__label'>Titre</label>
-        <input name="trip_title" value={trip.title} className="newTrip__form__input" type="text" placeholder="Titre" onChange={onChange}/>
+        <input name="trip_title" value={trip.trip_title} className="newTrip__form__input" type="text" placeholder="Titre" onChange={onChange}/>
         <label className='newTrip__form__label'>Description</label>
-        <textarea name="trip_description" value={trip.description} className="newTrip__form__textarea" type="text" placeholder="Description" onChange={onChange} />
+        <textarea name="trip_description" value={trip.trip_description} className="newTrip__form__textarea" type="text" placeholder="Description" onChange={onChange} />
         <label className='newTrip__form__label'>Date de départ</label>
         <input name="date" value={trip.date} className="newTrip__form__input" type="date" placeholder="Date" onChange={onChange} />
         <label className='newTrip__form__label'>Heure de départ</label>
@@ -69,7 +69,6 @@ const Newtrip = ({
       </form>
     </main>
   );
-  
 };
 
 export default Newtrip;
