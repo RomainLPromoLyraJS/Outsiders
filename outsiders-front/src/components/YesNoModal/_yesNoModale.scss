@@ -1,0 +1,45 @@
+.delete-modal {
+  background-color: $color-quaternary;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0%;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    z-index: 6;
+    font-family: 'Contrail One', cursive;
+    font-size: 2rem;
+    color: $color;
+    margin-right: 1rem;
+  }
+
+  &__btn {
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: .5rem .8rem;
+  }
+
+  .yes {
+    background-color: $color-secondary;
+    color: $color;
+    margin-right: .5rem;
+  }
+
+  .no {
+    background-color: $color;
+    color: $color-tertiary;
+  }
+}
+
+.active {
+  display: flex;
+}
+
+.inactive {
+  display: none;
+}

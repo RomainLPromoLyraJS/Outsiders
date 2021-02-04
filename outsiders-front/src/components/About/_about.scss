@@ -1,70 +1,178 @@
 .about {
-padding: 20px;
-    &__presentation {
-        padding: 20px;
+  min-height: calc(100vh - 132px); // height of the screen less (header + footer)
+  width: 90%;
+  max-width: 1280px; // max-width generally used for all desktops
+  margin: 0 auto;
+  padding: 2rem 0;
+  @include media('<=tablet') {
+    min-height: calc(100vh - 120px);
+  }
+
+  &__presentation__title {
+    font-size: 6rem;
+    color: $color-tertiary;
+    @include media('<=tablet') {
+      font-size: 3rem;
+    }
+  }
+
+  &__website {
+    padding: 30px;
+    text-align: center;
+    background-color: $color-secondary;
+    margin: 2rem 0;
+    border-radius: 30px;
+    @include media('<=tablet') {
+      padding: 10px;
+    }
 
     &__title {
-        font-size: 2.2em;
-        padding-bottom: 10px;
-        text-align: center;
-        color: $color-quaternary;
-       
-        
+      color: $color;
+      font-size: 2em;
+      text-transform: capitalize;
+      font-weight: bold;
+      background-color: $color-tertiary;
+      padding: 1.2rem;
+      border-radius: 30px;
     }
-    
+
+    &__article {
+      padding: 20px;
+      font-size: 1.2em;
+      line-height: 1.1em;
+      color: $color-secondary;
+      background-color: $color;
+      margin: 2rem 0 1rem 0;
+      border-radius: 30px;
+      @include media('<=tablet') {
+        margin: 0.8rem 0 0 0;
+      }
+    }
+  }
+
+  &__team {
+    &__presentation {
+      padding: 30px;
+      text-align: center;
+      background-color: $color-secondary;
+      margin: 2rem 0;
+      border-radius: 30px;
+      @include media('<=tablet') {
+        padding: 10px;
+      }
+    }
+
+    &__title {
+      color: $color;
+      font-size: 2em;
+      text-transform: capitalize;
+      font-weight: bold;
+      background-color: $color-tertiary;
+      padding: 1.2rem;
+      margin: 0 auto;
+      border-radius: 30px;
+    }
+
     &__text {
-        line-height: 1.2em;
+      padding: 20px;
+      font-size: 1.2em;
+      line-height: 1.1em;
+      color: $color-secondary;
+      background-color: $color;
+      margin: 2rem 0 1rem 0;
+      border-radius: 30px;
+      @include media('<=tablet') {
+        margin: 0.8rem 0 0 0;
+      }
+    }
+
+    &__article {
+      padding: 10px;
+      background-color: $color-tertiary;
+      margin: 2rem 0;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+
+      &__content {
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include media('<=tablet') {
+          margin: 0.5rem;
+        }
+        @include media('<=phone') {
+          padding: 0 2rem 0 0;
+        }
+
+
+        &__img {
+          width: 100px;
+          height: fit-content;
+          margin-right: 1rem;
+          @include media('<=phone') {
+            margin-right: 0;
+          }
+  
+          img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid $color;
+          }
+        }
+
+        &__subtitle {
+          color: $color;
+          font-size: 4rem;
+          font-weight: bold;
+          padding: 0.5em;
+          @include media('<=tablet') {
+            font-size: 2rem;
+          }
+        }
+
+        &__logos {
+          color: $color;
+          font-size: 4rem;
+          font-weight: bold;
+          padding: 0.5em;
+          display: flex;
+          @include media('<=tablet') {
+            // display: none;
+          }
+          @include media('<=phone') {
+            // display: none;
+            flex-direction: column;
+            padding: 0 20px;
+            align-content: flex-end;
+            font-size: 3rem;
+            width: 20px;
+          }
+
+          &__github {
+            margin-right: 2rem;
+            @include media('<=phone') {
+            
+            } 
+          }
+
+          &__linkedin {
+            // margin-right: 2rem; 
+          }
+        }
+      }
+
+      &__text {
+        padding: 2rem;
         font-size: 1.2em;
+        color: $color;
+        background-color: $color-secondary;
+        border-radius: 20px;
+        line-height: 1.3rem;
+      }  
     }
-    }
+  }
+}
 
-    &__website {
-        padding: 30px;
-        text-align: center;
-        &__title {
-            color: $color-quaternary;
-            font-size: 2em;
-            text-transform: capitalize;
-            font-weight: bold;
-        }
-        
-        &__article {
-            padding: 20px;
-            font-size: 1.2em;
-        }
-        
-    }
-        &__team {
-
-            &__title {
-                color: $color-quaternary;
-                font-size: 2em;
-                text-transform: capitalize;
-                font-weight: bold;
-                text-align: center;
-            }
-
-
-            &__text {
-                padding: 20px;
-                font-size: 1.2em;
-                text-align: center;
-            }
-    
-            &__article {
-                padding: 20px;
-                font-size: 1.2em;
-            }
-    
-            &__subtitle {
-                color: $color-quaternary;
-                font-size: 1.4em;
-                font-weight: bold;
-                padding: 0.5em;
-            }
-
-        }
-        
-    }
-
-    

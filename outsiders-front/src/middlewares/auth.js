@@ -103,6 +103,32 @@ const api = (store) => (next) => (action) => {
       break;
     };
 
+    case 'DELETE_OWN_PROFILE': {
+      const { auth: { id, token } } = store.getState();
+
+      const config = {
+        method: 'delete',
+        url: `${apiUrl}/user/${id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      };
+
+      axios(config)
+        .then((res) => {
+          if (res.status !== 200) {
+						throw res.error;
+					} else {
+            console.log(res.data.message);
+						store.dispatch({type: 'DELETE_OWN_PROFILE_SUCCESS'});
+					}
+				}).catch((error) => {
+					console.log('Oups ! ', error);
+        });
+      break;
+    }
+
     default:
       next(action);
   }

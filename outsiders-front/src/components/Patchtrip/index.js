@@ -8,16 +8,6 @@ const Patchtrip = ({
   sports,
   handleModify,
   handleChange,
-  titleValue,
-  dateValue,
-  fromValue,
-  toValue,
-  priceValue,
-  timeValue,
-  descriptionValue,
-  durationValue,
-  minimumValue,
-  placesValue,
   trip,
 }) => {
   // sending the request to API
@@ -28,41 +18,50 @@ const Patchtrip = ({
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
   }
-  // array for select number input (placesValue)
-  const numbr10 = ['2','3','4','5','6','7','8','9','10'];
 
   return (
-    <div className='patchtrip-page'>
-      <h1> TITLE MODIFIER UNE SORTIE </h1>
-      <form className='form'>
-        <select name="sport_title" className="form__sport" onChange={onChange}>
+    <main className="patchTrip">
+      <h1 className="patchTrip__title">Modifier</h1>
+      <form className="patchTrip__form">
+        <label className='patchTrip__form__label'>Sport</label>
+        <select className="patchTrip__form__select" name="sport_id" onChange={onChange}>
           <option value="">Sport</option>
-          {sports.map(s => {
-            return <option key={s.id} value={s.id}>{s.title}</option>
-          })}
+            {sports.map(s => {
+              return <option key={s.id} value={s.id}>{s.title}</option>
+            })}
         </select>
-        <input name="trip_title" value={titleValue} className="form__title" type="text" placeholder="Titre" onChange={onChange}/>
-        <input name="trip_description" value={descriptionValue} className="form__description" type="text" placeholder="Description" onChange={onChange}/>
-        <input name="date" value={dateValue} className="form__date" type="date" placeholder="Date" onChange={onChange}/>
-        <input name="time" value={timeValue} className="form__time" type="time" placeholder="Heure départ" onChange={onChange}/>
-        <input name="from" value={fromValue} className="form__from" type="text" placeholder="Départ" onChange={onChange}/>
-        <input name="to" value={toValue} className="form__to" type="text" placeholder="Destination" onChange={onChange}/>
-        <input name="duration" value={durationValue} className="form__duration" type="number" placeholder="durée" onChange={onChange}/>
-        <input name="price" value={priceValue} className="form__price" type="number" placeholder="price" onChange={onChange}/>
-        <input name="minimum" value={minimumValue} className="form__minimum" type="number" placeholder="Minimum de personne" onChange={onChange}/>
-        <select name="places" value={placesValue} className="form__minimum" type="number"  min="2" placeholder="Places disponible" onChange={onChange}>
-          <option value="">Places disponibles(2 places minimum)</option>
-          {numbr10.map(n => {
-            return <option key={n} value={n}>{n}</option>
-          })}
-        </select>
-        <NavLink onClick={modifySubmit} to={buildTripURL(trip.trip_title)}>
-          <button>Modifier sortie</button>
+        <label className='patchTrip__form__label'>Titre</label>
+        <input name="trip_title" value={trip.trip_title} className="patchTrip__form__input" type="text" placeholder="Titre" onChange={onChange}/>
+        <label className='patchTrip__form__label'>Description</label>
+        <textarea name="trip_description" value={trip.trip_description} className="patchTrip__form__textarea" type="text" placeholder="Description" onChange={onChange} />
+        <label className='patchTrip__form__label'>Date de départ</label>
+        <input name="date" value={trip.date} className="patchTrip__form__input" type="date" placeholder="Date" onChange={onChange} />
+        <label className='patchTrip__form__label'>Heure de départ</label>
+        <input name="time" value={trip.time} className="patchTrip__form__input" type="time" placeholder="Heure départ" onChange={onChange} />
+        <label className='patchTrip__form__label'>Ville de départ</label>
+        <input name="from" value={trip.from} className="patchTrip__form__input" type="text" placeholder="Départ" onChange={onChange} />
+        <label className='patchTrip__form__label'>Lieu de destination</label>
+        <input name="to" value={trip.to} className="patchTrip__form__input" type="text" placeholder="Destination" onChange={onChange} />
+        <label className='patchTrip__form__label'>Durée</label>
+        <div className="patchTrip__form__container">
+          <input className="patchTrip__form__container__slider" name="duration" value={trip.duration} onChange={onChange} type="range" min="0.5" max="3" step="0.5" />
+          <p className="patchTrip__form__container__result">{`${trip.duration}`} jours</p>
+        </div>
+        <label className='patchTrip__form__label'>Coût total du trajet</label>
+        <input name="price" value={trip.price} className="patchTrip__form__input" type="number" placeholder="price" onChange={onChange} />
+        <label className='patchTrip__form__label'>Minimum de participants</label>
+        <input name="minimum" value={trip.minimum} className="patchTrip__form__input" type="number" placeholder="Minimum de personne" onChange={onChange} />
+        <label className='patchTrip__form__label'>Total de places <span>(driver compris)</span></label>
+        <div className="patchTrip__form__container">
+          <input className="patchTrip__form__container__slider" name="places" value={trip.places} onChange={onChange} type="range" min="2" max="10" step="1" />
+          <p className="patchTrip__form__container__result">{`${trip.places}`} places</p>
+        </div>
+        <NavLink className='patchTrip__form__button' onClick={modifySubmit} to={buildTripURL(trip.trip_title)}>
+          <button className='patchTrip__form__button' type='submit'>On y retourne !</button>
         </NavLink>
       </form>
-    </div>
-  )
-}
-
+    </main>
+  );
+};
 
 export default Patchtrip;
