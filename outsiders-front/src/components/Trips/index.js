@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 // == Local imports
 // componennts
 import Trip from './Trip.js';
+import Loader from '../Loader';
 // utils
 import { buildTripURL } from '../../utils';
 
@@ -15,7 +16,7 @@ const Trips = ({ trips, isLoaded, getTripDetails }) => {
 
 			{/* Display loader */}
 			{!isLoaded && (
-				<div className="trips__loader" />
+				<Loader />
 			)}
 
 			{/* Display message */}

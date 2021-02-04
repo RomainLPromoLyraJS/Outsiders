@@ -7,6 +7,7 @@ import DayJS from 'react-dayjs';
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 import Weather from './Weather';
+import Loader from '../Loader';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
 
@@ -59,66 +60,64 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   };
   
   return (
-    <main>
-      {/* Redirect if not logged */}
-
+    <main className="tripDetails">
       {/* Display loader */}
 			{!isLoaded && (
-				<div className="trips__loader" />
+				<Loader />
 			)}
       
       {/* Display result */}
       {isLoaded && (
-        <div className="tripDetails">
-          <section className="tripInfo">
-            <header className="tripInfo__header">
-              <div className="tripInfo__header__main">
-                <h2>{trip.sport_title}</h2>
-                <h1>{trip.trip_title}</h1>
-              </div>
-              <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
-            </header>
-            <div className="tripInfo__container">
-              <div className="tripInfo__container__desc">
-                <h2 className="tripInfo__container__desc__title">Description de la sortie</h2>
-                <div className="tripInfo__container__desc__travel">
-                  <div className="tripInfo__container__desc__travel__from">{trip.from}</div>
-                  <div className="tripInfo__container__desc__travel__separator" />
-                  <div className="tripInfo__container__desc__travel__to">{trip.to}</div>
-                </div>
-                <p className="tripInfo__container__desc__text">{trip.trip_description}</p>
-              </div>
-              <div className="tripInfo__container__details">
-                <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
-                <div className="tripInfo__container__details__places">Nombre de places : <span>{trip.places}</span></div>
-                <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants).length)}</span></div>
-                <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
-                <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
-                <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
-                <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
-                <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
-              </div>
+        <>
+        <section className="tripInfo">
+          <header className="tripInfo__header">
+            <div className="tripInfo__header__main">
+              <h2>{trip.sport_title}</h2>
+              <h1>{trip.trip_title}</h1>
             </div>
-          </section>
-          <ButtonSection
-            creatorId={trip.creator[0].id}
-            handleDelete={handleDelete}
-            handleJoin={handleJoin}
-            handleLeave={handleLeave}
-            userId={userId}
-            isParticipant={isParticipant(trip.participants, username)}
-          />
-          <MessageSection
-            handleChange={handleChange}
-            handleNewMessage={handleNewMessage}
-            messageValue={messageValue}
-            messages={nullToArray(trip.message)}
-            username={username}
-            isParticipant={isParticipant(trip.participants, username)}
-          />
-          {/*  Weather sub components */}
-          <Weather trip={trip} weather={weather}/>
-        </div>
+            <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
+          </header>
+          <div className="tripInfo__container">
+            <div className="tripInfo__container__desc">
+              <h2 className="tripInfo__container__desc__title">Description de la sortie</h2>
+              <div className="tripInfo__container__desc__travel">
+                <div className="tripInfo__container__desc__travel__from">{trip.from}</div>
+                <div className="tripInfo__container__desc__travel__separator" />
+                <div className="tripInfo__container__desc__travel__to">{trip.to}</div>
+              </div>
+              <p className="tripInfo__container__desc__text">{trip.trip_description}</p>
+            </div>
+            <div className="tripInfo__container__details">
+              <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
+              <div className="tripInfo__container__details__places">Nombre de places : <span>{trip.places}</span></div>
+              <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants).length)}</span></div>
+              <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
+              <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
+              <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
+              <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
+              <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
+            </div>
+          </div>
+        </section>
+        <ButtonSection
+          creatorId={trip.creator[0].id}
+          handleDelete={handleDelete}
+          handleJoin={handleJoin}
+          handleLeave={handleLeave}
+          userId={userId}
+          isParticipant={isParticipant(trip.participants, username)}
+        />
+        <MessageSection
+          handleChange={handleChange}
+          handleNewMessage={handleNewMessage}
+          messageValue={messageValue}
+          messages={nullToArray(trip.message)}
+          username={username}
+          isParticipant={isParticipant(trip.participants, username)}
+        />
+        {/*  Weather sub components */}
+        <Weather trip={trip} weather={weather}/>
+        </>
       )}
     </main>
   )
