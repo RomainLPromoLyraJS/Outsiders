@@ -1,45 +1,56 @@
 // == Package Imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // == Local imports
 // utils
 import { makeFullName } from '../../utils';
-//images
-import kelly from '../../assets/images/kelly.png';
+// components
+import Trips from '../../containers/Trips';
+import YesNoModal from '../YesNoModal';
 
-const Profile = ({ user }) => {
+
+const Profile = ({ user, getUserTrips, handleDeleteUser }) => {
+  // toggle delete modal
+  const [ displayModal, setDisplayModal ] = useState(false);
+  const modalCSS = displayModal
+    ? "delete-modal active"
+    : "delete-modal inactive"
+
+  // download user's trip everytime he comes to his profile page
+  useEffect(() => {
+    getUserTrips();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const deleteUser = () => {
+    handleDeleteUser();
+  }
 
   return (
-    <div className="profil">
+    <main className="profil">
       <section className="profil__user">
         <div className="profil__user__main">
-          <div className="profil__user__main__img">
-            <img src={kelly} alt="User profil pic" />
-          </div>
           <div className="profil__user__main__name">
-            <h2>{makeFullName(user.firstname, user.lastname)}</h2>
-            <p>{user.username}</p>
-            <button>
-              <NavLink to="/">Mes reviews</NavLink>
-            </button>
+            <h1>{makeFullName(user.firstname, user.lastname)}</h1>
+            <h2>{user.username}</h2>
           </div>
         </div>
         <div className="profil__user__description">
           <p>{user.description}</p>
         </div>
         <div className="profil__user__buttons">
-          <NavLink to="/mon-compte/modifer" className="profil__user__buttons__btn">Modifier mon profil</NavLink>
-          <button className="profil__user__buttons__btn delete">Supprimer mon profil</button>
+          <NavLink to="/mon-compte/modifier" className="profil__user__buttons__btn">Modifier mon profil</NavLink>
+          <button className="profil__user__buttons__btn delete" onClick={() => {setDisplayModal(!displayModal)}}>Supprimer mon profil</button>
         </div>
       </section>
       <section className="profil__trips">
-        <div className="profil__trips__item">Je suis un trip</div>
-        <div className="profil__trips__item">Je suis un trip</div>
-        <div className="profil__trips__item">Je suis un trip</div>
+        <h2 className="profil__trips__title">Mes sorties</h2>
+        <Trips />
       </section>
-    </div>
+      <YesNoModal onClick={deleteUser} modalCSS={modalCSS} displayModal={displayModal} setDisplayModal={setDisplayModal} />
+    </main>
   );
 };
 

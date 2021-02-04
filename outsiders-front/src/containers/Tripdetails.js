@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   messageValue: state.trips.messageValue,
   userId: state.auth.id,
   username: state.auth.username,
+  weather: state.exapi.weatherData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -40,6 +41,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleNewMessage: () => {
     dispatch({type: 'NEW_MESSAGE'});
+  },
+
+  getMessages: () => {
+    dispatch({type: 'GET_MESSAGES'});
   },
 });
 

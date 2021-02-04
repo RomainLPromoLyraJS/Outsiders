@@ -25,11 +25,6 @@ const EditProfile = ({ isLogged, firstname, lastname, username, email, password,
         <Redirect to='/mon-compte' />
       )}
 
-      {/* redirect if user is not logged */}
-      {!isLogged && (
-        <Redirect to='/login' />
-      )}
-
       <h1 className="editProfile__title">Inscription</h1>
       <form className="editProfile__form" onSubmit={onSubmit}>
         <label className="editProfile__form__label" htmlFor="fisrtname">Prénom</label>

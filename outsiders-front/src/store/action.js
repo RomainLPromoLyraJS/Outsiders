@@ -15,21 +15,22 @@ export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 
 // trip types
 export const CHANGE_TRIP_FIELD = 'CHANGE_TRIP_FIELD';
-export const CHANGE_ADMIN_FIELD = 'CHANGE_ADMIN_FIELD';
 export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
+export const GET_WEATHER_SUCCESS = 'GET_WEATHER_SUCCESS';
 export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 
 // message types
 export const CHANGE_MESSAGE_FIELD = 'CHANGE_MESSAGE_FIELD';
 export const NEW_MESSAGE_SUCCESS = 'NEW_MESSAGE_SUCCESS';
 
-
-// == Actions
-// auth actions
+// backOffice types
+export const CHANGE_ADMIN_FIELD = 'CHANGE_ADMIN_FIELD';
 export const CREATE_SPORT_SUCCESS = 'CREATE_SPORT_SUCCESS';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 
 
+// == Actions
+// auth actions
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
   value,
@@ -92,6 +93,11 @@ export const getTripsSuccess = (tripList) => ({
   tripList,
 });
 
+export const loadWeatherSuccess = (weather) => ({
+  type: GET_WEATHER_SUCCESS,
+  weather,
+});
+
 export const getTripDetailsSuccess = (details, participant, messages) => ({
   type: GET_TRIP_DETAILS_SUCCESS,
   trip: {
@@ -112,8 +118,14 @@ export const newMessageSuccess = (messages) => ({
   messages,
 });
 
+// backOffice actions
 export const createSportSuccess = () => ({
   type: CREATE_SPORT_SUCCESS,
+});
+
+export const trackSport = (title) => ({
+  type: GET_SPORT_TITLE,
+  title,
 });
 
 export const getUsersSuccess = (userList) => ({

@@ -26,7 +26,7 @@ const Home = () => (
       <div className="home__bottom__text">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit. Curabitur gravida arcu ac tortor dignissim convallis aenean. Nisi porta lorem mollis aliquam ut porttitor leo. Molestie nunc non blandit massa. Tortor pretium viverra suspendisse potenti nullam ac. Sem nulla pharetra diam sit amet. Varius vel pharetra vel turpis nunc. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Bibendum enim facilisis gravida neque convallis a.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit.</p>
-      </div>
+      </div>  
     </section>
   </div>
 );

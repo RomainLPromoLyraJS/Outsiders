@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+// Local import
+import YesNoModal from '../YesNoModal';
+
 const ButtonSection = ({ creatorId, handleDelete, handleJoin, handleLeave, isParticipant, userId }) => {
   // toggle delete modal
   const [ displayModal, setDisplayModal ] = useState(false);
@@ -57,11 +60,7 @@ const ButtonSection = ({ creatorId, handleDelete, handleJoin, handleLeave, isPar
         </>
       )}
       
-      <div className={modalCSS}>
-        <p>Sûr ?</p>
-        <button onClick={deleteTrip} className="delete-modal__btn yes"><NavLink to="/">Oui</NavLink></button>
-        <button onClick={() => {setDisplayModal(!displayModal)}} className="delete-modal__btn no">Non</button>
-      </div>
+      <YesNoModal onClick={deleteTrip} modalCSS={modalCSS} displayModal={displayModal} setDisplayModal={setDisplayModal} />
     </section>
   );
 };

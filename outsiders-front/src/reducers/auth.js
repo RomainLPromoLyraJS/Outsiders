@@ -88,6 +88,21 @@ const reducer = (oldState = initialState, action = {}) => {
         description: action.description,
       };
 
+    case 'DELETE_OWN_PROFILE_SUCCESS':
+      return {
+        ...oldState,
+        id: '',
+        token: '',
+        firstname: '',
+        lastname: '',
+        username: '',
+        email: '',
+        password: '',
+        description: '',
+        isLogged: false,
+        role_id: '',
+      }
+
     default:
       return {...oldState}
   }
