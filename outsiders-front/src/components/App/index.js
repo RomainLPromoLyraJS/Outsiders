@@ -15,6 +15,11 @@ import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
 import Login from '../../containers/Login';
 import Profile from '../../containers/Profile';
+import Newtrip from '../../containers/Newtrip';
+import Patchtrip from '../../containers/Patchtrip';
+
+
+
 import BackOffice from '../../containers/BackOffice';
 import Newtrip from '../../containers/Newtrip';
 import Patchtrip from '../../containers/Patchtrip';
@@ -56,6 +61,7 @@ const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
       {/* Trip routes */}
       <Route exact path='/sorties' >
         <Sorties />
+
       </Route>
       {/* Condition : If user is not logged (isLogged = false) redirect to Login page */}
       <GuardedRoute exact path='/sortie/:slug' component={Tripdetails} isLogged={isLogged} />

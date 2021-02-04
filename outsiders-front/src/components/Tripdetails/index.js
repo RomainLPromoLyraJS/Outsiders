@@ -1,14 +1,35 @@
 // == Package Import
-import React from 'react';
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
+import { FaArrowLeft } from "react-icons/fa";
 
 // == Local Import
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 import Weather from './Weather';
+import Loader from '../Loader';
 
-const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLogged, isLoaded, messageValue, trip, userId, username, weather }) => {
+const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
+
+  const spotCalculator = (nbSpot, nbPax) => {
+    return nbSpot - nbPax;
+  };
+  
+  /** 
+   * useEffect with interval & clearInterval
+   * Call getMessages(); every 15seconds // Refresh chatbox
+   * @params 1000ms = 1 second
+   * @link https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
+   */
+  useEffect(() => {
+   const interval = setInterval(() => {
+      getMessages();
+      console.log('getMessage inteval');
+  }, 15000);
+  return () => clearInterval(interval);
+  })
 
   // prevent null array
   const nullToArray = (tab) => {
@@ -41,45 +62,48 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   };
   
   return (
-    <main>
-      {/* Redirect if not logged */}
-
+    <main className="tripDetails">
       {/* Display loader */}
 			{!isLoaded && (
-				<div className="trips__loader" />
+				<Loader />
 			)}
       
       {/* Display result */}
       {isLoaded && (
-        <div className="tripDetails">
-          <section className="tripInfo">
-            <header className="tripInfo__header">
-              <div className="tripInfo__header__main">
-                <h2>{trip.sport_title}</h2>
-                <h1>{trip.trip_title}</h1>
+        <>
+        <section className="tripInfo">
+          <div className="tripInfo__back">
+            <NavLink to="/sorties" className="tripInfo__back__btn">
+              <FaArrowLeft />
+              <p> Retour</p>
+            </NavLink>
+          </div>
+          <header className="tripInfo__header">
+            <div className="tripInfo__header__main">
+              <h2>{trip.sport_title}</h2>
+              <h1>{trip.trip_title}</h1>
+            </div>
+            <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
+          </header>
+          <div className="tripInfo__container">
+            <div className="tripInfo__container__desc">
+              <h2 className="tripInfo__container__desc__title">Description de la sortie</h2>
+              <div className="tripInfo__container__desc__travel">
+                <div className="tripInfo__container__desc__travel__from">{trip.from}</div>
+                <div className="tripInfo__container__desc__travel__separator" />
+                <div className="tripInfo__container__desc__travel__to">{trip.to}</div>
               </div>
-              <h2 className="tripInfo__header__username">{trip.creator[0].username}</h2>
-            </header>
-            <div className="tripInfo__container">
-              <div className="tripInfo__container__desc">
-                <h2 className="tripInfo__container__desc__title">Description de la sortie</h2>
-                <div className="tripInfo__container__desc__travel">
-                  <div className="tripInfo__container__desc__travel__from">{trip.from}</div>
-                  <div className="tripInfo__container__desc__travel__separator" />
-                  <div className="tripInfo__container__desc__travel__to">{trip.to}</div>
-                </div>
-                <p className="tripInfo__container__desc__text">{trip.trip_description}</p>
-              </div>
-              <div className="tripInfo__container__details">
-                <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
-                <div className="tripInfo__container__details__places">Nombre de places : <span>{trip.places}</span></div>
-                <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants).length)}</span></div>
-                <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
-                <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
-                <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
-                <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
-                <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
-              </div>
+              <p className="tripInfo__container__desc__text">{trip.trip_description}</p>
+            </div>
+            <div className="tripInfo__container__details">
+              <div className="tripInfo__container__details__date">Départ le <span><DayJS format="DD/MM/YYYY">{trip.date}</DayJS></span> à <span>{trip.time.slice(0, 5)}</span></div>
+              <div className="tripInfo__container__details__places">Nombre de places : <span>{trip.places}</span></div>
+              <div className="tripInfo__container__details__places">Places disponibles : <span>{spotCalculator(trip.places, nullToArray(trip.participants).length)}</span></div>
+              <div className="tripInfo__container__details__min">Munimum de participants : <span>{trip.minimum}</span></div>
+              <div className="tripInfo__container__details__duration">Durée : <span>{trip.duration} jours</span></div>
+              <div className="tripInfo__container__details__tot">Prix total : <span>{trip.price}€</span></div>
+              <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
+              <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
             </div>
           </section>
           <ButtonSection
@@ -100,6 +124,12 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
           />
           {/*  Weather sub components */}
           <Weather trip={trip} weather={weather}/>
+          <div className="tripInfo__container">
+            <div className="tripInfo__container__infos">
+              <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
+              <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
+            </div>
+          </div>
         </div>
       )}
     </main>
