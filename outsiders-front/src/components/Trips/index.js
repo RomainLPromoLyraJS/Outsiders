@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 // componennts
 import Trip from './Trip.js';
 import Loader from '../Loader';
+
 // utils
 import { buildTripURL } from '../../utils';
 

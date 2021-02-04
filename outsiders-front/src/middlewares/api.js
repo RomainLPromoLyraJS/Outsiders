@@ -17,8 +17,6 @@ const weatherKey = '5102a539085037168997fc53c5a4d62b';
 // request cat/etc
 const auth = (store) => (next) => (action) => {
 
-
-
 	switch (action.type) {
 
 		case 'GET_SPORTS': {

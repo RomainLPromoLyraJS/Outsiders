@@ -23,7 +23,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({type: 'CHANGE_LOADING'});
     dispatch({ type: 'HANDLE_MODIFY' });
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Patchtrip);

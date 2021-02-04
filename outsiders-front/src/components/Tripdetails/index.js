@@ -11,7 +11,9 @@ import Loader from '../Loader';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
 
-
+  const spotCalculator = (nbSpot, nbPax) => {
+    return nbSpot - nbPax;
+  };
   
   /** 
    * useEffect with interval & clearInterval
@@ -25,9 +27,7 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
       console.log('getMessage inteval');
   }, 15000);
   return () => clearInterval(interval);
-})
-
-
+  })
 
   // prevent null array
   const nullToArray = (tab) => {

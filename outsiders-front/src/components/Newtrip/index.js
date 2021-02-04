@@ -72,5 +72,3 @@ const Newtrip = ({
 };
 
 export default Newtrip;
-
-

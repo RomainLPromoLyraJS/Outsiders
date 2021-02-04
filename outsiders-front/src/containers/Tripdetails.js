@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   getMessages: () => {
     dispatch({type: 'GET_MESSAGES'});
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tripdetails);
