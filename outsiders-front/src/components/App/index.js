@@ -15,11 +15,6 @@ import Tripdetails from '../../containers/Tripdetails';
 import Signup from '../../containers/Signup';
 import Login from '../../containers/Login';
 import Profile from '../../containers/Profile';
-import Newtrip from '../../containers/Newtrip';
-import Patchtrip from '../../containers/Patchtrip';
-
-
-
 import BackOffice from '../../containers/BackOffice';
 import Newtrip from '../../containers/Newtrip';
 import Patchtrip from '../../containers/Patchtrip';

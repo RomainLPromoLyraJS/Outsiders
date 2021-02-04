@@ -13,10 +13,6 @@ import Loader from '../Loader';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
 
-  const spotCalculator = (nbSpot, nbPax) => {
-    return nbSpot - nbPax;
-  };
-  
   /** 
    * useEffect with interval & clearInterval
    * Call getMessages(); every 15seconds // Refresh chatbox
@@ -105,7 +101,8 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
               <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
               <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
             </div>
-          </section>
+          </div>
+        </section>
           <ButtonSection
             creatorId={trip.creator[0].id}
             handleDelete={handleDelete}
@@ -130,7 +127,8 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
               <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
             </div>
           </div>
-        </div>
+        {/* </div> */}
+      </>
       )}
     </main>
   )
