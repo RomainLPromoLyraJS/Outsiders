@@ -60,8 +60,33 @@ const auth = (store) => (next) => (action) => {
 				}).catch((error) => {
 					console.log('Oups !', error);
 				});
-				break;
+			break;
 		}
+
+		case 'GET_USER_TRIPS': {
+			const { auth: { id, token } } = store.getState();
+
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/user/${id}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`
+				},
+			}
+
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error
+					} else {
+						store.dispatch(getTripsSuccess(response.data.tripRegistered));
+					}
+				}).catch((error) => {
+					console.log('Oups !', error);
+				});
+			break;
+		};
 
 		case 'GET_USERS': {
 
@@ -73,8 +98,8 @@ const auth = (store) => (next) => (action) => {
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${token}`
-			},
-		};
+				},
+			};
 			
 			axios(config)
 				.then((response) => {
@@ -153,11 +178,11 @@ const auth = (store) => (next) => (action) => {
 			};
 			axios(config)
 				.then((response) => {
-					console.log(response);
 					if (response.status !==200) {
 						throw response.error;
 					} else {
 						// Send another request with response data.id to get all details from the new trip
+						console.log(response.data.message);
 						axios({
 							method: 'get',
 							url: `${apiUrl}/trip/${response.data.data.id}`,
@@ -170,6 +195,19 @@ const auth = (store) => (next) => (action) => {
 							} else {
 								// Render all details from the new trip
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+								axios({
+									method: 'get',
+									url: `https://api.openweathermap.org/data/2.5/forecast?q=${res.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+									headers: {
+										'Content-Type': 'application/json',
+									}
+								}).then((r) => {
+									if (r.status !== 200) {
+										throw r.error;
+									} else {
+										store.dispatch(loadWeatherSuccess(r.data));
+									}
+								});
 							}
 						});
 					}
@@ -198,11 +236,6 @@ const auth = (store) => (next) => (action) => {
 					} else {
 						store.dispatch(getTripDetailsSuccess(response.data.data[0], response.data.data[1], response.data.data[2]));
 						axios({
-							/**
-							 * @PARAMS ${weatherKey} => API KEY see doc for more informations
-							 * @LINK https://openweathermap.org/forecast5
-							 * @TODO EXPORT WEATHERKEY => see above (line15)
-							 *  */  
 							method: 'get',
 							url: `https://api.openweathermap.org/data/2.5/forecast?q=${response.data.data[0].to}&units=metric&APPID=${weatherKey}`,
 							headers: {
@@ -253,6 +286,7 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !==200) {
 						throw response.error;
 					} else {
+						console.log(response.data.message);
 						axios({
 							method: 'get',
 							url: `${apiUrl}/trip/${response.data.data[0].id}`,
@@ -265,6 +299,19 @@ const auth = (store) => (next) => (action) => {
 							} else {
 								// Render all details from the new trip
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+								axios({
+									method: 'get',
+									url: `https://api.openweathermap.org/data/2.5/forecast?q=${res.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+									headers: {
+										'Content-Type': 'application/json',
+									}
+								}).then((r) => {
+									if (r.status !== 200) {
+										throw r.error;
+									} else {
+										store.dispatch(loadWeatherSuccess(r.data));
+									}
+								});
 							}
 						});
 					}
@@ -409,6 +456,34 @@ const auth = (store) => (next) => (action) => {
 					console.log('Oups ! ', error);
 				});
 			break;
+		};
+
+		case 'GET_MESSAGES': {
+			const { auth: { token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+			
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}/comment`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+			console.log('CONFIG GET MESSAGES', config);
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						console.log('RESPONSE GET MESSAGES', response.data.data)
+						store.dispatch(newMessageSuccess(response.data.data));
+					}
+				})
+				.catch((error) => {
+					console.log('Oups !', error);
+				})
+				break;
 		}
 
 		default:

@@ -1,5 +1,5 @@
 // == Package Import
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
 
@@ -9,7 +9,25 @@ import MessageSection from './MessageSection';
 import Weather from './Weather';
 import Loader from '../Loader';
 
-const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLogged, isLoaded, messageValue, trip, userId, username, weather }) => {
+const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
+
+
+  
+  /** 
+   * useEffect with interval & clearInterval
+   * Call getMessages(); every 15seconds // Refresh chatbox
+   * @params 1000ms = 1 second
+   * @link https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
+   */
+  useEffect(() => {
+   const interval = setInterval(() => {
+      getMessages();
+      console.log('getMessage inteval');
+  }, 15000);
+  return () => clearInterval(interval);
+})
+
+
 
   // prevent null array
   const nullToArray = (tab) => {
