@@ -431,6 +431,34 @@ const auth = (store) => (next) => (action) => {
 					console.log('Oups ! ', error);
 				});
 			break;
+		};
+
+		case 'GET_MESSAGES': {
+			const { auth: { token } } = store.getState();
+			const { trips: { currentTrip } } = store.getState();
+			
+			const config = {
+				method: 'get',
+				url: `${apiUrl}/trip/${currentTrip.trip_id}/comment`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
+				}
+			}
+			console.log('CONFIG GET MESSAGES', config);
+			axios(config)
+				.then((response) => {
+					if (response.status !== 200) {
+						throw response.error;
+					} else {
+						console.log('RESPONSE GET MESSAGES', response.data.data)
+						store.dispatch(newMessageSuccess(response.data.data));
+					}
+				})
+				.catch((error) => {
+					console.log('Oups !', error);
+				})
+				break;
 		}
 
 		default:

@@ -111,7 +111,7 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         isLoaded:true,
-      }
+      };
     
     default:
       return {
