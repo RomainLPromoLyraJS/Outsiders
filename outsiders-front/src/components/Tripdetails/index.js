@@ -1,7 +1,9 @@
 // == Package Import
 import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DayJS from 'react-dayjs';
+import { FaArrowLeft } from "react-icons/fa";
 
 // == Local Import
 import ButtonSection from './ButtonSection';
@@ -70,6 +72,12 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
       {isLoaded && (
         <>
         <section className="tripInfo">
+          <div className="tripInfo__back">
+            <NavLink to="/sorties" className="tripInfo__back__btn">
+              <FaArrowLeft />
+              <p> Retour</p>
+            </NavLink>
+          </div>
           <header className="tripInfo__header">
             <div className="tripInfo__header__main">
               <h2>{trip.sport_title}</h2>
@@ -97,27 +105,32 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
               <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
               <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
             </div>
+          </section>
+          <ButtonSection
+            creatorId={trip.creator[0].id}
+            handleDelete={handleDelete}
+            handleJoin={handleJoin}
+            handleLeave={handleLeave}
+            userId={userId}
+            isParticipant={isParticipant(trip.participants, username)}
+          />
+          <MessageSection
+            handleChange={handleChange}
+            handleNewMessage={handleNewMessage}
+            messageValue={messageValue}
+            messages={nullToArray(trip.message)}
+            username={username}
+            isParticipant={isParticipant(trip.participants, username)}
+          />
+          {/*  Weather sub components */}
+          <Weather trip={trip} weather={weather}/>
+          <div className="tripInfo__container">
+            <div className="tripInfo__container__infos">
+              <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
+              <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
+            </div>
           </div>
-        </section>
-        <ButtonSection
-          creatorId={trip.creator[0].id}
-          handleDelete={handleDelete}
-          handleJoin={handleJoin}
-          handleLeave={handleLeave}
-          userId={userId}
-          isParticipant={isParticipant(trip.participants, username)}
-        />
-        <MessageSection
-          handleChange={handleChange}
-          handleNewMessage={handleNewMessage}
-          messageValue={messageValue}
-          messages={nullToArray(trip.message)}
-          username={username}
-          isParticipant={isParticipant(trip.participants, username)}
-        />
-        {/*  Weather sub components */}
-        <Weather trip={trip} weather={weather}/>
-        </>
+        </div>
       )}
     </main>
   )
