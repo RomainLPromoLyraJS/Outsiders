@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 // IMPORTS
 import React from "react";
@@ -44,12 +45,16 @@ const About = () => {
             </div>
             <h3 className="about__team__article__content__subtitle">Léo</h3>
             <div className="about__team__article__content__logos">
+              <a href="https://github.com/LeoJoly" target="_blank">
               <div className="about__team__article__content__logos__github">
                 <AiFillGithub />
               </div>
+              </a>
+              <a href="https://www.linkedin.com/in/leojoly/" target="_blank">
               <div className="about__team__article__content__logos__linkedin">
                 <AiFillLinkedin />
               </div>
+              </a>
             </div>
           </div>
           <p className="about__team__article__text">
@@ -66,12 +71,16 @@ const About = () => {
             </div>
             <h3 className="about__team__article__content__subtitle">Lucas</h3>
             <div className="about__team__article__content__logos">
-              <div className="about__team__article__content__logos__github">
-                <AiFillGithub />
-              </div>
+              <a href="https://github.com/BaibaLucas" target="_blank">
+                <div className="about__team__article__content__logos__github">
+                  <AiFillGithub />
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/lucas-baiba-21ba17145/" target="_blank">
               <div className="about__team__article__content__logos__linkedin">
                 <AiFillLinkedin />
               </div>
+              </a>
             </div>
           </div>
           <p className="about__team__article__text">
@@ -88,12 +97,16 @@ const About = () => {
             </div>
             <h3 className="about__team__article__content__subtitle">Romain</h3>
             <div className="about__team__article__content__logos">
+            <a href="https://github.com/RomainLPromoLyraJS" target="_blank">
               <div className="about__team__article__content__logos__github">
                 <AiFillGithub />
               </div>
+              </a>
+              <a href="https://www.linkedin.com/in/romain-lafosse/" target="_blank">
               <div className="about__team__article__content__logos__linkedin">
                 <AiFillLinkedin />
               </div>
+              </a>
             </div>
           </div>
           <p className="about__team__article__text">
@@ -108,12 +121,16 @@ const About = () => {
             </div>
             <h3 className="about__team__article__content__subtitle">Mathieu</h3>
             <div className="about__team__article__content__logos">
+            <a href="http://github.com/mathieupromolyra" target="_blank">
               <div className="about__team__article__content__logos__github">
                 <AiFillGithub />
               </div>
+              </a>
+              <a href="https://www.linkedin.com/in/mat-sr-95aa77205" target="_blank">
               <div className="about__team__article__content__logos__linkedin">
                 <AiFillLinkedin />
               </div>
+              </a>
             </div>
           </div>
           <p className="about__team__article__text">
