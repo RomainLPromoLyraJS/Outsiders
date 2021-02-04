@@ -10,11 +10,9 @@ const mapStateToProps = (state) => ({
   // == sports reducer == \\
   sports: state.sports.list,
   trip: state.trips.currentTrip,
-  isLoaded: state.trips.isLoaded,
 });
 // ACTIONS/FUNCTIONS that we give to Props (NewTrip)
 const mapDispatchToProps = (dispatch) => ({
-
   handleChange: (value, name) => {
     dispatch(changeTripField(value, name));
   },
@@ -23,8 +21,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({type: 'CHANGE_LOADING'});
     dispatch({ type: 'CREATE_TRIP' });
   },
-
   
+  resetForm: () => {
+    dispatch({type: 'DELETE_TRIP_SUCCESS'});
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Newtrip);
