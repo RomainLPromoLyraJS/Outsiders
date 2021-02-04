@@ -1,56 +1,23 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-// import Routing from "./RoutingMachine";
-import 'leaflet/dist/leaflet.css';
+import React from "react";
 
-const TripMap = () => {
-  const [ mapSettings, setMapSettings ] = useState({
-    lat: 57.74,
-    lng: 11.94,
-    zoom: 13,
-  });
+import { withScriptjs } from "react-google-maps";
+import Map from "./Map";
+// import "./style.css";
+
+const TripMap = ({ from, to }) => {
+  const MapLoader = withScriptjs(Map);
 
   return (
     <div className="map">
-      <MapContainer center={[ mapSettings.lat, mapSettings.lng ]} zoom={mapSettings.zoom} style={{height: '50vh'}}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        >
-          {/* <Routing map={mapSettings} /> */}
-        </TileLayer>
-      </MapContainer>
+      <h2 className="map__title">Le trajet</h2>
+      <MapLoader
+        from={from}
+        to={to}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBItBIHiK0_b6jh3e-aJQ646_x9ibf60T0"
+        loadingElement={<div style={{ height: `100%` }} />}
+      />
     </div>
   );
 };
 
 export default TripMap;
-
-
-/**
- * Import React from 'react;
- * import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
- * 
- * routing
- * 
- * 
- * const TripMap = () => {
- * const position = []
- * const position = []
- * 
- * return (
- *  <MapContainer
- *    center={position}
- *    zoom={13}
- *    scrollWheelZoom={false}
- *    style={{height: '90vh'}}
- *   >
- *  <TileLayer
- *    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
- *    url="https://{s}.title.openstreetmap.org/{z}/{x}/{y}.png"
- *  />
- * 
- * )
- * }
- * 
- *  */ 

@@ -23,10 +23,6 @@ import Admin from '../../containers/Admin';
 import Footer from '../Footer';
 import GuardedRoute from '../GuardedRoute';
 
-// TEST
-import Map from '../Map';
-
-
 const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
   // loading sports and categories data from api
   useEffect(() => {
@@ -39,11 +35,6 @@ const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
     <div className="App">
     {/* GUEST ROUTE */}
       <Header />
-
-      {/* TEST */}
-      <Route exact path='/map'>
-        <Map />
-      </Route>
 
       {/* General routes */}
       <Route exact path='/' >
