@@ -10,6 +10,7 @@ import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 import Weather from './Weather';
 import Loader from '../Loader';
+import Map from '../../containers/Map';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
 
@@ -103,32 +104,34 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
             </div>
           </div>
         </section>
-          <ButtonSection
-            creatorId={trip.creator[0].id}
-            handleDelete={handleDelete}
-            handleJoin={handleJoin}
-            handleLeave={handleLeave}
-            userId={userId}
-            isParticipant={isParticipant(trip.participants, username)}
-          />
-          <MessageSection
-            handleChange={handleChange}
-            handleNewMessage={handleNewMessage}
-            messageValue={messageValue}
-            messages={nullToArray(trip.message)}
-            username={username}
-            isParticipant={isParticipant(trip.participants, username)}
-          />
-          {/*  Weather sub components */}
+        <ButtonSection
+          creatorId={trip.creator[0].id}
+          handleDelete={handleDelete}
+          handleJoin={handleJoin}
+          handleLeave={handleLeave}
+          userId={userId}
+          isParticipant={isParticipant(trip.participants, username)}
+        />
+        <MessageSection
+          handleChange={handleChange}
+          handleNewMessage={handleNewMessage}
+          messageValue={messageValue}
+          messages={nullToArray(trip.message)}
+          username={username}
+          isParticipant={isParticipant(trip.participants, username)}
+        />
+        {/*  Weather sub components */}
+        <div className="tripInfo__weatherAndMap">
           <Weather trip={trip} weather={weather}/>
-          <div className="tripInfo__container">
-            <div className="tripInfo__container__infos">
-              <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
-              <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
-            </div>
+          <Map />
+        </div>
+        <div className="tripInfo__container">
+          <div className="tripInfo__container__infos">
+            <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
+            <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
           </div>
-        {/* </div> */}
-      </>
+        </div>
+        </>
       )}
     </main>
   )

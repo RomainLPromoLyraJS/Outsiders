@@ -23,7 +23,6 @@ import Admin from '../../containers/Admin';
 import Footer from '../Footer';
 import GuardedRoute from '../GuardedRoute';
 
-
 const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
   // loading sports and categories data from api
   useEffect(() => {
