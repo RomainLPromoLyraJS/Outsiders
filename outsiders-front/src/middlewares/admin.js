@@ -2,8 +2,8 @@
 import axios from "axios";
 
 // Local imports
-import apiUrl from "./url";
-import { createSportSuccess } from "../store/action";
+import { apiUrl } from './url';
+import { createSportSuccess } from '../store/action';
 
 // request cat/etc
 const admin = (store) => (next) => (action) => {
@@ -15,8 +15,6 @@ const admin = (store) => (next) => (action) => {
   switch (action.type) {
 
     case 'AUTH_ADMIN': {
-
-
       const config = {
         method: 'post',
         url: `${apiUrl}/admin`,
@@ -42,13 +40,13 @@ const admin = (store) => (next) => (action) => {
       break;
     };
 
-    case "CREATE_SPORT": {
+    case 'CREATE_SPORT': {
       const config = {
-        method: "post",
+        method: 'post',
         url: `${apiUrl}/sport`,
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         data: {
           title: sportNameCreate,
@@ -67,18 +65,18 @@ const admin = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log("Oups ! ", error);
+          console.log('Oups ! ', error);
         });
       break;
     }
 
-    case "MODIFY_SPORT": {
+    case 'MODIFY_SPORT': {
       const config = {
-        method: "patch",
+        method: 'patch',
         url: `${apiUrl}/sport/${id}`,
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         data: {
           title: sportNameModify,
@@ -99,19 +97,19 @@ const admin = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log("Oups ! ", error);
+          console.log('Oups ! ', error);
         });
       break;
     }
 
-    case "DELETE_SPORT": {
+    case 'DELETE_SPORT': {
       console.log(id);
       const config = {
-        method: "delete",
+        method: 'delete',
         url: `${apiUrl}/sport/${id}`,
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         data: {
           category_id,
@@ -124,25 +122,25 @@ const admin = (store) => (next) => (action) => {
             throw response.error;
           } else {
             store.dispatch({
-              type: "DELETE_SPORT_SUCCESS",
+              type: 'DELETE_SPORT_SUCCESS',
               message: `Le sport ${response.data.data[0].title} a bien été supprimé.`,
             });
           }
         })
         .catch((error) => {
-          console.log("Oups ! ", error);
+          console.log('Oups ! ', error);
         });
       break;
     }
 
-    case "DELETE_USER": {
+    case 'DELETE_USER': {
       console.log(id);
       const config = {
-        method: "delete",
+        method: 'delete',
         url: `${apiUrl}/user/${id}`,
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         data: {
           category_id,
@@ -154,20 +152,18 @@ const admin = (store) => (next) => (action) => {
           if (response.status !== 200) {
             throw response.error;
           } else {
-            console.log("je suis dans la response.data.data", response.data.data);
+            console.log('je suis dans la response.data.data', response.data.data);
             store.dispatch({
-              type: "DELETE_USER_SUCCESS",
+              type: 'DELETE_USER_SUCCESS',
               message: `L' utilisateur ${response.data.data[0].username} a bien été supprimé.`,
             });
           }
         })
         .catch((error) => {
-          console.log("Oups ! ", error);
+          console.log('Oups ! ', error);
         });
       break;
     }
-
-
     default:
       next(action);
   }

@@ -19,8 +19,8 @@ const initialState = {
 const reducer = (oldState = initialState, action = {}) => {
   switch (action.type) {
 
-     // Changing States when we call 'ADMIN_SUCCESS' \\
-     case "ADMIN_SUCCESS":
+    // Changing States when we call 'ADMIN_SUCCESS' \\
+    case 'ADMIN_SUCCESS':
       return {
         ...oldState,
         email: action.email,
@@ -35,11 +35,11 @@ const reducer = (oldState = initialState, action = {}) => {
         role_id: action.role_id,
       };
     // Changing states when we call 'ADMIN_FAILURE' \\
-    case "ADMIN_FAILURE":
+    case 'ADMIN_FAILURE':
       return {
         ...oldState,
-        email: "",
-        password: "",
+        email: '',
+        password: '',
         isLogged: false,
       };
       // Changing States when we call 'CHANGE_AUTH_FIELD' \\

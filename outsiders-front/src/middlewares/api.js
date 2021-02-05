@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // == Local imports == \\
-import apiUrl from './url';
+import { apiUrl, weatherKey } from './url';
 import {
 	getTripsSuccess,
 	getTripDetailsSuccess,
@@ -13,7 +13,7 @@ import {
 	searchSuccess,
 	loadWeatherSuccess,
 } from '../store/action';
-const weatherKey = '5102a539085037168997fc53c5a4d62b';
+
 // request cat/etc
 const auth = (store) => (next) => (action) => {
 
