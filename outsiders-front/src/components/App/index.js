@@ -88,6 +88,8 @@ const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
 
 App.propTypes = {
   loadSportsData: PropTypes.func.isRequired,
+  loadCategoriesData: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default App;

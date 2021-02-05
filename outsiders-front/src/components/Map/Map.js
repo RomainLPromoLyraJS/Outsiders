@@ -5,6 +5,7 @@ import {
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
+import PropTypes from 'prop-types';
 
 const Map = ({ from, to }) => {
   const [ directions, setDirections ] = useState();
@@ -66,22 +67,9 @@ const Map = ({ from, to }) => {
   );
 };
 
+Map.propTypes = {
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+}
+
 export default Map;
-
-
-
-// import { MapLayer } from "react-leaflet";
-// import L from "leaflet";
-// import "leaflet-routing-machine";
-// import { withLeaflet } from "react-leaflet";
-
-// class Routing extends MapLayer {
-//   createLeafletElement() {
-//     const { map } = this.props;
-//     let leafletElement = L.Routing.control({
-//       waypoints: [L.latLng(27.67, 85.316), L.latLng(27.68, 85.321)]
-//     }).addTo(map.leafletElement);
-//     return leafletElement.getPlan();
-//   }
-// }
-// export default withLeaflet(Routing);

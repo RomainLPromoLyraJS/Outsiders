@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from "react-router-dom";
 
 
@@ -23,5 +24,10 @@ const GuardedRoute = ({ component: Component, isLogged, ...rest }) => (
             : <Redirect to='/login' />
     )} />
 )
+
+GuardedRoute.propTypes = {
+    component: PropTypes.object.isRequired,
+    isLogged: PropTypes.bool.isRequired,
+}
 
 export default GuardedRoute;

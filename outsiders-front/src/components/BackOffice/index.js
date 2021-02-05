@@ -1,5 +1,6 @@
 // == Package imports
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 // == Local imports
@@ -47,6 +48,12 @@ const BackOffice = ({ firstname, lastname, role }) => {
     </div>
   )
 };
+
+BackOffice.propTypes = {
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  role: PropTypes.number.isRequired,
+}
 
 export default BackOffice;
 

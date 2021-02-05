@@ -55,7 +55,8 @@ Login.propTypes = {
   emailValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleLogin: PropTypes.func.isRequired
+  handleLogin: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default Login;

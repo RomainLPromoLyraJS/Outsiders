@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Sport = ({ sport }) => {
@@ -8,6 +9,13 @@ const Sport = ({ sport }) => {
       <div>{sport.description}</div>
     </div> 
   )
+}
+
+Sport.propTypes = {
+  sport: PropTypes.objectOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }))
 }
 
 export default Sport;

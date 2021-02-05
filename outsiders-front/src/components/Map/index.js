@@ -1,8 +1,9 @@
+// == Package imports
 import React from "react";
-
+import PropTypes from 'prop-types';
 import { withScriptjs } from "react-google-maps";
+// == Local imports
 import Map from "./Map";
-// import "./style.css";
 
 const TripMap = ({ from, to }) => {
   const MapLoader = withScriptjs(Map);
@@ -19,5 +20,10 @@ const TripMap = ({ from, to }) => {
     </div>
   );
 };
+
+TripMap.propTypes = {
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+}
 
 export default TripMap;

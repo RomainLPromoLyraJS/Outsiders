@@ -1,6 +1,7 @@
 // == Package imports == \\
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // == Import utils == \\
 import { buildTripURL } from '../../utils';
 
@@ -71,4 +72,27 @@ const Newtrip = ({
   );
 };
 
+Newtrip.propTypes = {
+  sports: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired,
+  trip: PropTypes.objectOf(PropTypes.shape({
+    trip_id: PropTypes.number.isRequired,
+    trip_title: PropTypes.string.isRequired,
+    trip_description: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    time: PropTypes.string.isRequired,
+    from: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired,
+    places: PropTypes.number.isRequired,
+    minimum: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired
+  }))
+
+}
 export default Newtrip;
