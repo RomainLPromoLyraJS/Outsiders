@@ -62,6 +62,14 @@ const reducer = (oldState = initialState, action = {}) => {
         description: action.description,
         isLogged: true,
       };
+      // Changing states when we call 'LOGIN_FAILURE' \\
+    case "LOGIN_FAILURE":
+      return {
+        ...oldState,
+        email: "",
+        password: "",
+        isLogged: false,
+      };
       // Changing states when we call 'LOGOUT' \\
     case 'LOGOUT':
       return {

@@ -37,7 +37,10 @@ const admin = (store) => (next) => (action) => {
             ...response.data.data
           });          
         }).catch((error) => {
-          console.log(error);
+          console.log("Oups, erreur", error);
+          store.dispatch({
+            type: 'ADMIN_FAILURE',
+          })
         });
       break;
     };
