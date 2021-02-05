@@ -23,7 +23,6 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   useEffect(() => {
    const interval = setInterval(() => {
       getMessages();
-      console.log('getMessage inteval');
   }, 15000);
   return () => clearInterval(interval);
   })
