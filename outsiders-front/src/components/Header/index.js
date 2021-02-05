@@ -1,7 +1,7 @@
 // == Package imports
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 
 // == Local imports
 // images
@@ -10,15 +10,12 @@ import outsidersLogo from '../../assets/logos/Outsiders_LOGOS-line_COLOR.svg'
 import Hamburger from './Hamburger';
 
 
-const Header = ({ categories, isLogged, handleLogout, history, loadTripsData }) => {
+const Header = ({ categories, isLogged, handleLogout, history, loadTripsData, username }) => {
 	// Hamburger state
 	const [ burgerState, setBurgerState ] = useState({
 		init: false,
 		clicked: null,
 	});
-
-	// state representing if menu is disabled or not
-	const [ disabled, setDisabled ] = useState(false);
 
 	// track page changes
 	useEffect(() => {
@@ -31,8 +28,6 @@ const Header = ({ categories, isLogged, handleLogout, history, loadTripsData }) 
 
 	// Open or close the menu
 	const toggleMenu = () => {
-		disableMenu();
-
 		if (burgerState.init === false) {
 			setBurgerState({
 				init: null,
@@ -49,15 +44,6 @@ const Header = ({ categories, isLogged, handleLogout, history, loadTripsData }) 
 		}
 	};
 
-	// Prevent menu spam
-	const disableMenu = () => {
-		setDisabled(!disabled);
-		setTimeout(() => {
-			setDisabled(false)
-		}, 1200);
-	};
-
-
 	return (
 		<header className="header">
 			<div className="header__container">
@@ -66,16 +52,22 @@ const Header = ({ categories, isLogged, handleLogout, history, loadTripsData }) 
 						<img src={outsidersLogo} alt="Ousiders logo" />
 					</NavLink>
 				</div>
-				<div disabled={disabled} onClick={toggleMenu} className="header__container__burger">
-					<span />
-					<span />
-					<span />
+				<div className="header__container__right">
+					{isLogged && (
+						<div className="header__container__right__userName">
+							<Link to="/mon-compte"><h2>{username}</h2></Link>
+						</div>
+					)}
+					<div onClick={toggleMenu} className="header__container__right__burger">
+						<span />
+						<span />
+						<span />
+					</div>
 				</div>
 			</div>
 			<Hamburger
 				burgerState={burgerState}
 				toggleMenu={toggleMenu}
-				disabledState={disabled}
 				isLogged={isLogged}
 				handleLogout={handleLogout}
 				loadTripsData={loadTripsData}
