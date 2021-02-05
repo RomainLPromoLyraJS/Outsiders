@@ -8,7 +8,6 @@
 
     &__search {
       height: calc(100vh - 160px);
-      background-image: url('../../assets/images/home1.jpg');
       background-position: center;
       background-size: cover;
       display: flex;
@@ -107,4 +106,24 @@
       }
     }
   }
+}
+
+.bg1 {
+  background-image: url('../../assets/images/home1.jpg');
+}
+
+.bg2 {
+  background-image: url('../../assets/images/home2.jpg');
+}
+
+.bg3 {
+  background-image: url('../../assets/images/home3.jpg');
+}
+
+.bg4 {
+  background-image: url('../../assets/images/home4.jpg');
+}
+
+.bg5 {
+  background-image: url('../../assets/images/home5.jpg');
 }

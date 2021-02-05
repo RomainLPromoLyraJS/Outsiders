@@ -37,5 +37,15 @@ export const makeFullName = (firstname, lastname) => {
   return `${firstname} ${lastname}`;
 };
 
+/**
+ * RANDOMIZE
+ * return a random number between min and max
+ * @param {int} min 
+ * @param {int} max 
+ */
+export const randomize = (min, max) => {
+  return Math.round(Math.random() * (max - min)) + min ;
+}
+
 
 
