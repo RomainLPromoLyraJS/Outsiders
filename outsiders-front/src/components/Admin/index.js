@@ -1,7 +1,10 @@
-// IMPORTS
-import React from "react";
+// Packages imports
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+
+// Local imports 
+import NotConnectedModal from "./NotConnectedModal";
 
 // My Component
 const Admin = ({
@@ -11,8 +14,16 @@ const Admin = ({
   handleAdmin,
   isLogged,
 }) => {
+  const [ clicked, setClicked ] = useState(false);
+
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
+  };
+
+  const onClick = () => {
+    setTimeout(() => {
+      setClicked(true)
+    }, 1000);
   };
 
   const onSubmitAdmin = (event) => {
@@ -52,14 +63,21 @@ const Admin = ({
           value={passwordValue}
           onChange={onChange}
         />
-        <button
+        <button 
           className="admin-page__form__button"
           type="submit"
           name="button"
           id="button"
+          onClick={onClick}
         >
           Valider
         </button>
+        
+        {/* if email and/or password are wrong */}
+        {!isLogged && clicked && (
+          <NotConnectedModal clicked={clicked} setClicked={setClicked} />
+        )}
+       
         {/* redirect if user is logged */}
       {isLogged && (<Redirect to="/dashboard" />)}
       </form>

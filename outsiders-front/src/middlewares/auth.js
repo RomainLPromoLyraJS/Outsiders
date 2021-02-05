@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Local imports
-import apiUrl from './url';
+import { apiUrl } from './url';
 import { signupSuccess, editUserSuccess } from '../store/action';
 
 const api = (store) => (next) => (action) => {
@@ -32,6 +32,9 @@ const api = (store) => (next) => (action) => {
           });          
         }).catch((error) => {
           console.log(error);
+          store.dispatch({
+            type: 'LOGIN_FAILURE'
+          })
         });
       break;
     };
