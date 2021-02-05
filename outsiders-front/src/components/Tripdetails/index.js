@@ -16,7 +16,7 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
 
   /** 
    * useEffect with interval & clearInterval
-   * Call getMessages(); every 15seconds // Refresh chatbox
+   * Call getMessages(); every 10seconds // Refresh chatbox
    * @params 1000ms = 1 second
    * @link https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
    */
