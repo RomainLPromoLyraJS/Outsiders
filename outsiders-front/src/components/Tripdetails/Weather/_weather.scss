@@ -1,7 +1,10 @@
 .weather {
   color: $color-tertiary;
   width: 100%;
-  margin-top: 3rem;
+  margin: 3rem 0;
+  @include media('>=tablet') {
+    width: 62%;
+  }
 
   &__title {
     font-size: 1.5rem;
@@ -33,6 +36,7 @@
       }
 
       &__title {
+        margin: 1rem;
         font-size: 1.3rem;
         color: $color-secondary;
       }
