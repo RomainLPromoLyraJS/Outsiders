@@ -1,11 +1,10 @@
 // == NAMED AS 'exapi' for EXTERNAL API == \\
 import { GET_WEATHER_SUCCESS } from '../store/action';
 
-
 const initialState = {
 
   weatherData: [],
-
+  
 };
 
 const reducer = (oldState = initialState, action = {}) => {

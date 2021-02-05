@@ -1,16 +1,85 @@
-.category_container {
-  display:flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: column;
-  // height: 200px;
-  align-content: center;
+.cat {
+  min-height: calc(100vh - 120px);
+  width: 90vw;
+  max-width: 1280px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 40px;
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    @include media('>=tablet') {
+      font-size: 6rem;
+    }
+  }
+
+  &__sportContainer {
+    @include media('>=tablet') {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+  }
 }
 
-.sport_card {
-  border: solid 1px black;
-  width: 150px;
-  height: 400px;
-  margin: 5px;
-  text-align: center;
+.EauCat {
+  background-color: $color-quinary;
+  color: $color;
+}
+
+.TerreCat {
+  background-color: $color-quaternary;
+  color: $color;
+}
+
+.NeigeCat {
+  background-color: $color-septenary;
+  color: $color-tertiary;
+}
+
+.AirCat {
+  background-color: $color-senary;
+  color: $color;
+}
+
+.sportCard {
+  margin-bottom: 2rem;
+  transition: .3s ease-in-out;
+  @include media('>=tablet') {
+    max-width: 500px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+  }
+
+  &__btn {
+    width: fit-content;
+    margin-top: .7rem;
+    margin-left: auto;
+    padding: .3rem .5rem;
+    border-radius: 10px;
+    background-color: $color;
+    color: $color-tertiary;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include media('>tablet') {
+      display: none;
+    }
+
+    p {
+      margin-right: .3rem;
+    }
+  }
+
+  &:hover {
+    color: $color-tertiary;
+    background-color: $color;
+    padding: 1rem;
+    border-radius: 20px;
+  }
 }

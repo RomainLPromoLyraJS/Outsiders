@@ -3,18 +3,18 @@ import {
   CHANGE_ADMIN_FIELD,
   CREATE_SPORT_SUCCESS,
   GET_USERS_SUCCESS,
-} from "../store/action";
+} from '../store/action';
 
 //InitialState basic guest informations
 const initialState = {
-  id: "",
+  id: '',
   isLogged: false,
-  sportNameCreate: "",
-  sportNameModify:"",
-  sportDescriptionCreate:"",
-  sportDescriptionModify:"",
-  category_id: "",
-  message: "",
+  sportNameCreate: '',
+  sportNameModify:'',
+  sportDescriptionCreate:'',
+  sportDescriptionModify:'',
+  category_id: '',
+  message: '',
   userList: [],
   
 };
@@ -32,25 +32,25 @@ const reducer = (oldState = initialState, action = {}) => {
     case CREATE_SPORT_SUCCESS:
       return {
         ...oldState,
-        sportNameCreate: "",
-        sportDescriptionCreate: "",
+        sportNameCreate: '',
+        sportDescriptionCreate: '',
         category_id: null,
-        message: "Le nouveau sport a bien été créé."
+        message: 'Le nouveau sport a bien été créé.'
       };
 
-    case "MODIFY_SPORT_SUCCESS":
+    case 'MODIFY_SPORT_SUCCESS':
       return {
         ...oldState,
-        sportNameModify: "",
-        sportDescriptionModify: "",
+        sportNameModify: '',
+        sportDescriptionModify: '',
         category_id: null,
         message: action.message,
       };
 
-    case "DELETE_SPORT_SUCCESS":
+    case 'DELETE_SPORT_SUCCESS':
       return {
         ...oldState,
-        category_id:"",
+        category_id:'',
         message: action.message,
       };
 
@@ -60,10 +60,10 @@ const reducer = (oldState = initialState, action = {}) => {
         userList: action.userList,
       };
 
-      case "DELETE_USER_SUCCESS":
+      case 'DELETE_USER_SUCCESS':
       return {
         ...oldState,
-        category_id:"",
+        category_id:'',
         message: action.message,
       };
 
