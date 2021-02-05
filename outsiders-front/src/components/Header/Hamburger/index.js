@@ -115,7 +115,6 @@ const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, isLogge
 Hamburger.propTypes = {
   burgerState: PropTypes.object.isRequired,
   toggleMenu: PropTypes.func.isRequired,
-  disabledState: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
 }
