@@ -17,28 +17,40 @@
     &--active {
       display: flex;
     }
-
   }
 
   &__content {
     background-color: $color-secondary;
     color: $color;
-    width: 400px;
-    height: 200px;
+    width: 700px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 20px;
   }
 
-  &__sport {
-    text-align: center;
-    font-weight: bold;
-    padding: 20px;
-    font-size: 1.2rem;
-    
+  &__description {
+    &__text {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.3rem;
+      line-height: 1.5rem;
+    }
+
+    &__link {
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.3rem;
+      transition: all .3s ease-in-out;
+
+      &:hover {
+          color: $color-tertiary;
+      }
+    }
   }
-  
+
   &__button {
     &__cross {
       display: flex;
@@ -48,7 +60,7 @@
       font-size: 2rem;
       cursor: pointer;
       transition: 0.3s ease-in-out;
-  
+
       &:hover {
         color: $color-tertiary;
       }
@@ -60,15 +72,14 @@
       background-color: $color;
       border-radius: 20px;
       color: $color-secondary;
-      padding: .3rem 2rem;
+      padding: 0.3rem 2rem;
       border: none;
       font-weight: bold;
-      transition: .3s ease-in-out;
+      transition: 0.3s ease-in-out;
 
       &:hover {
         background-color: $color-tertiary;
         color: $color;
-        
       }
     }
   }
