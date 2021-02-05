@@ -29,7 +29,6 @@ const Map = ({ from, to }) => {
       (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           setDirections(result);
-          console.log(result);
         } else {
           console.error(`error fetching directions ${result}`);
         }

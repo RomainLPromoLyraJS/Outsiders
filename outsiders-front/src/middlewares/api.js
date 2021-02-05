@@ -358,12 +358,15 @@ const auth = (store) => (next) => (action) => {
 				}
 			}
 
+			// 1 - API request to join the trip
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
 						console.log(response.data.message);
+
+						// 2 - Get updated data
 						axios({
 							method: 'get',
 							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
@@ -375,6 +378,21 @@ const auth = (store) => (next) => (action) => {
 								throw res.error;
 							} else {
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+
+								// Update weather data
+								axios({
+									method: 'get',
+									url: `https://api.openweathermap.org/data/2.5/forecast?q=${res.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+									headers: {
+										'Content-Type': 'application/json',
+									}
+								}).then((r) => {
+									if (r.status !== 200) {
+										throw r.error;
+									} else {
+										store.dispatch(loadWeatherSuccess(r.data));
+									}
+								});
 							}
 						});
 					}
@@ -397,12 +415,15 @@ const auth = (store) => (next) => (action) => {
 				}
 			}
 
+			// 1 - Request API to leave the trip
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
 						console.log(response.data.message);
+
+						// 2 - getting updated data
 						axios({
 							method: 'get',
 							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
@@ -414,6 +435,21 @@ const auth = (store) => (next) => (action) => {
 								throw res.error;
 							} else {
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+
+								// update weather data
+								axios({
+									method: 'get',
+									url: `https://api.openweathermap.org/data/2.5/forecast?q=${res.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+									headers: {
+										'Content-Type': 'application/json',
+									}
+								}).then((r) => {
+									if (r.status !== 200) {
+										throw r.error;
+									} else {
+										store.dispatch(loadWeatherSuccess(r.data));
+									}
+								});
 							}
 						});
 					}
@@ -468,13 +504,11 @@ const auth = (store) => (next) => (action) => {
 					'Authorization': `Bearer ${token}`,
 				}
 			}
-			console.log('CONFIG GET MESSAGES', config);
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						console.log('RESPONSE GET MESSAGES', response.data.data)
 						store.dispatch(newMessageSuccess(response.data.data));
 					}
 				})
