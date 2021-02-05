@@ -32,6 +32,9 @@ const api = (store) => (next) => (action) => {
           });          
         }).catch((error) => {
           console.log(error);
+          store.dispatch({
+            type: 'LOGIN_FAILURE'
+          })
         });
       break;
     };
