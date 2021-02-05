@@ -25,7 +25,7 @@ const EditProfile = ({ isLogged, firstname, lastname, username, email, password,
         <Redirect to='/mon-compte' />
       )}
 
-      <h1 className="editProfile__title">Inscription</h1>
+      <h1 className="editProfile__title">Modifier Profil</h1>
       <form className="editProfile__form" onSubmit={onSubmit}>
         <label className="editProfile__form__label" htmlFor="fisrtname">Prénom</label>
         <input
