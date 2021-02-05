@@ -1,5 +1,6 @@
 // == Package imports
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 // == Local imports
 //images
@@ -16,7 +17,7 @@ const Home = () => (
         </div>
       </div>
       <div className="home__top__baseline">
-        <h2>Feugiat in ante metus dictum at tempor</h2>
+        <h2>Moins de frais pour plus de fun !</h2>
       </div>
     </section>
     <section className="home__bottom">
@@ -24,8 +25,12 @@ const Home = () => (
         <img src={groupImg} alt="Groupe hiking" />
       </div>
       <div className="home__bottom__text">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit. Curabitur gravida arcu ac tortor dignissim convallis aenean. Nisi porta lorem mollis aliquam ut porttitor leo. Molestie nunc non blandit massa. Tortor pretium viverra suspendisse potenti nullam ac. Sem nulla pharetra diam sit amet. Varius vel pharetra vel turpis nunc. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Bibendum enim facilisis gravida neque convallis a.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit.</p>
+        <p>Chez Outsiders, nous sommes passionnés par les sports outdoors et nous pensons que tout le monde doit y avoir accès peu importe qu'on vive en centre-ville ou en pleine campagne.</p>
+        <p>L'idée est de proposer une plateforme communautaire, qui permet aux passionnés de sensations fortes et de grands espaces d'être mis en relation pour partager des trajets et des sessions de sport.</p>
+        <p>Tu as un moyen de locomotion ? Parfait ! Tu vas pouvoir proposer des sorties et ainsi partager les frais de transport. Tu n'en as pas ? Pas de souci... Rejoins des sorties proposées par d'autres utilisateurs pour pouvoir te déplacer et pratiquer ton sport.</p>
+        <p>Dans les deux cas ce sera surtout l'occasion de rencontrer de nouvelles personnes passionnées par la même activité que toi. Et on le sait, le sport c'est toujours plus fun à plusieurs !</p>
+        <p>Inscrit-toi dès maintenant pour proposer ou rejoindre ta première sortie.</p>
+        <NavLink className="home__bottom__btn" to="/signup">Inscription</NavLink>
       </div>  
     </section>
   </div>
