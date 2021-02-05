@@ -13,7 +13,7 @@ import { openingMenu, closingMenu } from './burgerAnimations';
 // utils
 import { buildCatURL } from '../../../utils';
 
-const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, disabledState, isLogged, handleLogout }) => {
+const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, isLogged, handleLogout }) => {
   // animated dom nodes
   let menu = useRef(null);
   let revealMenu = useRef(null);
@@ -48,7 +48,7 @@ const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, disable
                 <img src={outsidersLogo} alt="Ousiders logo" />
               </Link>
             </div>
-            <div onClick={toggleMenu} disabled={disabledState} className="menu__container__header__close">
+            <div onClick={toggleMenu} className="menu__container__header__close">
               <IoIosCloseCircle />
             </div>
           </div>
@@ -115,7 +115,6 @@ const Hamburger = ({ categories, loadTripsData, burgerState, toggleMenu, disable
 Hamburger.propTypes = {
   burgerState: PropTypes.object.isRequired,
   toggleMenu: PropTypes.func.isRequired,
-  disabledState: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
 }
