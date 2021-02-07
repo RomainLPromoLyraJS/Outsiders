@@ -23,11 +23,6 @@ const BackOffice = ({ firstname, lastname, role }) => {
   return (
     <div className="backOffice">
 
-      {/* case user is not admin */}
-      {role !== 2 && (
-        <Redirect to="/" />
-      )}
-
       <h1 className="backOffice__title">Tableau de bord</h1>
       <div className="backOffice__headContainer">
         <p className="backOffice__headContainer__username">{firstname} {lastname}</p>

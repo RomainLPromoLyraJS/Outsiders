@@ -21,9 +21,9 @@ import Patchtrip from '../../containers/Patchtrip';
 import EditProfile from '../../containers/EditProfile';
 import Admin from '../../containers/Admin';
 import Footer from '../Footer';
-import GuardedRoute from '../GuardedRoute';
+import { GuardedRoute, AdminRoute } from '../GuardedRoute';
 
-const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
+const App = ({ loadSportsData, loadCategoriesData, isLogged, admin }) => {
   // loading sports and categories data from api
   useEffect(() => {
     loadSportsData();
@@ -78,9 +78,10 @@ const App = ({ loadSportsData, loadCategoriesData, isLogged }) => {
       <Route exact path='/admin' >
         <Admin />
       </Route>
-      <Route exact path='/dashboard' >
-        <BackOffice />
-      </Route>
+
+      {/* Condition : If user is not admin (role !== 2) redirect to Home page */}
+      <AdminRoute exact path='/dashboard' component={BackOffice} admin={admin} />
+      
     <Footer />
     </div>
   );
