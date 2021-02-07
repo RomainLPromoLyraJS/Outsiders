@@ -68,6 +68,7 @@ const Newtrip = ({
           <button className='newTrip__form__button' type='submit'>C'est parti !</button>
         </NavLink>
       </form>
+      {console.log(trip)}
     </main>
   );
 };
@@ -80,19 +81,36 @@ Newtrip.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
-  trip: PropTypes.objectOf(PropTypes.shape({
-    trip_id: PropTypes.number.isRequired,
+  trip: PropTypes.shape({
+    trip_id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     trip_title: PropTypes.string.isRequired,
     trip_description: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date)
+    ]),
     time: PropTypes.string.isRequired,
     from: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
-    places: PropTypes.number.isRequired,
-    minimum: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    duration: PropTypes.number.isRequired
-  }))
-
+    places: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    minimum: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    price: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  })
 }
 export default Newtrip;

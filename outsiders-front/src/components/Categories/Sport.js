@@ -12,10 +12,11 @@ const Sport = ({ sport }) => {
 }
 
 Sport.propTypes = {
-  sport: PropTypes.objectOf(PropTypes.shape({
+  sport: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-  }))
+  })
 }
 
 export default Sport;

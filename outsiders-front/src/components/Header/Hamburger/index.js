@@ -118,6 +118,17 @@ Hamburger.propTypes = {
   disabledState: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
+  loadTripsData: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape({
+		description: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		id: PropTypes.number.isRequired,
+		sport: PropTypes.arrayOf(PropTypes.shape({
+			id: PropTypes.number.isRequired,
+			title: PropTypes.string.isRequired,
+			description: PropTypes.string.isRequired,
+		}))
+}))
 }
 
 export default Hamburger;

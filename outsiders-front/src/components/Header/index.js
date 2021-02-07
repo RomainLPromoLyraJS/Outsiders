@@ -89,6 +89,19 @@ Header.propTypes = {
 	isLogged: PropTypes.bool.isRequired,
 	handleLogout: PropTypes.func.isRequired,
 	history: PropTypes.object.isRequired,
+	loadTripsData: PropTypes.func.isRequired,
+	categories: PropTypes.arrayOf(PropTypes.shape({
+		description: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		id: PropTypes.number.isRequired,
+		sport: PropTypes.arrayOf(PropTypes.shape({
+			id: PropTypes.number.isRequired,
+			title: PropTypes.string.isRequired,
+			description: PropTypes.string.isRequired,
+		}))
+	}))
+	
+
 }
 
 export default withRouter(Header);

@@ -18,7 +18,6 @@ const Categories = ({ category, loadCategoriesData, sportTitle, handleSearch }) 
     <>
     <div className='category_container'>
       <h1  name='try' >{category.title}</h1>
-      {console.log(category)}
       {category.sport.map((sport) => {
         return <NavLink key={sport.id} to='/sorties' onClick={handleSearch} >
         <div onClick={() => {sportTitle(sport.title)}}><Sport  key={sport.id} sport={sport}  /></div>
@@ -30,11 +29,15 @@ const Categories = ({ category, loadCategoriesData, sportTitle, handleSearch }) 
 };
 
 Categories.propTypes = {
-  category: PropTypes.arrayOf(PropTypes.shape({
+  category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-  })).isRequired,
+    sport: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
   loadCategoriesData: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
   sportTitle: PropTypes.func.isRequired,

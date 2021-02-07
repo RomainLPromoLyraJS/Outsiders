@@ -1,6 +1,7 @@
 // == Package imports == \\
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // == Import utils == \\
 import { buildTripURL } from '../../utils';
 
@@ -63,5 +64,45 @@ const Patchtrip = ({
     </main>
   );
 };
+
+Patchtrip.propTypes = {
+  sports: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  handleModify: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  trip: PropTypes.shape({
+    trip_id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    trip_title: PropTypes.string.isRequired,
+    trip_description: PropTypes.string.isRequired,
+    date: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date)
+    ]),
+    time: PropTypes.string.isRequired,
+    from: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired,
+    places: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    minimum: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    price: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  })
+}
 
 export default Patchtrip;
