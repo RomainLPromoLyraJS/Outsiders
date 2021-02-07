@@ -22,7 +22,7 @@ const Patchtrip = ({
 
   return (
     <main className="patchTrip">
-      <h1 className="patchTrip__title">Modifier</h1>
+      <h1 className="patchTrip__title">Modifier Sortie</h1>
       <form className="patchTrip__form">
         <label className='patchTrip__form__label'>Sport</label>
         <select className="patchTrip__form__select" name="sport_id" onChange={onChange}>

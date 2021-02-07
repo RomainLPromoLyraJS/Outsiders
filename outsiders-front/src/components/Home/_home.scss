@@ -74,12 +74,36 @@
     }
 
     &__text {
+      margin-bottom: 2rem;
       @include media('>=tablet') {
         width: 46%;
       }
 
+      p {
+        margin-bottom: .8rem;
+      }
+
       p:last-child {
-        margin-top: 1rem;
+        margin-top: 2rem;
+      }
+    }
+
+    &__btn {
+      display: block;
+      width: fit-content;
+      margin: 1rem auto 0;
+      padding: .5rem .8rem;
+      font-weight: 700;
+      color: $color;
+      background-color: $color-secondary;
+      border-radius: 10px;
+      transition: .3s ease-in-out;
+      @include media('>=tablet') {
+        margin-left: 0;
+      }
+
+      &:hover {
+        background-color: $color-tertiary;
       }
     }
   }
