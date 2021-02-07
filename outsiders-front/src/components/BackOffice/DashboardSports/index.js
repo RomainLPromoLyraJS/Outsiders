@@ -84,7 +84,7 @@ const DashboardSports = ({
       {/* <DashboardNav /> */}
         <div className="dashboard-sports">
           <form className="dashboard-sports__form" onSubmit={onSubmitCreate}>
-            <h3 className="dashboard-sports__form__title">Créer un sport</h3>
+            <h3 className="dashboard-sports__form__title dashboard-sports__form__title__phone">Créer un sport</h3>
             <label className="dashboard-sports__form__label" forhtml="category-name">Choisir une catégorie :</label>
             <select
               onChange={onChange} //--> each time you type a data in the input, the state changes

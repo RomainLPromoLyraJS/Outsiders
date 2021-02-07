@@ -4,6 +4,10 @@
 	max-width: 1280px; // max-width generally used for all desktops
 	margin: 0 auto;
 	padding: 2rem 0;
+	@include media('<=phone') {
+		padding-bottom: 0rem;
+		
+	}
 
   &__title {
     font-size: 3rem;
@@ -17,6 +21,11 @@
 		align-items: center;
 		padding: 1rem 2rem;
 		border-radius: 30px;
+		@include media('<=phone') {
+			padding: 0.5rem 1rem;
+			margin-top: 1rem;
+			
+		}
 		
 		&__username {
 			color: $color;
@@ -25,6 +34,12 @@
 		}
 	
 		&__nav {
+			@include media('<=phone') {
+				display: flex;
+				justify-content: center;
+				
+			}
+			
 			&__btn {
 				background-color: $color;
 				color: $color-secondary;
@@ -34,6 +49,12 @@
 				border-radius: 10px;
 				margin-left: 1rem;
 				transition: .3s ease-in-out;
+				@include media('<=phone') {
+					margin: 0 0.3rem;
+					display: flex;
+					justify-content: center;
+					
+				}
 
 				&:hover {
 					background-color: $color-tertiary;
