@@ -8,12 +8,11 @@ module.exports = {
     },
 
     async postNewSport(sportToCreate) {
-        const result = await client.query('INSERT INTO "sport"(title, description) VALUES ($1, $2) RETURNING *', [sportToCreate.title, sportToCreate.description]);
+        const result = await client.query('INSERT INTO "sport"(title, description, category_id)  VALUES ($1, $2, $3) RETURNING *', [sportToCreate.title, sportToCreate.description, sportToCreate.category_id]);
         if (result.rowCount == 0) {
             return null
         }
         return result.rows[0];
-
     },
 
     async getOneSport(sportId) {
@@ -34,7 +33,7 @@ module.exports = {
     },
 
     async deleteOneSport(idSportToDelete) {
-        const result = await client.query('DELETE FROM "sport" WHERE id=$1', [idSportToDelete]);
+        const result = await client.query('DELETE FROM "sport" WHERE id=$1 RETURNING *', [idSportToDelete]);
         if (result.rowCount == 0) {
             return null;
         }

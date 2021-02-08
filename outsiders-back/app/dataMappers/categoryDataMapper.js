@@ -3,7 +3,7 @@ const client = require('./client');
 
 module.exports = {
     async getAllCategories() {
-        const result = await client.query('select category.title AS category, category.description, sport.title from category join sport on sport.category_id=category.id');
+        const result = await client.query('select jsonb_build_object(\'category\', jsonb_agg(to_jsonb(c)||sport)) from category c join (select category_id, jsonb_build_object(\'sport\', jsonb_agg(to_jsonb(s) - \'category_id\')) as sport from sport s group by s.category_id) s on s.category_id = c.id');
         return result.rows;
     },
 
@@ -34,7 +34,7 @@ module.exports = {
     },
 
     async deleteOneCategory(idCategoryToDelete) {
-        const result = await client.query('DELETE FROM "category" WHERE id=$1', [idCategoryToDelete]);
+        const result = await client.query('DELETE FROM "category" WHERE id=$1 RETURNING *', [idCategoryToDelete]);
         if (result.rowCount == 0) {
             return null;
         }

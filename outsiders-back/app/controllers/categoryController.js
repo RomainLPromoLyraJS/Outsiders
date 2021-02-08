@@ -1,5 +1,6 @@
 const categoryDataMapper = require('../dataMappers/categoryDataMapper');
 
+
 module.exports = {
     async getAllCategories(req, res, next) {
         try {
