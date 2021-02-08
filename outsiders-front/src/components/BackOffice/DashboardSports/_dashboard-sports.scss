@@ -1,35 +1,33 @@
 .dashboard-sports {
   padding: 2rem;
-  @include media('<=phone') {
-    padding: 1rem;
-
+  @include media("<=phone") {
+    padding: 0;
   }
 
   &__form {
     margin-bottom: 2.5rem;
     display: flex;
+    width: fit-content;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    @include media('<=phone') {
-			margin-bottom: 1.8rem;
-			
-		}
+    @include media("<=phone") {
+      margin-bottom: 1.8rem;
+    }
 
     &__title {
       font-size: 1.5em;
       color: $color-secondary;
       margin-bottom: 1rem;
       &__phone {
-        @include media('<=phone') {
+        @include media("<=phone") {
           margin-top: 1rem;
-          
         }
+      }
     }
-  }
 
     &__label {
-       margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
     &__input {
@@ -40,6 +38,9 @@
       color: $color-secondary;
       background-color: #dddddd;
       border: solid 2px $color-secondary;
+      @include media("<=phone") {
+        width: 90vw;
+      }
     }
 
     &__textarea {
@@ -53,16 +54,22 @@
       background-color: #dddddd;
       border: solid 2px $color-secondary;
       border-radius: 30px;
+      @include media("<=phone") {
+        width: 90vw;
+      }
     }
 
     &__select {
       width: 300px;
       height: 30px;
-      padding: 0 .3rem;
+      padding: 0 0.3rem;
       color: $color-secondary;
       border: solid 2px $color-secondary;
       border-radius: 10px;
       margin-bottom: 1.5rem;
+      @include media("<=phone") {
+        width: 90vw;
+      }
     }
 
     &__button {
@@ -73,11 +80,12 @@
       border: none;
       border-radius: 10px;
       transition: 0.2s ease-in-out;
-      @include media('<=phone') {
-        display: flex;
+      align-self: center;
+      @include media("<=phone") {
+        // display: flex;
         align-self: center;
       }
-      
+
       &:hover {
         color: $color;
         background-color: $color-tertiary;
