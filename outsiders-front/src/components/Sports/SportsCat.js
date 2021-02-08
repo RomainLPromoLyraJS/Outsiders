@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IoIosArrowDown } from "react-icons/io";
+import { NavLink } from 'react-router-dom';
 
-const SportsCat = ({ category, isOpen, setIsOpen }) => {
+const SportsCat = ({ category, isOpen, setIsOpen, sportTitle, handleSearch }) => {
   // defines arrow style
   const arrowCSS = isOpen === category.title
     ? 'category__header__arrow category__header__arrow--active'
@@ -36,8 +37,10 @@ const SportsCat = ({ category, isOpen, setIsOpen }) => {
         </div>
       </div>
       <div className={contentCSS}>
-        {category.sports.map((s) => {
-          return <p key={s.id}>{s.title}</p>
+        {category.sport.map((s) => {
+          return <NavLink key={s.id} to='/sorties' onClick={handleSearch}>
+            <p onClick={() => {sportTitle(s.title)}} key={s.id}>{s.title}</p>
+            </NavLink>
         })}
       </div>
     </section>
@@ -45,7 +48,17 @@ const SportsCat = ({ category, isOpen, setIsOpen }) => {
 };
 
 SportsCat.propTypes = {
-  category: PropTypes.object.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  category: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    sport: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
   isOpen: PropTypes.string.isRequired,
   setIsOpen: PropTypes.func.isRequired,
 }

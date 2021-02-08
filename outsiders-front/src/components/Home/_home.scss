@@ -8,7 +8,6 @@
 
     &__search {
       height: calc(100vh - 160px);
-      background-image: url('../../assets/images/home1.jpg');
       background-position: center;
       background-size: cover;
       display: flex;
@@ -53,7 +52,7 @@
     width: 90%;
     margin: 2rem auto;
     @include media('>=tablet') {
-      max-width: 1400px;
+      max-width: 1280px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -74,13 +73,65 @@
     }
 
     &__text {
+      margin-bottom: 2rem;
       @include media('>=tablet') {
         width: 46%;
       }
 
+      p {
+        margin-bottom: .8rem;
+      }
+
       p:last-child {
-        margin-top: 1rem;
+        margin-top: 2rem;
       }
     }
+
+    &__btn {
+      display: block;
+      width: fit-content;
+      margin: 1rem auto 0;
+      padding: .5rem .8rem;
+      font-weight: 700;
+      color: $color;
+      background-color: $color-secondary;
+      border-radius: 10px;
+      transition: .3s ease-in-out;
+      @include media('>=tablet') {
+        margin-left: 0;
+      }
+
+      &:hover {
+        background-color: $color-tertiary;
+      }
+    }
+  }
+}
+
+.bg1 {
+  background-image: url('../../assets/images/home1.jpg');
+  @include media('<=phone') {
+    background-image: url('../../assets/images/home1p.jpg');
+  }
+}
+
+.bg2 {
+  background-image: url('../../assets/images/home2.jpg');
+  @include media('<=phone') {
+    background-image: url('../../assets/images/home2p.jpg');
+  }
+}
+
+.bg3 {
+  background-image: url('../../assets/images/home3.jpg');
+  @include media('<=phone') {
+    background-image: url('../../assets/images/home3p.jpg');
+  }
+}
+
+.bg4 {
+  background-image: url('../../assets/images/home4.jpg');
+  @include media('<=phone') {
+    background-image: url('../../assets/images/home4p.jpg');
   }
 }

@@ -1,7 +1,7 @@
 const userDataMapper = require('../dataMappers/userDataMapper');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
+const tripDataMapper = require('../dataMappers/tripDataMapper');
 
 
 module.exports = {
@@ -81,8 +81,9 @@ module.exports = {
         try {
             const userId = req.params.id;
             const oneUser = await userDataMapper.oneUser(userId);
+            const tripRegistered = await tripDataMapper.tripRegistered(userId);
             res.json({
-                data: oneUser
+                data: oneUser, tripRegistered
             });
         } catch(error) {
             next(error);

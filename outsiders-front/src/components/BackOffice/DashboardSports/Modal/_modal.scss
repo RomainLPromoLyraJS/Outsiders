@@ -1,0 +1,75 @@
+.modal {
+  z-index: 3;
+  padding-top: 100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+
+  &__visible {
+    display: none;
+
+    &--active {
+      display: flex;
+    }
+
+  }
+
+  &__content {
+    background-color: $color-secondary;
+    color: $color;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+  }
+
+  &__sport {
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+    font-size: 1.2rem;
+    
+  }
+  
+  &__button {
+    &__cross {
+      display: flex;
+      align-self: flex-end;
+      color: $color;
+      margin: 0.3rem 0.3rem 0 0;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+  
+      &:hover {
+        color: $color-tertiary;
+      }
+    }
+
+    &__ok {
+      width: 50%;
+      margin: 0 auto 1rem;
+      background-color: $color;
+      border-radius: 20px;
+      color: $color-secondary;
+      padding: .3rem 2rem;
+      border: none;
+      font-weight: bold;
+      transition: .3s ease-in-out;
+
+      &:hover {
+        background-color: $color-tertiary;
+        color: $color;
+        
+      }
+    }
+  }
+}

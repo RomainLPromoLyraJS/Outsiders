@@ -1,26 +1,205 @@
-/** Add border solid black for more visibility with flexboxStyle*/
-
-.tripdetails {
-  display:flex;
-  flex-direction:column;
-  padding: 10px;
-  border: 1px solid black;
-  
-  section {
-    border: 1px solid black;
-    margin: 2px;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: 15vh;
-    align-items:center;
+.tripDetails {
+  width: 90%;
+  min-height: calc(100vh - 120px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  color: $color-tertiary;
+  @include media(">=tablet") {
+    min-height: calc(100vh - 132px);
   }
-  
-  .trip_title {
-    font-size: 2em;
-    align-self: flex-start;
-    align-items: center;
-    
+
+  .tripInfo {
+    &__back {
+      width: 100%;
+      margin-bottom: .7rem;
+      display: flex;
+      justify-content: flex-end;
+
+      &__btn {
+        font-size: 1rem;
+        color: $color;
+        background-color: $color-tertiary;
+        border-radius: 10px;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s ease-in-out;
+
+        &:hover {
+          background-color: $color-quaternary;
+        }
+      }
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__main {
+        h1 {
+          font-size: 3rem;
+          color: $color-secondary;
+          @include media(">=tablet") {
+            font-size: 6rem;
+          }
+        }
+
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.3rem;
+          @include media(">=tablet") {
+            font-size: 3rem;
+          }
+        }
+      }
+
+      &__username {
+        text-align: right;
+      }
+
+    }
+
+    &__container {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      @include media(">=tablet") {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      &__desc {
+        width: 100%;
+        margin-bottom: 1rem;
+
+        &__title {
+          font-size: 1.5rem;
+        }
+
+        &__travel {
+          width: 90%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 2rem auto;
+          @include media(">=tablet") {
+            width: 60%;
+            margin: 2.5rem auto;
+          }
+
+          &__from {
+            background-color: $color-secondary;
+            color: $color;
+            padding: 0.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            @include media(">=tablet") {
+              font-size: 1.5rem;
+            }
+          }
+
+          &__separator {
+            background-color: $color-secondary;
+            width: 100%;
+            height: 3px;
+          }
+
+          &__to {
+            background-color: $color-secondary;
+            color: $color;
+            padding: 0.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            @include media(">=tablet") {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        &__text {
+          font-size: 1.1rem;
+        }
+      }
+
+      &__infos {
+        width: 100%;
+        margin-top: 2rem;
+
+        &__title {
+        color: $color-tertiary;
+        font-size: 1.5rem;
+        }
+
+        &__text {
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+        }
+      }
+
+      &__details {
+        background-color: $color-secondary;
+        padding: 1rem;
+        border-radius: 30px;
+        width: 100%;
+        line-height: 1.5rem;
+        color: $color;
+        @include media(">=tablet") {
+          width: 35%;
+          margin-left: 1rem;
+        }
+
+        span {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+    }
+
+    &__weatherAndMap {
+      width: 100%;
+      @include media('>=tablet') {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }
 
+.buttonSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include media(">=tablet") {
+    flex-direction: row;
+  }
+
+  &__btn {
+    width: 80%;
+    background-color: $color-tertiary;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 0;
+    margin: 0.2rem 0;
+    color: $color;
+    font-size: 1rem;
+    cursor: pointer;
+    @include media(">=tablet") {
+      width: 250px;
+      margin: 0 0.2rem;
+    }
+
+    &--del {
+      background-color: $color-quaternary;
+    }
+  }
+}

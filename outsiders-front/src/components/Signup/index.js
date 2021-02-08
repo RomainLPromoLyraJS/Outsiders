@@ -1,90 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
-const Signup = ({
-  firstnameValue,
-  lastnameValue,
-  usernameValue,
-  emailValue,
-  passwordValue,
-  descriptionValue,
-  handleChange
-}) => {
+const Signup = ({ isLogged, firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
+  const [ redirect, setRedirect] = useState(false);
+
   const onChange = (event) => {
-      handleChange(event.target.value, event.target.name);
-  };
-  
+    handleChange(event.target.value, event.target.name);
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit();
+    setRedirect(true);
+  }
+
   return (
-    <div className='signup'>
-      <form className="signup_form">
-        <h1 className="signup_title">Sign up</h1>
+    <div className="signup">
+      {/* redirect when signed up */}
+      {redirect && (
+        <Redirect to='/login' />
+      )}
+
+      {/* redirect if user is logged */}
+      {isLogged && (
+        <Redirect to='/mon-compte' />
+      )}
+
+      <h1 className="signup__title">Inscription</h1>
+      <form className="signup__form" onSubmit={onSubmit}>
+        <label className="signup__form__label" htmlFor="fisrtname">Prénom</label>
         <input
-          className='signup_form_input'
-          placeholder='FirstName'
-          type='text'
-          name='firstname'
-          value={firstnameValue}
+          value={firstname}
           onChange={onChange}
+          className="signup__form__input"
+          type="text"
+          name="firstname"
+          id="firstname"
+          placeholder="Kelly"
         />
+        <label className="signup__form__label" htmlFor="lastname">Nom de famille</label>
         <input
-          className='signup_form_input'
-          placeholder='LastName'
-          type='text'
-          name='lastname'
-          value={lastnameValue}
+          value={lastname}
           onChange={onChange}
+          className="signup__form__input"
+          type="text"
+          name="lastname"
+          id="lastname"
+          placeholder="Slater"
         />
+        <label className="signup__form__label" htmlFor="username">Nom d'utilisateur</label>
         <input
-          className='signup_form_input'
-          placeholder='UserName'
-          type='text'
-          name='username'
-          value={usernameValue}
+          value={username}
           onChange={onChange}
+          className="signup__form__input"
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Surf Master"
         />
+        <label className="signup__form__label" htmlFor="email">Email</label>
         <input
-					className='signup_form_input'
-					placeholder='Email'
-					type='email'
-					name='email'
-					value={emailValue}
-					onChange={onChange}
-        />
-        <input
-          className='signup_form_input'
-          placeholder='Password'
-          type='password'
-          name='password'
-          value={passwordValue}
+          value={email}
           onChange={onChange}
+          className="signup__form__input"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="kelly.@slater.surf"
         />
+        <label className="signup__form__label" htmlFor="password">Mot de passe</label>
         <input
-          className='signup_form_input'
-          placeholder='ShortDescription'
-          type='text'
-          name='description'
-          value={descriptionValue}
+          value={password}
           onChange={onChange}
+          className="signup__form__input"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="min 8 caractères (a, A, 2, *)"
         />
-        <button
-          type='submit'
-          className='signup_form_button'
-        >
-          SignUp
-        </button>
+        <label className="signup__form__label" htmlFor="description">Description</label>
+        <textarea
+          name="description"
+          value={description}
+          onChange={onChange}
+          id="description"
+          className="signup__form__textarea"
+          placeholder="C'est le moment de se décrire un petit peu..."
+        />
+        <button className="signup__form__button" type="submit">Valider !</button>
       </form>
     </div>
-  )
+  );
 };
 
-Signup.propTypes = { 
-  lastnameValue: PropTypes.string.isRequired,
-  firstnameValue: PropTypes.string.isRequired,
-  usernameValue: PropTypes.string.isRequired,  
-  emailValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  descriptionValue: PropTypes.string.isRequired,
+Signup.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Signup;

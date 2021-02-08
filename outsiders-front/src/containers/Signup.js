@@ -5,21 +5,25 @@ import { connect } from 'react-redux';
 import Signup from '../components/Signup';
 import { changeAuthField } from '../store/action';
 
-// StateToProps
+// STATES that we give to Props (Signup)
 const mapStateToProps = (state) => ({
-  emailValue: state.auth.email,
-  passwordValue: state.auth.password,
-  firstnameValue: state.auth.firstname,
-  lastnameValue: state.auth.lastname,
-  usernameValue: state.auth.username,
-  descriptionValue: state.auth.description
+  isLogged: state.auth.isLogged,
+  firstname: state.auth.firstname,
+  lastname: state.auth.lastname,
+  username: state.auth.username,
+  email: state.auth.email,
+  password: state.auth.password,
+  description: state.auth.description,
 });
-
 
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (value, name) => {
     dispatch(changeAuthField(value, name));
-  }  
+  },
+
+  handleSubmit: () => {
+    dispatch({type: 'USER_SIGNUP'});
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
