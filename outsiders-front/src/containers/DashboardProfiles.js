@@ -7,7 +7,6 @@ import { changeAdminField } from "../store/action";
 
 const mapStateToProps = (state) => ({
   userList: state.admin.userList,
-  categoryIdValue: state.admin.category_id,
 });
 
 // ACTIONS/FUNCTIONS that we give to Props (DashboardProfiles)

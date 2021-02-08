@@ -63,7 +63,6 @@ const reducer = (oldState = initialState, action = {}) => {
       case 'DELETE_USER_SUCCESS':
       return {
         ...oldState,
-        category_id:'',
         message: action.message,
       };
 

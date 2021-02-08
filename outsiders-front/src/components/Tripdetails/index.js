@@ -163,3 +163,4 @@ Tripdetails.propTypes = {
 }
 
 export default Tripdetails;
+
