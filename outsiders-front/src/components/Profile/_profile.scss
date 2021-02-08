@@ -80,8 +80,10 @@
   }
 
   &__trips {
+    width: 100%;
 
     &__title {
+      display: block;
       font-size: 1.5rem;
       padding: .5rem 1rem;
       color: $color;

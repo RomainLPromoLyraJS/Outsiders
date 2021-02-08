@@ -6,11 +6,14 @@ import DayJS from 'react-dayjs';
 import { FaArrowLeft } from "react-icons/fa";
 
 // == Local Import
+// components
 import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 import Weather from './Weather';
 import Loader from '../Loader';
 import Map from '../../containers/Map';
+// utils
+import { nullToArray } from '../../utils';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
 
@@ -23,19 +26,9 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
   useEffect(() => {
    const interval = setInterval(() => {
       getMessages();
-      console.log('getMessage interval');
   }, 10000);
   return () => clearInterval(interval);
   })
-
-  // prevent null array
-  const nullToArray = (tab) => {
-    if (tab == null) {
-      return [];
-    } else {
-      return tab;
-    }
-  }
 
   const spotCalculator = (nbSpot, nbPax) => {
     return nbSpot - nbPax;

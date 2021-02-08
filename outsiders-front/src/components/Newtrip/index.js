@@ -68,7 +68,6 @@ const Newtrip = ({
           <button className='newTrip__form__button' type='submit'>C'est parti !</button>
         </NavLink>
       </form>
-      {console.log(trip)}
     </main>
   );
 };
