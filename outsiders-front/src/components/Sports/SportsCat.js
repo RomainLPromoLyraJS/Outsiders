@@ -48,7 +48,17 @@ const SportsCat = ({ category, isOpen, setIsOpen, sportTitle, handleSearch }) =>
 };
 
 SportsCat.propTypes = {
-  category: PropTypes.object.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  category: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    sport: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
   isOpen: PropTypes.string.isRequired,
   setIsOpen: PropTypes.func.isRequired,
 }

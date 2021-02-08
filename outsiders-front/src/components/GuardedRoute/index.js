@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from "react-router-dom";
 
 
@@ -34,3 +35,11 @@ export const AdminRoute = ({ component: Component, admin, ...rest }) => (
             : <Redirect to='/' />
     )} />
 );
+
+GuardedRoute.propTypes = {
+    component: PropTypes.object.isRequired,
+    isLogged: PropTypes.bool.isRequired,
+    admin: PropTypes.number.isRequired,
+}
+
+export default GuardedRoute;
