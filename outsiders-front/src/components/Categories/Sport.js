@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
 
-
 const Sport = ({ sport }) => {
   return (
     <div  className='sportCard'>
@@ -17,10 +16,11 @@ const Sport = ({ sport }) => {
 }
 
 Sport.propTypes = {
-  sport: PropTypes.objectOf(PropTypes.shape({
+  sport: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-  }))
+  })
 }
 
 export default Sport;

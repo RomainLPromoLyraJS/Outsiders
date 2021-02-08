@@ -30,11 +30,15 @@ const Categories = ({ category, loadCategoriesData, sportTitle, handleSearch }) 
 };
 
 Categories.propTypes = {
-  category: PropTypes.arrayOf(PropTypes.shape({
+  category: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-  })).isRequired,
+    sport: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
   loadCategoriesData: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
   sportTitle: PropTypes.func.isRequired,

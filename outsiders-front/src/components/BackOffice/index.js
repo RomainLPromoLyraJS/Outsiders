@@ -1,7 +1,7 @@
 // == Package imports
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+
 
 // == Local imports
 import DashBoardSports from '../../containers/DashboardSports';

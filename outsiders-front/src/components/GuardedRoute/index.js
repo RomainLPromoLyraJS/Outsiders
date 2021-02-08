@@ -39,6 +39,7 @@ export const AdminRoute = ({ component: Component, admin, ...rest }) => (
 GuardedRoute.propTypes = {
     component: PropTypes.object.isRequired,
     isLogged: PropTypes.bool.isRequired,
+    admin: PropTypes.number.isRequired,
 }
 
 export default GuardedRoute;

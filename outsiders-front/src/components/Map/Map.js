@@ -7,6 +7,7 @@ import {
 } from "react-google-maps";
 import PropTypes from 'prop-types';
 
+
 const Map = ({ from, to }) => {
   const [ directions, setDirections ] = useState();
 
