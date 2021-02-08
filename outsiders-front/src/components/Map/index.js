@@ -6,7 +6,6 @@ import { withScriptjs } from "react-google-maps";
 import Map from "./Map";
 import { googleKey } from '../../middlewares/url';
 
-
 const TripMap = ({ from, to }) => {
   const MapLoader = withScriptjs(Map);
 

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
 
-
-
 const Sport = ({ sport }) => {
   return (
     <div  className='sportCard'>

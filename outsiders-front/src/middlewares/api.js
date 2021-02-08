@@ -12,6 +12,7 @@ import {
   getUsersSuccess,
 	searchSuccess,
 	loadWeatherSuccess,
+	getMessageSuccess,
 } from '../store/action';
 
 // request cat/etc
@@ -509,7 +510,7 @@ const auth = (store) => (next) => (action) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						store.dispatch(newMessageSuccess(response.data.data));
+						store.dispatch(getMessageSuccess(response.data.data));
 					}
 				})
 				.catch((error) => {
