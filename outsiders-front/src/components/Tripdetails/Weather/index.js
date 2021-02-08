@@ -1,6 +1,6 @@
 // == Package imports
 import React from 'react';
-
+import PropTypes from 'prop-types';
 // == Local imports
 import iconPaser from './iconParser';
 
@@ -63,6 +63,11 @@ const Weather = ({ weather, trip }) => {
       {/* If weather.city IS undefined return ('') (Fix for crash) */}
     </section>
   )
+}
+
+Weather.propTypes = {
+  weather: PropTypes.object.isRequired,
+  trip: PropTypes.object.isRequired,
 }
 
 export default Weather;

@@ -1,5 +1,7 @@
 // == Package imports
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 
 // == Local imports
 import DashBoardSports from '../../containers/DashboardSports';
@@ -41,6 +43,12 @@ const BackOffice = ({ firstname, lastname, role }) => {
     </div>
   )
 };
+
+BackOffice.propTypes = {
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  role: PropTypes.number.isRequired,
+}
 
 export default BackOffice;
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-const EditProfile = ({ isLogged, firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
+const EditProfile = ({ firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
   const [ redirect, setRedirect] = useState(false);
 
   const onChange = (event) => {

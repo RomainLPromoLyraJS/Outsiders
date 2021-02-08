@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
-
 
 const Sport = ({ sport }) => {
   return (
@@ -13,6 +13,14 @@ const Sport = ({ sport }) => {
       </div>
     </div> 
   )
+}
+
+Sport.propTypes = {
+  sport: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  })
 }
 
 export default Sport;

@@ -59,7 +59,9 @@ Profile.propTypes = {
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-  })
+  }),
+  getUserTrips: PropTypes.func.isRequired,
+  handleDeleteUser: PropTypes.func.isRequired,
 };
 
 export default Profile;

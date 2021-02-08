@@ -4,7 +4,9 @@ import {
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer
-} from 'react-google-maps';
+} from "react-google-maps";
+import PropTypes from 'prop-types';
+
 
 const Map = ({ from, to }) => {
   const [ directions, setDirections ] = useState();
@@ -55,5 +57,10 @@ const Map = ({ from, to }) => {
     </div>
   );
 };
+
+Map.propTypes = {
+  from: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+}
 
 export default Map;

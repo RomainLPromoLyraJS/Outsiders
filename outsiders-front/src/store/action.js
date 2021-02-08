@@ -22,6 +22,7 @@ export const GET_TRIP_DETAILS_SUCCESS = 'GET_TRIP_DETAILS_SUCCESS';
 // message types
 export const CHANGE_MESSAGE_FIELD = 'CHANGE_MESSAGE_FIELD';
 export const NEW_MESSAGE_SUCCESS = 'NEW_MESSAGE_SUCCESS';
+export const GET_MESSAGE_SUCCESS = 'GET_MESSAGE_SUCCESS';
 
 // backOffice types
 export const CHANGE_ADMIN_FIELD = 'CHANGE_ADMIN_FIELD';
@@ -115,6 +116,11 @@ export const changeMessageField = (value) => ({
 
 export const newMessageSuccess = (messages) => ({
   type: NEW_MESSAGE_SUCCESS,
+  messages,
+});
+
+export const getMessageSuccess = (messages) => ({
+  type: GET_MESSAGE_SUCCESS,
   messages,
 });
 

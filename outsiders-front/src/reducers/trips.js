@@ -6,6 +6,7 @@ import {
   CHANGE_MESSAGE_FIELD,
   NEW_MESSAGE_SUCCESS,
   GET_WEATHER_SUCCESS,
+  GET_MESSAGE_SUCCESS,
 } from '../store/action';
 
 const initialState = {
@@ -101,6 +102,15 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         messageValue: '',
+        currentTrip: {
+          ...oldState.currentTrip,
+          message: action.messages,
+        }
+      };
+    
+    case GET_MESSAGE_SUCCESS:
+      return {
+        ...oldState,
         currentTrip: {
           ...oldState.currentTrip,
           message: action.messages,
