@@ -14,6 +14,7 @@ const initialState = {
   description: '',
   isLogged: false,
   role_id: '',
+  loginError: false
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -41,6 +42,7 @@ const reducer = (oldState = initialState, action = {}) => {
         email: '',
         password: '',
         isLogged: false,
+        loginError: true,
       };
       // Changing States when we call 'CHANGE_AUTH_FIELD' \\
     case CHANGE_AUTH_FIELD:
@@ -69,8 +71,16 @@ const reducer = (oldState = initialState, action = {}) => {
         email: "",
         password: "",
         isLogged: false,
+        loginError: true,
       };
-      // Changing states when we call 'LOGOUT' \\
+
+    case 'CLOSE_LOGIN_MODAL':
+      return {
+        ...oldState,
+        loginError: false,
+      };
+
+    // Changing states when we call 'LOGOUT' \\
     case 'LOGOUT':
       return {
         ...oldState,

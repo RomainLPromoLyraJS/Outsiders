@@ -1,24 +1,16 @@
 // Package imports
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 // Local Imports
 import NotConnectedModal from "./NotConnectedModal";
 
-const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged }) => {
-
-  const [ clicked, setClicked ] = useState(false);
+const Login = ({ closeModal, emailValue, passwordValue, handleChange, handleLogin, isLogged, loginError }) => {
 
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
   }
-
-  const onClick = () => {
-    setTimeout(() => {
-      setClicked(true)
-    }, 1000);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,9 +26,9 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged 
       )}
 
       {/* if email and/or password are wrong */}
-      {!isLogged && clicked && (
-          <NotConnectedModal clicked={clicked} setClicked={setClicked} />
-        )}
+      {!isLogged && loginError && (
+        <NotConnectedModal closeModal={closeModal} />
+      )}
 
       <h1 className="login__title">Connexion</h1>
       <form className="login__form" onSubmit={handleSubmit}>
@@ -60,7 +52,7 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged 
           value={passwordValue}
           onChange={onChange}
         />
-        <button className='login__form__button' type='submit' onClick={onClick}>Valider</button>
+        <button className='login__form__button' type='submit'>Valider</button>
       </form>
     </div>
   );

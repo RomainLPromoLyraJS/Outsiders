@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   emailValue: state.auth.email,
   passwordValue: state.auth.password,
   isLogged: state.auth.isLogged,
+  loginError: state.auth.loginError,
 });
 // ACTIONS/FUNCTIONS that we give to Props (Admin)
 const mapDispatchToProps = (dispatch) => ({
@@ -18,6 +19,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
     handleAdmin: () => {
     dispatch({ type: 'AUTH_ADMIN' })
+  },
+
+  closeModal: () => {
+    dispatch({type: 'CLOSE_LOGIN_MODAL'});
   },
 });
 
