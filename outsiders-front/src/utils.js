@@ -45,4 +45,17 @@ export const makeFullName = (firstname, lastname) => {
  */
 export const randomize = (min, max) => {
   return Math.round(Math.random() * (max - min)) + min ;
+};
+
+ /**
+  * NULL TO ARRAY
+  * Prevent null array
+  * @param {array} el 
+  */
+ export const nullToArray = (el) => {
+  if (el == null) {
+    return [];
+  } else {
+    return el;
+  }
 }
