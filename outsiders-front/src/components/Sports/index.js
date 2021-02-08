@@ -1,5 +1,6 @@
 // == Package imports
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // == Local imports
 // components
@@ -24,5 +25,19 @@ const Sports = ({ categories, sportTitle, handleSearch }) => {
     </div>
   );
 };
+
+Sports.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+  sportTitle: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    sport: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })).isRequired,
+  })).isRequired,
+}
 
 export default Sports;

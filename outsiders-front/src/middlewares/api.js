@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // == Local imports == \\
-import apiUrl from './url';
+import { apiUrl, weatherKey } from './url';
 import {
 	getTripsSuccess,
 	getTripDetailsSuccess,
@@ -12,8 +12,9 @@ import {
   getUsersSuccess,
 	searchSuccess,
 	loadWeatherSuccess,
+	getMessageSuccess,
 } from '../store/action';
-const weatherKey = '5102a539085037168997fc53c5a4d62b';
+
 // request cat/etc
 const auth = (store) => (next) => (action) => {
 
@@ -124,7 +125,7 @@ const auth = (store) => (next) => (action) => {
 				},
 				data: {
 					sport,
-					from,
+					from: from.charAt(0).toUpperCase() + from.slice(1),
 					date,
 				},
 			};
@@ -164,8 +165,8 @@ const auth = (store) => (next) => (action) => {
 					description: currentTrip.trip_description,
 					date: currentTrip.date,
 					time: currentTrip.time,
-					from: currentTrip.from,
-					to: currentTrip.to,
+					from: currentTrip.from.charAt(0).toUpperCase() + currentTrip.from.slice(1),
+					to: currentTrip.to.charAt(0).toUpperCase() + currentTrip.to.slice(1),
 					places: currentTrip.places,
 					minimum: currentTrip.minimum,
 					price: currentTrip.price,
@@ -269,8 +270,8 @@ const auth = (store) => (next) => (action) => {
 					description: currentTrip.trip_description,
 					date: currentTrip.date,
 					time: currentTrip.time,
-					from: currentTrip.from,
-					to: currentTrip.to,
+					from: currentTrip.from.charAt(0).toUpperCase() + currentTrip.from.slice(1),
+					to: currentTrip.to.charAt(0).toUpperCase() + currentTrip.to.slice(1),
 					places: currentTrip.places,
 					minimum: currentTrip.minimum,
 					price: currentTrip.price,
@@ -358,12 +359,15 @@ const auth = (store) => (next) => (action) => {
 				}
 			}
 
+			// 1 - API request to join the trip
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
 						console.log(response.data.message);
+
+						// 2 - Get updated data
 						axios({
 							method: 'get',
 							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
@@ -375,6 +379,21 @@ const auth = (store) => (next) => (action) => {
 								throw res.error;
 							} else {
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+
+								// Update weather data
+								axios({
+									method: 'get',
+									url: `https://api.openweathermap.org/data/2.5/forecast?q=${res.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+									headers: {
+										'Content-Type': 'application/json',
+									}
+								}).then((r) => {
+									if (r.status !== 200) {
+										throw r.error;
+									} else {
+										store.dispatch(loadWeatherSuccess(r.data));
+									}
+								});
 							}
 						});
 					}
@@ -397,12 +416,15 @@ const auth = (store) => (next) => (action) => {
 				}
 			}
 
+			// 1 - Request API to leave the trip
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
 						console.log(response.data.message);
+
+						// 2 - getting updated data
 						axios({
 							method: 'get',
 							url: `${apiUrl}/trip/${currentTrip.trip_id}`,
@@ -414,6 +436,21 @@ const auth = (store) => (next) => (action) => {
 								throw res.error;
 							} else {
 								store.dispatch(getTripDetailsSuccess(res.data.data[0], res.data.data[1], res.data.data[2]));
+
+								// update weather data
+								axios({
+									method: 'get',
+									url: `https://api.openweathermap.org/data/2.5/forecast?q=${res.data.data[0].to}&units=metric&APPID=${weatherKey}`,
+									headers: {
+										'Content-Type': 'application/json',
+									}
+								}).then((r) => {
+									if (r.status !== 200) {
+										throw r.error;
+									} else {
+										store.dispatch(loadWeatherSuccess(r.data));
+									}
+								});
 							}
 						});
 					}
@@ -468,14 +505,12 @@ const auth = (store) => (next) => (action) => {
 					'Authorization': `Bearer ${token}`,
 				}
 			}
-			console.log('CONFIG GET MESSAGES', config);
 			axios(config)
 				.then((response) => {
 					if (response.status !== 200) {
 						throw response.error;
 					} else {
-						console.log('RESPONSE GET MESSAGES', response.data.data)
-						store.dispatch(newMessageSuccess(response.data.data));
+						store.dispatch(getMessageSuccess(response.data.data));
 					}
 				})
 				.catch((error) => {

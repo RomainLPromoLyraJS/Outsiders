@@ -1,6 +1,7 @@
 // == Package imports
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 // == Local imports
 import DashBoardSports from '../../containers/DashboardSports';
@@ -22,11 +23,6 @@ const BackOffice = ({ firstname, lastname, role }) => {
   return (
     <div className="backOffice">
 
-      {/* case user is not admin */}
-      {role !== 2 && (
-        <Redirect to="/" />
-      )}
-
       <h1 className="backOffice__title">Tableau de bord</h1>
       <div className="backOffice__headContainer">
         <p className="backOffice__headContainer__username">{firstname} {lastname}</p>
@@ -47,6 +43,12 @@ const BackOffice = ({ firstname, lastname, role }) => {
     </div>
   )
 };
+
+BackOffice.propTypes = {
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  role: PropTypes.number.isRequired,
+}
 
 export default BackOffice;
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-const EditProfile = ({ isLogged, firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
+const EditProfile = ({ firstname, lastname, username, email, password, description, handleChange, handleSubmit }) => {
   const [ redirect, setRedirect] = useState(false);
 
   const onChange = (event) => {
@@ -25,7 +25,7 @@ const EditProfile = ({ isLogged, firstname, lastname, username, email, password,
         <Redirect to='/mon-compte' />
       )}
 
-      <h1 className="editProfile__title">Inscription</h1>
+      <h1 className="editProfile__title">Modifier Profil</h1>
       <form className="editProfile__form" onSubmit={onSubmit}>
         <label className="editProfile__form__label" htmlFor="fisrtname">Prénom</label>
         <input

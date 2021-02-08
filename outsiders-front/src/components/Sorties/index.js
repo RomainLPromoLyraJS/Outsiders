@@ -1,6 +1,7 @@
 // == Package imports
 import React, { useState } from 'react';
 import { HiOutlineAdjustments } from "react-icons/hi";
+import PropTypes from 'prop-types';
 
 // == Local Imports
 import SearchBar from '../../containers/SearchBar';
@@ -34,5 +35,9 @@ const Sorties = () => {
     </div>
   );
 };
+
+Sorties.propTypes = {
+  toggleSearchBar: PropTypes.func
+}
 
 export default Sorties;

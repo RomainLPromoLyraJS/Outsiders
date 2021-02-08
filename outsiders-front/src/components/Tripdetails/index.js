@@ -10,24 +10,21 @@ import ButtonSection from './ButtonSection';
 import MessageSection from './MessageSection';
 import Weather from './Weather';
 import Loader from '../Loader';
+import Map from '../../containers/Map';
 
 const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, handleNewMessage, isLoaded, messageValue, trip, userId, username, weather, getMessages }) => {
 
-  const spotCalculator = (nbSpot, nbPax) => {
-    return nbSpot - nbPax;
-  };
-  
   /** 
    * useEffect with interval & clearInterval
-   * Call getMessages(); every 15seconds // Refresh chatbox
+   * Call getMessages(); every 10seconds // Refresh chatbox
    * @params 1000ms = 1 second
    * @link https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
    */
   useEffect(() => {
    const interval = setInterval(() => {
       getMessages();
-      console.log('getMessage inteval');
-  }, 15000);
+      console.log('getMessage interval');
+  }, 10000);
   return () => clearInterval(interval);
   })
 
@@ -105,32 +102,36 @@ const Tripdetails = ({ handleChange, handleDelete, handleJoin, handleLeave, hand
               <div className="tripInfo__container__details__price">Prix/pers : <span>{pricePaxCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
               <div className="tripInfo__container__details__price">Prix/pers si tu nous rejoins : <span>{priceCalculator(nullToArray(trip.participants).length).toFixed(2)}€</span></div>
             </div>
-          </section>
-          <ButtonSection
-            creatorId={trip.creator[0].id}
-            handleDelete={handleDelete}
-            handleJoin={handleJoin}
-            handleLeave={handleLeave}
-            userId={userId}
-            isParticipant={isParticipant(trip.participants, username)}
-          />
-          <MessageSection
-            handleChange={handleChange}
-            handleNewMessage={handleNewMessage}
-            messageValue={messageValue}
-            messages={nullToArray(trip.message)}
-            username={username}
-            isParticipant={isParticipant(trip.participants, username)}
-          />
-          {/*  Weather sub components */}
+          </div>
+        </section>
+        <ButtonSection
+          creatorId={trip.creator[0].id}
+          handleDelete={handleDelete}
+          handleJoin={handleJoin}
+          handleLeave={handleLeave}
+          userId={userId}
+          isParticipant={isParticipant(trip.participants, username)}
+        />
+        <MessageSection
+          handleChange={handleChange}
+          handleNewMessage={handleNewMessage}
+          messageValue={messageValue}
+          messages={nullToArray(trip.message)}
+          username={username}
+          isParticipant={isParticipant(trip.participants, username)}
+        />
+        {/*  Weather sub components */}
+        <div className="tripInfo__weatherAndMap">
           <Weather trip={trip} weather={weather}/>
-          <div className="tripInfo__container">
-            <div className="tripInfo__container__infos">
-              <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
-              <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
-            </div>
+          <Map />
+        </div>
+        <div className="tripInfo__container">
+          <div className="tripInfo__container__infos">
+            <h2 className="tripInfo__container__infos__title">Quelques infos sur {trip.creator[0].username}</h2>
+            <p className="tripInfo__container__infos__text">{trip.creator[0].description}</p>
           </div>
         </div>
+        </>
       )}
     </main>
   )

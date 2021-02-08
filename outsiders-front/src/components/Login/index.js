@@ -1,13 +1,24 @@
 // Package imports
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
+// Local Imports
+import NotConnectedModal from "./NotConnectedModal";
+
 const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged }) => {
+
+  const [ clicked, setClicked ] = useState(false);
 
   const onChange = (event) => {
     handleChange(event.target.value, event.target.name);
   }
+
+  const onClick = () => {
+    setTimeout(() => {
+      setClicked(true)
+    }, 1000);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,6 +32,11 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged 
       {isLogged && (
         <Redirect to='/' />
       )}
+
+      {/* if email and/or password are wrong */}
+      {!isLogged && clicked && (
+          <NotConnectedModal clicked={clicked} setClicked={setClicked} />
+        )}
 
       <h1 className="login__title">Connexion</h1>
       <form className="login__form" onSubmit={handleSubmit}>
@@ -44,7 +60,7 @@ const Login = ({ emailValue, passwordValue, handleChange, handleLogin, isLogged 
           value={passwordValue}
           onChange={onChange}
         />
-        <button className='login__form__button' type='submit'>Valider</button>
+        <button className='login__form__button' type='submit' onClick={onClick}>Valider</button>
       </form>
     </div>
   );
@@ -55,7 +71,8 @@ Login.propTypes = {
   emailValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleLogin: PropTypes.func.isRequired
+  handleLogin: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default Login;
