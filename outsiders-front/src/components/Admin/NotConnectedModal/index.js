@@ -3,17 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const NotConnectedModal = ({ clicked, setClicked }) => {
+const NotConnectedModal = ({ closeModal }) => {
   const toggleModal = () => {
-    setClicked(false);
+    closeModal();
   };
 
-  const modalStyle = clicked
-    ? "modal modal__visible--active"
-    : "modal modal__visible";
-
   return (
-    <div className={modalStyle}>
+    <div className="modal modal__visible--active">
       <div className="modal__content">
         <IoIosCloseCircle
           className="modal__button__cross"
