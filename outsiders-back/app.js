@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const jwt = require('express-jwt');
 const jsonwebtoken = require('jsonwebtoken');
 
-//const path = require('path');
+const path = require('path');
 const fileUpload = require ('express-fileupload');
 
 const authMiddleware = require('./app/middleware/auth');
@@ -36,7 +36,8 @@ app.post('/upload', function(req, res) {
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     sampleFile = req.files.sampleFile;
-    uploadPath = __dirname + '/public' + sampleFile.name;
+    uploadPath = __dirname + '/public/' + sampleFile.name;
+    console.log(uploadPath);
 
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv(uploadPath, function(err) {
