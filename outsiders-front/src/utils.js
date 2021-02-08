@@ -46,6 +46,3 @@ export const makeFullName = (firstname, lastname) => {
 export const randomize = (min, max) => {
   return Math.round(Math.random() * (max - min)) + min ;
 }
-
-
-

@@ -12,7 +12,7 @@ import { randomize } from '../../utils';
 
 const Home = () => {
   // randomize the background picture
-  const bgCss = `home__top__search bg${randomize(1, 6)}`
+  const bgCss = `home__top__search bg${randomize(1, 4)}`
 
   return (
     <div className="home">
