@@ -114,9 +114,6 @@ const admin = (store) => (next) => (action) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        data: {
-          category_id,
-        },
       };
 
       axios(config)
@@ -145,9 +142,7 @@ const admin = (store) => (next) => (action) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        data: {
-          category_id,
-        },
+        
       };
       
       axios(config)

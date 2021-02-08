@@ -7,13 +7,6 @@ import Modal from "../DashboardSports/Modal";
 
 const DashboardProfiles = ({ loadUsersData, userList, handleDelete, handleChange }) => { 
 
-  // loading users data from api
-  useEffect(() => {
-    loadUsersData();
-  // console.log('je suis dans le useEffect');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // sending the request to API
   const onSubmitDelete = (event) => {
     event.preventDefault();
@@ -27,6 +20,13 @@ const DashboardProfiles = ({ loadUsersData, userList, handleDelete, handleChange
 
   //my state for the modal window to delete a user
   const [deleteUserVisible, setDeleteUserVisible] = useState(false);
+
+  // loading users data from api
+  useEffect(() => {
+    loadUsersData();
+  // console.log('je suis dans le useEffect');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deleteUserVisible]);
 
   const toggleDelete = () => {
     setDeleteUserVisible(!deleteUserVisible);
